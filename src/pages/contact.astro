@@ -4,228 +4,294 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Contact Us"
-  description="Request a free trial of PureVida bottleless water coolers. Free installation, no long-term contract. Serving Texas businesses."
+  description="Contact PureVida Water Technologies. Schedule a meeting, request a free trial, refer a friend, or get support. Serving Texas businesses."
 >
-  <section class="py-16 bg-gradient-to-br from-sky-50 to-white">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-sky-50 to-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16">
-        <!-- Form -->
-        <div>
-          <h1 class="text-4xl font-bold text-gray-900">Get Your Free Trial</h1>
-          <p class="mt-4 text-lg text-gray-600">
-            Experience the PureVida difference. We'll install a system at your location for free—no commitment required.
-          </p>
-
-          <form class="mt-8 space-y-6" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div class="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-              />
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6">
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
-              </div>
-              <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="employees" class="block text-sm font-medium text-gray-700 mb-2">Number of Employees</label>
-              <select
-                id="employees"
-                name="employees"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-              >
-                <option value="">Select...</option>
-                <option value="1-10">1-10</option>
-                <option value="11-25">11-25</option>
-                <option value="26-50">26-50</option>
-                <option value="51-100">51-100</option>
-                <option value="100+">100+</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="city" class="block text-sm font-medium text-gray-700 mb-2">City *</label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                required
-                placeholder="e.g., Dallas, Houston, Austin"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-              />
-            </div>
-
-            <div>
-              <label for="interest" class="block text-sm font-medium text-gray-700 mb-2">I'm Interested In</label>
-              <div class="grid sm:grid-cols-2 gap-3">
-                <label class="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                  <input type="checkbox" name="interest" value="water" class="w-4 h-4 text-sky-500" />
-                  <span>Water Systems</span>
-                </label>
-                <label class="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                  <input type="checkbox" name="interest" value="ice" class="w-4 h-4 text-sky-500" />
-                  <span>Ice & Water Systems</span>
-                </label>
-                <label class="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                  <input type="checkbox" name="interest" value="coffee" class="w-4 h-4 text-sky-500" />
-                  <span>Coffee System</span>
-                </label>
-                <label class="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                  <input type="checkbox" name="interest" value="filtration" class="w-4 h-4 text-sky-500" />
-                  <span>Filtration Systems</span>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message (Optional)</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                placeholder="Tell us about your needs..."
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30"
-            >
-              Request Free Trial
-            </button>
-
-            <p class="text-sm text-gray-500 text-center">
-              No commitment required. We'll contact you within 24 hours.
-            </p>
-          </form>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="lg:pl-8">
-          <div class="bg-white rounded-2xl shadow-lg p-8 sticky top-24">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-
-            <div class="space-y-6">
-              <div class="flex items-start gap-4">
-                <div class="bg-sky-100 rounded-lg p-3">
-                  <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-900">Phone</p>
-                  <a href="tel:+18885340117" class="text-sky-600 hover:text-sky-700 text-lg">(888) 534-0117</a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-4">
-                <div class="bg-sky-100 rounded-lg p-3">
-                  <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-900">Email</p>
-                  <a href="mailto:contact@purevidawater.com" class="text-sky-600 hover:text-sky-700">contact@purevidawater.com</a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-4">
-                <div class="bg-sky-100 rounded-lg p-3">
-                  <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-900">Service Areas</p>
-                  <p class="text-gray-600">Dallas-Fort Worth, Austin, and San Antonio metro areas</p>
-                </div>
-              </div>
-            </div>
-
-            <hr class="my-8" />
-
-            <div class="space-y-4">
-              <h3 class="font-semibold text-gray-900">Why Choose PureVida?</h3>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3 text-gray-600">
-                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  Free installation & setup
-                </li>
-                <li class="flex items-center gap-3 text-gray-600">
-                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  No long-term contracts
-                </li>
-                <li class="flex items-center gap-3 text-gray-600">
-                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  Free maintenance included
-                </li>
-                <li class="flex items-center gap-3 text-gray-600">
-                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  1,100+ Texas businesses served
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Contact Us</h1>
+        <p class="mt-4 text-xl text-gray-600">
+          Get in touch with our team. We're here to help.
+        </p>
       </div>
     </div>
   </section>
+
+  <!-- Form Tabs -->
+  <section class="pt-6 pb-12 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Form Selection Buttons -->
+      <div class="flex justify-center gap-2 mb-12">
+        <button data-form="intro" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-sky-500 text-white shadow-lg text-sm whitespace-nowrap">
+          Schedule Intro Meeting
+        </button>
+        <button data-form="trial" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+          Request Free Trial
+        </button>
+        <button data-form="refer" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+          Refer a Friend
+        </button>
+        <button data-form="support" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+          Request Support
+        </button>
+      </div>
+
+      <!-- Forms -->
+      <!-- Schedule Intro Meeting Form -->
+      <div id="form-intro" class="form-panel">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Schedule an Intro Meeting</h2>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+          <input type="hidden" name="form_type" value="intro_meeting" />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="intro-name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+              <input type="text" id="intro-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="intro-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
+              <input type="text" id="intro-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="intro-email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" id="intro-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="intro-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+              <input type="tel" id="intro-phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div>
+            <label for="intro-message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+            <textarea id="intro-message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Tell us about your needs..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
+            Schedule Meeting
+          </button>
+        </form>
+      </div>
+
+      <!-- Request Free Trial Form -->
+      <div id="form-trial" class="form-panel hidden">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Free Trial</h2>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+          <input type="hidden" name="form_type" value="free_trial" />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="trial-name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+              <input type="text" id="trial-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="trial-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
+              <input type="text" id="trial-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="trial-email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" id="trial-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="trial-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+              <input type="tel" id="trial-phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div>
+            <label for="trial-interest" class="block text-sm font-medium text-gray-700 mb-1">I'm Interested In</label>
+            <div class="grid sm:grid-cols-3 gap-3">
+              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
+                <input type="checkbox" name="interest" value="water" class="w-4 h-4 text-sky-500" />
+                <span class="text-sm">Water Systems</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
+                <input type="checkbox" name="interest" value="ice" class="w-4 h-4 text-sky-500" />
+                <span class="text-sm">Ice & Water</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
+                <input type="checkbox" name="interest" value="coffee" class="w-4 h-4 text-sky-500" />
+                <span class="text-sm">Coffee System</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label for="trial-message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+            <textarea id="trial-message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Tell us about your needs..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
+            Request Free Trial
+          </button>
+        </form>
+      </div>
+
+      <!-- Refer a Friend Form -->
+      <div id="form-refer" class="form-panel hidden">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Refer a Friend</h2>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+          <input type="hidden" name="form_type" value="referral" />
+          <div class="bg-sky-50 border border-sky-200 rounded-lg p-4 mb-4">
+            <p class="text-sky-800 text-sm">Know a business that could benefit from PureVida? Refer them and help them discover better water solutions!</p>
+          </div>
+          <div class="border-b border-gray-200 pb-4 mb-4">
+            <h3 class="font-semibold text-gray-700 mb-3">Your Information</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="refer-your-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                <input type="text" id="refer-your-name" name="your_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+              <div>
+                <label for="refer-your-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email *</label>
+                <input type="email" id="refer-your-email" name="your_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-700 mb-3">Friend's Information</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="refer-friend-name" class="block text-sm font-medium text-gray-700 mb-1">Friend's Name *</label>
+                <input type="text" id="refer-friend-name" name="friend_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+              <div>
+                <label for="refer-friend-company" class="block text-sm font-medium text-gray-700 mb-1">Friend's Company *</label>
+                <input type="text" id="refer-friend-company" name="friend_company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label for="refer-friend-email" class="block text-sm font-medium text-gray-700 mb-1">Friend's Email *</label>
+                <input type="email" id="refer-friend-email" name="friend_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+              <div>
+                <label for="refer-friend-phone" class="block text-sm font-medium text-gray-700 mb-1">Friend's Phone</label>
+                <input type="tel" id="refer-friend-phone" name="friend_phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
+            Submit Referral
+          </button>
+        </form>
+      </div>
+
+      <!-- Request Support Form -->
+      <div id="form-support" class="form-panel hidden">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request Support</h2>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+          <input type="hidden" name="form_type" value="support" />
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="support-name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+              <input type="text" id="support-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="support-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
+              <input type="text" id="support-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="support-email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <input type="email" id="support-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+            <div>
+              <label for="support-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+              <input type="tel" id="support-phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div>
+            <label for="support-type" class="block text-sm font-medium text-gray-700 mb-1">Support Type *</label>
+            <select id="support-type" name="support_type" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
+              <option value="">Select an issue type...</option>
+              <option value="maintenance">Maintenance Request</option>
+              <option value="repair">Repair Needed</option>
+              <option value="filter">Filter Change</option>
+              <option value="billing">Billing Question</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="support-message" class="block text-sm font-medium text-gray-700 mb-1">Describe the Issue *</label>
+            <textarea id="support-message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Please describe your issue in detail..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
+            Submit Support Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Info Section -->
+  <section class="py-12 bg-gray-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <!-- Address -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 tracking-wide">ADDRESS</h3>
+          <p class="text-gray-300">1607 Falcon Dr</p>
+          <p class="text-gray-300">STE 101</p>
+          <p class="text-gray-300">DeSoto, TX 75115</p>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 tracking-wide">CONTACT</h3>
+          <p class="text-gray-300">
+            <a href="tel:+18885340117" class="hover:text-sky-400 transition">888-534-0117</a>
+          </p>
+          <p class="text-gray-300">
+            <a href="mailto:contact@purevidawater.com" class="hover:text-sky-400 transition">contact@purevidawater.com</a>
+          </p>
+        </div>
+
+        <!-- Business Hours -->
+        <div>
+          <h3 class="text-lg font-bold mb-4 tracking-wide">BUSINESS HOURS</h3>
+          <p class="text-gray-300">Monday - Friday</p>
+          <p class="text-gray-300">8:00 am - 5:00 pm</p>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="mt-12 rounded-lg overflow-hidden shadow-xl">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3359.5!2d-96.8577!3d32.5897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e8f3b3b3b3b3b%3A0x0!2s1607+Falcon+Dr%2C+DeSoto%2C+TX+75115!5e0!3m2!1sen!2sus!4v1600000000000"
+          width="100%"
+          height="350"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="PureVida Office Location"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const tabs = document.querySelectorAll('.form-tab');
+    const panels = document.querySelectorAll('.form-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const formId = tab.getAttribute('data-form');
+
+        // Update tab styles
+        tabs.forEach(t => {
+          t.classList.remove('bg-sky-500', 'text-white', 'shadow-lg');
+          t.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        tab.classList.remove('bg-gray-100', 'text-gray-700');
+        tab.classList.add('bg-sky-500', 'text-white', 'shadow-lg');
+
+        // Show/hide panels
+        panels.forEach(panel => {
+          panel.classList.add('hidden');
+        });
+        document.getElementById(`form-${formId}`)?.classList.remove('hidden');
+      });
+    });
+  </script>
 </Layout>
