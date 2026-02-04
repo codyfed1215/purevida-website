@@ -1,173 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "How much does it cost?",
+    answer: "Our systems have a one-time, $99 installation fee. After that it is a full-service rental that ranges anywhere from $44 to $309 a month depending on what you need, but we typically bill quarterly."
+  },
+  {
+    question: "What is included?",
+    answer: "Our systems are on a full-service rental agreement which means if it ever breaks, we will fix it. If we cannot fix it, we will replace. All parts, service, filters and filter changes are included, and we will relocate the system for free once a year if needed. Our filters are industrial grade and will last for a long time. We do not like to let them go longer than a year without changing the filters. But if you ever need anything, you can reach out and we will get you fixed up."
+  },
+  {
+    question: "How does installation work?",
+    answer: "Our Field Technicians will come out, take your guidance, and install the equipment for you. Install can take as little as 45 minutes. You most likely have hundreds if not thousands of feet of data cabling and wiring running all through your facility now. Our process is similar to this. Tell us where you want it, then we will run our quarter inch, flexible but durable, polyethylene lines from the back of our systems to a water source and drain in your building. Water source and drain does not need to be close to the system. A power source does need to be close. We then use push to connect fittings that piggyback off the existing plumbing you already have in place. We have thousands of systems installed in all different types of buildings and environments."
+  },
+  {
+    question: "Is the water really high quality?",
+    answer: "Yes, this is wonderful water. We can take any potable water source, and turn it into outstanding water. A sediment filter, two carbon filters, a reverse osmosis membrane, an optional \"Boost\" filter that adds back in essential minerals, electrolytes, and boosts the PH of the water, auto internal tank sanitization. You will taste the difference in your Free, No Obligations Trial."
+  },
+  {
+    question: "What is my responsibility with the Coffee System?",
+    answer: "We will install and provide service on your coffee system. It will be up to your company to source and purchase the coffee beans and powders. There are hundreds of online and drop ship options for coffee beans based on your budget and your preference. We will point you in the right direction for what powders can work with the system. There is a very quick and simple daily and weekly upkeep process on the coffee system you will be responsible for that only takes minutes. It is best if you have an office manager or someone responsible that we can train on the quick processes that come along with the coffee system."
+  },
+  {
+    question: "Is it a commitment?",
+    answer: "Yes, it is a commitment, and we do offer different commitment lengths to fit your needs. We are installing and maintaining a nice piece of machinery at no real upfront cost to you, just the one-time $99 installation fee that goes to cover some of our installation costs. In return, we ask for a commitment. The majority of our customers go with the longest term so they can lock in the lowest possible monthly payment. Plus, if it ever breaks, we will fix it. If we cannot fix it, we will replace it. We offer free relocations. And we let you trial it before you ever commit to or pay for anything. If you need to cancel early, you can pay off the remainder of your commitment at that time and we will pick up our equipment."
+  }
+];
 ---
 
 <Layout
-  title="About Us"
-  description="Learn about PureVida Water Technologies, founded by Payton Fedell. Delivering premium bottleless water solutions to Texas businesses since day one."
+  title="FAQs"
+  description="Frequently asked questions about PureVida Water Technologies bottleless water coolers, ice machines, and coffee systems. Learn about pricing, installation, and service."
 >
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-white leading-tight">
-          About PureVida
-        </h1>
-        <p class="mt-4 text-xl text-gray-300">
-          Pure water, full service, zero hassle.
-        </p>
+  <section class="bg-gradient-to-br from-sky-50 to-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">
+        Frequently Asked Questions
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Everything you need to know about our systems and service.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-6">
+        {faqs.map((faq, index) => (
+          <div class="border border-gray-200 rounded-2xl overflow-hidden">
+            <button
+              class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition"
+              data-faq={index}
+            >
+              <span class="text-lg font-semibold text-gray-900">{faq.question}</span>
+              <svg class="faq-icon w-5 h-5 text-sky-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content hidden px-6 pb-5">
+              <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Mission Statement -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-          <p class="text-lg text-gray-600 leading-relaxed mb-6">
-            PureVida Water Technologies exists to transform how Texas businesses think about workplace hydration. We combine cutting-edge filtration technology with white-glove service to deliver an experience that's better for your team, your budget, and the environment.
-          </p>
-          <p class="text-lg text-gray-600 leading-relaxed">
-            From small offices to large industrial facilities, we provide the same level of care and attention to every client. Because when it comes to the water your team drinks every day, there should be no compromise.
-          </p>
-        </div>
-        <div class="grid grid-cols-2 gap-6">
-          <div class="bg-gray-50 rounded-2xl p-8 text-center">
-            <div class="text-4xl font-bold text-sky-500">1,100+</div>
-            <p class="text-gray-600 mt-2">Businesses Served</p>
-          </div>
-          <div class="bg-gray-50 rounded-2xl p-8 text-center">
-            <div class="text-4xl font-bold text-sky-500">3</div>
-            <p class="text-gray-600 mt-2">Metro Areas</p>
-          </div>
-          <div class="bg-gray-50 rounded-2xl p-8 text-center">
-            <div class="text-4xl font-bold text-sky-500">99%</div>
-            <p class="text-gray-600 mt-2">Customer Retention</p>
-          </div>
-          <div class="bg-gray-50 rounded-2xl p-8 text-center">
-            <div class="text-4xl font-bold text-sky-500">24hr</div>
-            <p class="text-gray-600 mt-2">Response Time</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Founder Section -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <!-- Photo -->
-        <div class="relative">
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-            <img
-              src="/images/team/payton-fedell.jpg"
-              alt="Payton Fedell, Founder & CEO of PureVida Water Technologies"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <!-- Decorative element -->
-          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-sky-500/10 rounded-2xl -z-10"></div>
-          <div class="absolute -top-6 -left-6 w-32 h-32 bg-sky-500/10 rounded-2xl -z-10"></div>
-        </div>
-
-        <!-- Content -->
-        <div>
-          <p class="text-sky-500 font-semibold mb-2">Founder & CEO</p>
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Payton Fedell</h2>
-
-          <div class="prose prose-lg text-gray-600">
-            <p>
-              I started PureVida Water Technologies from scratch with a simple belief: Texas businesses deserve better than the status quo of bottled water delivery.
-            </p>
-            <p>
-              After seeing countless companies struggle with unreliable deliveries, heavy jugs, mounting costs, and growing piles of plastic waste, I knew there had to be a better way. So I built one.
-            </p>
-            <p>
-              Today, PureVida serves over 1,100 businesses across Dallas-Fort Worth, Austin, and San Antonio. But our mission remains the same as day one: provide the purest water, the best equipment, and service that actually shows up when you need it.
-            </p>
-            <p>
-              Every installation, every service call, every filter change—we treat your business like it's our own. Because at the end of the day, your trust is everything.
-            </p>
-          </div>
-
-          <!-- Signature -->
-          <div class="mt-8 pt-8 border-t border-gray-200">
-            <svg class="h-16 w-auto text-gray-800" viewBox="0 0 200 60" fill="currentColor">
-              <path d="M10 45 Q15 20 25 35 T40 30 Q50 25 55 40 L60 35 Q65 45 75 30 T90 35" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <path d="M95 40 Q100 25 110 35 T125 30 L130 40" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <path d="M135 35 Q140 45 150 30 T165 40 Q175 35 185 45" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-            </svg>
-            <p class="text-gray-900 font-semibold mt-2">Payton Fedell</p>
-            <p class="text-gray-500 text-sm">Founder & CEO, PureVida Water Technologies</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Values -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900">What Drives Us</h2>
-        <p class="mt-4 text-xl text-gray-600">The principles behind everything we do</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center p-8">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-100 text-sky-600 rounded-2xl mb-6">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Uncompromising Quality</h3>
-          <p class="text-gray-600">
-            We only partner with manufacturers who meet our rigorous standards. Every system we install is built to last and backed by our service guarantee.
-          </p>
-        </div>
-
-        <div class="text-center p-8">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-100 text-sky-600 rounded-2xl mb-6">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Service-First Mentality</h3>
-          <p class="text-gray-600">
-            Equipment is only as good as the service behind it. Our local technicians respond fast, solve problems right, and treat your space with respect.
-          </p>
-        </div>
-
-        <div class="text-center p-8">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-100 text-sky-600 rounded-2xl mb-6">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Environmental Responsibility</h3>
-          <p class="text-gray-600">
-            Every bottleless system eliminates hundreds of plastic bottles annually. We're proud to help our clients reduce their environmental footprint.
-          </p>
-        </div>
+  <!-- Still Have Questions -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
+      <p class="text-gray-600 mb-8">
+        We're here to help. Reach out and we'll get back to you within 24 hours.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold transition">
+          Contact Us
+        </a>
+        <a href="tel:+18885340117" class="inline-flex items-center justify-center border-2 border-gray-300 hover:border-sky-500 text-gray-700 hover:text-sky-600 px-8 py-4 rounded-xl font-semibold transition">
+          (888) 534-0117
+        </a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20 bg-gray-900">
+  <section class="py-16 bg-sky-500">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white">Ready to Partner with PureVida?</h2>
-      <p class="mt-4 text-xl text-gray-300">
-        Join over 1,100 Texas businesses who trust us with their workplace hydration.
+      <h2 class="text-3xl font-bold text-white">Ready to Try It?</h2>
+      <p class="mt-4 text-xl text-sky-100">
+        Free trial, free installation, no obligations.
       </p>
       <div class="mt-8">
-        <button data-trial-modal class="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg cursor-pointer">
+        <button data-trial-modal class="inline-flex items-center justify-center bg-white text-sky-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-sky-50 transition cursor-pointer">
           Request Your Free Trial
         </button>
       </div>
     </div>
   </section>
+
+  <script>
+    const toggles = document.querySelectorAll('.faq-toggle');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('.faq-icon');
+
+        // Close all other FAQs
+        toggles.forEach(otherToggle => {
+          if (otherToggle !== toggle) {
+            const otherContent = otherToggle.nextElementSibling;
+            const otherIcon = otherToggle.querySelector('.faq-icon');
+            otherContent?.classList.add('hidden');
+            otherIcon?.classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle current FAQ
+        content?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  </script>
 </Layout>

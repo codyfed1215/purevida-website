@@ -5,24 +5,31 @@ const products = [
   {
     id: "pv12c",
     name: "PV12c",
-    subtitle: "Touchscreen Coffee",
+    subtitle: "Coffee & Beverage",
     image: "/images/products/PV12c.png",
-    description: "Premium bean-to-cup coffee machine with intuitive touchscreen interface. Multiple drink options including espresso, americano, latte, and more.",
-    highlights: ["Touchscreen display", "Bean-to-cup fresh", "Multiple drinks", "Self-cleaning"],
-    featured: true
+    featured: true,
+    specs: [
+      { label: "Form", value: "Countertop or Freestanding" },
+      { label: "Functionality", value: "Bean to Cup, Single Serve, Coffee, Chocolate, Vanilla, Milktopping" },
+      { label: "Dimensions", value: "36\"H x 17\"W x 22\"D | 70\"H x 17\"W x 22\"D" },
+      { label: "Storage", value: "5 lbs. Coffee Bean Cannister 1 | 5 lbs. Coffee Bean Cannister 2" },
+      { label: "Dispense Height", value: "7\"" },
+      { label: "Weight", value: "91 lbs. / 115 lbs." },
+      { label: "Recommended Usage", value: "Less than 30 Drinkers per System" },
+    ],
   }
 ];
 ---
 
 <Layout
-  title="Coffee Systems"
+  title="Coffee System"
   description="Commercial coffee machines for Texas businesses. Bean-to-cup freshness with touchscreen operation. Free installation and service included."
 >
   <!-- Hero -->
   <section class="bg-gradient-to-br from-sky-50 to-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Coffee Systems</h1>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Coffee System</h1>
         <p class="mt-4 text-xl text-gray-600">
           Café-quality coffee in your breakroom. Bean-to-cup freshness, zero effort.
         </p>
@@ -58,25 +65,36 @@ const products = [
             </div>
             <p class="text-xl text-sky-600 font-medium mb-6">{product.subtitle}</p>
 
-            <p class="text-gray-600 text-lg mb-8">{product.description}</p>
-
-            <!-- Highlights -->
-            <div class="grid grid-cols-2 gap-3 mb-8">
-              {product.highlights.map((highlight) => (
-                <div class="flex items-center gap-2 text-gray-700">
-                  <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  {highlight}
+            {product.specs ? (
+              <ul class="space-y-2 mb-8">
+                {product.specs.map((spec) => (
+                  <li class="flex text-gray-700">
+                    <span class="font-semibold mr-2">{spec.label}:</span>
+                    <span>{spec.value}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <>
+                <p class="text-gray-600 text-lg mb-8">{product.description}</p>
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                  {product.highlights.map((highlight) => (
+                    <div class="flex items-center gap-2 text-gray-700">
+                      <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {highlight}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
 
             <!-- Drink Options -->
             <div class="bg-gray-50 rounded-xl p-6 mb-8">
               <h3 class="font-semibold text-gray-900 mb-3">Available Drinks</h3>
               <div class="flex flex-wrap gap-2">
-                {["Espresso", "Americano", "Latte", "Cappuccino", "Hot Chocolate", "Hot Water"].map((drink) => (
+                {["Coffee", "Espresso", "Americano", "Latte", "Cappuccino", "Hot Chocolate", "Hot Water", "More"].map((drink) => (
                   <span class="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border border-gray-200">{drink}</span>
                 ))}
               </div>

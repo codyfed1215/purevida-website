@@ -5,48 +5,106 @@ const products = [
   {
     id: "pv1w",
     name: "PV1w",
-    subtitle: "Countertop",
+    subtitle: "Low Consumption",
     image: "/images/products/PV1w.png",
-    description: "Compact countertop water purifier perfect for small offices and reception areas. Touchless operation with advanced filtration.",
-    highlights: ["Touchless sensor", "Self-cleaning", "Countertop size", "Hot & Cold"],
+    category: "Low Consumption Water System",
+    specs: [
+      { label: "Form", value: "Countertop" },
+      { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Dimensions", value: "18\"H x 12\"W x 20\"D" },
+      { label: "Storage", value: "1 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
+      { label: "Dispense Height", value: "10.7\"" },
+      { label: "Weight", value: "47 lbs." },
+      { label: "Recommended Usage", value: "Less than 7 Drinkers per System" },
+    ],
   },
   {
     id: "pv2w",
     name: "PV2w",
-    subtitle: "Standard",
+    subtitle: "Low Consumption",
     image: "/images/products/PV2w.png",
-    description: "Freestanding water purifier with reverse osmosis filtration. Glass front panel with capacitive touch sensors.",
-    highlights: ["Reverse osmosis", "Glass front", "Leak-stop tech", "Hot & Cold"],
+    specs: [
+      { label: "Form", value: "Freestanding" },
+      { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Dimensions", value: "49\"H x 13\"W x 18\"D" },
+      { label: "Storage", value: "1.82 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
+      { label: "Dispense Height", value: "10.75\"" },
+      { label: "Weight", value: "55 lbs." },
+      { label: "Recommended Usage", value: "Less than 7 Drinkers per System" },
+    ],
   },
   {
     id: "pv3w",
     name: "PV3w",
-    subtitle: "Premium",
+    subtitle: "Moderate Consumption",
     image: "/images/products/PV3w.png",
-    description: "Premium touchless water purifier with LCD screen showing real-time system status. 3-gallon high-capacity cold tank.",
-    highlights: ["LCD display", "3 gal cold tank", "Touchless", "Hot & Cold"],
+    specs: [
+      { label: "Form", value: "Freestanding" },
+      { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Dimensions", value: "51\"H x 14\"W x 17\"D" },
+      { label: "Storage", value: "3 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
+      { label: "Dispense Height", value: "11.5\"" },
+      { label: "Weight", value: "70 lbs." },
+      { label: "Recommended Usage", value: "7 to 30 Drinkers per System" },
+    ],
   },
   {
     id: "pv4w",
     name: "PV4w",
-    subtitle: "High Capacity",
+    subtitle: "High Consumption",
     image: "/images/products/PV4w.png",
-    description: "Next-generation hydration hub with 15.4\" touchscreen. Largest cold tank on the market at 5 gallons with hyper-chill technology.",
-    highlights: ["15\" touchscreen", "5 gal cold tank", "UV lights", "Hot, Cold & Ambient"],
-    featured: true
+    featured: true,
+    specs: [
+      { label: "Form", value: "Freestanding" },
+      { label: "Functionality", value: "Hot, Cold & Ambient Water" },
+      { label: "Dimensions", value: "69\"H x 19\"W x 21\"D" },
+      { label: "Storage", value: "5 Gallon Cold Tank | 1.1 Gallon Hot Tank | 2.5 Gallon Ambient Tank" },
+      { label: "Dispense Height", value: "14.7\"" },
+      { label: "Weight", value: "155 lbs." },
+      { label: "Recommended Usage", value: "30 to 50 Drinkers per System" },
+    ],
+  },
+  {
+    id: "pv5s",
+    name: "PV5s",
+    subtitle: "Sparkling",
+    image: "/images/products/PV5s.png",
+    specs: [
+      { label: "Form", value: "Countertop or Freestanding" },
+      { label: "Functionality", value: "Hot, Cold, Ambient, Sparkling Water" },
+      { label: "Dimensions", value: "18\"H x 15\"W x 24\"D | 46\"H x 15\"W x 24\"D" },
+      { label: "Storage", value: "1.58 Gallon Cold Tank | 0.33 Gallon Hot Tank | 2.4 Gallon Ambient Tank" },
+      { label: "Dispense Height", value: "11.25\"" },
+      { label: "Weight", value: "72 lbs. / 97 lbs." },
+      { label: "Recommended Usage", value: "Less than 20 Drinkers" },
+    ],
+  },
+  {
+    id: "pvfiltration",
+    name: "PVFiltration",
+    subtitle: "DI Water",
+    image: "/images/products/Stand Alone DI.png",
+    description: "DI or Deionized Water is great for Dentists, Surgical Associates or any business that needs ultra purified water for usage outside of consumption. A great substitute for Distilled Water.",
+    specs: [
+      { label: "Form", value: "Under the Sink Filtration & Bladder Tank" },
+      { label: "Functionality", value: "Ambient DI Water" },
+      { label: "Dimensions", value: "18\"H x 12\"W x 20\"D" },
+      { label: "Storage", value: "2.4 or 6 gallon ambient tank" },
+      { label: "Recommended Usage", value: "Less than 7 Drinkers per System" },
+    ],
   }
 ];
 ---
 
 <Layout
-  title="Water Coolers"
+  title="Water Systems"
   description="Bottleless water coolers for Texas businesses. Touchless, self-cleaning, and cost-effective. Free installation and service included."
 >
   <!-- Hero -->
   <section class="bg-gradient-to-br from-sky-50 to-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Water Coolers</h1>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Water Systems</h1>
         <p class="mt-4 text-xl text-gray-600">
           Touchless, self-cleaning, unlimited fresh water. Pick your size.
         </p>
@@ -56,16 +114,16 @@ const products = [
 
   <!-- Product Selector -->
   <section class="py-12 bg-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Product Tabs -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
         {products.map((product, index) => (
           <button
             data-product={product.id}
-            class={`product-tab px-6 py-3 rounded-xl font-semibold transition-all ${index === 0 ? 'bg-sky-500 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+            class={`product-tab px-4 py-2 rounded-xl font-semibold transition-all ${index === 0 ? 'bg-sky-500 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
           >
-            <span class="block text-lg">{product.name}</span>
-            <span class="block text-sm opacity-80">{product.subtitle}</span>
+            <span class="block text-base">{product.name}</span>
+            <span class="block text-xs opacity-80">{product.subtitle}</span>
           </button>
         ))}
       </div>
@@ -99,19 +157,35 @@ const products = [
             </div>
             <p class="text-xl text-sky-600 font-medium mb-6">{product.subtitle}</p>
 
-            <p class="text-gray-600 text-lg mb-8">{product.description}</p>
-
-            <!-- Highlights -->
-            <div class="grid grid-cols-2 gap-3 mb-8">
-              {product.highlights.map((highlight) => (
-                <div class="flex items-center gap-2 text-gray-700">
-                  <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  {highlight}
+            {product.specs ? (
+              <>
+                {product.description && (
+                  <p class="text-gray-600 text-lg mb-6">{product.description}</p>
+                )}
+                <ul class="space-y-2 mb-8">
+                  {product.specs.map((spec) => (
+                    <li class="flex text-gray-700">
+                      <span class="font-semibold mr-2">{spec.label}:</span>
+                      <span>{spec.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <p class="text-gray-600 text-lg mb-8">{product.description}</p>
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                  {product.highlights.map((highlight) => (
+                    <div class="flex items-center gap-2 text-gray-700">
+                      <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {highlight}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
 
             <a href="/contact" class="inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
               Get a Free Trial

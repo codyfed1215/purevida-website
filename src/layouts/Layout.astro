@@ -68,22 +68,15 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
-          <a href="/" class="flex items-center gap-3 group">
-            <svg class="h-11 w-11 text-sky-500 group-hover:text-sky-600 transition" viewBox="0 0 100 100" fill="currentColor">
-              <path d="M50 5 C50 5 20 40 20 60 C20 77 33 90 50 90 C67 90 80 77 80 60 C80 40 50 5 50 5Z"/>
-              <ellipse cx="50" cy="25" rx="25" ry="8" fill="currentColor" opacity="0.3"/>
-            </svg>
-            <div>
-              <span class="text-2xl font-bold text-sky-500 group-hover:text-sky-600 transition">PureVida</span>
-              <span class="block text-xs text-gray-500 -mt-1 tracking-wide">water technologies</span>
-            </div>
+          <a href="/" class="flex items-center group">
+            <img src="/images/companylogo/logo.png" alt="PureVida Water Technologies" class="h-16 w-auto" />
           </a>
 
           <!-- Desktop Nav -->
           <div class="hidden md:flex items-center gap-8">
             <a href="/products" class="text-gray-700 hover:text-sky-500 font-medium transition">Products</a>
             <a href="/locations" class="text-gray-700 hover:text-sky-500 font-medium transition">Service Areas</a>
-            <a href="/about" class="text-gray-700 hover:text-sky-500 font-medium transition">About</a>
+            <a href="/about" class="text-gray-700 hover:text-sky-500 font-medium transition">FAQs</a>
             <a href="/blog" class="text-gray-700 hover:text-sky-500 font-medium transition">Blog</a>
             <button data-trial-modal class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg shadow-sky-500/30 hover:shadow-sky-500/40 cursor-pointer">
               Get Free Trial
@@ -102,7 +95,7 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
         <div id="mobile-menu" class="hidden md:hidden pb-4">
           <a href="/products" class="block py-2 text-gray-700 hover:text-sky-500">Products</a>
           <a href="/locations" class="block py-2 text-gray-700 hover:text-sky-500">Service Areas</a>
-          <a href="/about" class="block py-2 text-gray-700 hover:text-sky-500">About</a>
+          <a href="/about" class="block py-2 text-gray-700 hover:text-sky-500">FAQs</a>
           <a href="/blog" class="block py-2 text-gray-700 hover:text-sky-500">Blog</a>
           <button data-trial-modal class="block w-full mt-4 bg-sky-500 text-white text-center py-2.5 rounded-lg font-semibold cursor-pointer">
             Get Free Trial
@@ -221,14 +214,8 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
         <div class="grid md:grid-cols-4 gap-12">
           <!-- Brand -->
           <div class="md:col-span-1">
-            <div class="flex items-center gap-3 mb-4">
-              <svg class="h-10 w-10 text-sky-400" viewBox="0 0 100 100" fill="currentColor">
-                <path d="M50 5 C50 5 20 40 20 60 C20 77 33 90 50 90 C67 90 80 77 80 60 C80 40 50 5 50 5Z"/>
-              </svg>
-              <div>
-                <span class="text-xl font-bold text-sky-400">PureVida</span>
-                <span class="block text-xs text-gray-400 -mt-1">water technologies</span>
-              </div>
+            <div class="mb-4">
+              <img src="/images/companylogo/logo.png" alt="PureVida Water Technologies" class="h-14 w-auto brightness-0 invert" />
             </div>
             <p class="text-gray-400 text-sm">
               Bottleless water, ice, and coffee systems for Texas businesses. Serving 1,100+ customers.
@@ -239,9 +226,9 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
           <div>
             <h4 class="font-semibold mb-4">Products</h4>
             <ul class="space-y-2 text-gray-400 text-sm">
-              <li><a href="/products/water-coolers" class="hover:text-sky-400 transition">Water Coolers</a></li>
-              <li><a href="/products/ice-machines" class="hover:text-sky-400 transition">Ice Machines</a></li>
-              <li><a href="/products/coffee-systems" class="hover:text-sky-400 transition">Coffee Systems</a></li>
+              <li><a href="/products/water-coolers" class="hover:text-sky-400 transition">Water Systems</a></li>
+              <li><a href="/products/ice-machines" class="hover:text-sky-400 transition">Ice & Water Systems</a></li>
+              <li><a href="/products/coffee-systems" class="hover:text-sky-400 transition">Coffee System</a></li>
               <li><a href="/products/filtration" class="hover:text-sky-400 transition">Filtration Systems</a></li>
             </ul>
           </div>

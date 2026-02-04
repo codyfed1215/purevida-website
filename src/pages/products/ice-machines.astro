@@ -5,48 +5,80 @@ const products = [
   {
     id: "pv6i",
     name: "PV6i",
-    subtitle: "Basic Ice & Water",
+    subtitle: "Low Consumption",
     image: "/images/products/PV6i.png",
-    description: "Ice and water system with reverse osmosis purification. Touchless operation with dual LED UV-C lights for ultimate cleanliness.",
-    highlights: ["Touchless operation", "Dual UV-C lights", "Bullet ice", "Hot, Cold & Ambient"],
+    specs: [
+      { label: "Form", value: "Freestanding" },
+      { label: "Functionality", value: "Hot, Cold, Ambient Water | Bullet Sonic Ice" },
+      { label: "Dimensions", value: "59\"H x 17\"W x 20\"D" },
+      { label: "Storage", value: "1.2 gal Cold | 1.2 gal Hot | 4.5 gal Ambient | 13.2 lbs. Ice" },
+      { label: "Production", value: "44 lbs. of Ice Daily" },
+      { label: "Dispense Height", value: "8.6\"" },
+      { label: "Weight", value: "120 lbs." },
+      { label: "Recommended Usage", value: "Less than 10 Drinkers" },
+    ],
   },
   {
     id: "pv7i",
     name: "PV7i",
-    subtitle: "Standard Ice & Water",
+    subtitle: "Low Consumption",
     image: "/images/products/PV7i.png",
-    description: "Reliable ice and water dispenser perfect for medium-traffic breakrooms. Simple operation with consistent ice production.",
-    highlights: ["Easy operation", "Consistent ice", "Filtered water", "Compact design"],
+    specs: [
+      { label: "Form", value: "Countertop or Freestanding" },
+      { label: "Functionality", value: "Hot & Ambient Water | Crunchy Sonic Ice" },
+      { label: "Dimensions", value: "18\"H x 15\"W x 22\"D | 45\"H x 15\"W x 22\"D" },
+      { label: "Storage", value: "0.5 gal Hot | 6 gal Ambient | 7 lbs. Ice" },
+      { label: "Production", value: "125 lbs. of Ice Daily" },
+      { label: "Dispense Height", value: "9\"" },
+      { label: "Weight", value: "60 lbs. / 85 lbs." },
+      { label: "Recommended Usage", value: "Less than 10 Drinkers" },
+    ],
   },
   {
     id: "pv8i",
     name: "PV8i",
-    subtitle: "Premium Ice & Water",
+    subtitle: "Moderate Consumption",
     image: "/images/products/PV8i.png",
-    description: "Premium ice and water machine with advanced filtration and high ice production capacity for busy offices.",
-    highlights: ["High capacity", "Premium filtration", "Fast ice production", "Hot & Cold water"],
-    featured: true
+    featured: true,
+    specs: [
+      { label: "Form", value: "Countertop or Freestanding" },
+      { label: "Functionality", value: "Hot & Ambient Water | Crunchy Sonic Ice" },
+      { label: "Dimensions", value: "24\"H x 15\"W x 24\"D | 52\"H x 15\"W x 24\"D" },
+      { label: "Storage", value: "0.5 gal Hot | 6 gal Ambient | 16.5 lbs. Ice" },
+      { label: "Production", value: "165 lbs. of Ice Daily" },
+      { label: "Dispense Height", value: "11\"" },
+      { label: "Weight", value: "93 lbs. / 118 lbs." },
+      { label: "Recommended Usage", value: "10 to 30 Drinkers per System" },
+    ],
   },
   {
     id: "pv9i",
     name: "PV9i",
-    subtitle: "Commercial Grade",
+    subtitle: "High Consumption",
     image: "/images/products/PV9i.png",
-    description: "Commercial-grade ice and water dispenser built for high-demand environments like warehouses, manufacturing, and large facilities.",
-    highlights: ["Commercial grade", "Maximum output", "Stainless steel", "Heavy duty"],
+    specs: [
+      { label: "Form", value: "Countertop or Freestanding" },
+      { label: "Functionality", value: "Ambient Water | Crunchy Sonic Ice" },
+      { label: "Dimensions", value: "46\"H x 17\"W x 24\"D | 75\"H x 17\"W x 24\"D" },
+      { label: "Storage", value: "6 gal Ambient | 30 lbs. Ice" },
+      { label: "Production", value: "380 lbs. of Ice Daily" },
+      { label: "Dispense Height", value: "10.5\"" },
+      { label: "Weight", value: "223 lbs. / 281 lbs." },
+      { label: "Recommended Usage", value: "30 to 50 Drinkers per System" },
+    ],
   }
 ];
 ---
 
 <Layout
-  title="Ice Machines"
+  title="Ice & Water Systems"
   description="Commercial ice machines for Texas businesses. Filtered ice and water with touchless operation. Free installation and service included."
 >
   <!-- Hero -->
   <section class="bg-gradient-to-br from-sky-50 to-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Ice Machines</h1>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Ice & Water Systems</h1>
         <p class="mt-4 text-xl text-gray-600">
           Filtered ice and water on demand. No bags, no mess, no hassle.
         </p>
@@ -99,19 +131,35 @@ const products = [
             </div>
             <p class="text-xl text-sky-600 font-medium mb-6">{product.subtitle}</p>
 
-            <p class="text-gray-600 text-lg mb-8">{product.description}</p>
-
-            <!-- Highlights -->
-            <div class="grid grid-cols-2 gap-3 mb-8">
-              {product.highlights.map((highlight) => (
-                <div class="flex items-center gap-2 text-gray-700">
-                  <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  {highlight}
+            {product.specs ? (
+              <>
+                {product.description && (
+                  <p class="text-gray-600 text-lg mb-6">{product.description}</p>
+                )}
+                <ul class="space-y-2 mb-8">
+                  {product.specs.map((spec) => (
+                    <li class="flex text-gray-700">
+                      <span class="font-semibold mr-2">{spec.label}:</span>
+                      <span>{spec.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <p class="text-gray-600 text-lg mb-8">{product.description}</p>
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                  {product.highlights.map((highlight) => (
+                    <div class="flex items-center gap-2 text-gray-700">
+                      <svg class="w-5 h-5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {highlight}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
 
             <a href="/contact" class="inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
               Get a Free Trial
