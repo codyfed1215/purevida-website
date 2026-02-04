@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const serviceAreas = [
+  {
+    name: "Dallas-Fort Worth",
+    cities: ["Dallas", "Fort Worth", "Arlington", "Plano", "Irving", "Frisco", "McKinney", "Denton"],
+    description: "Serving the entire DFW Metroplex",
+    href: "/locations/dallas",
+    image: "/images/cities/dallas.jpg"
+  },
+  {
+    name: "Austin",
+    cities: ["Austin", "Round Rock", "Cedar Park", "Georgetown", "San Marcos", "Kyle", "Pflugerville"],
+    description: "Austin metro and surrounding areas",
+    href: "/locations/austin",
+    image: "/images/cities/austin.jpg"
+  },
+  {
+    name: "San Antonio",
+    cities: ["San Antonio", "New Braunfels", "Boerne", "Schertz", "Cibolo", "Universal City"],
+    description: "Greater San Antonio region",
+    href: "/locations/san-antonio",
+    image: "/images/cities/san-antonio.jpg"
+  }
+];
+---
+
+<Layout
+  title="Service Areas"
+  description="PureVida Water Technologies serves businesses across Texas including Dallas-Fort Worth, Austin, and San Antonio metro areas."
+>
+  <!-- Service Areas -->
+  <section class="bg-gradient-to-br from-sky-50 to-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Service Areas</h1>
+        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          Same-day service across Central and North Texas. Free installation and maintenance included.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {serviceAreas.map((area) => (
+          <a href={area.href} class="group relative bg-white rounded-2xl border border-gray-100 hover:border-sky-200 hover:shadow-xl transition duration-300 overflow-hidden">
+            <!-- City Image -->
+            <div class="h-48 overflow-hidden">
+              <img
+                src={area.image}
+                alt={area.name + " skyline"}
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+            </div>
+
+            <!-- Content -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900 group-hover:text-sky-600 transition">{area.name}</h3>
+              <p class="text-gray-500 text-sm mt-1 mb-4">{area.description}</p>
+
+              <!-- Cities list -->
+              <div class="flex flex-wrap gap-2">
+                {area.cities.slice(0, 4).map((city) => (
+                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">{city}</span>
+                ))}
+                {area.cities.length > 4 && (
+                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">+{area.cities.length - 4} more</span>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold text-sky-400">1,100+</div>
+          <p class="mt-2 text-gray-400">Texas Businesses Served</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-sky-400">3</div>
+          <p class="mt-2 text-gray-400">Major Metro Areas</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-sky-400">Same Day</div>
+          <p class="mt-2 text-gray-400">Service Available</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-sky-400">Free</div>
+          <p class="mt-2 text-gray-400">Installation & Setup</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-sky-500">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white">Ready to Get Started?</h2>
+      <p class="mt-4 text-sky-100 text-lg">
+        Free trial, free installation, no long-term contracts. See why over 1,100 Texas businesses trust PureVida.
+      </p>
+      <div class="mt-8">
+        <a href="/contact" class="inline-flex items-center justify-center bg-white text-sky-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-sky-50 transition shadow-lg">
+          Get Your Free Trial
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

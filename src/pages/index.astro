@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: "Water Coolers",
+    description: "Touchless, bottleless water purifiers with advanced filtration",
+    image: "/images/products/PV3w.png",
+    href: "/products/water-coolers"
+  },
+  {
+    name: "Ice Machines",
+    description: "High-capacity ice and water dispensers for busy workplaces",
+    image: "/images/products/PV8i.png",
+    href: "/products/ice-machines"
+  },
+  {
+    name: "Coffee Systems",
+    description: "Premium touchscreen coffee machines with multiple drink options",
+    image: "/images/products/PV12c.png",
+    href: "/products/coffee-systems"
+  }
+];
+
+const benefits = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: "Save 30-80%",
+    description: "Eliminate costly bottled water delivery. One flat monthly rate covers everything."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: "Touchless & Hygienic",
+    description: "Sensor-activated dispensing. Anti-microbial surfaces. Activated oxygen self-cleaning."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: "Eco-Friendly",
+    description: "No more plastic bottles. Reduce your carbon footprint by up to 95% vs bottled delivery."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: "Unlimited Water",
+    description: "Connected directly to your water line. Never run out or wait for deliveries."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
+    title: "Full Service",
+    description: "We handle installation, filter changes, and maintenance. You just enjoy the water."
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+    title: "Advanced Filtration",
+    description: "Multi-stage purification removes 99.9% of contaminants. NSF certified."
+  }
+];
+---
+
+<Layout title="Home">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-sky-50 to-cyan-50 overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-sky-200 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-cyan-200 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-sky-600 font-semibold mb-4">Serving 1,100+ Texas Businesses</p>
+          <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+            We Run Your Breakroom.
+            <span class="text-sky-500">You Run Your Business.</span>
+          </h1>
+          <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+            Water. Ice. Coffee. All handled. We install, maintain, and service everything—you just enjoy unlimited, pure refreshments at a fraction of bottled delivery costs.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <button data-trial-modal class="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer">
+              Start Free Trial
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </button>
+            <a href="tel:+18885340117" class="inline-flex items-center justify-center border-2 border-gray-300 hover:border-sky-500 text-gray-700 hover:text-sky-500 px-8 py-4 rounded-xl font-semibold text-lg transition">
+              <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              (888) 534-0117
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-gray-500">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              Free Installation
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              No Long-Term Contract
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              Full Service Included
+            </div>
+          </div>
+        </div>
+
+        <div class="relative flex items-center justify-center h-[550px]">
+          <img id="hero-img-1" src="/images/products/PV3w.png" alt="PureVida Premium Water Cooler" class="hero-product absolute max-h-[520px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-100" />
+          <img id="hero-img-2" src="/images/products/PV8i.png" alt="PureVida Ice Machine" class="hero-product absolute max-h-[520px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
+          <img id="hero-img-3" src="/images/products/PV12c.png" alt="PureVida Coffee System" class="hero-product absolute max-h-[520px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
+          <img id="hero-img-4" src="/images/products/PV4w.png" alt="PureVida PV4w Hydration Hub" class="hero-product absolute max-h-[520px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
+        </div>
+
+        <script>
+          const images = document.querySelectorAll('.hero-product');
+          let current = 0;
+
+          setInterval(() => {
+            images[current].classList.remove('opacity-100');
+            images[current].classList.add('opacity-0');
+            current = (current + 1) % images.length;
+            images[current].classList.remove('opacity-0');
+            images[current].classList.add('opacity-100');
+          }, 4000);
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="py-10 bg-white border-y border-gray-100 overflow-hidden">
+    <p class="text-center text-gray-500 font-medium mb-6">Trusted by leading Texas companies</p>
+    <div class="relative">
+      <div class="marquee-container flex">
+        <div class="marquee-content flex items-center gap-16 animate-marquee">
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Walmart</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">UT Austin</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Sherwin-Williams</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Dallas Market Center</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Caliber</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Matheson</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Walmart</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">UT Austin</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Sherwin-Williams</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Dallas Market Center</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Caliber</span>
+          <span class="text-2xl font-bold text-gray-400 whitespace-nowrap">Matheson</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 20s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
+
+  <!-- Products Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Complete Breakroom Solutions</h2>
+        <p class="mt-4 text-xl text-gray-600">
+          We handle everything. You just enjoy it.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        {products.map((product) => (
+          <a href={product.href} class="group bg-gray-50 hover:bg-sky-50 rounded-2xl p-6 transition duration-300">
+            <div class="h-48 relative mb-4 flex items-center justify-center">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="max-h-44 w-auto object-contain group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 group-hover:text-sky-600 transition">{product.name}</h3>
+            <p class="mt-2 text-gray-600">{product.description}</p>
+            <span class="inline-flex items-center mt-4 text-sky-500 font-medium">
+              View Products
+              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold">Why Businesses Choose Bottleless</h2>
+        <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
+          Join 1,100+ Texas businesses that have switched to smarter hydration.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {benefits.map((benefit) => (
+          <div class="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
+            <div class="text-sky-400 mb-4" set:html={benefit.icon} />
+            <h3 class="text-xl font-semibold mb-2">{benefit.title}</h3>
+            <p class="text-gray-400">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Bottleless vs. Bottled Delivery</h2>
+        <p class="mt-4 text-xl text-gray-600">See how much you could save</p>
+      </div>
+
+      <div class="bg-gray-50 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="px-6 py-4 text-left text-gray-600 font-semibold"></th>
+                <th class="px-6 py-4 text-center text-gray-500">Bottled Delivery</th>
+                <th class="px-6 py-4 text-center text-sky-600 font-bold">PureVida Bottleless</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Monthly Cost (50 employees)</td>
+                <td class="px-6 py-4 text-center text-gray-500">$285+</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">$45-85</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Water Supply</td>
+                <td class="px-6 py-4 text-center text-gray-500">Limited by deliveries</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">Unlimited</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Plastic Waste</td>
+                <td class="px-6 py-4 text-center text-gray-500">100s of bottles/year</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">Zero</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Maintenance</td>
+                <td class="px-6 py-4 text-center text-gray-500">You handle it</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">We handle it</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Touchless Operation</td>
+                <td class="px-6 py-4 text-center text-gray-500">No</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">Yes</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-gray-700 font-medium">Heavy Lifting Required</td>
+                <td class="px-6 py-4 text-center text-gray-500">40+ lb jugs</td>
+                <td class="px-6 py-4 text-center text-sky-600 font-semibold">None</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <button data-trial-modal class="inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold transition cursor-pointer">
+          Calculate Your Savings
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Serving DFW, Austin & San Antonio</h2>
+        <p class="mt-4 text-xl text-gray-600">Local technicians, fast service</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+        {[
+          { name: "Dallas-Fort Worth", slug: "dallas", desc: "Dallas, Fort Worth, Plano, Irving, Arlington & more" },
+          { name: "Austin", slug: "austin", desc: "Austin, Round Rock, Cedar Park, Georgetown & more" },
+          { name: "San Antonio", slug: "san-antonio", desc: "San Antonio, New Braunfels, Schertz & more" }
+        ].map((area) => (
+          <a href={`/locations/${area.slug}`} class="bg-white hover:bg-sky-50 border border-gray-200 hover:border-sky-300 rounded-xl p-6 text-center transition">
+            <svg class="w-8 h-8 mx-auto mb-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span class="font-semibold text-gray-900 block">{area.name}</span>
+            <span class="text-sm text-gray-500 mt-1 block">{area.desc}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-sky-500">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white">Ready to Stop Managing Your Breakroom?</h2>
+      <p class="mt-4 text-xl text-sky-100">
+        Hand it off to us. Free trial, free installation, no long-term contract.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <button data-trial-modal class="inline-flex items-center justify-center bg-white text-sky-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-sky-50 transition cursor-pointer">
+          Request Free Trial
+        </button>
+        <a href="tel:+18885340117" class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
+          Call (888) 534-0117
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

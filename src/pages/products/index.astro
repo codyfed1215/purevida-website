@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const categories = [
+  {
+    name: "Water Coolers",
+    tagline: "Hot, cold, and ambient. Touchless and self-cleaning.",
+    image: "/images/products/PV3w.png",
+    href: "/products/water-coolers",
+  },
+  {
+    name: "Ice Machines",
+    tagline: "Filtered ice and water on demand.",
+    image: "/images/products/PV8i.png",
+    href: "/products/ice-machines",
+  },
+  {
+    name: "Coffee Systems",
+    tagline: "Bean-to-cup freshness with touchscreen simplicity.",
+    image: "/images/products/PV12c.png",
+    href: "/products/coffee-systems",
+  },
+  {
+    name: "Filtration Systems",
+    tagline: "Pure water at the point of use.",
+    image: "/images/products/Stand Alone DI.png",
+    href: "/products/filtration",
+  }
+];
+---
+
+<Layout
+  title="Products"
+  description="Browse PureVida's complete line of bottleless water coolers, ice machines, coffee systems, and filtration solutions for Texas businesses."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-sky-50 to-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">Our Products</h1>
+        <p class="mt-4 text-xl text-gray-600">
+          Complete breakroom solutions for the modern workplace. Water, ice, and coffee systems backed by full-service support.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        {categories.map((category) => (
+          <a href={category.href} class="group bg-gray-50 hover:bg-sky-50 rounded-2xl p-6 transition duration-300">
+            <div class="h-72 flex items-center justify-center">
+              <img
+                src={category.image}
+                alt={category.name}
+                class="max-h-64 object-contain group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div class="mt-4 flex items-start justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 group-hover:text-sky-600 transition">{category.name}</h2>
+                <p class="text-gray-600 mt-1">{category.tagline}</p>
+              </div>
+              <span class="inline-flex items-center text-sky-500 font-semibold mt-1">
+                View
+                <svg class="ml-1 w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Bottleless -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold">Why Go Bottleless?</h2>
+        <p class="mt-4 text-gray-300 max-w-2xl mx-auto">
+          Every PureVida system connects directly to your water line, delivering unlimited fresh water without the hassle of bottles.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-sky-400">30-80%</div>
+          <p class="mt-2 text-gray-400">Cost savings vs bottled delivery</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-sky-400">Zero</div>
+          <p class="mt-2 text-gray-400">Plastic bottle waste</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-sky-400">Unlimited</div>
+          <p class="mt-2 text-gray-400">Fresh, filtered water</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-sky-400">24/7</div>
+          <p class="mt-2 text-gray-400">Self-cleaning technology</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-sky-500">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white">Need Help Choosing?</h2>
+      <p class="mt-4 text-sky-100 text-lg">
+        Our experts will assess your needs and recommend the perfect solution. Free consultation.
+      </p>
+      <div class="mt-8">
+        <a href="/contact" class="inline-flex items-center justify-center bg-white text-sky-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-sky-50 transition">
+          Get a Free Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
