@@ -22,61 +22,44 @@ import Layout from '../layouts/Layout.astro';
   <section class="pt-6 pb-12 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Form Selection Buttons -->
-      <div class="flex justify-center gap-2 mb-12">
-        <button data-form="intro" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-sky-500 text-white shadow-lg text-sm whitespace-nowrap">
-          Schedule Intro Meeting
-        </button>
-        <button data-form="trial" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        <button data-form="trial" class="form-tab flex items-center gap-4 px-6 py-5 rounded-2xl font-semibold text-lg transition-all bg-sky-500 text-white shadow-lg border-2 border-sky-500 cursor-pointer">
+          <svg class="w-8 h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
           Request Free Trial
         </button>
-        <button data-form="refer" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+        <button data-form="intro" class="form-tab flex items-center gap-4 px-6 py-5 rounded-2xl font-semibold text-lg transition-all bg-white text-gray-700 border-2 border-gray-200 hover:border-sky-300 hover:bg-sky-50 cursor-pointer">
+          <svg class="w-8 h-8 shrink-0 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Schedule Intro Meeting
+        </button>
+        <button data-form="refer" class="form-tab flex items-center gap-4 px-6 py-5 rounded-2xl font-semibold text-lg transition-all bg-white text-gray-700 border-2 border-gray-200 hover:border-sky-300 hover:bg-sky-50 cursor-pointer">
+          <svg class="w-8 h-8 shrink-0 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
           Refer a Friend
         </button>
-        <button data-form="support" class="form-tab px-4 py-2 rounded-xl font-semibold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm whitespace-nowrap">
+        <button data-form="support" class="form-tab flex items-center gap-4 px-6 py-5 rounded-2xl font-semibold text-lg transition-all bg-white text-gray-700 border-2 border-gray-200 hover:border-sky-300 hover:bg-sky-50 cursor-pointer">
+          <svg class="w-8 h-8 shrink-0 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
           Request Support
         </button>
       </div>
 
       <!-- Forms -->
-      <!-- Schedule Intro Meeting Form -->
-      <div id="form-intro" class="form-panel">
+      <!-- Schedule Intro Meeting - Calendly Embed -->
+      <div id="form-intro" class="form-panel hidden">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Schedule an Intro Meeting</h2>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
-          <input type="hidden" name="form_type" value="intro_meeting" />
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="intro-name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-              <input type="text" id="intro-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-            <div>
-              <label for="intro-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
-              <input type="text" id="intro-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-          </div>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label for="intro-email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-              <input type="email" id="intro-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-            <div>
-              <label for="intro-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
-              <input type="tel" id="intro-phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-          </div>
-          <div>
-            <label for="intro-message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
-            <textarea id="intro-message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Tell us about your needs..."></textarea>
-          </div>
-          <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
-            Schedule Meeting
-          </button>
-        </form>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/payton-fedell/purevida-intro-meeting?hide_gdpr_banner=1&primary_color=0ea5e9" style="min-width:320px;height:700px;"></div>
       </div>
 
       <!-- Request Free Trial Form -->
-      <div id="form-trial" class="form-panel hidden">
+      <div id="form-trial" class="form-panel">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Free Trial</h2>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+        <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="free_trial" />
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -99,25 +82,12 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div>
-            <label for="trial-interest" class="block text-sm font-medium text-gray-700 mb-1">I'm Interested In</label>
-            <div class="grid sm:grid-cols-3 gap-3">
-              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                <input type="checkbox" name="interest" value="water" class="w-4 h-4 text-sky-500" />
-                <span class="text-sm">Water Systems</span>
-              </label>
-              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                <input type="checkbox" name="interest" value="ice" class="w-4 h-4 text-sky-500" />
-                <span class="text-sm">Ice & Water</span>
-              </label>
-              <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-sky-500 transition">
-                <input type="checkbox" name="interest" value="coffee" class="w-4 h-4 text-sky-500" />
-                <span class="text-sm">Coffee System</span>
-              </label>
-            </div>
+            <label for="trial-address" class="block text-sm font-medium text-gray-700 mb-1">Company Address *</label>
+            <input type="text" id="trial-address" name="company_address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
           </div>
           <div>
-            <label for="trial-message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
-            <textarea id="trial-message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Tell us about your needs..."></textarea>
+            <label for="trial-notes" class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+            <textarea id="trial-notes" name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Anything else we should know..."></textarea>
           </div>
           <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
             Request Free Trial
@@ -128,7 +98,7 @@ import Layout from '../layouts/Layout.astro';
       <!-- Refer a Friend Form -->
       <div id="form-refer" class="form-panel hidden">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Refer a Friend</h2>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+        <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="referral" />
           <div class="bg-sky-50 border border-sky-200 rounded-lg p-4 mb-4">
             <p class="text-sky-800 text-sm">Know a business that could benefit from PureVida? Refer them and help them discover better water solutions!</p>
@@ -144,6 +114,10 @@ import Layout from '../layouts/Layout.astro';
                 <label for="refer-your-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email *</label>
                 <input type="email" id="refer-your-email" name="your_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
+            </div>
+            <div class="mt-4">
+              <label for="refer-your-phone" class="block text-sm font-medium text-gray-700 mb-1">Your Phone *</label>
+              <input type="tel" id="refer-your-phone" name="your_phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
           </div>
           <div>
@@ -168,17 +142,93 @@ import Layout from '../layouts/Layout.astro';
                 <input type="tel" id="refer-friend-phone" name="friend_phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
             </div>
+            <div class="mt-4">
+              <label for="refer-friend-address" class="block text-sm font-medium text-gray-700 mb-1">Friend's Company Address</label>
+              <input type="text" id="refer-friend-address" name="friend_company_address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+            </div>
+          </div>
+          <div>
+            <label for="refer-notes" class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+            <textarea id="refer-notes" name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Any notes that will help PureVida go make you money"></textarea>
           </div>
           <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
             Submit Referral
           </button>
         </form>
+
+        <div class="mt-8 border-t border-gray-200 pt-6">
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4">Your Referral Fee Per System</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">Tier 2</span>
+              <span class="text-sm font-bold text-sky-600">$125</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PVFiltration</span>
+              <span class="text-sm font-bold text-sky-600">$125</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV1w</span>
+              <span class="text-sm font-bold text-sky-600">$150</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV2w</span>
+              <span class="text-sm font-bold text-sky-600">$150</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV3w</span>
+              <span class="text-sm font-bold text-sky-600">$200</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV4w</span>
+              <span class="text-sm font-bold text-sky-600">$400</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV5s</span>
+              <span class="text-sm font-bold text-sky-600">$350</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV6i</span>
+              <span class="text-sm font-bold text-sky-600">$300</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV7i</span>
+              <span class="text-sm font-bold text-sky-600">$500</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV8i</span>
+              <span class="text-sm font-bold text-sky-600">$500</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV9i</span>
+              <span class="text-sm font-bold text-sky-600">$500</span>
+            </div>
+            <div class="flex justify-between bg-gray-50 rounded-lg px-4 py-2">
+              <span class="text-sm font-medium text-gray-700">PV12c</span>
+              <span class="text-sm font-bold text-sky-600">$500</span>
+            </div>
+          </div>
+
+          <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">Terms & Conditions</h3>
+          <ul class="space-y-2 text-xs text-gray-500 list-disc pl-4">
+            <li>Referral leads must close within 4 months of submission to qualify.</li>
+            <li>Referrals must be for new prospects only—existing PureVida customers do not qualify.</li>
+            <li>Only commercial leads are accepted. Residential referrals are not eligible.</li>
+            <li>If a PureVida Sales Rep has already held an Assessment Meeting with the referred account within the past 4 months, we will evaluate the situation on a case-by-case basis and notify you of the outcome promptly.</li>
+            <li>You may not refer an organization you are currently employed by, and no employee of the referred company may benefit financially from the referral.</li>
+            <li>Participation must not violate any third-party lead guidelines set by your own employer.</li>
+            <li>Any fraudulent or falsified referral will result in immediate disqualification and all terms become null and void.</li>
+            <li>A referral is considered closed once a contract is signed and equipment is fully installed. Payment is issued at the end of the following month to confirm at least one customer payment has been received.</li>
+            <li>All referral payments are made via Zelle.</li>
+            <li>PureVida reserves the right to modify or discontinue this program at any time.</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Request Support Form -->
       <div id="form-support" class="form-panel hidden">
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request Support</h2>
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+        <form action="https://formspree.io/f/mqedzwdq" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="support" />
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -201,13 +251,16 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div>
+            <label for="support-id" class="block text-sm font-medium text-gray-700 mb-1">System ID # or Invoice #</label>
+            <input type="text" id="support-id" name="system_or_invoice_id" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+          </div>
+          <div>
             <label for="support-type" class="block text-sm font-medium text-gray-700 mb-1">Support Type *</label>
             <select id="support-type" name="support_type" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition">
-              <option value="">Select an issue type...</option>
-              <option value="maintenance">Maintenance Request</option>
-              <option value="repair">Repair Needed</option>
-              <option value="filter">Filter Change</option>
-              <option value="billing">Billing Question</option>
+              <option value="">Select a category...</option>
+              <option value="service">Service</option>
+              <option value="billing">Billing</option>
+              <option value="sales">Sales</option>
               <option value="other">Other</option>
             </select>
           </div>
@@ -270,6 +323,9 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Calendly Widget Script -->
+  <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
   <script>
     const tabs = document.querySelectorAll('.form-tab');
     const panels = document.querySelectorAll('.form-panel');
@@ -280,11 +336,11 @@ import Layout from '../layouts/Layout.astro';
 
         // Update tab styles
         tabs.forEach(t => {
-          t.classList.remove('bg-sky-500', 'text-white', 'shadow-lg');
-          t.classList.add('bg-gray-100', 'text-gray-700');
+          t.classList.remove('bg-sky-500', 'text-white', 'shadow-lg', 'border-sky-500');
+          t.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
         });
-        tab.classList.remove('bg-gray-100', 'text-gray-700');
-        tab.classList.add('bg-sky-500', 'text-white', 'shadow-lg');
+        tab.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+        tab.classList.add('bg-sky-500', 'text-white', 'shadow-lg', 'border-sky-500');
 
         // Show/hide panels
         panels.forEach(panel => {
