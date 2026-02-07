@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureVida Postcard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page {
+      size: 7in 5in landscape;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0 auto;
+      background: #e5e7eb;
+      color: #111827;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .card {
+      width: 7in;
+      height: 5in;
+      margin: 20px auto;
+      overflow: hidden;
+      position: relative;
+      background: white;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+
+    .label {
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 30px auto 8px;
+    }
+
+    /* ===== SHARED HEADER ===== */
+    .card-header {
+      background: white;
+      padding: 12px 0.4in;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #bae6fd;
+    }
+
+    .card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header-left img {
+      height: 38px;
+      width: auto;
+    }
+
+    .card-header-left span {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .card-header-left .pure { color: #0ea5e9; }
+    .card-header-left .vida { color: #0c4a6e; }
+
+    .card-header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0369a1;
+    }
+
+    /* ===== FRONT ===== */
+    .front {
+      background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 40%, #f0f9ff 100%);
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .front-body {
+      flex: 1;
+      display: flex;
+      gap: 0.4in;
+      align-items: center;
+      padding: 0.3in 0.4in;
+    }
+
+    .front-content {
+      flex: 1;
+    }
+
+    .front-content h1 {
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #0c4a6e;
+    }
+
+    .front-bullets {
+      list-style: none;
+      margin-bottom: 0;
+    }
+
+    .front-bullets li {
+      font-size: 15px;
+      font-weight: 600;
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #1e3a5f;
+    }
+
+    .front-bullets li svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: #0ea5e9;
+    }
+
+    .front-qr-wrap {
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    .qr-cta {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0c4a6e;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .front-qr {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      display: inline-block;
+    }
+
+    .front-qr img {
+      width: 150px;
+      height: 150px;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ===== SHARED FOOTER ===== */
+    .card-footer {
+      background: #0c4a6e;
+      padding: 12px 0.35in;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-footer-contact {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .card-footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .card-footer-contact-item svg {
+      width: 15px;
+      height: 15px;
+      color: #38bdf8;
+      flex-shrink: 0;
+    }
+
+    .card-footer-props {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .card-footer-prop {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .card-footer-prop svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .card-footer-div {
+      width: 1px;
+      height: 18px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ===== BACK — Big Product Showcase ===== */
+    .back {
+      background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 40%, #f0f9ff 100%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-products {
+      flex: 1;
+      display: flex;
+      padding: 0.15in 0.4in 0.1in;
+      gap: 20px;
+      align-items: flex-end;
+    }
+
+    .back-product {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .back-product img {
+      height: 270px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.18));
+    }
+
+    .back-product-label {
+      font-size: 26px;
+      font-weight: 900;
+      color: #0c4a6e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    @media print {
+      body { background: white; }
+      .card { box-shadow: none; margin: 0 auto; }
+      .label { display: none; }
+      .card + .label { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRONT -->
+  <div class="label">Front</div>
+  <div class="card front">
+    <div class="card-header">
+      <div class="card-header-left">
+        <img src="public/images/water-drop-logo.png" alt="PureVida" />
+        <span><span class="pure">Pure</span><span class="vida">Vida</span></span>
+      </div>
+      <div class="card-header-right">
+        <span>(888) 534-0117</span>
+        <span>purevida.biz</span>
+      </div>
+    </div>
+
+    <div class="front-body">
+      <div class="front-content">
+        <h1>PureVida Runs Your Breakroom.<br>You Run Your Business.</h1>
+        <ul class="front-bullets">
+          <li>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Save 30–80% vs. Bottled Water
+          </li>
+          <li>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Full-Service: Install, Filters & Maintenance
+          </li>
+          <li>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Free, No Obligations Trial
+          </li>
+          <li>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            NSF Certified Multi-Stage Filtration
+          </li>
+        </ul>
+      </div>
+      <div class="front-qr-wrap">
+        <div class="qr-cta">Scan for<br>Free Trial</div>
+        <div class="front-qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://purevida.biz/contact&color=0c4a6e" alt="QR Code" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-contact">
+        <div class="card-footer-contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          contact@purevidawater.com
+        </div>
+      </div>
+      <div class="card-footer-props">
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Full-Service
+        </div>
+        <div class="card-footer-div"></div>
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Highest Quality Water
+        </div>
+        <div class="card-footer-div"></div>
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Free Trial
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK -->
+  <div class="label">Back</div>
+  <div class="card back">
+    <div class="card-header">
+      <div class="card-header-left">
+        <img src="public/images/water-drop-logo.png" alt="PureVida" />
+        <span><span class="pure">Pure</span><span class="vida">Vida</span></span>
+      </div>
+      <div class="card-header-right">
+        <span>(888) 534-0117</span>
+        <span>purevida.biz</span>
+      </div>
+    </div>
+
+    <div class="back-products">
+      <div class="back-product">
+        <img src="public/images/products/PV4w.png" alt="Water System" />
+        <div class="back-product-label">Water</div>
+      </div>
+      <div class="back-product">
+        <img src="public/images/products/PV9i.png" alt="Ice & Water System" />
+        <div class="back-product-label">Ice</div>
+      </div>
+      <div class="back-product">
+        <img src="public/images/products/PV12c.png" alt="Coffee System" />
+        <div class="back-product-label">Coffee</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-contact">
+        <div class="card-footer-contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          contact@purevidawater.com
+        </div>
+      </div>
+      <div class="card-footer-props">
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Full-Service
+        </div>
+        <div class="card-footer-div"></div>
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Highest Quality Water
+        </div>
+        <div class="card-footer-div"></div>
+        <div class="card-footer-prop">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Free Trial
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
