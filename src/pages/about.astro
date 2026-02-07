@@ -27,17 +27,32 @@ const faqs = [
     answer: "Yes, and PureVida offers different commitment lengths to fit your needs. PureVida installs and maintains quality equipment at virtually no upfront cost—just the one-time $99 installation fee. In return, PureVida asks for a commitment. Most customers choose the longest term to lock in the lowest monthly rate. If your system ever breaks, PureVida fixes or replaces it at no charge. PureVida includes free relocations and lets you trial the system before you commit to or pay for anything. If you need to cancel early, you can pay off the remainder of your commitment and PureVida will pick up the equipment."
   }
 ];
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+});
 ---
 
 <Layout
-  title="FAQs"
+  title="Bottleless Water Cooler FAQs"
   description="Frequently asked questions about PureVida Water Technologies bottleless water coolers, ice machines, and coffee systems. Learn about pricing, installation, and service."
 >
+  <script type="application/ld+json" set:html={faqSchema} />
+
   <!-- Hero -->
   <section class="bg-gradient-to-br from-sky-50 to-white py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl lg:text-5xl font-bold text-gray-900">
-        Frequently Asked Questions
+        Bottleless Water Cooler FAQs
       </h1>
       <p class="mt-4 text-xl text-gray-600">
         Everything you need to know about PureVida's systems and service.

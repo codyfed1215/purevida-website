@@ -3,12 +3,24 @@ import Layout from '../../layouts/Layout.astro';
 
 const city = "Austin";
 const region = "Austin Metro";
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://purevidawater.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://purevidawater.com/locations" },
+    { "@type": "ListItem", "position": 3, "name": city }
+  ]
+});
 ---
 
 <Layout
   title={`Bottleless Water Coolers ${city} TX`}
   description={`PureVida provides bottleless water cooler rental and service in ${city}, Texas. Save 30-80% vs bottled water delivery. Free, no obligations trial.`}
 >
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
+
   <!-- Hero -->
   <section class="bg-gradient-to-br from-sky-50 to-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,6 +118,27 @@ const region = "Austin Metro";
           <span class="bg-white px-4 py-2 rounded-full text-gray-700 border border-gray-200">{area}</span>
         ))}
         <span class="bg-sky-500 px-4 py-2 rounded-full text-white font-semibold">And More</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Our Systems -->
+  <section class="py-12 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6">Systems Available in {city}</h3>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <a href="/products/water-coolers" class="group bg-gray-50 hover:bg-sky-50 rounded-xl p-6 transition">
+          <h4 class="font-semibold text-gray-900 group-hover:text-sky-600 transition">Water Coolers</h4>
+          <p class="text-gray-600 text-sm mt-1">Bottleless, touchless purifiers</p>
+        </a>
+        <a href="/products/ice-machines" class="group bg-gray-50 hover:bg-sky-50 rounded-xl p-6 transition">
+          <h4 class="font-semibold text-gray-900 group-hover:text-sky-600 transition">Ice Machines</h4>
+          <p class="text-gray-600 text-sm mt-1">Filtered ice and water on demand</p>
+        </a>
+        <a href="/products/coffee-systems" class="group bg-gray-50 hover:bg-sky-50 rounded-xl p-6 transition">
+          <h4 class="font-semibold text-gray-900 group-hover:text-sky-600 transition">Coffee Systems</h4>
+          <p class="text-gray-600 text-sm mt-1">Bean-to-cup office coffee</p>
+        </a>
       </div>
     </div>
   </section>

@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found" description="The page you're looking for doesn't exist. Return to the PureVida Water Technologies homepage.">
+  <section class="min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-sky-50 to-white">
+    <div class="max-w-xl mx-auto px-4 text-center">
+      <p class="text-7xl font-bold text-sky-500 mb-4">404</p>
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Page Not Found</h1>
+      <p class="text-lg text-gray-600 mb-8">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-xl font-semibold transition shadow-lg shadow-sky-500/30">
+          Back to Home
+        </a>
+        <a href="/contact" class="border-2 border-sky-500 text-sky-500 hover:bg-sky-50 px-8 py-3 rounded-xl font-semibold transition">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

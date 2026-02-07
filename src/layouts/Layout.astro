@@ -15,6 +15,7 @@ const {
 
 const siteUrl = "https://purevidawater.com";
 const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless Water, Ice & Coffee Systems" : `${title} | PureVida Water Technologies`;
+const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || siteUrl).href;
 ---
 
 <!doctype html>
@@ -29,11 +30,19 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl || siteUrl} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={`${siteUrl}/images/og-image.jpg`} />
+    <meta property="og:site_name" content="PureVida Water Technologies" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/images/og-image.jpg`} />
 
     <!-- Canonical -->
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="canonical" href={canonical} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,7 +65,10 @@ const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless W
       "email": "contact@purevidawater.com",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "1607 Falcon Dr, STE 101",
+        "addressLocality": "DeSoto",
         "addressRegion": "TX",
+        "postalCode": "75115",
         "addressCountry": "US"
       },
       "areaServed": ["Dallas", "Fort Worth", "DFW", "Austin", "San Antonio"],
