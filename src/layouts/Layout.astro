@@ -152,6 +152,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
 
             <!-- Form -->
             <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                   <input
