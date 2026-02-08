@@ -301,6 +301,27 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
     </footer>
 
     <script>
+      // Phone number formatting
+      function formatPhone(value) {
+        const digits = value.replace(/\D/g, '').substring(0, 10);
+        if (digits.length === 0) return '';
+        if (digits.length <= 3) return `(${digits}`;
+        if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+        return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+      }
+
+      document.querySelectorAll('input[type="tel"]').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const pos = e.target.selectionStart;
+          const prev = e.target.value;
+          e.target.value = formatPhone(e.target.value);
+          // Keep cursor in a reasonable position
+          if (e.target.value.length > prev.length && pos < prev.length) {
+            e.target.setSelectionRange(pos + 1, pos + 1);
+          }
+        });
+      });
+
       // Mobile menu
       const menuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
