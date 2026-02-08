@@ -300,7 +300,75 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
       </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden">
+      <div id="toast-inner" class="flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl text-white font-medium transition-all duration-300 opacity-0 -translate-y-4">
+        <span id="toast-icon"></span>
+        <span id="toast-msg"></span>
+      </div>
+    </div>
+
     <script>
+      // Toast notifications
+      function showToast(message, success = true) {
+        const toast = document.getElementById('toast');
+        const inner = document.getElementById('toast-inner');
+        const icon = document.getElementById('toast-icon');
+        const msg = document.getElementById('toast-msg');
+
+        inner.className = `flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl text-white font-medium transition-all duration-300 opacity-0 -translate-y-4 ${success ? 'bg-green-600' : 'bg-red-600'}`;
+        icon.innerHTML = success
+          ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
+          : '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>';
+        msg.textContent = message;
+
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          inner.classList.remove('opacity-0', '-translate-y-4');
+          inner.classList.add('opacity-100', 'translate-y-0');
+        }, 10);
+
+        setTimeout(() => {
+          inner.classList.remove('opacity-100', 'translate-y-0');
+          inner.classList.add('opacity-0', '-translate-y-4');
+          setTimeout(() => toast.classList.add('hidden'), 300);
+        }, 4000);
+      }
+
+      // Intercept Formspree submissions
+      document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = form.querySelector('button[type="submit"]');
+          const originalText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Sending...';
+
+          try {
+            const res = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+              showToast('Message sent! PureVida will reach out shortly.', true);
+              form.reset();
+              // Close modal if inside one
+              const modal = form.closest('#trial-modal');
+              if (modal) setTimeout(() => closeModal(), 1500);
+            } else {
+              showToast('Something went wrong. Please try again.', false);
+            }
+          } catch {
+            showToast('Network error. Please try again.', false);
+          }
+
+          btn.disabled = false;
+          btn.textContent = originalText;
+        });
+      });
+
       // Phone number formatting
       function formatPhone(value) {
         const digits = value.replace(/\D/g, '').substring(0, 10);
