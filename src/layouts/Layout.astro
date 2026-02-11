@@ -63,10 +63,12 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
       gtag('config', 'G-RT2GYZLRSW');
     </script>
 
-    <!-- Apollo Website Visitor Tracking -->
-    <script is:inline>
-      function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"691da828d5e70a000d7a97f2"})},document.head.appendChild(o)}initApollo();
-    </script>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NHL3XGV2');</script>
 
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -90,6 +92,8 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
     })} />
   </head>
   <body class="bg-white text-gray-900 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHL3XGV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg shadow-gray-200/50">
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">

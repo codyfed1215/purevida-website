@@ -61,6 +61,10 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request a Free Trial</h2>
         <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="free_trial" />
+          <input type="hidden" name="utm_source" class="utm-source" />
+          <input type="hidden" name="utm_medium" class="utm-medium" />
+          <input type="hidden" name="utm_campaign" class="utm-campaign" />
+          <input type="hidden" name="lead_source" class="lead-source" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -101,6 +105,10 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Refer a Friend</h2>
         <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="referral" />
+          <input type="hidden" name="utm_source" class="utm-source" />
+          <input type="hidden" name="utm_medium" class="utm-medium" />
+          <input type="hidden" name="utm_campaign" class="utm-campaign" />
+          <input type="hidden" name="lead_source" class="lead-source" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="bg-sky-50 border border-sky-200 rounded-lg p-4 mb-4">
             <p class="text-sky-800 text-sm">Know a business that could benefit from PureVida? Refer them and help them discover better water solutions!</p>
@@ -232,6 +240,10 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Request Support</h2>
         <form action="https://formspree.io/f/mqedzwdq" method="POST" class="space-y-4">
           <input type="hidden" name="form_type" value="support" />
+          <input type="hidden" name="utm_source" class="utm-source" />
+          <input type="hidden" name="utm_medium" class="utm-medium" />
+          <input type="hidden" name="utm_campaign" class="utm-campaign" />
+          <input type="hidden" name="lead_source" class="lead-source" />
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -330,6 +342,25 @@ import Layout from '../layouts/Layout.astro';
   <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <script>
+    // UTM Capture — populates hidden fields across all forms
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const mappings = [
+        { param: 'utm_source', cls: 'utm-source' },
+        { param: 'utm_medium', cls: 'utm-medium' },
+        { param: 'utm_campaign', cls: 'utm-campaign' }
+      ];
+      mappings.forEach(function(m) {
+        const val = params.get(m.param);
+        if (val) {
+          document.querySelectorAll('.' + m.cls).forEach(function(el) { el.value = val; });
+        }
+      });
+      // Set lead_source from utm_source or default to "website"
+      const source = params.get('utm_source') || 'website';
+      document.querySelectorAll('.lead-source').forEach(function(el) { el.value = source; });
+    })();
+
     const tabs = document.querySelectorAll('.form-tab');
     const panels = document.querySelectorAll('.form-panel');
 
