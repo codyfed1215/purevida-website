@@ -53,39 +53,15 @@ import '../../styles/global.css'
   </header>
 
   <!-- ============ HERO + FORM ============ -->
-  <section id="assessment-form" class="relative bg-gradient-to-br from-sky-50 to-cyan-50 overflow-hidden py-8 md:py-20">
+  <section id="assessment-form" class="relative bg-gradient-to-br from-sky-50 to-cyan-50 overflow-hidden py-8 md:py-16">
     <div class="absolute inset-0 opacity-30">
       <div class="absolute top-20 left-10 w-72 h-72 bg-sky-200 rounded-full blur-3xl"></div>
       <div class="absolute bottom-10 right-10 w-96 h-96 bg-cyan-200 rounded-full blur-3xl"></div>
     </div>
     <div class="relative max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-start">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
 
-        <!-- Left: Hero Copy -->
-        <div class="flex flex-col justify-center">
-          <h1 class="text-2xl md:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-6">
-            Better Water for Your Business — <span class="text-sky-500">For Free</span>
-          </h1>
-          <p class="text-base md:text-xl text-gray-600 mb-4 md:mb-8 leading-relaxed">
-            Book a free 15-minute virtual assessment and discover how PureVida can upgrade your workplace water while cutting costs.
-          </p>
-          <ul class="space-y-2 md:space-y-4 text-sm md:text-lg text-gray-700">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Save <strong>30-80%</strong> vs bottled water delivery</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>No contract required — <strong>free trial</strong> available</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Full-service install, filters & maintenance included</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Right: Form Card -->
+        <!-- Left: Form Card (shows first on mobile) -->
         <div class="bg-white rounded-2xl shadow-2xl p-5 md:p-8 text-gray-900">
           <h2 class="text-lg md:text-2xl font-bold mb-1 text-center">
             Book Your Free Assessment
@@ -136,6 +112,14 @@ import '../../styles/global.css'
             <h3 class="text-xl font-bold text-gray-900 mb-2">You're All Set!</h3>
             <p class="text-gray-600">We'll reach out within 1 business day to schedule your free assessment.</p>
           </div>
+        </div>
+
+        <!-- Right: Rotating Product Photos -->
+        <div class="hidden md:flex relative items-center justify-center h-[450px]">
+          <img id="lp-hero-1" src="/images/products/PV3w.png" alt="PureVida Water Cooler" class="lp-hero-product absolute max-h-[420px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-100" />
+          <img id="lp-hero-2" src="/images/products/PV8i.png" alt="PureVida Ice Machine" class="lp-hero-product absolute max-h-[420px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
+          <img id="lp-hero-3" src="/images/products/PV12c.png" alt="PureVida Coffee System" class="lp-hero-product absolute max-h-[420px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
+          <img id="lp-hero-4" src="/images/products/PV4w.png" alt="PureVida PV4w Hydration Hub" class="lp-hero-product absolute max-h-[420px] w-auto object-contain drop-shadow-2xl transition-opacity duration-700 opacity-0" />
         </div>
 
       </div>
@@ -350,6 +334,20 @@ import '../../styles/global.css'
           submitBtn.classList.remove('opacity-70');
         }
       });
+    })();
+
+    // ---- Product Image Rotation ----
+    (function() {
+      const images = document.querySelectorAll('.lp-hero-product');
+      if (images.length === 0) return;
+      let current = 0;
+      setInterval(function() {
+        images[current].classList.remove('opacity-100');
+        images[current].classList.add('opacity-0');
+        current = (current + 1) % images.length;
+        images[current].classList.remove('opacity-0');
+        images[current].classList.add('opacity-100');
+      }, 4000);
     })();
   </script>
 
