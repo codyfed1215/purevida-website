@@ -39,16 +39,22 @@ import '../../styles/global.css'
   <!-- ============ STICKY HEADER ============ -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg shadow-gray-200/50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="/lp/flyer" class="flex items-center gap-2">
+      <a href="https://purevidawater.com" class="flex items-center gap-2">
         <img src="/images/water-drop-logo.png" alt="PureVida" class="h-10 w-auto" />
         <span class="text-xl font-bold tracking-tight">
           <span class="text-sky-500">Pure</span><span class="text-sky-800">Vida</span>
         </span>
       </a>
-      <a href="tel:+18885340117" class="flex items-center gap-2 text-gray-700 hover:text-sky-500 transition-colors text-sm font-medium">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        <span>(888) 534-0117</span>
-      </a>
+      <div class="flex items-center gap-4">
+        <a href="tel:+18885340117" class="flex items-center gap-2 text-gray-700 hover:text-sky-500 transition-colors text-sm font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>(888) 534-0117</span>
+        </a>
+        <a href="mailto:contact@purevidawater.com" class="flex items-center gap-2 text-gray-700 hover:text-sky-500 transition-colors text-sm font-medium">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>contact@purevidawater.com</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -64,11 +70,13 @@ import '../../styles/global.css'
         <!-- Left: Form Card (shows first on mobile) -->
         <div class="bg-white rounded-2xl shadow-2xl p-5 md:p-8 text-gray-900">
           <h2 class="text-lg md:text-2xl font-bold mb-1 text-center">
-            Book Your Free Assessment
+            Request More Information
           </h2>
-          <p class="text-gray-500 text-xs md:text-sm text-center mb-4 md:mb-6">Takes 15 minutes. No obligation.</p>
 
-          <form id="lp-form" class="space-y-3 md:space-y-4">
+          <form id="lp-form" action="https://forms.zohopublic.com/purevidawater/form/FoxFlyerLandingPage/formperma/7XKvJo_OOB7RJmcgMyPeYV0v5G_c47S_HPsBZqPNyPg/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" class="space-y-3 md:space-y-4">
+            <input type="hidden" name="zf_referrer_name" value="" />
+            <input type="hidden" name="zf_redirect_url" value="" />
+            <input type="hidden" name="zc_gad" value="" />
             <!-- Hidden UTM fields -->
             <input type="hidden" name="utm_source" id="utm_source" />
             <input type="hidden" name="utm_medium" id="utm_medium" />
@@ -79,29 +87,33 @@ import '../../styles/global.css'
 
             <div>
               <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-              <input type="text" id="name" name="name" required placeholder="Jane Smith" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="name" name="SingleLine1" required placeholder="Jane Smith" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-              <input type="text" id="company" name="company" required placeholder="Acme Corp" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="company" name="SingleLine" required placeholder="Acme Corp" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Work Email</label>
-              <input type="email" id="email" name="email" required placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="email" id="email" name="Email" required placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="tel" id="phone" name="PhoneNumber_countrycode" required placeholder="(555) 123-4567" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+            </div>
+
+            <div>
+              <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Location Address</label>
+              <input type="text" id="address" name="SingleLine2" required placeholder="123 Main St, Dallas, TX 75201" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <button type="submit" id="submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3.5 px-6 rounded-lg transition-colors text-base cursor-pointer shadow-lg shadow-sky-500/30">
-              Book My Free Assessment &rarr;
+              Request More Information &rarr;
             </button>
 
-            <p class="text-xs text-gray-400 text-center mt-2">No spam. We'll only contact you about your assessment.</p>
           </form>
 
           <!-- Success State (hidden by default) -->
@@ -207,8 +219,8 @@ import '../../styles/global.css'
           <div class="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-7 h-7 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">No Contract, Free Trial</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Try PureVida risk-free. No long-term commitment required. Cancel anytime if you're not completely satisfied.</p>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Free, No Obligations Trial</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Installation can take as little as 45 minutes. Try PureVida and see the difference for yourself — completely free.</p>
         </div>
 
       </div>
@@ -224,9 +236,10 @@ import '../../styles/global.css'
       <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 opacity-50">
         <span class="text-lg font-bold text-gray-400">Walmart</span>
         <span class="text-lg font-bold text-gray-400">UT Austin</span>
-        <span class="text-lg font-bold text-gray-400">Baylor</span>
-        <span class="text-lg font-bold text-gray-400">City of Dallas</span>
-        <span class="text-lg font-bold text-gray-400">Toyota</span>
+        <span class="text-lg font-bold text-gray-400">Sherwin-Williams</span>
+        <span class="text-lg font-bold text-gray-400">Dallas Market Center</span>
+        <span class="text-lg font-bold text-gray-400">Caliber</span>
+        <span class="text-lg font-bold text-gray-400">Matheson</span>
       </div>
 
       <!-- Testimonial -->
@@ -240,7 +253,7 @@ import '../../styles/global.css'
 
       <div class="text-center mt-10">
         <a href="#assessment-form" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3.5 px-8 rounded-lg transition-colors text-base">
-          Book Your Free Assessment &rarr;
+          Request More Information &rarr;
         </a>
       </div>
     </div>
@@ -251,15 +264,14 @@ import '../../styles/global.css'
     <div class="max-w-5xl mx-auto px-4 text-center">
       <p class="font-semibold mb-1">PureVida Water</p>
       <a href="tel:+18885340117" class="text-gray-400 hover:text-white transition-colors text-sm">(888) 534-0117</a>
+      <span class="text-gray-600 mx-1">|</span>
+      <a href="mailto:contact@purevidawater.com" class="text-gray-400 hover:text-white transition-colors text-sm">contact@purevidawater.com</a>
       <p class="text-gray-500 text-xs mt-3">&copy; 2026 PureVida Water. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- ============ SCRIPTS ============ -->
   <script>
-    // ---- Configuration ----
-    const FORM_ENDPOINT = 'https://formspree.io/f/mwvneabd';
-
     // ---- UTM Capture ----
     (function captureUTMs() {
       const params = new URLSearchParams(window.location.search);
@@ -294,45 +306,13 @@ import '../../styles/global.css'
       });
     })();
 
-    // ---- Form Submission ----
-    (function setupFormSubmission() {
+    // ---- GA4 tracking on form submit ----
+    (function setupFormTracking() {
       const form = document.getElementById('lp-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const successDiv = document.getElementById('form-success');
-      if (!form || !submitBtn || !successDiv) return;
+      if (!form) return;
 
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Submitting...';
-        submitBtn.disabled = true;
-        submitBtn.classList.add('opacity-70');
-
-        const formData = new FormData(form);
-
-        try {
-          const response = await fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (response.ok) {
-            form.classList.add('hidden');
-            successDiv.classList.remove('hidden');
-
-            // GA4 conversion event
-            gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
-          } else {
-            throw new Error('Form submission failed');
-          }
-        } catch (err) {
-          alert('Something went wrong. Please call us at (888) 534-0117 or try again.');
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-70');
-        }
+      form.addEventListener('submit', function() {
+        gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
       });
     })();
 
