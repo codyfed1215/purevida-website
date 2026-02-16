@@ -73,7 +73,7 @@ import '../../styles/global.css'
             Request More Information
           </h2>
 
-          <form id="lp-form" action="https://forms.zohopublic.com/purevidawater/form/FoxFlyerLandingPage/formperma/7XKvJo_OOB7RJmcgMyPeYV0v5G_c47S_HPsBZqPNyPg/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" class="space-y-3 md:space-y-4">
+          <form id="lp-form" action="https://forms.zohopublic.com/purevidawater/form/FoxFlyerLandingPage/formperma/7XKvJo_OOB7RJmcgMyPeYV0v5G_c47S_HPsBZqPNyPg/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="zoho-frame" class="space-y-3 md:space-y-4">
             <input type="hidden" name="zf_referrer_name" value="" />
             <input type="hidden" name="zf_redirect_url" value="" />
             <input type="hidden" name="zc_gad" value="" />
@@ -270,6 +270,17 @@ import '../../styles/global.css'
     </div>
   </footer>
 
+  <!-- Hidden iframe for Zoho form submission -->
+  <iframe name="zoho-frame" style="display:none"></iframe>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden">
+    <div id="toast-inner" class="flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl text-white font-medium transition-all duration-300 opacity-0 -translate-y-4 bg-green-600">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <span>Message sent! PureVida will reach out shortly.</span>
+    </div>
+  </div>
+
   <!-- ============ SCRIPTS ============ -->
   <script>
     // ---- UTM Capture ----
@@ -306,13 +317,32 @@ import '../../styles/global.css'
       });
     })();
 
-    // ---- GA4 tracking on form submit ----
+    // ---- GA4 tracking + toast on form submit ----
     (function setupFormTracking() {
       const form = document.getElementById('lp-form');
       if (!form) return;
 
       form.addEventListener('submit', function() {
-        gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
+        }
+
+        var toast = document.getElementById('toast');
+        var inner = document.getElementById('toast-inner');
+        if (toast && inner) {
+          toast.classList.remove('hidden');
+          setTimeout(function() {
+            inner.classList.remove('opacity-0', '-translate-y-4');
+            inner.classList.add('opacity-100', 'translate-y-0');
+          }, 10);
+          setTimeout(function() {
+            inner.classList.remove('opacity-100', 'translate-y-0');
+            inner.classList.add('opacity-0', '-translate-y-4');
+            setTimeout(function() { toast.classList.add('hidden'); }, 300);
+          }, 4000);
+        }
+
+        setTimeout(function() { form.reset(); }, 100);
       });
     })();
 
