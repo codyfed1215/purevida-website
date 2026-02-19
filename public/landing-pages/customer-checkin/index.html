@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Customer Check-In | PureVida Water Technologies</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sky-50: #f0f9ff;
+      --sky-100: #e0f2fe;
+      --sky-200: #bae6fd;
+      --sky-300: #7dd3fc;
+      --sky-400: #38bdf8;
+      --sky-500: #0ea5e9;
+      --sky-600: #0284c7;
+      --cyan-50: #ecfeff;
+      --cyan-400: #22d3ee;
+      --cyan-500: #06b6d4;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --green-500: #22c55e;
+      --red-500: #ef4444;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand-text {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .nav-logo { height: 52px; width: auto; }
+    .nav-link {
+      color: var(--sky-500);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--sky-600); }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--sky-50), var(--cyan-50));
+      padding: 48px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: var(--sky-200);
+      border-radius: 50%;
+      opacity: 0.3;
+      filter: blur(60px);
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+      position: relative;
+    }
+    .hero p {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      position: relative;
+    }
+
+    /* ── FORM SECTIONS ── */
+    .form-wrapper {
+      padding: 40px 0 64px;
+      background: var(--white);
+    }
+
+    .form-section {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      transition: box-shadow 0.2s;
+    }
+    .form-section:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--sky-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--sky-500);
+    }
+    .section-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      margin-bottom: 20px;
+      padding-left: 58px;
+    }
+
+    /* ── TOGGLE ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+    .toggle-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    .toggle-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .toggle-btn {
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 2px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .toggle-btn:hover {
+      border-color: var(--sky-300);
+      color: var(--sky-500);
+    }
+    .toggle-btn.active-yes {
+      background: var(--sky-500);
+      border-color: var(--sky-500);
+      color: var(--white);
+    }
+    .toggle-btn.active-no {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    /* ── COLLAPSIBLE FIELDS ── */
+    .collapsible {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.25s ease;
+      opacity: 0;
+    }
+    .collapsible.open {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .field-group.full {
+      grid-template-columns: 1fr;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+    .field label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+    .field input, .field select {
+      padding: 12px 16px;
+      border: 1px solid var(--gray-300);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--white);
+      color: var(--gray-900);
+    }
+    .field input:focus, .field select:focus {
+      outline: none;
+      border-color: var(--sky-500);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .field input::placeholder {
+      color: var(--gray-400);
+    }
+
+    /* ── CONTACT ENTRY ── */
+    .contact-entry {
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      position: relative;
+      border: 1px solid var(--gray-100);
+    }
+    .contact-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .contact-entry-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--sky-600);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: var(--gray-400);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .remove-btn:hover {
+      color: var(--red-500);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    /* ── ADD BUTTON ── */
+    .add-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed var(--gray-300);
+      border-radius: 12px;
+      background: transparent;
+      color: var(--sky-500);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      margin-top: 8px;
+    }
+    .add-btn:hover {
+      border-color: var(--sky-400);
+      background: var(--sky-50);
+    }
+
+    /* ── CHECKBOXES ── */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--gray-50);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .checkbox-item:hover {
+      background: var(--sky-50);
+      border-color: var(--sky-200);
+    }
+    .checkbox-item.checked {
+      background: var(--sky-50);
+      border-color: var(--sky-300);
+    }
+    .checkbox-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--sky-500);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .checkbox-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+    }
+
+    /* ── REFERRAL LINK ── */
+    .referral-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sky-500);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding-left: 34px;
+      transition: color 0.2s;
+    }
+    .referral-link:hover {
+      color: var(--sky-600);
+      text-decoration: underline;
+    }
+
+    /* ── EMAIL ENTRY ── */
+    .email-entry {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .email-entry input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid var(--gray-300);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .email-entry input:focus {
+      outline: none;
+      border-color: var(--sky-500);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .email-remove-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      color: var(--gray-400);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .email-remove-btn:hover {
+      color: var(--red-500);
+      border-color: var(--red-500);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--sky-500);
+      color: var(--white);
+      border: none;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+    }
+    .submit-btn:hover {
+      background: var(--sky-600);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35);
+    }
+
+    /* ── SUCCESS MESSAGE ── */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 48px 32px;
+    }
+    .success-message.show {
+      display: block;
+    }
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .success-icon svg { width: 36px; height: 36px; color: var(--green-500); }
+    .success-message h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .success-message p {
+      color: var(--gray-600);
+      font-size: 1.05rem;
+    }
+
+    /* ── EDUCATION SECTION ── */
+    .education {
+      background: var(--gray-900);
+      padding: 64px 0;
+      color: var(--white);
+    }
+    .education-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .education-header h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .education-header p {
+      color: var(--gray-400);
+      font-size: 1.05rem;
+    }
+    .edu-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .edu-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .edu-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(14, 165, 233, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .edu-card-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--sky-400);
+    }
+    .edu-card-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .edu-card p {
+      color: var(--gray-400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .edu-card p:last-child {
+      margin-bottom: 0;
+    }
+    .edu-email-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .edu-email-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .edu-email-region {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--sky-400);
+      min-width: 100px;
+    }
+    .edu-email-item a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .edu-email-item a:hover {
+      color: var(--sky-400);
+    }
+    .edu-email-contacts {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .edu-separator {
+      color: rgba(255,255,255,0.2);
+      font-size: 0.85rem;
+    }
+    .edu-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+    .edu-tip-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--sky-400);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .edu-tip p {
+      color: var(--gray-300);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+    .edu-tip strong {
+      color: var(--white);
+    }
+    .edu-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sky-400);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .edu-link:hover {
+      color: var(--sky-300);
+    }
+    .edu-link svg {
+      width: 16px;
+      height: 16px;
+    }
+    .edu-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+    .edu-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .edu-highlight:last-child {
+      margin-bottom: 0;
+    }
+    .edu-check {
+      width: 20px;
+      height: 20px;
+      color: var(--green-500);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .edu-highlight p {
+      margin-bottom: 0;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--gray-900);
+      padding: 32px 0;
+      text-align: center;
+    }
+    .footer p {
+      color: var(--gray-400);
+      font-size: 0.85rem;
+    }
+    .footer a {
+      color: var(--sky-400);
+      text-decoration: none;
+    }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-brand-text { font-size: 1.5rem; }
+      .nav-link { font-size: 0.82rem; }
+      .container { padding: 0 20px; }
+      .hero { padding: 40px 0; }
+      .hero h1 { font-size: 1.75rem; }
+      .education-header h2 { font-size: 1.5rem; }
+      .edu-email-contacts { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .edu-separator { display: none; }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .hero { padding: 32px 0; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero p { font-size: 0.95rem; }
+      .form-section { padding: 24px 20px; }
+      .field-group { grid-template-columns: 1fr; }
+      .section-desc { padding-left: 0; }
+      .toggle-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .section-header h2 { font-size: 1.1rem; }
+      .edu-card { padding: 24px 20px; }
+      .edu-email-item { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 16px; }
+      .edu-email-region { min-width: auto; }
+      .checkbox-item { padding: 14px 16px; }
+      .referral-link { padding-left: 0; margin-top: 4px; }
+      .submit-btn { font-size: 1rem; padding: 16px; }
+      .education { padding: 48px 0; }
+    }
+
+    /* Small phones */
+    @media (max-width: 400px) {
+      .nav-brand-text { font-size: 1.3rem; }
+      .nav-link { font-size: 0.78rem; }
+      .container { padding: 0 16px; }
+      .hero h1 { font-size: 1.25rem; }
+      .hero p { font-size: 0.9rem; }
+      .form-section { padding: 20px 16px; }
+      .contact-entry { padding: 16px; }
+      .toggle-btn { padding: 7px 16px; font-size: 0.82rem; }
+      .edu-tip { flex-direction: column; gap: 8px; padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-brand">
+      <span class="nav-brand-text"><span style="color: var(--sky-500);">Pure</span><span style="color: #075985;">Vida</span></span>
+    </a>
+    <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-link">Visit purevidawater.com</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Customer Check-In</h1>
+    <p>Help us keep your account up to date. It only takes a minute.<br>We so appreciate your business and the opportunity to serve you. Please let us know if there is anything we can be doing better.</p>
+  </div>
+</section>
+
+<!-- Form -->
+<section class="form-wrapper">
+  <div class="container">
+    <form id="checkin-form" action="https://forms.zohopublic.com/purevidawater/form/CustomerInfoUpdate/formperma/JobzHrjirJ78ZTEMGN0M5X9MXOTiEi4n0lEQBBapsHI/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+      <input type="hidden" name="zf_referrer_name" value="customer-checkin-landing-page">
+      <input type="hidden" name="zf_redirect_url" value="">
+      <input type="hidden" name="zc_gad" value="">
+
+      <!-- Zoho hidden fields for consolidated data -->
+      <input type="hidden" name="SingleLine" id="zoho-service-toggle" value="">
+      <input type="hidden" name="SingleLine1" id="zoho-service-names" value="">
+      <input type="hidden" name="SingleLine2" id="zoho-service-phones" value="">
+      <input type="hidden" name="Email" id="zoho-service-emails" value="">
+      <input type="hidden" name="SingleLine3" id="zoho-billing-toggle" value="">
+      <input type="hidden" name="SingleLine4" id="zoho-billing-name" value="">
+      <input type="hidden" name="SingleLine5" id="zoho-billing-phone" value="">
+      <input type="hidden" name="Email1" id="zoho-billing-email" value="">
+      <input type="hidden" name="SingleLine6" id="zoho-invoicing-toggle" value="">
+      <input type="hidden" name="Email2" id="zoho-invoicing-emails" value="">
+      <input type="hidden" name="SingleLine7" id="zoho-autopay" value="">
+      <input type="hidden" name="SingleLine8" id="zoho-additional" value="">
+      <input type="hidden" name="SingleLine9" id="zoho-referral" value="">
+
+      <!-- ═══ SERVICE CONTACT ═══ -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          </div>
+          <h2>Service Contact</h2>
+        </div>
+
+        <div class="toggle-row">
+          <span class="toggle-label">Would you like to update your service contact?</span>
+          <div class="toggle-buttons">
+            <button type="button" class="toggle-btn" data-toggle="service" data-value="yes" onclick="toggleSection('service', true)">Yes</button>
+            <button type="button" class="toggle-btn" data-toggle="service" data-value="no" onclick="toggleSection('service', false)">No</button>
+          </div>
+        </div>
+
+        <input type="hidden" id="service-toggle-value" value="">
+
+        <div id="service-fields" class="collapsible">
+          <div id="service-contacts">
+            <div class="contact-entry" data-index="1">
+              <div class="contact-entry-header">
+                <span class="contact-entry-label">Service Contact 1</span>
+              </div>
+              <div class="field-group">
+                <div class="field">
+                  <label>Name *</label>
+                  <input type="text" class="svc-name" placeholder="Full name">
+                </div>
+                <div class="field">
+                  <label>Direct Phone *</label>
+                  <input type="tel" class="svc-phone" placeholder="(555) 555-5555">
+                </div>
+              </div>
+              <div class="field-group full">
+                <div class="field">
+                  <label>Email *</label>
+                  <input type="email" class="svc-email" placeholder="name@company.com">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="add-btn" onclick="addServiceContact()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+            Add Another Service Contact
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ BILLING CONTACT ═══ -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+          </div>
+          <h2>Billing Contact</h2>
+        </div>
+
+        <div class="toggle-row">
+          <span class="toggle-label">Would you like to designate a billing contact?</span>
+          <div class="toggle-buttons">
+            <button type="button" class="toggle-btn" data-toggle="billing" data-value="yes" onclick="toggleSection('billing', true)">Yes</button>
+            <button type="button" class="toggle-btn" data-toggle="billing" data-value="no" onclick="toggleSection('billing', false)">No</button>
+          </div>
+        </div>
+
+        <input type="hidden" id="billing-toggle-value" value="">
+
+        <div id="billing-fields" class="collapsible">
+          <div id="billing-contacts">
+            <div class="contact-entry" data-index="1">
+              <div class="contact-entry-header">
+                <span class="contact-entry-label">Billing Contact 1</span>
+              </div>
+              <div class="field-group">
+                <div class="field">
+                  <label>Name *</label>
+                  <input type="text" class="bill-name" placeholder="Full name">
+                </div>
+                <div class="field">
+                  <label>Direct Phone *</label>
+                  <input type="tel" class="bill-phone" placeholder="(555) 555-5555">
+                </div>
+              </div>
+              <div class="field-group full">
+                <div class="field">
+                  <label>Email *</label>
+                  <input type="email" class="bill-email" placeholder="name@company.com">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="add-btn" onclick="addBillingContact()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+            Add Another Billing Contact
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ INVOICING EMAILS ═══ -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h2>Invoicing Emails</h2>
+        </div>
+
+        <div class="toggle-row">
+          <span class="toggle-label">Would you like to update your invoicing emails?</span>
+          <div class="toggle-buttons">
+            <button type="button" class="toggle-btn" data-toggle="invoicing" data-value="yes" onclick="toggleSection('invoicing', true)">Yes</button>
+            <button type="button" class="toggle-btn" data-toggle="invoicing" data-value="no" onclick="toggleSection('invoicing', false)">No</button>
+          </div>
+        </div>
+
+        <input type="hidden" id="invoicing-toggle-value" value="">
+
+        <div id="invoicing-fields" class="collapsible">
+          <div id="invoicing-emails">
+            <div class="email-entry">
+              <input type="email" class="inv-email" placeholder="accounts@company.com">
+            </div>
+          </div>
+          <button type="button" class="add-btn" onclick="addInvoicingEmail()">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+            Add Another Email
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ ADDITIONAL OPTIONS ═══ -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <h2>Anything Else?</h2>
+        </div>
+        <p class="section-desc">Select any that apply and we'll follow up with you.</p>
+
+        <div class="checkbox-group">
+          <label class="checkbox-item" onclick="this.classList.toggle('checked')">
+            <input type="checkbox" id="cb-autopay" value="yes">
+            <span class="checkbox-text">Reach Out to Me About Setting Up Auto Pay</span>
+          </label>
+          <label class="checkbox-item" onclick="this.classList.toggle('checked')">
+            <input type="checkbox" id="cb-additional" value="yes">
+            <span class="checkbox-text">Reach Out to Me About Additional Coffee | Ice | Water Systems</span>
+          </label>
+          <label class="checkbox-item" onclick="this.classList.toggle('checked')">
+            <input type="checkbox" id="cb-referral" value="yes">
+            <span class="checkbox-text">Reach Out to Me About a Referral I Have</span>
+          </label>
+          <a href="https://purevidawater.com/contact" target="_blank" rel="noopener" class="referral-link">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Learn more about our referral program
+          </a>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="submit-btn">Submit Check-In</button>
+    </form>
+
+    <!-- Success Message -->
+    <div class="success-message" id="success-msg">
+      <div class="success-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h2>Thank You!</h2>
+      <p>Your check-in has been submitted. The PureVida team will review your updates and reach out if needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Education Section -->
+<section class="education">
+  <div class="container">
+    <div class="education-header">
+      <h2>Working with PureVida</h2>
+      <p>Everything you need to know about getting the most from your service.</p>
+    </div>
+
+    <!-- Service Requests -->
+    <div class="edu-card">
+      <div class="edu-card-header">
+        <div class="edu-card-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>How to Request Service</h3>
+      </div>
+      <p>The fastest way to request service is through our website. Visit our contact page, select "Request Support," and our team will be in touch promptly.</p>
+      <a href="https://purevidawater.com/contact" target="_blank" rel="noopener" class="edu-link">
+        Go to Contact Page
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+
+      <div class="edu-divider"></div>
+
+      <p>You can also contact your regional service team directly:</p>
+      <div class="edu-email-grid">
+        <div class="edu-email-item">
+          <span class="edu-email-region">Dallas-Fort Worth</span>
+          <span class="edu-email-contacts">
+            <a href="tel:4698440470">(469) 844-0470</a>
+            <span class="edu-separator">|</span>
+            <a href="mailto:DFWservice@purevidawater.com">DFWservice@purevidawater.com</a>
+          </span>
+        </div>
+        <div class="edu-email-item">
+          <span class="edu-email-region">Austin</span>
+          <span class="edu-email-contacts">
+            <a href="tel:5122702452">(512) 270-2452</a>
+            <span class="edu-separator">|</span>
+            <a href="mailto:ATXservice@purevidawater.com">ATXservice@purevidawater.com</a>
+          </span>
+        </div>
+        <div class="edu-email-item">
+          <span class="edu-email-region">San Antonio</span>
+          <span class="edu-email-contacts">
+            <a href="tel:2107918161">(210) 791-8161</a>
+            <span class="edu-separator">|</span>
+            <a href="mailto:SANservice@purevidawater.com">SANservice@purevidawater.com</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="edu-tip">
+        <svg class="edu-tip-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <p>When calling or emailing for support, please have your <strong>system's unique ID number</strong> ready. You can find it on the sticker located on your PureVida system. This helps our team locate your account and get you help faster.</p>
+      </div>
+    </div>
+
+    <!-- Filtration & Full Service -->
+    <div class="edu-card">
+      <div class="edu-card-header">
+        <div class="edu-card-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3>Your Filters &amp; Maintenance</h3>
+      </div>
+      <p>Every PureVida system uses industrial-grade filtration designed for heavy commercial use. These filters are built to last -- but to ensure your water stays at the highest quality, we replace them at least once a year. You never have to think about it.</p>
+
+      <div class="edu-divider"></div>
+
+      <p style="color: var(--white); font-weight: 600; margin-bottom: 14px;">PureVida is full service. Your monthly rate covers everything:</p>
+
+      <div class="edu-highlight">
+        <svg class="edu-check" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <p>Professional installation and setup at your location</p>
+      </div>
+      <div class="edu-highlight">
+        <svg class="edu-check" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <p>Scheduled filter replacements -- at least annually</p>
+      </div>
+      <div class="edu-highlight">
+        <svg class="edu-check" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <p>All maintenance, repairs, and parts</p>
+      </div>
+      <div class="edu-highlight">
+        <svg class="edu-check" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <p>System sanitization and cleaning</p>
+      </div>
+      <div class="edu-highlight">
+        <svg class="edu-check" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        <p>No surprise fees -- one predictable monthly rate, that's it</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>PureVida Water Technologies &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; <a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a></p>
+  </div>
+</footer>
+
+<script>
+  // ── TOGGLE YES/NO ──
+  function toggleSection(section, isYes) {
+    const fields = document.getElementById(section + '-fields');
+    const hiddenInput = document.getElementById(section + '-toggle-value');
+    const buttons = document.querySelectorAll('[data-toggle="' + section + '"]');
+
+    buttons.forEach(btn => {
+      btn.classList.remove('active-yes', 'active-no');
+    });
+
+    if (isYes) {
+      fields.classList.add('open');
+      hiddenInput.value = 'Yes';
+      buttons.forEach(btn => {
+        if (btn.dataset.value === 'yes') btn.classList.add('active-yes');
+      });
+    } else {
+      fields.classList.remove('open');
+      hiddenInput.value = 'No';
+      buttons.forEach(btn => {
+        if (btn.dataset.value === 'no') btn.classList.add('active-no');
+      });
+    }
+  }
+
+  // ── ADD SERVICE CONTACT ──
+  let serviceContactCount = 1;
+  function addServiceContact() {
+    serviceContactCount++;
+    const container = document.getElementById('service-contacts');
+    const entry = document.createElement('div');
+    entry.className = 'contact-entry';
+    entry.innerHTML = `
+      <div class="contact-entry-header">
+        <span class="contact-entry-label">Service Contact ${serviceContactCount}</span>
+        <button type="button" class="remove-btn" onclick="removeEntry(this)" title="Remove">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>
+        </button>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Name *</label>
+          <input type="text" class="svc-name" placeholder="Full name">
+        </div>
+        <div class="field">
+          <label>Direct Phone *</label>
+          <input type="tel" class="svc-phone" placeholder="(555) 555-5555">
+        </div>
+      </div>
+      <div class="field-group full">
+        <div class="field">
+          <label>Email *</label>
+          <input type="email" class="svc-email" placeholder="name@company.com">
+        </div>
+      </div>
+    `;
+    container.appendChild(entry);
+  }
+
+  // ── ADD BILLING CONTACT ──
+  let billingContactCount = 1;
+  function addBillingContact() {
+    billingContactCount++;
+    const container = document.getElementById('billing-contacts');
+    const entry = document.createElement('div');
+    entry.className = 'contact-entry';
+    entry.innerHTML = `
+      <div class="contact-entry-header">
+        <span class="contact-entry-label">Billing Contact ${billingContactCount}</span>
+        <button type="button" class="remove-btn" onclick="removeEntry(this)" title="Remove">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>
+        </button>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Name *</label>
+          <input type="text" class="bill-name" placeholder="Full name">
+        </div>
+        <div class="field">
+          <label>Direct Phone *</label>
+          <input type="tel" class="bill-phone" placeholder="(555) 555-5555">
+        </div>
+      </div>
+      <div class="field-group full">
+        <div class="field">
+          <label>Email *</label>
+          <input type="email" class="bill-email" placeholder="name@company.com">
+        </div>
+      </div>
+    `;
+    container.appendChild(entry);
+  }
+
+  // ── ADD INVOICING EMAIL ──
+  let invoicingEmailCount = 1;
+  function addInvoicingEmail() {
+    invoicingEmailCount++;
+    const container = document.getElementById('invoicing-emails');
+    const entry = document.createElement('div');
+    entry.className = 'email-entry';
+    entry.innerHTML = `
+      <input type="email" class="inv-email" placeholder="email@company.com">
+      <button type="button" class="email-remove-btn" onclick="removeEmailEntry(this)" title="Remove">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="13" y2="13"/><line x1="13" y1="5" x2="5" y2="13"/></svg>
+      </button>
+    `;
+    container.appendChild(entry);
+  }
+
+  // ── REMOVE ENTRIES ──
+  function removeEntry(btn) {
+    btn.closest('.contact-entry').remove();
+  }
+  function removeEmailEntry(btn) {
+    btn.closest('.email-entry').remove();
+  }
+
+  // ── GATHER & SUBMIT TO ZOHO ──
+  document.getElementById('checkin-form').addEventListener('submit', function(e) {
+    // Populate Zoho hidden fields from our UI before submit
+
+    // Service contact toggle
+    document.getElementById('zoho-service-toggle').value = document.getElementById('service-toggle-value').value || 'No response';
+
+    // Service contacts - gather all and join with " | "
+    var svcNames = [], svcPhones = [], svcEmails = [];
+    document.querySelectorAll('.svc-name').forEach(function(el) { if (el.value.trim()) svcNames.push(el.value.trim()); });
+    document.querySelectorAll('.svc-phone').forEach(function(el) { if (el.value.trim()) svcPhones.push(el.value.trim()); });
+    document.querySelectorAll('.svc-email').forEach(function(el) { if (el.value.trim()) svcEmails.push(el.value.trim()); });
+    document.getElementById('zoho-service-names').value = svcNames.join(' | ') || '';
+    document.getElementById('zoho-service-phones').value = svcPhones.join(' | ') || '';
+    document.getElementById('zoho-service-emails').value = svcEmails[0] || '';
+
+    // Billing contact toggle
+    document.getElementById('zoho-billing-toggle').value = document.getElementById('billing-toggle-value').value || 'No response';
+
+    // Billing contacts - gather all and join with " | "
+    var billNames = [], billPhones = [], billEmails = [];
+    document.querySelectorAll('.bill-name').forEach(function(el) { if (el.value.trim()) billNames.push(el.value.trim()); });
+    document.querySelectorAll('.bill-phone').forEach(function(el) { if (el.value.trim()) billPhones.push(el.value.trim()); });
+    document.querySelectorAll('.bill-email').forEach(function(el) { if (el.value.trim()) billEmails.push(el.value.trim()); });
+    document.getElementById('zoho-billing-name').value = billNames.join(' | ') || '';
+    document.getElementById('zoho-billing-phone').value = billPhones.join(' | ') || '';
+    document.getElementById('zoho-billing-email').value = billEmails[0] || '';
+
+    // Invoicing toggle
+    document.getElementById('zoho-invoicing-toggle').value = document.getElementById('invoicing-toggle-value').value || 'No response';
+
+    // Invoicing emails - gather all and join
+    var invEmails = [];
+    document.querySelectorAll('.inv-email').forEach(function(el) { if (el.value.trim()) invEmails.push(el.value.trim()); });
+    document.getElementById('zoho-invoicing-emails').value = invEmails[0] || '';
+
+    // If multiple service contacts or invoicing emails, append extras to the name/email fields
+    if (svcNames.length > 1) {
+      document.getElementById('zoho-service-names').value = svcNames.join(' | ');
+      document.getElementById('zoho-service-phones').value = svcPhones.join(' | ');
+      // Zoho Email field only takes one email, put all in the names field as note
+      document.getElementById('zoho-service-names').value += ' [Emails: ' + svcEmails.join(', ') + ']';
+    }
+    if (billNames.length > 1) {
+      document.getElementById('zoho-billing-name').value = billNames.join(' | ');
+      document.getElementById('zoho-billing-phone').value = billPhones.join(' | ');
+      // Zoho Email field only takes one email, put all in the names field as note
+      document.getElementById('zoho-billing-name').value += ' [Emails: ' + billEmails.join(', ') + ']';
+    }
+    if (invEmails.length > 1) {
+      // Zoho Email field only takes one, note extras in invoicing toggle field
+      document.getElementById('zoho-invoicing-toggle').value += ' [All emails: ' + invEmails.join(', ') + ']';
+    }
+
+    // Checkboxes
+    document.getElementById('zoho-autopay').value = document.getElementById('cb-autopay').checked ? 'Yes' : 'No';
+    document.getElementById('zoho-additional').value = document.getElementById('cb-additional').checked ? 'Yes' : 'No';
+    document.getElementById('zoho-referral').value = document.getElementById('cb-referral').checked ? 'Yes' : 'No';
+
+    // Show success and submit via iframe to avoid redirect
+    var form = this;
+    var iframe = document.createElement('iframe');
+    iframe.name = 'zoho-submit-frame';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    form.target = 'zoho-submit-frame';
+
+    // Show success after a short delay
+    setTimeout(function() {
+      form.style.display = 'none';
+      document.getElementById('success-msg').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
