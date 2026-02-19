@@ -763,6 +763,50 @@
       <input type="hidden" name="SingleLine7" id="zoho-autopay" value="">
       <input type="hidden" name="SingleLine8" id="zoho-additional" value="">
       <input type="hidden" name="SingleLine9" id="zoho-referral" value="">
+      <input type="hidden" name="SingleLine10" id="zoho-customer-id" value="">
+
+      <!-- ═══ CUSTOMER IDENTIFICATION ═══ -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
+          </div>
+          <h2>Customer Identification</h2>
+        </div>
+
+        <p class="section-desc">How would you like to identify your account?</p>
+
+        <div class="toggle-row">
+          <div class="toggle-buttons" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button type="button" class="toggle-btn method-btn" data-method="system-id" onclick="toggleIdMethod('system-id')">System ID Number</button>
+            <button type="button" class="toggle-btn method-btn" data-method="business" onclick="toggleIdMethod('business')">Business Name &amp; Address</button>
+          </div>
+        </div>
+
+        <div id="id-system-id" class="collapsible">
+          <div class="field-group full">
+            <div class="field">
+              <label>System ID Number *</label>
+              <input type="text" id="system-id-input" placeholder="Enter the ID from the sticker on your system">
+            </div>
+          </div>
+        </div>
+
+        <div id="id-business" class="collapsible">
+          <div class="field-group full">
+            <div class="field">
+              <label>Business Name *</label>
+              <input type="text" id="business-name-input" placeholder="Your business or company name">
+            </div>
+          </div>
+          <div class="field-group full">
+            <div class="field">
+              <label>System Address *</label>
+              <input type="text" id="system-address-input" placeholder="Address where the system is located">
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- ═══ SERVICE CONTACT ═══ -->
       <div class="form-section">
@@ -1045,6 +1089,37 @@
 </footer>
 
 <script>
+  // ── TOGGLE ID METHOD ──
+  function toggleIdMethod(method) {
+    var methods = ['system-id', 'business'];
+    var buttons = document.querySelectorAll('.method-btn');
+
+    buttons.forEach(function(btn) {
+      btn.classList.remove('active-yes');
+    });
+
+    methods.forEach(function(m) {
+      var panel = document.getElementById('id-' + m);
+      if (m === method) {
+        panel.classList.add('open');
+      } else {
+        panel.classList.remove('open');
+      }
+    });
+
+    buttons.forEach(function(btn) {
+      if (btn.dataset.method === method) btn.classList.add('active-yes');
+    });
+
+    // Clear fields in the hidden panel
+    if (method === 'system-id') {
+      document.getElementById('business-name-input').value = '';
+      document.getElementById('system-address-input').value = '';
+    } else {
+      document.getElementById('system-id-input').value = '';
+    }
+  }
+
   // ── TOGGLE YES/NO ──
   function toggleSection(section, isYes) {
     const fields = document.getElementById(section + '-fields');
@@ -1165,6 +1240,18 @@
   // ── GATHER & SUBMIT TO ZOHO ──
   document.getElementById('checkin-form').addEventListener('submit', function(e) {
     // Populate Zoho hidden fields from our UI before submit
+
+    // Customer identification
+    var sysId = (document.getElementById('system-id-input').value || '').trim();
+    var bizName = (document.getElementById('business-name-input').value || '').trim();
+    var bizAddr = (document.getElementById('system-address-input').value || '').trim();
+    if (sysId) {
+      document.getElementById('zoho-customer-id').value = 'System ID: ' + sysId;
+    } else if (bizName || bizAddr) {
+      document.getElementById('zoho-customer-id').value = bizName + ' | ' + bizAddr;
+    } else {
+      document.getElementById('zoho-customer-id').value = 'Not provided';
+    }
 
     // Service contact toggle
     document.getElementById('zoho-service-toggle').value = document.getElementById('service-toggle-value').value || 'No response';
