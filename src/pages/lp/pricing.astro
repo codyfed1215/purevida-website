@@ -1,0 +1,1206 @@
+---
+// Landing Page: Dynamic Pricing Tool for Sales Reps
+// Standalone page — no shared Layout, no nav, no footer links
+// Route: /lp/pricing
+import '../../styles/global.css'
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureVida Pricing Tool | Sales Rep</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      .print-only { display: block !important; }
+      body { background: white; margin: 0; padding: 0; font-size: 11px; }
+      main { padding: 0 !important; max-width: 100% !important; }
+      #step-5 { box-shadow: none; border: none; padding: 0; }
+      #quote-output { padding: 12px !important; border: none !important; box-shadow: none !important; border-radius: 0 !important; }
+      #quote-output h2 { font-size: 18px !important; }
+      #quote-output table { font-size: 11px; }
+      #quote-output table th, #quote-output table td { padding-top: 4px; padding-bottom: 4px; }
+      .bg-gray-50 { background: #f9fafb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .text-sky-500, .text-sky-600 { color: #0ea5e9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .text-green-600 { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hidden.sm\:table-cell { display: table-cell !important; }
+      .hidden.sm\:inline { display: inline !important; }
+      @page { margin: 0.4in 0.5in; size: letter; }
+    }
+    .print-only { display: none; }
+    .step-card { transition: all 0.2s ease; }
+    .product-card { transition: all 0.2s ease; }
+    input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
+    @media (hover: hover) {
+      .step-card:hover { transform: translateY(-2px); }
+    }
+    @media (max-width: 639px) {
+      .step-card, .product-card { -webkit-tap-highlight-color: transparent; }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
+
+  <!-- ============ HEADER ============ -->
+  <header class="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="https://purevidawater.com" class="flex items-center gap-2">
+        <img src="/images/water-drop-logo.png" alt="PureVida" class="h-9 w-auto" />
+        <span class="text-xl font-bold tracking-tight">
+          <span class="text-sky-500">Pure</span><span class="text-sky-800">Vida</span>
+        </span>
+      </a>
+      <span class="text-xs sm:text-sm font-semibold text-gray-400 uppercase tracking-wider">Sales Pricing Tool</span>
+    </div>
+  </header>
+
+  <!-- ============ PROGRESS BAR ============ -->
+  <div id="progress-bar" class="no-print bg-white border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between text-xs font-medium text-gray-400">
+        <button data-go-step="1" class="progress-step flex items-center gap-1.5 text-sky-600 font-semibold cursor-pointer bg-transparent border-none">
+          <span class="w-6 h-6 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs font-bold">1</span>
+          <span class="hidden sm:inline">Path</span>
+        </button>
+        <div class="flex-1 h-0.5 mx-2 bg-gray-200"><div class="progress-fill h-full bg-sky-500 transition-all" style="width:0%"></div></div>
+        <button data-go-step="2" class="progress-step flex items-center gap-1.5 cursor-pointer bg-transparent border-none" disabled>
+          <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-xs font-bold">2</span>
+          <span class="hidden sm:inline">Assess</span>
+        </button>
+        <div class="flex-1 h-0.5 mx-2 bg-gray-200"><div class="progress-fill h-full bg-sky-500 transition-all" style="width:0%"></div></div>
+        <button data-go-step="3" class="progress-step flex items-center gap-1.5 cursor-pointer bg-transparent border-none" disabled>
+          <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-xs font-bold">3</span>
+          <span class="hidden sm:inline">Products</span>
+        </button>
+        <div class="flex-1 h-0.5 mx-2 bg-gray-200"><div class="progress-fill h-full bg-sky-500 transition-all" style="width:0%"></div></div>
+        <button data-go-step="4" class="progress-step flex items-center gap-1.5 cursor-pointer bg-transparent border-none" disabled>
+          <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-xs font-bold">4</span>
+          <span class="hidden sm:inline">Pricing</span>
+        </button>
+        <div class="flex-1 h-0.5 mx-2 bg-gray-200"><div class="progress-fill h-full bg-sky-500 transition-all" style="width:0%"></div></div>
+        <button data-go-step="5" class="progress-step flex items-center gap-1.5 cursor-pointer bg-transparent border-none" disabled>
+          <span class="w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-xs font-bold">5</span>
+          <span class="hidden sm:inline">Summary</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main class="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
+
+    <!-- ======== STEP 1: PATH SELECTION ======== -->
+    <section id="step-1" class="step-section">
+      <div class="text-center mb-6 sm:mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Build a Custom Quote</h1>
+        <p class="mt-2 text-gray-500">How would you like to get started?</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
+        <button id="path-know" class="step-card bg-white rounded-2xl p-5 sm:p-8 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 hover:shadow-md cursor-pointer">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">I Know What I Need</h2>
+          <p class="text-gray-500 text-sm">I already know which systems and quantities the customer needs.</p>
+        </button>
+        <button id="path-help" class="step-card bg-white rounded-2xl p-5 sm:p-8 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 hover:shadow-md cursor-pointer">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Help Me Find the Right Solution</h2>
+          <p class="text-gray-500 text-sm">Tell me about the customer and I'll recommend the right systems.</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- ======== STEP 2: NEEDS ASSESSMENT ======== -->
+    <section id="step-2" class="step-section hidden">
+      <div class="text-center mb-6 sm:mb-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Needs Assessment</h1>
+        <p class="mt-2 text-gray-500">Tell us about the customer's workspace.</p>
+      </div>
+      <div class="max-w-lg mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8 space-y-5 sm:space-y-6">
+        <div>
+          <label for="inp-employees" class="block text-sm font-semibold text-gray-700 mb-1">How many employees / drinkers?</label>
+          <input type="number" id="inp-employees" min="1" max="5000" placeholder="e.g. 50" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-lg" />
+        </div>
+        <div>
+          <label for="inp-breakrooms" class="block text-sm font-semibold text-gray-700 mb-1">How many breakroom locations?</label>
+          <input type="number" id="inp-breakrooms" min="1" max="100" placeholder="e.g. 2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-lg" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">What does the customer need?</label>
+          <div class="flex flex-wrap gap-3">
+            <button data-need="water" class="need-btn px-5 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-medium hover:border-sky-300 transition cursor-pointer bg-white flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+              Water
+            </button>
+            <button data-need="ice" class="need-btn px-5 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-medium hover:border-sky-300 transition cursor-pointer bg-white flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              Ice
+            </button>
+            <button data-need="coffee" class="need-btn px-5 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-medium hover:border-sky-300 transition cursor-pointer bg-white flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h12a2 2 0 012 2v1a4 4 0 01-4 4H8a4 4 0 01-4-4V6a2 2 0 012-2zm0 8h8m-8 4h8"/></svg>
+              Coffee
+            </button>
+          </div>
+        </div>
+        <div id="assess-error" class="hidden text-red-500 text-sm font-medium"></div>
+        <div class="flex gap-3 pt-2">
+          <button id="btn-back-2" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition cursor-pointer bg-white">Back</button>
+          <button id="btn-recommend" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition cursor-pointer shadow-lg shadow-sky-500/20">Get Recommendation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== STEP 3: PRODUCT SELECTION ======== -->
+    <section id="step-3" class="step-section hidden">
+      <div class="text-center mb-4 sm:mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Build Your Solution</h1>
+        <p class="mt-2 text-gray-500" id="step3-subtitle">Select products and set quantities.</p>
+      </div>
+
+      <!-- Recommendation Banner -->
+      <div id="recommendation-banner" class="hidden max-w-4xl mx-auto mb-6 bg-sky-50 border border-sky-200 rounded-xl p-4 text-sm text-sky-800">
+        <span class="font-semibold">Recommendation:</span> Based on <span id="rec-summary"></span>. Adjust as needed below.
+      </div>
+
+      <!-- Selected Items Summary -->
+      <div id="selected-summary" class="max-w-4xl mx-auto mb-6 bg-white rounded-xl border border-gray-100 shadow-sm p-4 hidden">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Selected Systems</h3>
+        <div id="selected-list" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Water Systems -->
+      <div class="max-w-4xl mx-auto mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+          Water Systems
+        </h3>
+        <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3" id="water-products"></div>
+      </div>
+
+      <!-- Ice & Water Systems -->
+      <div class="max-w-4xl mx-auto mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          Ice &amp; Water Systems
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3" id="ice-products"></div>
+      </div>
+
+      <!-- Coffee Systems -->
+      <div class="max-w-4xl mx-auto mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h12a2 2 0 012 2v1a4 4 0 01-4 4H8a4 4 0 01-4-4V6a2 2 0 012-2zm0 8h8m-8 4h8"/></svg>
+          Coffee Systems
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3" id="coffee-products"></div>
+      </div>
+
+      <div id="step3-error" class="hidden text-red-500 text-sm font-medium text-center mb-4"></div>
+      <div class="max-w-4xl mx-auto flex gap-3">
+        <button id="btn-back-3" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition cursor-pointer bg-white">Back</button>
+        <button id="btn-to-pricing" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition cursor-pointer shadow-lg shadow-sky-500/20">Continue to Pricing</button>
+      </div>
+    </section>
+
+    <!-- ======== STEP 4: TERM, PAYMENT & PRICING (COMBINED) ======== -->
+    <section id="step-4" class="step-section hidden">
+      <div class="text-center mb-4 sm:mb-6">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Pricing</h1>
+        <p class="mt-2 text-gray-500 text-sm sm:text-base">Select a term and payment type to see live pricing.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+        <!-- Term & Payment Selectors -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <!-- Term Selection -->
+            <div>
+              <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Contract Term</h3>
+              <div class="grid grid-cols-3 gap-2">
+                <button data-term="60" class="term-btn step-card bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 cursor-pointer">
+                  <p class="text-lg sm:text-xl font-bold text-gray-900">60</p>
+                  <p class="text-xs text-gray-500">Months</p>
+                  <p class="text-xs text-sky-600 font-medium mt-1">Best Value</p>
+                </button>
+                <button data-term="36" class="term-btn step-card bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 cursor-pointer">
+                  <p class="text-lg sm:text-xl font-bold text-gray-900">36</p>
+                  <p class="text-xs text-gray-500">Months</p>
+                </button>
+                <button data-term="12" class="term-btn step-card bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 cursor-pointer">
+                  <p class="text-lg sm:text-xl font-bold text-gray-900">12</p>
+                  <p class="text-xs text-gray-500">Months</p>
+                  <p class="text-xs text-amber-600 font-medium mt-1">Time Purchase Only</p>
+                </button>
+              </div>
+            </div>
+            <!-- Payment Type -->
+            <div>
+              <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Payment Type</h3>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="pay-rental" data-payment="rental" class="payment-btn step-card bg-white rounded-xl p-4 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 cursor-pointer">
+                  <p class="text-base font-bold text-gray-900">Rental</p>
+                  <p class="text-xs text-gray-500">Billed quarterly, monthly, or annually</p>
+                </button>
+                <button id="pay-tp" data-payment="timePurchase" class="payment-btn step-card bg-white rounded-xl p-4 text-center shadow-sm border-2 border-gray-100 hover:border-sky-300 cursor-pointer" title="This is not a purchase of the equipment. It is a way to save money and save administrative time by processing less invoices. At the end of the Time Purchase, the customer may choose to start paying a rental or do another Time Purchase.">
+                  <p class="text-base font-bold text-gray-900">Time Purchase <svg class="w-3.5 h-3.5 inline-block text-gray-400 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 16v0m0-8v4"/></svg></p>
+                  <p class="text-xs text-gray-500">Pay upfront</p>
+                  <p id="tp-discount-label" class="text-xs text-green-600 font-medium mt-1 hidden"></p>
+                </button>
+              </div>
+              <p id="twelve-month-note" class="hidden text-amber-600 text-xs mt-2 font-medium text-center">12-month term requires Time Purchase (paid upfront).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Table (updates live) -->
+        <div id="pricing-table-wrapper" class="hidden">
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th class="px-2 sm:px-4 py-2 sm:py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
+                    <th class="px-2 sm:px-4 py-2 sm:py-3 text-xs font-semibold text-gray-500 uppercase text-center">Qty</th>
+                    <th class="px-2 sm:px-4 py-2 sm:py-3 text-xs font-semibold text-gray-500 uppercase text-center hidden sm:table-cell" title="Boost adds in essential minerals, electrolytes, and boosts the pH for the most advanced hydration!">
+                      Boost <svg class="w-3 h-3 inline-block text-gray-400 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 16v0m0-8v4"/></svg>
+                    </th>
+                    <th class="px-2 sm:px-4 py-2 sm:py-3 text-xs font-semibold text-gray-500 uppercase text-right" id="unit-price-header">Unit Price</th>
+                    <th class="px-2 sm:px-4 py-2 sm:py-3 text-xs font-semibold text-gray-500 uppercase text-right">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="pricing-tbody" class="divide-y divide-gray-100"></tbody>
+              </table>
+            </div>
+            <!-- Installation Fee & Totals -->
+            <div class="border-t border-gray-200 bg-gray-50 px-3 sm:px-4 py-3 sm:py-4 space-y-2">
+              <div class="flex justify-between items-center text-xs sm:text-sm">
+                <div>
+                  <span class="text-gray-500">Installation Fee</span>
+                  <span class="text-gray-400 ml-1" id="install-count"></span>
+                </div>
+                <div class="font-semibold text-gray-700" id="install-total"></div>
+              </div>
+              <div class="flex justify-between items-center pt-2 border-t border-gray-200">
+                <div>
+                  <span id="pricing-type-label" class="text-sm font-medium text-gray-600"></span>
+                  <span id="pricing-term-label" class="text-sm text-gray-400 ml-1"></span>
+                </div>
+                <div class="text-right">
+                  <p class="text-sm text-gray-500" id="total-label">Total</p>
+                  <p class="text-2xl sm:text-3xl font-bold text-gray-900" id="grand-total">$0</p>
+                </div>
+              </div>
+              <div id="install-note" class="text-xs text-gray-400 text-right"></div>
+              <!-- Quarterly Billing (rental only) -->
+              <div id="quarterly-row" class="hidden flex justify-between items-center pt-2 border-t border-gray-200">
+                <div>
+                  <span class="text-sm font-medium text-gray-600">Typical Quarterly Billing</span>
+                  <span class="text-xs text-gray-400 ml-1">(3 months)</span>
+                </div>
+                <div class="text-right">
+                  <p class="text-xl sm:text-2xl font-bold text-sky-600" id="quarterly-total">$0</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-400 text-right pt-1">All applicable taxes will apply.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt to select term & payment -->
+        <div id="pricing-placeholder" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center text-gray-400">
+          <svg class="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <p class="font-medium">Select a term and payment type above to see pricing.</p>
+        </div>
+
+        <div class="flex gap-3">
+          <button id="btn-back-4" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition cursor-pointer bg-white">Back</button>
+          <button id="btn-to-summary" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition cursor-pointer shadow-lg shadow-sky-500/20">Finalize Quote</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== STEP 5: QUOTE SUMMARY ======== -->
+    <section id="step-5" class="step-section hidden">
+      <div class="text-center mb-4 sm:mb-6 no-print">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Quote Summary</h1>
+        <p class="mt-2 text-gray-500">Enter customer details and finalize.</p>
+      </div>
+
+      <!-- Customer Info -->
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4 sm:mb-6 no-print">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Customer Information</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label for="cust-company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+            <input type="text" id="cust-company" placeholder="Acme Corp" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" />
+          </div>
+          <div>
+            <label for="cust-contact" class="block text-sm font-medium text-gray-700 mb-1">Contact Name</label>
+            <input type="text" id="cust-contact" placeholder="Jane Smith" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" />
+          </div>
+          <div>
+            <label for="cust-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" id="cust-email" placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" />
+          </div>
+          <div>
+            <label for="cust-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+            <input type="tel" id="cust-phone" placeholder="(555) 123-4567" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" />
+          </div>
+          <div>
+            <label for="rep-name" class="block text-sm font-medium text-gray-700 mb-1">Sales Rep</label>
+            <input type="text" id="rep-name" placeholder="Your name" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Printable Quote -->
+      <div id="quote-output" class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-8">
+        <!-- Print Header -->
+        <div class="print-only mb-3 pb-2 border-b border-gray-200">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <img src="/images/water-drop-logo.png" alt="PureVida" class="h-8 w-auto" />
+              <span class="text-lg font-bold"><span style="color:#0ea5e9">Pure</span><span style="color:#075985">Vida</span> Water</span>
+            </div>
+            <div class="text-right text-xs text-gray-500">
+              <p>(888) 534-0117</p>
+              <p>contact@purevidawater.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-1">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Service Quote</h2>
+            <p class="text-sm text-gray-500" id="quote-customer-name"></p>
+          </div>
+          <div class="sm:text-right">
+            <p class="text-sm text-gray-500" id="quote-date"></p>
+            <p class="text-sm text-gray-500" id="quote-rep"></p>
+          </div>
+        </div>
+
+        <!-- Quote Details -->
+        <div class="mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-sm">
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-gray-500">Term</p>
+            <p class="font-bold text-gray-900" id="quote-term"></p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-gray-500">Payment</p>
+            <p class="font-bold text-gray-900" id="quote-payment"></p>
+          </div>
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-gray-500" id="quote-total-label">Rental Total</p>
+            <p class="font-bold text-gray-900 text-base sm:text-lg" id="quote-total"></p>
+          </div>
+        </div>
+
+        <!-- Quote Line Items -->
+        <table class="w-full text-left text-sm mb-4">
+          <thead class="border-b-2 border-gray-200">
+            <tr>
+              <th class="pb-2 font-semibold text-gray-700 text-sm">System</th>
+              <th class="pb-2 font-semibold text-gray-700 text-center text-sm">Qty</th>
+              <th class="pb-2 font-semibold text-gray-700 text-center text-sm hidden sm:table-cell" title="Boost adds in essential minerals, electrolytes, and boosts the pH for the most advanced hydration!">Boost</th>
+              <th class="pb-2 font-semibold text-gray-700 text-right text-sm" id="quote-price-header">Unit Price</th>
+              <th class="pb-2 font-semibold text-gray-700 text-right text-sm">Total</th>
+            </tr>
+          </thead>
+          <tbody id="quote-tbody" class="divide-y divide-gray-100"></tbody>
+        </table>
+
+        <!-- Installation Fee in Quote -->
+        <div class="flex justify-between items-center text-sm border-t border-gray-200 pt-3 mb-2">
+          <span class="text-gray-600">Installation Fee <span class="text-gray-400" id="quote-install-count"></span></span>
+          <span class="font-semibold text-gray-900" id="quote-install-total"></span>
+        </div>
+
+        <!-- Quarterly Billing in Quote (rental only) -->
+        <div id="quote-quarterly-row" class="hidden flex justify-between items-center text-sm mb-2">
+          <span class="text-gray-600">Typical Quarterly Billing <span class="text-gray-400">(3 months)</span></span>
+          <span class="font-bold text-sky-600 text-base" id="quote-quarterly-total"></span>
+        </div>
+
+        <p class="text-xs text-gray-400 mb-4">All applicable taxes will apply.</p>
+
+        <!-- Included Services -->
+        <div class="border-t border-gray-200 pt-3">
+          <h4 class="text-sm font-semibold text-gray-700 mb-2">Every System Includes:</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-1.5 text-xs text-gray-600">
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Free, No-Obligation Trial</div>
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Professional Installation</div>
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Filter Changes</div>
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full-Service Maintenance</div>
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Replacement Guarantee</div>
+            <div class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-sky-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> (1) Free Relocation per Year</div>
+          </div>
+        </div>
+
+        <!-- Explainer Notes (populated by JS) -->
+        <div id="quote-notes" class="hidden mt-3 pt-3 border-t border-gray-200 space-y-2">
+        </div>
+
+        <!-- Quote Validity -->
+        <div class="mt-4 pt-3 border-t border-gray-200 text-center">
+          <p class="text-xs text-gray-400 italic">Quote good for 30 days from date listed above.</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="max-w-4xl mx-auto grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 mt-4 sm:mt-6 no-print">
+        <button id="btn-back-5" class="px-4 sm:px-6 py-3 rounded-lg border border-gray-300 text-gray-600 font-medium hover:bg-gray-50 transition cursor-pointer bg-white text-sm sm:text-base">Back</button>
+        <button id="btn-print" class="px-4 sm:px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-900 text-white font-medium transition cursor-pointer flex items-center justify-center gap-2 text-sm sm:text-base">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Print
+        </button>
+        <button id="btn-email" class="px-4 sm:px-6 py-3 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition cursor-pointer flex items-center justify-center gap-2 text-sm sm:text-base">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Email
+        </button>
+        <button id="btn-start-over" class="col-span-2 sm:col-span-1 sm:ml-auto px-4 sm:px-6 py-3 rounded-lg border border-red-200 text-red-500 font-medium hover:bg-red-50 transition cursor-pointer bg-white text-sm sm:text-base">Start Over</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // =====================================================
+    // PRICING DATA
+    // =====================================================
+    var INSTALL_FEE = 99;
+    var BOOST_FEE = 8; // $8/mo per unit
+
+    var PRODUCTS = {
+      PVFiltration: {
+        name: 'PVFiltration', subtitle: 'Deionized Water', category: 'water',
+        image: '/images/products/Stand Alone DI.png', usage: '<20 employees', boost: 'none',
+        grid: { rental: { 60: 44, 36: 58, 12: 72 }, timePurchase: { 60: 2112, 36: 1879, 12: 864 } },
+        floor: { rental: { 60: 40, 36: 54, 12: 68 }, timePurchase: { 60: 1920, 36: 1750, 12: 816 } }
+      },
+      PV1w: {
+        name: 'PV1w', subtitle: 'Low Usage', category: 'water',
+        image: '/images/products/PV1w.png', usage: '<7 drinkers', boost: 'available',
+        grid: { rental: { 60: 54, 36: 68, 12: 82 }, timePurchase: { 60: 2592, 36: 2203, 12: 984 } },
+        floor: { rental: { 60: 50, 36: 64, 12: 78 }, timePurchase: { 60: 2400, 36: 2074, 12: 936 } }
+      },
+      PV2w: {
+        name: 'PV2w', subtitle: 'Low Usage', category: 'water',
+        image: '/images/products/PV2w.png', usage: '<7 drinkers', boost: 'available',
+        grid: { rental: { 60: 54, 36: 68, 12: 82 }, timePurchase: { 60: 2592, 36: 2203, 12: 984 } },
+        floor: { rental: { 60: 50, 36: 64, 12: 78 }, timePurchase: { 60: 2400, 36: 2074, 12: 936 } }
+      },
+      PV3w: {
+        name: 'PV3w', subtitle: 'Moderate Usage', category: 'water',
+        image: '/images/products/PV3w.png', usage: '7–30 drinkers', boost: 'available',
+        grid: { rental: { 60: 74, 36: 94, 12: 114 }, timePurchase: { 60: 3552, 36: 3046, 12: 1368 } },
+        floor: { rental: { 60: 64, 36: 84, 12: 104 }, timePurchase: { 60: 3072, 36: 2722, 12: 1248 } }
+      },
+      PV4w: {
+        name: 'PV4w', subtitle: 'High Usage', category: 'water',
+        image: '/images/products/PV4w.png', usage: '30–50 drinkers', boost: 'included',
+        grid: { rental: { 60: 159, 36: 189, 12: 219 }, timePurchase: { 60: 7632, 36: 6124, 12: 2628 } },
+        floor: { rental: { 60: 144, 36: 174, 12: 204 }, timePurchase: { 60: 6912, 36: 5638, 12: 2448 } }
+      },
+      PV5s: {
+        name: 'PV5s', subtitle: 'Sparkling', category: 'water',
+        image: '/images/products/PV5s.png', usage: '<20 drinkers', boost: 'available',
+        grid: { rental: { 60: 134, 36: 154, 12: 174 }, timePurchase: { 60: 6432, 36: 4990, 12: 2088 } },
+        floor: { rental: { 60: 119, 36: 139, 12: 159 }, timePurchase: { 60: 5712, 36: 4504, 12: 1908 } }
+      },
+      PV6i: {
+        name: 'PV6i', subtitle: 'Low Usage', category: 'ice',
+        image: '/images/products/PV6i.png', usage: '<10 drinkers', boost: 'included',
+        grid: { rental: { 60: 119, 36: 139, 12: 159 }, timePurchase: { 60: 5712, 36: 4504, 12: 1908 } },
+        floor: { rental: { 60: 104, 36: 124, 12: 144 }, timePurchase: { 60: 4992, 36: 4018, 12: 1728 } }
+      },
+      PV7i: {
+        name: 'PV7i', subtitle: 'Low Usage', category: 'ice',
+        image: '/images/products/PV7i.png', usage: '<10 drinkers', boost: 'available',
+        grid: { rental: { 60: 179, 36: 209, 12: 239 }, timePurchase: { 60: 8592, 36: 6772, 12: 2868 } },
+        floor: { rental: { 60: 164, 36: 194, 12: 224 }, timePurchase: { 60: 7872, 36: 6286, 12: 2688 } }
+      },
+      PV8i: {
+        name: 'PV8i', subtitle: 'Moderate Usage', category: 'ice',
+        image: '/images/products/PV8i.png', usage: '10–30 drinkers', boost: 'available',
+        grid: { rental: { 60: 209, 36: 239, 12: 269 }, timePurchase: { 60: 10032, 36: 7744, 12: 3228 } },
+        floor: { rental: { 60: 194, 36: 224, 12: 254 }, timePurchase: { 60: 9312, 36: 7258, 12: 3048 } }
+      },
+      PV9i: {
+        name: 'PV9i', subtitle: 'High Usage', category: 'ice',
+        image: '/images/products/PV9i.png', usage: '30–50 drinkers', boost: 'available',
+        grid: { rental: { 60: 309, 36: 349, 12: 389 }, timePurchase: { 60: 14832, 36: 11308, 12: 4668 } },
+        floor: { rental: { 60: 289, 36: 329, 12: 369 }, timePurchase: { 60: 13872, 36: 10660, 12: 4428 } }
+      },
+      PV12c: {
+        name: 'PV12c', subtitle: 'Bean to Cup', category: 'coffee',
+        image: '/images/products/PV12c.png', usage: '<30 drinkers', boost: 'none',
+        grid: { rental: { 60: 275, 36: 315, 12: 355 }, timePurchase: { 60: 13200, 36: 10206, 12: 4260 } },
+        floor: { rental: { 60: 255, 36: 295, 12: 335 }, timePurchase: { 60: 12240, 36: 9558, 12: 4020 } }
+      }
+    };
+
+    var WATER_MODELS = ['PVFiltration', 'PV1w', 'PV2w', 'PV3w', 'PV4w', 'PV5s'];
+    var ICE_MODELS = ['PV6i', 'PV7i', 'PV8i', 'PV9i'];
+    var COFFEE_MODELS = ['PV12c'];
+
+    // =====================================================
+    // STATE
+    // =====================================================
+    var state = {
+      currentStep: 1,
+      path: null,
+      employees: 0,
+      breakrooms: 0,
+      needs: { water: false, ice: false, coffee: false },
+      selectedProducts: {},
+      term: null,
+      payment: null,
+      boostFilter: {}
+    };
+
+    // =====================================================
+    // HELPERS
+    // =====================================================
+    function $(sel) { return document.querySelector(sel); }
+    function $$(sel) { return document.querySelectorAll(sel); }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
+
+    function getTotalUnits() {
+      var total = 0;
+      Object.keys(state.selectedProducts).forEach(function(k) { total += state.selectedProducts[k]; });
+      return total;
+    }
+
+    function showStep(n) {
+      $$('.step-section').forEach(function(s) { s.classList.add('hidden'); });
+      var el = $('#step-' + n);
+      if (el) el.classList.remove('hidden');
+      state.currentStep = n;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress() {
+      var steps = $$('.progress-step');
+      var fills = $$('.progress-fill');
+      steps.forEach(function(step, i) {
+        var stepNum = i + 1;
+        var circle = step.querySelector('span');
+        if (stepNum <= state.currentStep) {
+          circle.className = 'w-6 h-6 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs font-bold';
+          step.classList.add('text-sky-600', 'font-semibold');
+          step.classList.remove('text-gray-400');
+          step.disabled = false;
+        } else {
+          circle.className = 'w-6 h-6 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-xs font-bold';
+          step.classList.remove('text-sky-600', 'font-semibold');
+          step.classList.add('text-gray-400');
+          step.disabled = true;
+        }
+      });
+      fills.forEach(function(fill, i) {
+        fill.style.width = (i < state.currentStep - 1) ? '100%' : '0%';
+      });
+    }
+
+    function getPrice(model, type, term) {
+      return PRODUCTS[model].grid[type][term];
+    }
+
+    // =====================================================
+    // STEP 1: PATH SELECTION
+    // =====================================================
+    $('#path-know').addEventListener('click', function() {
+      state.path = 'know';
+      showStep(3);
+    });
+    $('#path-help').addEventListener('click', function() {
+      state.path = 'help';
+      showStep(2);
+    });
+
+    // =====================================================
+    // STEP 2: NEEDS ASSESSMENT
+    // =====================================================
+    $$('.need-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var need = btn.getAttribute('data-need');
+        state.needs[need] = !state.needs[need];
+        if (state.needs[need]) {
+          btn.classList.add('border-sky-500', 'bg-sky-50', 'text-sky-700');
+          btn.classList.remove('border-gray-200', 'text-gray-600');
+        } else {
+          btn.classList.remove('border-sky-500', 'bg-sky-50', 'text-sky-700');
+          btn.classList.add('border-gray-200', 'text-gray-600');
+        }
+      });
+    });
+
+    $('#btn-back-2').addEventListener('click', function() { showStep(1); });
+
+    $('#btn-recommend').addEventListener('click', function() {
+      var employees = parseInt($('#inp-employees').value) || 0;
+      var breakrooms = parseInt($('#inp-breakrooms').value) || 0;
+      var errEl = $('#assess-error');
+
+      if (employees < 1) { errEl.textContent = 'Please enter the number of employees.'; errEl.classList.remove('hidden'); return; }
+      if (breakrooms < 1) { errEl.textContent = 'Please enter the number of breakrooms.'; errEl.classList.remove('hidden'); return; }
+      if (!state.needs.water && !state.needs.ice && !state.needs.coffee) { errEl.textContent = 'Please select at least one need.'; errEl.classList.remove('hidden'); return; }
+      errEl.classList.add('hidden');
+
+      state.employees = employees;
+      state.breakrooms = breakrooms;
+      state.selectedProducts = {};
+
+      var perBreakroom = Math.ceil(employees / breakrooms);
+
+      if (state.needs.ice) {
+        state.selectedProducts[perBreakroom > 30 ? 'PV9i' : 'PV8i'] = breakrooms;
+      } else if (state.needs.water) {
+        state.selectedProducts[perBreakroom > 30 ? 'PV4w' : 'PV3w'] = breakrooms;
+      }
+      if (state.needs.coffee) {
+        state.selectedProducts['PV12c'] = breakrooms;
+      }
+
+      $('#recommendation-banner').classList.remove('hidden');
+      var needs = [];
+      if (state.needs.water) needs.push('water');
+      if (state.needs.ice) needs.push('ice');
+      if (state.needs.coffee) needs.push('coffee');
+      $('#rec-summary').textContent = employees + ' employees across ' + breakrooms + ' breakroom' + (breakrooms > 1 ? 's' : '') + ' needing ' + needs.join(', ');
+
+      renderProductCards();
+      showStep(3);
+    });
+
+    // =====================================================
+    // STEP 3: PRODUCT SELECTION
+    // =====================================================
+    function renderProductCards() {
+      renderCategoryCards('water-products', WATER_MODELS);
+      renderCategoryCards('ice-products', ICE_MODELS);
+      renderCategoryCards('coffee-products', COFFEE_MODELS);
+      updateSelectedSummary();
+    }
+
+    function renderCategoryCards(containerId, models) {
+      var container = document.getElementById(containerId);
+      container.innerHTML = '';
+      models.forEach(function(key) {
+        var p = PRODUCTS[key];
+        var qty = state.selectedProducts[key] || 0;
+        var isSelected = qty > 0;
+
+        var card = document.createElement('div');
+        card.className = 'product-card bg-white rounded-xl p-3 shadow-sm border-2 transition cursor-pointer ' +
+          (isSelected ? 'border-sky-500 bg-sky-50/30' : 'border-gray-100 hover:border-sky-200');
+
+        card.innerHTML =
+          '<div class="flex justify-center mb-2">' +
+            '<img src="' + p.image + '" alt="' + p.name + '" class="h-20 w-auto object-contain" />' +
+          '</div>' +
+          '<p class="text-sm font-bold text-gray-900 text-center">' + p.name + '</p>' +
+          '<p class="text-xs text-gray-500 text-center">' + p.subtitle + '</p>' +
+          '<p class="text-xs text-sky-600 text-center mt-0.5">' + p.usage + '</p>' +
+          '<div class="mt-2 flex items-center justify-center gap-2">' +
+            (isSelected ?
+              '<button class="qty-minus w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold flex items-center justify-center cursor-pointer text-sm border-none">−</button>' +
+              '<span class="text-sm font-bold w-6 text-center">' + qty + '</span>' +
+              '<button class="qty-plus w-7 h-7 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold flex items-center justify-center cursor-pointer text-sm border-none">+</button>'
+            :
+              '<button class="add-btn text-xs bg-sky-500 hover:bg-sky-600 text-white px-3 py-1.5 rounded-lg font-medium cursor-pointer border-none">Add</button>'
+            ) +
+          '</div>';
+
+        container.appendChild(card);
+
+        var addBtn = card.querySelector('.add-btn');
+        if (addBtn) {
+          addBtn.addEventListener('click', function(e) { e.stopPropagation(); state.selectedProducts[key] = 1; renderProductCards(); });
+        }
+        var minusBtn = card.querySelector('.qty-minus');
+        if (minusBtn) {
+          minusBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (state.selectedProducts[key] > 1) state.selectedProducts[key]--;
+            else delete state.selectedProducts[key];
+            renderProductCards();
+          });
+        }
+        var plusBtn = card.querySelector('.qty-plus');
+        if (plusBtn) {
+          plusBtn.addEventListener('click', function(e) { e.stopPropagation(); state.selectedProducts[key] = (state.selectedProducts[key] || 0) + 1; renderProductCards(); });
+        }
+      });
+    }
+
+    function updateSelectedSummary() {
+      var keys = Object.keys(state.selectedProducts);
+      var container = $('#selected-summary');
+      var list = $('#selected-list');
+      if (keys.length === 0) { container.classList.add('hidden'); return; }
+      container.classList.remove('hidden');
+      list.innerHTML = '';
+      keys.forEach(function(key) {
+        var chip = document.createElement('span');
+        chip.className = 'inline-flex items-center gap-1 bg-sky-100 text-sky-700 text-sm font-medium px-3 py-1 rounded-full';
+        chip.innerHTML = PRODUCTS[key].name + ' &times; ' + state.selectedProducts[key] +
+          '<button class="remove-chip ml-1 text-sky-500 hover:text-sky-700 font-bold cursor-pointer bg-transparent border-none text-base leading-none" data-model="' + key + '">&times;</button>';
+        list.appendChild(chip);
+      });
+      $$('.remove-chip').forEach(function(btn) {
+        btn.addEventListener('click', function() { delete state.selectedProducts[btn.getAttribute('data-model')]; renderProductCards(); });
+      });
+    }
+
+    renderProductCards();
+
+    $('#btn-back-3').addEventListener('click', function() {
+      showStep(state.path === 'help' ? 2 : 1);
+    });
+
+    $('#btn-to-pricing').addEventListener('click', function() {
+      var errEl = $('#step3-error');
+      if (Object.keys(state.selectedProducts).length === 0) {
+        errEl.textContent = 'Please select at least one product.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      errEl.classList.add('hidden');
+      // Reset term/payment when entering pricing step
+      state.term = null;
+      state.payment = null;
+      $$('.term-btn').forEach(function(b) { b.classList.remove('border-sky-500', 'bg-sky-50'); b.classList.add('border-gray-100'); });
+      $$('.payment-btn').forEach(function(b) { b.classList.remove('border-sky-500', 'bg-sky-50'); b.classList.add('border-gray-100'); });
+      $('#pay-rental').classList.remove('opacity-40', 'pointer-events-none');
+      $('#twelve-month-note').classList.add('hidden');
+      $('#tp-discount-label').classList.add('hidden');
+      $('#pricing-table-wrapper').classList.add('hidden');
+      $('#pricing-placeholder').classList.remove('hidden');
+      showStep(4);
+    });
+
+    // =====================================================
+    // STEP 4: TERM, PAYMENT & LIVE PRICING
+    // =====================================================
+    function tryRenderPricing() {
+      if (!state.term || !state.payment) {
+        $('#pricing-table-wrapper').classList.add('hidden');
+        $('#pricing-placeholder').classList.remove('hidden');
+        return;
+      }
+      $('#pricing-table-wrapper').classList.remove('hidden');
+      $('#pricing-placeholder').classList.add('hidden');
+      renderPricingTable();
+    }
+
+    $$('.term-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        state.term = parseInt(btn.getAttribute('data-term'));
+        $$('.term-btn').forEach(function(b) { b.classList.remove('border-sky-500', 'bg-sky-50'); b.classList.add('border-gray-100'); });
+        btn.classList.add('border-sky-500', 'bg-sky-50');
+        btn.classList.remove('border-gray-100');
+
+        if (state.term === 12) {
+          state.payment = 'timePurchase';
+          $('#pay-rental').classList.add('opacity-40', 'pointer-events-none');
+          $('#pay-rental').classList.remove('border-sky-500', 'bg-sky-50');
+          $('#pay-rental').classList.add('border-gray-100');
+          $('#pay-tp').classList.add('border-sky-500', 'bg-sky-50');
+          $('#pay-tp').classList.remove('border-gray-100');
+          $('#twelve-month-note').classList.remove('hidden');
+          $('#tp-discount-label').classList.add('hidden');
+        } else {
+          $('#pay-rental').classList.remove('opacity-40', 'pointer-events-none');
+          $('#twelve-month-note').classList.add('hidden');
+          if (state.term === 60) {
+            $('#tp-discount-label').textContent = '20% discount paid upfront';
+            $('#tp-discount-label').classList.remove('hidden');
+          } else if (state.term === 36) {
+            $('#tp-discount-label').textContent = '10% discount paid upfront';
+            $('#tp-discount-label').classList.remove('hidden');
+          }
+        }
+        tryRenderPricing();
+      });
+    });
+
+    $$('.payment-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (btn.classList.contains('pointer-events-none')) return;
+        state.payment = btn.getAttribute('data-payment');
+        $$('.payment-btn').forEach(function(b) { b.classList.remove('border-sky-500', 'bg-sky-50'); b.classList.add('border-gray-100'); });
+        btn.classList.add('border-sky-500', 'bg-sky-50');
+        btn.classList.remove('border-gray-100');
+        tryRenderPricing();
+      });
+    });
+
+    function getBoostMonthly() {
+      var total = 0;
+      Object.keys(state.selectedProducts).forEach(function(model) {
+        if (state.boostFilter[model] || PRODUCTS[model].boost === 'included') {
+          total += BOOST_FEE * state.selectedProducts[model];
+        }
+      });
+      return total;
+    }
+
+    function renderPricingTable() {
+      var tbody = $('#pricing-tbody');
+      tbody.innerHTML = '';
+      var subtotal = 0;
+      var totalUnits = getTotalUnits();
+      var isTP = state.payment === 'timePurchase';
+      var boostMonthly = getBoostMonthly();
+
+      $('#unit-price-header').textContent = isTP ? 'Unit Price' : 'Unit /mo';
+      $('#pricing-type-label').textContent = isTP ? 'Time Purchase' : 'Rental';
+      $('#pricing-term-label').textContent = '(' + state.term + '-month term)';
+      $('#total-label').textContent = isTP ? 'Total Upfront' : 'Rental Total';
+
+      Object.keys(state.selectedProducts).forEach(function(model) {
+        var qty = state.selectedProducts[model];
+        var price = getPrice(model, state.payment, state.term);
+        var hasBoost = state.boostFilter[model] || PRODUCTS[model].boost === 'included';
+        var unitDisplay = price;
+        var lineTotalDisplay = price * qty;
+        subtotal += lineTotalDisplay;
+
+        if (hasBoost && !isTP) {
+          unitDisplay = price + BOOST_FEE;
+          lineTotalDisplay = unitDisplay * qty;
+        }
+
+        var boostInfo = PRODUCTS[model].boost;
+        var boostCell = '';
+        if (boostInfo === 'included') {
+          boostCell = '<span class="inline-flex items-center text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded-full">Included</span>';
+        } else if (boostInfo === 'available') {
+          var checked = state.boostFilter[model] ? 'checked' : '';
+          boostCell = '<label class="inline-flex items-center gap-1.5 cursor-pointer">' +
+            '<input type="checkbox" class="boost-toggle w-4 h-4 rounded border-gray-300 text-sky-500 focus:ring-sky-500 cursor-pointer" data-model="' + model + '" ' + checked + ' />' +
+            '<span class="text-xs text-gray-500">+' + fmt(BOOST_FEE) + '/mo</span></label>';
+        } else {
+          boostCell = '<span class="text-xs text-gray-300">—</span>';
+        }
+
+        var unitPriceHtml = fmt(unitDisplay) + (isTP ? '' : '/mo');
+        var lineTotalHtml = fmt(lineTotalDisplay) + (isTP ? '' : '/mo');
+        if (hasBoost && isTP) {
+          unitPriceHtml = fmt(price) + ' <span class="text-xs text-sky-600">+' + fmt(BOOST_FEE) + '/mo</span>';
+          lineTotalHtml = fmt(price * qty) + ' <span class="text-xs text-sky-600">+' + fmt(BOOST_FEE * qty) + '/mo</span>';
+        }
+
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="px-2 sm:px-4 py-2 sm:py-3"><div class="flex items-center gap-2 sm:gap-3">' +
+            '<img src="' + PRODUCTS[model].image + '" alt="' + model + '" class="h-10 w-auto object-contain hidden sm:block" />' +
+            '<div><p class="font-semibold text-gray-900 text-sm sm:text-base">' + PRODUCTS[model].name + '</p>' +
+            '<p class="text-xs text-gray-500">' + PRODUCTS[model].subtitle + '</p></div></div></td>' +
+          '<td class="px-2 sm:px-4 py-2 sm:py-3 text-center font-medium">' + qty + '</td>' +
+          '<td class="px-2 sm:px-4 py-2 sm:py-3 text-center hidden sm:table-cell">' + boostCell + '</td>' +
+          '<td class="px-2 sm:px-4 py-2 sm:py-3 text-right font-semibold text-gray-900 text-sm sm:text-base">' + unitPriceHtml + '</td>' +
+          '<td class="px-2 sm:px-4 py-2 sm:py-3 text-right font-bold text-gray-900 text-sm sm:text-base">' + lineTotalHtml + '</td>';
+        tbody.appendChild(tr);
+      });
+
+      // Attach boost toggle listeners
+      $$('.boost-toggle').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var model = cb.getAttribute('data-model');
+          state.boostFilter[model] = cb.checked;
+          renderPricingTable();
+        });
+      });
+
+      var installTotal = totalUnits * INSTALL_FEE;
+      $('#install-count').textContent = '(' + totalUnits + ' system' + (totalUnits > 1 ? 's' : '') + ' x ' + fmt(INSTALL_FEE) + ')';
+      $('#install-total').textContent = fmt(installTotal) + ' (one-time)';
+
+      boostMonthly = getBoostMonthly();
+
+      if (isTP) {
+        var grandTotal = subtotal + installTotal;
+        $('#grand-total').textContent = fmt(grandTotal);
+        if (boostMonthly > 0) {
+          $('#install-note').textContent = 'Includes installation fee | + ' + fmt(boostMonthly) + '/mo Boost Filter';
+        } else {
+          $('#install-note').textContent = 'Includes installation fee';
+        }
+        $('#quarterly-row').classList.add('hidden');
+      } else {
+        var monthlyWithBoost = subtotal + boostMonthly;
+        $('#grand-total').textContent = fmt(monthlyWithBoost) + '/mo';
+        $('#install-note').textContent = '+ ' + fmt(installTotal) + ' one-time installation fee';
+        $('#quarterly-row').classList.remove('hidden');
+        $('#quarterly-total').textContent = fmt(monthlyWithBoost * 3) + '/quarter';
+      }
+    }
+
+    $('#btn-back-4').addEventListener('click', function() { showStep(3); });
+
+    $('#btn-to-summary').addEventListener('click', function() {
+      if (!state.term || !state.payment) {
+        return;
+      }
+      renderSummary();
+      showStep(5);
+    });
+
+    // =====================================================
+    // STEP 5: QUOTE SUMMARY
+    // =====================================================
+    function renderSummary() {
+      var isTP = state.payment === 'timePurchase';
+      var today = new Date();
+      var dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      var totalUnits = getTotalUnits();
+      var installTotal = totalUnits * INSTALL_FEE;
+      var boostMonthly = getBoostMonthly();
+
+      $('#quote-date').textContent = dateStr;
+      var repName = $('#rep-name').value;
+      $('#quote-rep').textContent = repName ? 'Prepared by: ' + repName : '';
+      $('#quote-term').textContent = state.term + ' Months';
+      $('#quote-payment').textContent = isTP ? 'Time Purchase (Upfront)' : 'Rental';
+      $('#quote-total-label').textContent = isTP ? 'Total Upfront' : 'Rental Total';
+      $('#quote-price-header').textContent = isTP ? 'Unit Price' : 'Unit /mo';
+
+      var tbody = $('#quote-tbody');
+      tbody.innerHTML = '';
+      var subtotal = 0;
+
+      Object.keys(state.selectedProducts).forEach(function(model) {
+        var qty = state.selectedProducts[model];
+        var price = getPrice(model, state.payment, state.term);
+        var hasBoost = state.boostFilter[model] || PRODUCTS[model].boost === 'included';
+        var unitDisplay = price;
+        var lineTotalDisplay = price * qty;
+        subtotal += lineTotalDisplay;
+
+        if (hasBoost && !isTP) {
+          unitDisplay = price + BOOST_FEE;
+          lineTotalDisplay = unitDisplay * qty;
+        }
+
+        var boostInfo = PRODUCTS[model].boost;
+        var boostCell = '';
+        if (boostInfo === 'included') {
+          boostCell = '<span class="text-green-600 font-medium">Included</span>';
+        } else if (boostInfo === 'available' && state.boostFilter[model]) {
+          boostCell = '<span class="text-sky-600 font-medium">+' + fmt(BOOST_FEE) + '/mo</span>';
+        } else if (boostInfo === 'available') {
+          boostCell = '<span class="text-gray-400">No</span>';
+        } else {
+          boostCell = '<span class="text-gray-300">—</span>';
+        }
+
+        var unitPriceHtml = fmt(unitDisplay) + (isTP ? '' : '/mo');
+        var lineTotalHtml = fmt(lineTotalDisplay) + (isTP ? '' : '/mo');
+        if (hasBoost && isTP) {
+          unitPriceHtml = fmt(price) + ' <span class="text-xs text-sky-600">+' + fmt(BOOST_FEE) + '/mo</span>';
+          lineTotalHtml = fmt(price * qty) + ' <span class="text-xs text-sky-600">+' + fmt(BOOST_FEE * qty) + '/mo</span>';
+        }
+
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="py-2 text-gray-700 text-sm">' + PRODUCTS[model].name + ' <span class="text-gray-400 hidden sm:inline">(' + PRODUCTS[model].subtitle + ')</span></td>' +
+          '<td class="py-2 text-center text-sm">' + qty + '</td>' +
+          '<td class="py-2 text-center text-sm hidden sm:table-cell">' + boostCell + '</td>' +
+          '<td class="py-2 text-right text-sm">' + unitPriceHtml + '</td>' +
+          '<td class="py-2 text-right font-semibold text-sm">' + lineTotalHtml + '</td>';
+        tbody.appendChild(tr);
+      });
+
+      $('#quote-install-count').textContent = '(' + totalUnits + ' x ' + fmt(INSTALL_FEE) + ')';
+      $('#quote-install-total').textContent = fmt(installTotal) + ' (one-time)';
+
+      if (isTP) {
+        var grandTotal = subtotal + installTotal;
+        $('#quote-total').textContent = fmt(grandTotal);
+        if (boostMonthly > 0) {
+          $('#quote-total').textContent = fmt(grandTotal) + ' + ' + fmt(boostMonthly) + '/mo Boost';
+        }
+        $('#quote-quarterly-row').classList.add('hidden');
+      } else {
+        var monthlyWithBoost = subtotal + boostMonthly;
+        $('#quote-total').textContent = fmt(monthlyWithBoost) + '/mo + ' + fmt(installTotal) + ' install';
+        $('#quote-quarterly-row').classList.remove('hidden');
+        $('#quote-quarterly-total').textContent = fmt(monthlyWithBoost * 3) + '/quarter';
+      }
+
+      // Populate explainer notes
+      var notesEl = $('#quote-notes');
+      var notes = '';
+      if (isTP) {
+        notes += '<p class="text-xs text-gray-500"><span class="font-semibold text-gray-700">Time Purchase:</span> This is not a purchase of the equipment. It is a way to save money and save administrative time by processing less invoices. At the end of the Time Purchase, the customer may choose to start paying a rental or do another Time Purchase.</p>';
+      }
+      if (boostMonthly > 0) {
+        notes += '<p class="text-xs text-gray-500"><span class="font-semibold text-gray-700">Boost Filter:</span> Boost adds in essential minerals, electrolytes, and boosts the pH for the most advanced hydration!</p>';
+      }
+      if (notes) {
+        notesEl.innerHTML = notes;
+        notesEl.classList.remove('hidden');
+      } else {
+        notesEl.innerHTML = '';
+        notesEl.classList.add('hidden');
+      }
+    }
+
+    // Update customer name in quote when typing
+    ['cust-company', 'cust-contact'].forEach(function(id) {
+      document.getElementById(id).addEventListener('input', function() {
+        var company = $('#cust-company').value;
+        var contact = $('#cust-contact').value;
+        var parts = [];
+        if (company) parts.push(company);
+        if (contact) parts.push(contact);
+        $('#quote-customer-name').textContent = parts.join(' — ');
+      });
+    });
+
+    // Update rep name in quote when typing
+    $('#rep-name').addEventListener('input', function() {
+      var repName = $('#rep-name').value;
+      $('#quote-rep').textContent = repName ? 'Prepared by: ' + repName : '';
+    });
+
+    // Phone formatting
+    $('#cust-phone').addEventListener('input', function(e) {
+      var val = e.target.value.replace(/\D/g, '');
+      if (val.length > 10) val = val.slice(0, 10);
+      if (val.length >= 7) val = '(' + val.slice(0, 3) + ') ' + val.slice(3, 6) + '-' + val.slice(6);
+      else if (val.length >= 4) val = '(' + val.slice(0, 3) + ') ' + val.slice(3);
+      else if (val.length >= 1) val = '(' + val;
+      e.target.value = val;
+    });
+
+    // Print
+    $('#btn-print').addEventListener('click', function() { window.print(); });
+
+    // Email
+    $('#btn-email').addEventListener('click', function() {
+      var isTP = state.payment === 'timePurchase';
+      var company = $('#cust-company').value || 'Customer';
+      var email = $('#cust-email').value || '';
+      var totalUnits = getTotalUnits();
+      var installTotal = totalUnits * INSTALL_FEE;
+      var subject = 'PureVida Water - Service Quote for ' + company;
+
+      var boostMonthly = getBoostMonthly();
+
+      var body = 'PureVida Water - Service Quote\n';
+      body += '================================\n\n';
+      body += 'Prepared for: ' + company + '\n';
+      var repName = $('#rep-name').value;
+      if (repName) body += 'Prepared by: ' + repName + '\n';
+      body += 'Date: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + '\n';
+      body += 'Term: ' + state.term + ' Months\n';
+      body += 'Payment: ' + (isTP ? 'Time Purchase (Upfront)' : 'Rental') + '\n\n';
+      body += 'Systems:\n';
+
+      var subtotal = 0;
+      Object.keys(state.selectedProducts).forEach(function(model) {
+        var qty = state.selectedProducts[model];
+        var price = getPrice(model, state.payment, state.term);
+        var lineTotal = price * qty;
+        subtotal += lineTotal;
+        var boostNote = '';
+        if (PRODUCTS[model].boost === 'included') {
+          boostNote = ' [Boost Filter Included]';
+        } else if (PRODUCTS[model].boost === 'available' && state.boostFilter[model]) {
+          boostNote = ' [+Boost Filter ' + fmt(BOOST_FEE) + '/mo per unit]';
+        }
+        body += '  ' + PRODUCTS[model].name + ' (' + PRODUCTS[model].subtitle + ') x' + qty + ' - ' + fmt(price) + (isTP ? '' : '/mo') + ' each = ' + fmt(lineTotal) + (isTP ? '' : '/mo') + boostNote + '\n';
+      });
+
+      body += '\nInstallation Fee: ' + totalUnits + ' systems x ' + fmt(INSTALL_FEE) + ' = ' + fmt(installTotal) + ' (one-time)\n';
+
+      if (boostMonthly > 0) {
+        body += 'Boost Filter Add-on: ' + fmt(boostMonthly) + '/mo\n';
+      }
+      body += '\n';
+
+      if (isTP) {
+        var grandTotal = subtotal + installTotal;
+        body += 'Total Upfront: ' + fmt(grandTotal) + '\n';
+        if (boostMonthly > 0) {
+          body += 'Ongoing Boost Filter: ' + fmt(boostMonthly) + '/mo\n';
+        }
+        body += '\n';
+      } else {
+        var monthlyWithBoost = subtotal + boostMonthly;
+        body += 'Rental Total: ' + fmt(monthlyWithBoost) + '/mo\n';
+        body += 'Typical Quarterly Billing (3 months): ' + fmt(monthlyWithBoost * 3) + '/quarter\n';
+        body += 'Installation: ' + fmt(installTotal) + ' (one-time)\n\n';
+      }
+
+      body += 'All applicable taxes will apply.\n\n';
+      body += 'Every system includes: Free trial, professional installation, filter changes, full-service maintenance, and replacement guarantee.\n\n';
+      body += 'PureVida Water | (888) 534-0117 | contact@purevidawater.com\n';
+
+      window.location.href = 'mailto:' + encodeURIComponent(email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+
+    // Start Over
+    $('#btn-start-over').addEventListener('click', function() {
+      state.path = null;
+      state.employees = 0;
+      state.breakrooms = 0;
+      state.needs = { water: false, ice: false, coffee: false };
+      state.selectedProducts = {};
+      state.term = null;
+      state.payment = null;
+      state.boostFilter = {};
+
+      $$('.need-btn').forEach(function(btn) {
+        btn.classList.remove('border-sky-500', 'bg-sky-50', 'text-sky-700');
+        btn.classList.add('border-gray-200', 'text-gray-600');
+      });
+      $$('.term-btn').forEach(function(btn) { btn.classList.remove('border-sky-500', 'bg-sky-50'); btn.classList.add('border-gray-100'); });
+      $$('.payment-btn').forEach(function(btn) { btn.classList.remove('border-sky-500', 'bg-sky-50'); btn.classList.add('border-gray-100'); });
+      $('#pay-rental').classList.remove('opacity-40', 'pointer-events-none');
+      $('#twelve-month-note').classList.add('hidden');
+      $('#tp-discount-label').classList.add('hidden');
+      $('#recommendation-banner').classList.add('hidden');
+      $('#inp-employees').value = '';
+      $('#inp-breakrooms').value = '';
+      $('#cust-company').value = '';
+      $('#cust-contact').value = '';
+      $('#cust-email').value = '';
+      $('#cust-phone').value = '';
+      $('#rep-name').value = '';
+
+      renderProductCards();
+      showStep(1);
+    });
+
+    $('#btn-back-5').addEventListener('click', function() { showStep(4); });
+
+    // Progress bar click navigation (go back only)
+    $$('.progress-step').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var stepNum = parseInt(btn.getAttribute('data-go-step'));
+        if (stepNum < state.currentStep) showStep(stepNum);
+      });
+    });
+
+    // Initialize
+    updateProgress();
+
+  </script>
+
+</body>
+</html>
