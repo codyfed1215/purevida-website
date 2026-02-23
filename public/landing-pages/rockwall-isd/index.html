@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>PureVida Water | A Better Hydration Solution for Rockwall ISD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { overflow-x: hidden; }
+
+    img { max-width: 100%; height: auto; }
+
+    a, button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+    :root {
+      --cyan: #00B8D4;
+      --cyan-light: #00D4F5;
+      --navy: #1A3553;
+      --navy-dark: #12263A;
+      --bg-light: #EBF2F8;
+      --bg-section: #F4F8FB;
+      --white: #ffffff;
+      --gray-text: #5A6A7A;
+      --red-cta: #E84A3D;
+      --red-cta-hover: #D43A2E;
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --card-radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── Cyan accent bar ── */
+    .accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+    }
+
+    /* ── Utility ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-text);
+      margin-bottom: 48px;
+    }
+    .underline-accent {
+      width: 60px; height: 4px;
+      background: var(--cyan);
+      border-radius: 2px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .text-center { text-align: center; }
+    .underline-center { margin-left: auto; margin-right: auto; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg-light);
+      padding: 48px 0 64px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .hero-logo-img {
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+    }
+    .hero-logo-img.rockwall-logo { max-height: 100px; }
+    .hero-logo-img.purevida-logo { max-height: 90px; }
+    .hero-plus { font-size: 1.5rem; color: var(--cyan); font-weight: 300; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero p.tagline {
+      font-size: 1.2rem;
+      color: var(--gray-text);
+      margin-bottom: 32px;
+    }
+    .hero-contact {
+      font-size: 0.95rem;
+      color: var(--cyan);
+    }
+    .hero-contact a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+    .hero-contact a:hover { text-decoration: underline; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--red-cta);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--red-cta-hover); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--cyan); color: var(--white); }
+
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+
+    /* ── PROBLEMS ── */
+    .problems { background: var(--bg-light); padding: 80px 0; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .card-icon.problem { background: var(--cyan); }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--navy-dark); }
+    .card p { font-size: 0.95rem; color: var(--gray-text); line-height: 1.5; }
+
+    /* ── SOLUTION ── */
+    .solution { background: var(--bg-light); padding: 80px 0; }
+    .card-icon.solution-icon { background: var(--cyan); }
+
+    /* ── SYSTEMS ── */
+    .systems { background: var(--white); padding: 80px 0; }
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: 28px;
+    }
+    .system-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      border: 1px solid #E0E8EF;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .system-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+    .system-card-header {
+      padding: 24px 28px 16px;
+      text-align: center;
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .consumption-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .system-card-header h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+    .system-card-header .model-tagline {
+      font-style: italic;
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    .system-card-body { padding: 24px 28px; }
+    .system-card-body .meta-item {
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+      color: var(--gray-text);
+    }
+    .meta-item strong { color: var(--cyan); font-weight: 700; }
+    .system-card-body h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin: 20px 0 10px;
+      padding-top: 16px;
+      border-top: 1px solid #EEF2F6;
+    }
+    .spec-line {
+      font-size: 0.85rem;
+      color: var(--gray-text);
+      margin-bottom: 3px;
+    }
+    .spec-line strong { color: var(--navy); font-weight: 600; }
+    .system-card-accent {
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+    }
+    .systems-note {
+      text-align: center;
+      font-style: italic;
+      color: var(--gray-text);
+      margin-top: 36px;
+      font-size: 0.95rem;
+    }
+
+    /* ── TRUSTED ── */
+    .trusted { background: var(--bg-light); padding: 80px 0; }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: 24px;
+    }
+    .trust-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: transform 0.2s;
+    }
+    .trust-card:hover { transform: translateY(-2px); }
+    .trust-icon {
+      min-width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; color: var(--white);
+    }
+    .trust-icon.burnt-orange { background: #BF5700; }
+    .trust-icon.dark-blue { background: var(--navy); }
+    .trust-icon.teal { background: var(--cyan); }
+    .trust-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); }
+    .trust-card p { font-size: 0.88rem; color: var(--gray-text); }
+    .trust-highlight {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    /* ── WHY PUREVIDA ── */
+    .why { background: var(--white); padding: 80px 0; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .why-list { list-style: none; }
+    .why-list li {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+    .why-number {
+      min-width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--cyan);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-list h4 { font-size: 1.1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 4px; }
+    .why-list p { font-size: 0.95rem; color: var(--gray-text); }
+
+    /* ── CTA BOX ── */
+    .cta-box {
+      background: var(--red-cta);
+      border-radius: 16px;
+      padding: 48px 36px;
+      text-align: center;
+      color: var(--white);
+      position: sticky;
+      top: 32px;
+    }
+    .cta-box h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-box .cta-sub {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+    .cta-divider {
+      width: 50px; height: 3px;
+      background: rgba(255,255,255,0.5);
+      margin: 0 auto 24px;
+      border-radius: 2px;
+    }
+    .cta-box .cta-email {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .cta-box .cta-email a { color: var(--white); text-decoration: none; }
+    .cta-box .cta-email a:hover { text-decoration: underline; }
+    .cta-box .cta-website a { color: rgba(255,255,255,0.85); text-decoration: underline; font-size: 0.95rem; }
+    .cta-box .cta-location {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* ── FOOTER CTA ── */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 64px 0;
+      text-align: center;
+    }
+    .footer-cta h2 {
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer-cta p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+    .footer-cta .btn-primary { font-size: 1.1rem; padding: 18px 44px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      padding: 24px 0;
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid #E8EEF3;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      position: -webkit-sticky;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy-dark);
+      text-decoration: none;
+    }
+    .nav-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-text);
+      font-weight: 500;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-cta {
+      background: var(--red-cta) !important;
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--red-cta-hover) !important; }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── TABS ── */
+    .tab-container { text-align: center; margin-bottom: 40px; }
+    .tab-btn {
+      background: none;
+      border: 2px solid #D8E2EA;
+      color: var(--gray-text);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin: 0 6px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0, 184, 212, 0.05);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── RESPONSIVE: TABLET ── */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .cta-box { position: static; }
+      .systems-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── RESPONSIVE: MOBILE ── */
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .section-title { font-size: 1.6rem; }
+      .section-subtitle { font-size: 1rem; margin-bottom: 32px; }
+      .hero { padding: 32px 0 48px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero p.tagline { font-size: 1rem; }
+      .hero-logos { gap: 14px; margin-bottom: 32px; }
+      .hero-logo-img.rockwall-logo { max-height: 68px; }
+      .hero-logo-img.purevida-logo { max-height: 60px; }
+      .hero-plus { font-size: 1.2rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero-contact { font-size: 0.85rem; }
+
+      .nav-logo { height: 40px; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 20px 24px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        gap: 16px;
+        z-index: 99;
+      }
+      .nav-links.open a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+      }
+
+      .problems, .solution, .trusted, .systems, .why { padding: 48px 0; }
+      .card-grid, .systems-grid, .trust-grid { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
+
+      .tab-container { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      .tab-btn { width: 100%; max-width: 280px; margin: 0; }
+
+      .system-card-header h3 { font-size: 1.4rem; }
+      .system-card-body { padding: 20px; }
+
+      .why-list li { gap: 14px; }
+      .cta-box { padding: 36px 24px; }
+      .cta-box h3 { font-size: 1.4rem; }
+      .cta-box .cta-email { font-size: 1.1rem; }
+
+      .footer-cta { padding: 48px 0; }
+      .footer-cta h2 { font-size: 1.5rem; }
+      .footer-cta p { font-size: 0.95rem; }
+      .footer-cta .btn-primary { font-size: 0.95rem; padding: 16px 28px; }
+
+      .trust-highlight { font-size: 1.05rem; }
+    }
+
+    /* ── RESPONSIVE: SMALL PHONES ── */
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero-logo-img.rockwall-logo { max-height: 56px; }
+      .hero-logo-img.purevida-logo { max-height: 48px; }
+      .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
+      .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
+      .section-title { font-size: 1.4rem; }
+      .cta-box .cta-email { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Accent Bar -->
+<div class="accent-bar"></div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-brand">
+      <img src="purevida-logo.png" alt="PureVida Water Technologies" class="nav-logo">
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#problems">The Problem</a>
+      <a href="#solution">Our Solution</a>
+      <a href="#systems">Systems</a>
+      <a href="#trusted">Trusted Partners</a>
+      <a href="#why">Why PureVida</a>
+      <a href="#contact" class="nav-cta">Get a Free Trial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-logos">
+      <img src="rockwall-isd-logo.png" alt="Rockwall Independent School District" class="hero-logo-img rockwall-logo">
+      <span class="hero-plus">+</span>
+      <img src="purevida-logo.png" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
+    </div>
+
+    <h1>A Better Hydration Solution<br>for Rockwall ISD</h1>
+    <div class="underline-accent underline-center"></div>
+    <p class="tagline">Eliminating 5-Gallon Jugs with Bottleless Water Purification</p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Schedule a Free Demo</a>
+      <a href="#systems" class="btn-outline">View Systems</a>
+    </div>
+
+    <p class="hero-contact" style="margin-top: 32px;">
+      Prepared by PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; <a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a>
+    </p>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- PROBLEMS -->
+<section class="problems" id="problems">
+  <div class="container">
+    <h2 class="section-title">The Problem with 5-Gallon Jugs</h2>
+    <div class="underline-accent"></div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><line x1="11" y1="7" x2="11" y2="11"/><circle cx="11" cy="15" r="0.5" fill="white"/></svg>
+        </div>
+        <h3>Heavy Lifting</h3>
+        <p>40 lb jugs create injury risk for staff</p>
+      </div>
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M8 9s1-2 3-2 3 2 3 2"/><circle cx="11" cy="14" r="0.5" fill="white"/></svg>
+        </div>
+        <h3>Unreliable Deliveries</h3>
+        <p>Missed or delayed deliveries leave you without water</p>
+      </div>
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><text x="7" y="15" fill="white" font-size="12" font-weight="700" stroke="none">$</text></svg>
+        </div>
+        <h3>Rising Costs</h3>
+        <p>Ongoing delivery fees, bottle deposits, and equipment rental</p>
+      </div>
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><line x1="7" y1="7" x2="15" y2="15"/><line x1="15" y1="7" x2="7" y2="15"/></svg>
+        </div>
+        <h3>Storage Clutter</h3>
+        <p>Bulky jugs take up valuable space in break rooms</p>
+      </div>
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M11 7v4l3 2"/></svg>
+        </div>
+        <h3>Running Out</h3>
+        <p>Limited supply means you can run dry between deliveries</p>
+      </div>
+      <div class="card">
+        <div class="card-icon problem">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M8 14s1.5-3 3-3 3 3 3 3"/><path d="M9 8l1 2h2l1-2"/></svg>
+        </div>
+        <h3>Plastic Waste</h3>
+        <p>Jugs add to your environmental footprint</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="container">
+    <h2 class="section-title">The PureVida Solution</h2>
+    <div class="underline-accent"></div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M6 3h10l-1 9H7L6 3z"/><path d="M7 12c0 3 2 5 4 5s4-2 4-5"/><line x1="5" y1="3" x2="17" y2="3"/></svg>
+        </div>
+        <h3>Advanced Purification</h3>
+        <p>RO + UV filtration removes contaminants for the purest water</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M7 11a4 4 0 018 0"/><line x1="11" y1="7" x2="11" y2="3"/><path d="M4 15h14"/><circle cx="11" cy="11" r="1" fill="white"/></svg>
+        </div>
+        <h3>Touch-Free Dispensing</h3>
+        <p>Antimicrobial surfaces and hands-free operation</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="12" height="16" rx="2"/><line x1="5" y1="8" x2="17" y2="8"/><line x1="5" y1="13" x2="17" y2="13"/><text x="7" y="7" fill="white" font-size="5" stroke="none">H</text><text x="7" y="12" fill="white" font-size="5" stroke="none">C</text><text x="7" y="17" fill="white" font-size="5" stroke="none">I</text></svg>
+        </div>
+        <h3>Hot, Cold, and Ice</h3>
+        <p>Multiple water temperatures plus nugget-style ice</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C7 2 3 6 3 11c0 5 9 9 9 9s9-4 9-9c0-5-4-9-9-9z"/><circle cx="12" cy="11" r="2"/></svg>
+        </div>
+        <h3>Never Run Out</h3>
+        <p>Connects directly to your water line for unlimited supply</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94L6 21l-3-3 7.47-7.47a6 6 0 017.94-7.94l-3.71 3.71z"/></svg>
+        </div>
+        <h3>Full-Service Support</h3>
+        <p>Installation, maintenance, and filter changes included</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 22c5-3 9-7 9-12A9 9 0 003 10c0 5 4 9 9 12z"/><path d="M8 10l3 3 4-5"/></svg>
+        </div>
+        <h3>Eco-Friendly</h3>
+        <p>Eliminate thousands of plastic jugs from landfills</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- SYSTEMS -->
+<section class="systems" id="systems">
+  <div class="container">
+    <h2 class="section-title text-center">Recommended Systems</h2>
+    <p class="section-subtitle text-center">Tailored to Rockwall ISD Department Needs</p>
+
+    <!-- Tabs -->
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="switchTab('water')">Water Systems</button>
+      <button class="tab-btn" onclick="switchTab('ice')">Ice &amp; Water Systems</button>
+    </div>
+
+    <!-- Water Systems Tab -->
+    <div class="tab-panel active" id="tab-water">
+      <div class="systems-grid">
+        <!-- PV1w / PV2w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV1w / PV2w</h3>
+            <p class="model-tagline">Compact. Efficient. Perfect for small teams.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
+            <p class="meta-item"><strong>Users:</strong> Fewer than 7 drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
+            <h4>PV1w Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Countertop</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 18"H x 12"W x 20"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 1 Gal Cold | 0.5 Gal Hot</p>
+            <p class="spec-line"><strong>Weight:</strong> 47 lbs</p>
+            <h4>PV2w Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 49"H x 13"W x 18"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 1.82 Gal Cold | 0.5 Gal Hot</p>
+            <p class="spec-line"><strong>Weight:</strong> 55 lbs</p>
+          </div>
+        </div>
+
+        <!-- PV3w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Moderate Consumption</div>
+            <h3>PV3w</h3>
+            <p class="model-tagline">Advanced filtration for busy spaces.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
+            <p class="meta-item"><strong>Users:</strong> 7 to 30 drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, department offices, staff workrooms, libraries</p>
+            <h4>Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 51"H x 14"W x 17"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 3 Gal Cold | 0.5 Gal Hot</p>
+            <p class="spec-line"><strong>Dispense Height:</strong> 11.5"</p>
+            <p class="spec-line"><strong>Weight:</strong> 70 lbs</p>
+          </div>
+        </div>
+
+        <!-- PV4w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">High Consumption</div>
+            <h3>PV4w</h3>
+            <p class="model-tagline">Built for high-traffic, high-demand areas.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
+            <p class="meta-item"><strong>Users:</strong> 30+ drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
+            <h4>Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot, Cold &amp; Ambient Water</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 69"H x 19"W x 21"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 5 Gal Cold | 1.1 Gal Hot | 2.5 Gal Ambient</p>
+            <p class="spec-line"><strong>Dispense Height:</strong> 14.7"</p>
+            <p class="spec-line"><strong>Weight:</strong> 155 lbs</p>
+          </div>
+        </div>
+      </div>
+      <p class="systems-note">All systems include full service, maintenance &amp; filter changes at a standard, fixed monthly rate.</p>
+    </div>
+
+    <!-- Ice & Water Systems Tab -->
+    <div class="tab-panel" id="tab-ice">
+      <div class="systems-grid">
+        <!-- PV6i / PV7i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV6i / PV7i</h3>
+            <p class="model-tagline">Compact ice &amp; water for small teams.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
+            <p class="meta-item"><strong>Users:</strong> Fewer than 10 users</p>
+            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
+            <h4>PV6i Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot, Cold, Ambient Water | Bullet Sonic Ice</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 59"H x 17"W x 20"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 1.2 gal Cold | 1.2 gal Hot | 4.5 gal Amb | 13.2 lbs Ice</p>
+            <p class="spec-line"><strong>Production:</strong> 44 lbs of Ice Daily</p>
+            <p class="spec-line"><strong>Weight:</strong> 120 lbs</p>
+            <h4>PV7i Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Ambient Water | Crunchy Sonic Ice</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 18"H x 15"W x 22"D | 45"H x 15"W x 22"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 0.5 gal Hot | 6 gal Ambient | 7 lbs Ice</p>
+            <p class="spec-line"><strong>Production:</strong> 125 lbs of Ice Daily</p>
+            <p class="spec-line"><strong>Weight:</strong> 60 lbs / 85 lbs</p>
+          </div>
+        </div>
+
+        <!-- PV8i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Moderate Consumption</div>
+            <h3>PV8i</h3>
+            <p class="model-tagline">Premium ice &amp; water for busy spaces.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
+            <p class="meta-item"><strong>Users:</strong> 10 to 30 users</p>
+            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, staff workrooms, libraries</p>
+            <h4>Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Ambient Water | Crunchy Sonic Ice</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 24"H x 15"W x 24"D | 52"H x 15"W x 24"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 0.5 gal Hot | 6 gal Ambient | 16.5 lbs Ice</p>
+            <p class="spec-line"><strong>Production:</strong> 165 lbs of Ice Daily</p>
+            <p class="spec-line"><strong>Weight:</strong> 93 lbs / 118 lbs</p>
+          </div>
+        </div>
+
+        <!-- PV9i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">High Consumption</div>
+            <h3>PV9i</h3>
+            <p class="model-tagline">High-capacity ice for peak demand areas.</p>
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
+            <p class="meta-item"><strong>Users:</strong> 30+ users</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
+            <h4>Specifications</h4>
+            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
+            <p class="spec-line"><strong>Functionality:</strong> Ambient Water | Crunchy Sonic Ice</p>
+            <p class="spec-line"><strong>Dimensions:</strong> 46"H x 17"W x 24"D | 75"H x 17"W x 24"D</p>
+            <p class="spec-line"><strong>Storage:</strong> 6 gal Ambient | 30 lbs Ice</p>
+            <p class="spec-line"><strong>Production:</strong> 380 lbs of Ice Daily</p>
+            <p class="spec-line"><strong>Weight:</strong> 223 lbs / 281 lbs</p>
+          </div>
+        </div>
+      </div>
+      <p class="systems-note">All ice &amp; water systems include full service, maintenance &amp; filter changes at a standard, fixed monthly rate.</p>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- TRUSTED -->
+<section class="trusted" id="trusted">
+  <div class="container">
+    <h2 class="section-title text-center">Trusted Across Texas Education</h2>
+    <p class="section-subtitle text-center">PureVida is already serving school districts and universities across the state</p>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon burnt-orange">UT</div>
+        <div>
+          <h4>University of Texas at Austin</h4>
+          <p>Flagship state university</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon dark-blue">W</div>
+        <div>
+          <h4>Waxahachie ISD</h4>
+          <p>Ellis County school district</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon dark-blue">H</div>
+        <div>
+          <h4>Hays CISD</h4>
+          <p>Hays County school district</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon dark-blue">RR</div>
+        <div>
+          <h4>Round Rock ISD</h4>
+          <p>Williamson County school district</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">P</div>
+        <div>
+          <h4>Pflugerville ISD</h4>
+          <p>Travis County school district</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">TX</div>
+        <div>
+          <h4>1,000+ Texas Organizations</h4>
+          <p>And growing every month</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="trust-highlight">Rockwall ISD can join our growing network of Texas education partners</p>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- WHY PUREVIDA -->
+<section class="why" id="why">
+  <div class="container">
+    <h2 class="section-title">Why PureVida for Rockwall ISD</h2>
+    <div class="underline-accent"></div>
+
+    <div class="why-grid">
+      <ul class="why-list">
+        <li>
+          <div class="why-number">1</div>
+          <div>
+            <h4>Local DFW Presence</h4>
+            <p>Based in DeSoto, TX &mdash; just 45 minutes from Rockwall. Fast installation, responsive local service.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-number">2</div>
+          <div>
+            <h4>Proven Education Experience</h4>
+            <p>PureVida serves schools across Texas, helping to elevate the learning environment with clean water.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-number">3</div>
+          <div>
+            <h4>Standard, Fixed Pricing</h4>
+            <p>Predictable monthly costs with no delivery fees, fuel surcharges, or surprise invoices. Easy budgeting for the district.</p>
+          </div>
+        </li>
+        <li>
+          <div class="why-number">4</div>
+          <div>
+            <h4>Risk-Free Trial</h4>
+            <p>Try PureVida with a complimentary 7-day trial. Experience the difference before committing.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA Box -->
+      <div class="cta-box" id="contact">
+        <h3>Ready to Get Started?</h3>
+        <p class="cta-sub">Schedule a free on-site demo and 7-day trial for your department.</p>
+        <div class="cta-divider"></div>
+        <p class="cta-email"><a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a></p>
+        <p class="cta-website"><a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a></p>
+        <p class="cta-location">DeSoto, TX &nbsp;|&nbsp; Serving the DFW Metroplex</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <div class="container">
+    <h2>Pure Water. Zero Hassle. Risk-Free Trial.</h2>
+    <p>See why 1,000+ Texas organizations trust PureVida Water</p>
+    <a href="mailto:contact@purevidawater.com" class="btn-primary">Email contact@purevidawater.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; Serving schools, offices &amp; organizations across Texas</p>
+  </div>
+</footer>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+    if (tab === 'water') {
+      document.getElementById('tab-water').classList.add('active');
+      document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    } else {
+      document.getElementById('tab-ice').classList.add('active');
+      document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    }
+  }
+</script>
+
+</body>
+</html>
