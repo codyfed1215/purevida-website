@@ -484,6 +484,25 @@
       font-size: 1.05rem;
     }
 
+    /* ── REQUIRED INDICATORS ── */
+    .required-star {
+      color: var(--red-500);
+      margin-left: 4px;
+      font-weight: 700;
+    }
+    .section-header .required-star { font-size: 1.1rem; }
+    .submit-btn:disabled {
+      background: var(--gray-300);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    .submit-btn:disabled:hover {
+      background: var(--gray-300);
+      transform: none;
+      box-shadow: none;
+    }
+
     /* ── GOOGLE REVIEW CTA ── */
     .review-cta {
       background: linear-gradient(135deg, var(--sky-50), var(--cyan-50));
@@ -846,12 +865,12 @@
       <input type="hidden" name="SingleLine10" id="zoho-customer-id" value="">
 
       <!-- ═══ CUSTOMER IDENTIFICATION ═══ -->
-      <div class="form-section">
+      <div class="form-section" id="section-id">
         <div class="section-header">
           <div class="section-icon">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0"/></svg>
           </div>
-          <h2>Customer Identification</h2>
+          <h2>Customer Identification<span class="required-star">*</span></h2>
         </div>
 
         <p class="section-desc">How would you like to identify your account?</p>
@@ -889,12 +908,12 @@
       </div>
 
       <!-- ═══ SERVICE CONTACT ═══ -->
-      <div class="form-section">
+      <div class="form-section" id="section-service">
         <div class="section-header">
           <div class="section-icon">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
           </div>
-          <h2>Service Contact</h2>
+          <h2>Service Contact<span class="required-star">*</span></h2>
         </div>
 
         <div class="toggle-row">
@@ -939,12 +958,12 @@
       </div>
 
       <!-- ═══ BILLING CONTACT ═══ -->
-      <div class="form-section">
+      <div class="form-section" id="section-billing">
         <div class="section-header">
           <div class="section-icon">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
           </div>
-          <h2>Billing Contact</h2>
+          <h2>Billing Contact<span class="required-star">*</span></h2>
         </div>
 
         <div class="toggle-row">
@@ -989,12 +1008,12 @@
       </div>
 
       <!-- ═══ INVOICING EMAILS ═══ -->
-      <div class="form-section">
+      <div class="form-section" id="section-invoicing">
         <div class="section-header">
           <div class="section-icon">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
-          <h2>Invoicing Emails</h2>
+          <h2>Invoicing Emails<span class="required-star">*</span></h2>
         </div>
 
         <div class="toggle-row">
@@ -1051,7 +1070,7 @@
       </div>
 
       <!-- SUBMIT -->
-      <button type="submit" class="submit-btn">Submit Check-In</button>
+      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Check-In</button>
     </form>
 
     <!-- Success Message -->
@@ -1078,7 +1097,7 @@
       </div>
       <h2>Enjoying PureVida?</h2>
       <p>Your feedback means the world to us. If you're happy with your service, we'd love a quick Google review — it helps other businesses discover PureVida.</p>
-      <a href="https://search.google.com/local/writereview?placeid=ChIJkRU5E8iZToYR1ZaJBIY77vY" target="_blank" rel="noopener" class="review-btn">
+      <a href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x864e99c813391591:0xf6ee3b86048996d5!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2" target="_blank" rel="noopener" class="review-btn">
         <span class="review-google-icon">
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -1226,6 +1245,7 @@
     } else {
       document.getElementById('system-id-input').value = '';
     }
+    checkFormReady();
   }
 
   // ── TOGGLE YES/NO ──
@@ -1251,6 +1271,7 @@
         if (btn.dataset.value === 'no') btn.classList.add('active-no');
       });
     }
+    checkFormReady();
   }
 
   // ── ADD SERVICE CONTACT ──
@@ -1344,6 +1365,26 @@
   function removeEmailEntry(btn) {
     btn.closest('.email-entry').remove();
   }
+
+  // ── CHECK FORM READY (enable/disable submit) ──
+  function checkFormReady() {
+    var sysIdVal = (document.getElementById('system-id-input').value || '').trim();
+    var bizNameVal = (document.getElementById('business-name-input').value || '').trim();
+    var bizAddrVal = (document.getElementById('system-address-input').value || '').trim();
+    var idMethodSelected = document.querySelector('.method-btn.active-yes');
+    var hasId = idMethodSelected && (sysIdVal || (bizNameVal && bizAddrVal));
+
+    var hasService = !!document.getElementById('service-toggle-value').value;
+    var hasBilling = !!document.getElementById('billing-toggle-value').value;
+    var hasInvoicing = !!document.getElementById('invoicing-toggle-value').value;
+
+    document.getElementById('submit-btn').disabled = !(hasId && hasService && hasBilling && hasInvoicing);
+  }
+
+  // Listen for typing in ID fields
+  ['system-id-input', 'business-name-input', 'system-address-input'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', checkFormReady);
+  });
 
   // ── GATHER & SUBMIT TO ZOHO ──
   document.getElementById('checkin-form').addEventListener('submit', function(e) {
