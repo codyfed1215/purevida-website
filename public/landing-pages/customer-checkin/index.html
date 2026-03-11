@@ -484,6 +484,86 @@
       font-size: 1.05rem;
     }
 
+    /* ── GOOGLE REVIEW CTA ── */
+    .review-cta {
+      background: linear-gradient(135deg, var(--sky-50), var(--cyan-50));
+      padding: 56px 0;
+      text-align: center;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 20px;
+      padding: 44px 36px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .review-stars {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .review-stars svg {
+      width: 32px;
+      height: 32px;
+      color: #facc15;
+      filter: drop-shadow(0 1px 2px rgba(250, 204, 21, 0.3));
+    }
+    .review-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .review-card p {
+      color: var(--gray-500);
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .review-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--white);
+      color: var(--gray-800);
+      border: 2px solid var(--gray-200);
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .review-btn:hover {
+      border-color: var(--sky-400);
+      background: var(--sky-50);
+      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.15);
+      transform: translateY(-1px);
+    }
+    .review-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+    .review-google-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .review-cta { padding: 40px 0; }
+      .review-card { padding: 32px 24px; }
+      .review-card h2 { font-size: 1.3rem; }
+      .review-btn { padding: 14px 24px; font-size: 0.95rem; }
+      .review-stars svg { width: 28px; height: 28px; }
+    }
+    @media (max-width: 400px) {
+      .review-card { padding: 28px 20px; }
+    }
+
     /* ── EDUCATION SECTION ── */
     .education {
       background: var(--gray-900);
@@ -981,6 +1061,34 @@
       </div>
       <h2>Thank You!</h2>
       <p>Your check-in has been submitted. The PureVida team will review your updates and reach out if needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Google Review CTA -->
+<section class="review-cta">
+  <div class="container">
+    <div class="review-card">
+      <div class="review-stars">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <h2>Enjoying PureVida?</h2>
+      <p>Your feedback means the world to us. If you're happy with your service, we'd love a quick Google review — it helps other businesses discover PureVida.</p>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJkRU5E8iZToYR1ZaJBIY77vY" target="_blank" rel="noopener" class="review-btn">
+        <span class="review-google-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </span>
+        Leave a Google Review
+      </a>
     </div>
   </div>
 </section>
