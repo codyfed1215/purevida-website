@@ -1,0 +1,38 @@
+---
+interface Props {
+  category: 'water-quality' | 'cost-comparison' | 'buyer-guide' | 'products';
+  size?: 'card' | 'hero';
+}
+
+const { category, size = 'card' } = Astro.props;
+
+const configs: Record<string, { gradient: string; icon: string }> = {
+  'water-quality': {
+    gradient: 'from-sky-400 to-cyan-500',
+    icon: `<svg class="${size === 'hero' ? 'w-20 h-20' : 'w-12 h-12'}" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z"/></svg>`,
+  },
+  'cost-comparison': {
+    gradient: 'from-sky-500 to-blue-600',
+    icon: `<svg class="${size === 'hero' ? 'w-20 h-20' : 'w-12 h-12'}" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  },
+  'buyer-guide': {
+    gradient: 'from-cyan-400 to-sky-500',
+    icon: `<svg class="${size === 'hero' ? 'w-20 h-20' : 'w-12 h-12'}" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V5.25a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v14.25a1.5 1.5 0 001.5 1.5zM9 9h.008v.008H9V9zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25"/></svg>`,
+  },
+  products: {
+    gradient: 'from-sky-500 to-cyan-400',
+    icon: `<svg class="${size === 'hero' ? 'w-20 h-20' : 'w-12 h-12'}" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>`,
+  },
+};
+
+const config = configs[category] || configs['water-quality'];
+const aspectClass = size === 'hero' ? 'aspect-[21/9]' : 'aspect-[16/9]';
+---
+
+<div class={`bg-gradient-to-br ${config.gradient} ${aspectClass} rounded-2xl flex items-center justify-center relative overflow-hidden`}>
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl"></div>
+    <div class="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+  </div>
+  <div class="text-white/90 relative" set:html={config.icon} />
+</div>

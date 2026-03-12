@@ -3,6 +3,8 @@
 // Standalone page — no shared Layout, no nav, no footer links
 // Route: /lp/flyer
 import '../../styles/global.css'
+
+const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 ---
 
 <html lang="en">
@@ -23,6 +25,9 @@ import '../../styles/global.css'
     gtag('js', new Date());
     gtag('config', 'G-RT2GYZLRSW');
   </script>
+
+  <!-- Google Places -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3BbhmiSEvDdxcjKXwVzLfou93t6KXGwY&libraries=places" async defer></script>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -77,44 +82,40 @@ import '../../styles/global.css'
             Request More Information
           </h2>
 
-          <form id="lp-form" action="https://forms.zohopublic.com/purevidawater/form/FoxFlyerLandingPage/formperma/7XKvJo_OOB7RJmcgMyPeYV0v5G_c47S_HPsBZqPNyPg/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="zoho-frame" class="space-y-3 md:space-y-4">
-            <input type="hidden" name="zf_referrer_name" value="" />
-            <input type="hidden" name="zf_redirect_url" value="" />
-            <input type="hidden" name="zc_gad" value="" />
-            <!-- Hidden UTM fields -->
-            <input type="hidden" name="utm_source" id="utm_source" />
-            <input type="hidden" name="utm_medium" id="utm_medium" />
-            <input type="hidden" name="utm_campaign" id="utm_campaign" />
-            <input type="hidden" name="utm_term" id="utm_term" />
-            <input type="hidden" name="utm_content" id="utm_content" />
-            <input type="hidden" name="landing_page" value="flyer" />
+          <form id="lp-form" class="space-y-3 md:space-y-4">
+            <input type="hidden" id="google_place_id" />
 
             <div>
               <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-              <input type="text" id="name" name="SingleLine1" required placeholder="Jane Smith" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="name" required placeholder="Jane Smith" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-              <input type="text" id="company" name="SingleLine" required placeholder="Acme Corp" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="company" required placeholder="Acme Corp" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Work Email</label>
-              <input type="email" id="email" name="Email" required placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="email" id="email" required placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-              <input type="tel" id="phone" name="PhoneNumber_countrycode" required placeholder="(555) 123-4567" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="tel" id="phone" required placeholder="(555) 123-4567" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
               <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Location Address</label>
-              <input type="text" id="address" name="SingleLine2" required placeholder="123 Main St, Dallas, TX 75201" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="address" required placeholder="Start typing an address..." autocomplete="off" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
-            <button type="submit" id="submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3.5 px-6 rounded-lg transition-colors text-base cursor-pointer shadow-lg shadow-sky-500/30">
+            <div>
+              <label for="promo_code" class="block text-sm font-medium text-gray-700 mb-1">Promo Code <span class="text-gray-400 font-normal">(optional)</span></label>
+              <input type="text" id="promo_code" placeholder="e.g. PURE-SH" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base uppercase" maxlength="12" />
+            </div>
+
+            <button type="submit" id="submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3.5 px-6 rounded-lg transition-colors text-base cursor-pointer shadow-lg shadow-sky-500/30 disabled:opacity-50 disabled:cursor-not-allowed">
               Request More Information &rarr;
             </button>
 
@@ -276,9 +277,6 @@ import '../../styles/global.css'
     </div>
   </footer>
 
-  <!-- Hidden iframe for Zoho form submission -->
-  <iframe name="zoho-frame" style="display:none"></iframe>
-
   <!-- Toast Notification -->
   <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[200] hidden">
     <div id="toast-inner" class="flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl text-white font-medium transition-all duration-300 opacity-0 -translate-y-4 bg-green-600">
@@ -288,29 +286,23 @@ import '../../styles/global.css'
   </div>
 
   <!-- ============ SCRIPTS ============ -->
-  <script>
-    // ---- UTM Capture ----
-    (function captureUTMs() {
-      const params = new URLSearchParams(window.location.search);
-      const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-      utmFields.forEach(function(field) {
-        const el = document.getElementById(field);
-        const val = params.get(field);
-        if (el && val) {
-          el.value = val;
-        }
-      });
-    })();
+  <script define:vars={{ SUPABASE_URL }}>
+    var API = SUPABASE_URL + '/functions/v1';
+
+    // ---- Pre-fill promo from URL ----
+    var initParams = new URLSearchParams(window.location.search);
+    var initPromo = initParams.get('promo');
+    if (initPromo) {
+      var promoInput = document.getElementById('promo_code');
+      if (promoInput) promoInput.value = initPromo.toUpperCase();
+    }
 
     // ---- Phone Formatting ----
-    (function setupPhoneFormatting() {
-      const phoneInput = document.getElementById('phone');
-      if (!phoneInput) return;
-
+    var phoneInput = document.getElementById('phone');
+    if (phoneInput) {
       phoneInput.addEventListener('input', function(e) {
-        let val = e.target.value.replace(/\D/g, '');
+        var val = e.target.value.replace(/\D/g, '');
         if (val.length > 10) val = val.slice(0, 10);
-
         if (val.length >= 7) {
           val = '(' + val.slice(0, 3) + ') ' + val.slice(3, 6) + '-' + val.slice(6);
         } else if (val.length >= 4) {
@@ -318,45 +310,171 @@ import '../../styles/global.css'
         } else if (val.length >= 1) {
           val = '(' + val;
         }
-
         e.target.value = val;
       });
-    })();
+    }
 
-    // ---- GA4 tracking + toast on form submit ----
-    (function setupFormTracking() {
-      const form = document.getElementById('lp-form');
-      if (!form) return;
-
-      form.addEventListener('submit', function() {
-        if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
-        }
-
-        var toast = document.getElementById('toast');
-        var inner = document.getElementById('toast-inner');
-        if (toast && inner) {
-          toast.classList.remove('hidden');
-          setTimeout(function() {
-            inner.classList.remove('opacity-0', '-translate-y-4');
-            inner.classList.add('opacity-100', 'translate-y-0');
-          }, 10);
-          setTimeout(function() {
-            inner.classList.remove('opacity-100', 'translate-y-0');
-            inner.classList.add('opacity-0', '-translate-y-4');
-            setTimeout(function() { toast.classList.add('hidden'); }, 300);
-          }, 4000);
-        }
-
-        setTimeout(function() { form.reset(); }, 100);
+    // ---- Google Places Autocomplete ----
+    var placeData = {};
+    function initAutocomplete() {
+      var addressInput = document.getElementById('address');
+      if (!addressInput) return;
+      var autocomplete = new google.maps.places.Autocomplete(addressInput, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'formatted_address', 'place_id', 'name'],
       });
-    })();
+      autocomplete.setBounds(new google.maps.LatLngBounds(
+        { lat: 25.8, lng: -106.6 },
+        { lat: 36.5, lng: -93.5 }
+      ));
+      autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.address_components) return;
+        placeData = {};
+        var streetNum = '';
+        var streetName = '';
+        for (var i = 0; i < place.address_components.length; i++) {
+          var comp = place.address_components[i];
+          var type = comp.types[0];
+          if (type === 'street_number') streetNum = comp.long_name;
+          if (type === 'route') streetName = comp.long_name;
+          if (type === 'locality') placeData.city = comp.long_name;
+          if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
+          if (type === 'postal_code') placeData.zip = comp.long_name;
+        }
+        placeData.street = (streetNum + ' ' + streetName).trim();
+        placeData.place_id = place.place_id || '';
+        if (placeData.street) {
+          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
+        }
+        document.getElementById('google_place_id').value = placeData.place_id;
+        var companyInput = document.getElementById('company');
+        if (!companyInput.value && place.name && place.name !== placeData.street) {
+          companyInput.value = place.name;
+        }
+      });
+    }
+    if (typeof google !== 'undefined' && google.maps) {
+      initAutocomplete();
+    } else {
+      window.addEventListener('load', function() {
+        if (typeof google !== 'undefined' && google.maps) initAutocomplete();
+      });
+    }
+
+    // ---- Form Submit → ingest-lead ----
+    var form = document.getElementById('lp-form');
+    var submitBtn = document.getElementById('submit-btn');
+    var formSuccess = document.getElementById('form-success');
+
+    var submitting = false;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (submitting) return;
+      submitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      // Parse full name into first/last
+      var fullName = document.getElementById('name').value.trim();
+      var nameParts = fullName.split(/\s+/);
+      var firstName = nameParts[0] || '';
+      var lastName = nameParts.slice(1).join(' ') || '';
+
+      // Read source + promo from URL params
+      var urlParams = new URLSearchParams(window.location.search);
+      var urlSource = urlParams.get('source') || 'qr_scan';
+      var urlPromo = urlParams.get('promo') || '';
+
+      var promoValue = document.getElementById('promo_code').value.trim() || urlPromo || null;
+
+      var payload = {
+        source: urlSource,
+        form_type: 'flyer',
+        business_name: document.getElementById('company').value.trim(),
+        phone: document.getElementById('phone').value.trim() || null,
+        email: document.getElementById('email').value.trim() || null,
+        first_name: firstName || null,
+        last_name: lastName || null,
+        address: document.getElementById('address').value.trim() || null,
+        google_place_id: document.getElementById('google_place_id').value || null,
+        promo_code: promoValue,
+      };
+
+      // Use structured place data if available
+      if (placeData.city) {
+        payload.city = placeData.city;
+        payload.state = placeData.state || null;
+        payload.zip = placeData.zip || null;
+        if (placeData.street) payload.address = placeData.street;
+      } else {
+        var addrParts = (payload.address || '').split(',').map(function(s) { return s.trim(); });
+        if (addrParts.length >= 3) {
+          var stateZip = addrParts[addrParts.length - 1].split(/\s+/);
+          if (stateZip.length >= 2) {
+            payload.state = stateZip[0];
+            payload.zip = stateZip.slice(1).join(' ');
+          }
+          payload.city = addrParts[addrParts.length - 2];
+        }
+      }
+
+      try {
+        var res = await fetch(API + '/ingest-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        var json = await res.json();
+
+        if (json.ok) {
+          // GA4 event
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { event_category: 'form', event_label: 'flyer_lp' });
+          }
+
+          // Show success state
+          form.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+
+          // Also show toast
+          showToast();
+        } else {
+          alert(json.error || 'Something went wrong. Please try again.');
+          submitting = false;
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Request More Information &rarr;';
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection and try again.');
+        submitting = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Request More Information &rarr;';
+      }
+    });
+
+    // ---- Toast ----
+    function showToast() {
+      var toast = document.getElementById('toast');
+      var inner = document.getElementById('toast-inner');
+      if (!toast || !inner) return;
+      toast.classList.remove('hidden');
+      setTimeout(function() {
+        inner.classList.remove('opacity-0', '-translate-y-4');
+        inner.classList.add('opacity-100', 'translate-y-0');
+      }, 10);
+      setTimeout(function() {
+        inner.classList.remove('opacity-100', 'translate-y-0');
+        inner.classList.add('opacity-0', '-translate-y-4');
+        setTimeout(function() { toast.classList.add('hidden'); }, 300);
+      }, 4000);
+    }
 
     // ---- Product Image Rotation ----
     (function() {
-      const images = document.querySelectorAll('.lp-hero-product');
+      var images = document.querySelectorAll('.lp-hero-product');
       if (images.length === 0) return;
-      let current = 0;
+      var current = 0;
       setInterval(function() {
         images[current].classList.remove('opacity-100');
         images[current].classList.add('opacity-0');

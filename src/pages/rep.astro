@@ -1,0 +1,19 @@
+---
+// Redirect: /rep → /lp/flyer with rep UTMs + promo passthrough
+---
+<html>
+<head>
+  <link rel="canonical" href="/lp/flyer" />
+  <script is:inline>
+    var params = new URLSearchParams(window.location.search);
+    var promo = params.get('promo') || '';
+    var dest = '/lp/flyer?source=rep&utm_source=rep_flyer&utm_medium=flyer&utm_campaign=rep_canvass';
+    if (promo) dest += '&promo=' + encodeURIComponent(promo);
+    window.location.replace(dest);
+  </script>
+  <meta http-equiv="refresh" content="2;url=/lp/flyer?source=rep&utm_source=rep_flyer&utm_medium=flyer&utm_campaign=rep_canvass" />
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

@@ -110,6 +110,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
             <a href="/products" class="text-gray-700 hover:text-sky-500 font-medium transition">Systems</a>
             <a href="/locations" class="text-gray-700 hover:text-sky-500 font-medium transition">Service Areas</a>
             <a href="/about" class="text-gray-700 hover:text-sky-500 font-medium transition">FAQs</a>
+            <a href="/blog" class="text-gray-700 hover:text-sky-500 font-medium transition">Blog</a>
             <a href="/contact" class="text-gray-700 hover:text-sky-500 font-medium transition">Contact</a>
             <button data-trial-modal class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg shadow-sky-500/30 hover:shadow-sky-500/40 cursor-pointer">
               Request Free Trial
@@ -129,6 +130,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
           <a href="/products" class="block py-2 text-gray-700 hover:text-sky-500">Systems</a>
           <a href="/locations" class="block py-2 text-gray-700 hover:text-sky-500">Service Areas</a>
           <a href="/about" class="block py-2 text-gray-700 hover:text-sky-500">FAQs</a>
+          <a href="/blog" class="block py-2 text-gray-700 hover:text-sky-500">Blog</a>
           <a href="/contact" class="block py-2 text-gray-700 hover:text-sky-500">Contact</a>
           <button data-trial-modal class="block w-full mt-4 bg-sky-500 text-white text-center py-2.5 rounded-lg font-semibold cursor-pointer">
             Get Free Trial
@@ -262,7 +264,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
 
     <footer class="bg-gray-900 text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid md:grid-cols-4 gap-12">
+        <div class="grid md:grid-cols-5 gap-10">
           <!-- Brand -->
           <div class="md:col-span-1">
             <div class="mb-4">
@@ -280,6 +282,15 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
               <li><a href="/products/water-coolers" class="hover:text-sky-400 transition">Water Systems</a></li>
               <li><a href="/products/ice-machines" class="hover:text-sky-400 transition">Ice & Water Systems</a></li>
               <li><a href="/products/coffee-systems" class="hover:text-sky-400 transition">Coffee System</a></li>
+            </ul>
+          </div>
+
+          <!-- Blog -->
+          <div>
+            <p class="font-semibold mb-4">Resources</p>
+            <ul class="space-y-2 text-gray-400 text-sm">
+              <li><a href="/blog" class="hover:text-sky-400 transition">Blog</a></li>
+              <li><a href="/about" class="hover:text-sky-400 transition">FAQs</a></li>
             </ul>
           </div>
 
