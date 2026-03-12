@@ -15,7 +15,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3BbhmiSEvDdxcjKXwVzLfou93t6KXGwY&libraries=places" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_PLACES_KEY&libraries=places" async defer></script>
 </head>
 
 <body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
@@ -84,7 +84,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
         <div>
           <label for="company" class="block text-xs font-medium text-gray-500 mb-1">Company *</label>
-          <input type="text" id="company" name="company" required placeholder="Acme Corp" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
+          <input type="text" id="company" name="company" required placeholder="Search business name..." autocomplete="off" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
         </div>
 
         <div>
@@ -219,15 +219,17 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       });
     }
 
-    // ---- Google Places Autocomplete ----
+    // ---- Google Places Autocomplete (on company name) ----
     var placeData = {};
     function initAutocomplete() {
-      var addressInput = document.getElementById('address');
-      var autocomplete = new google.maps.places.Autocomplete(addressInput, {
+      var companyInput = document.getElementById('company');
+      var autocomplete = new google.maps.places.Autocomplete(companyInput, {
         componentRestrictions: { country: 'us' },
-        fields: ['address_components', 'formatted_address', 'place_id', 'name'],
+        types: ['establishment'],
+        fields: ['address_components', 'formatted_address', 'formatted_phone_number', 'place_id', 'name', 'website'],
       });
 
+      // Bias toward Texas
       autocomplete.setBounds(new google.maps.LatLngBounds(
         { lat: 25.8, lng: -106.6 },
         { lat: 36.5, lng: -93.5 }
@@ -235,36 +237,55 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
       autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
-        if (!place.address_components) return;
+        if (!place) return;
 
         placeData = {};
         var streetNum = '';
         var streetName = '';
 
-        for (var i = 0; i < place.address_components.length; i++) {
-          var comp = place.address_components[i];
-          var type = comp.types[0];
-          if (type === 'street_number') streetNum = comp.long_name;
-          if (type === 'route') streetName = comp.long_name;
-          if (type === 'locality') placeData.city = comp.long_name;
-          if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
-          if (type === 'postal_code') placeData.zip = comp.long_name;
+        if (place.address_components) {
+          for (var i = 0; i < place.address_components.length; i++) {
+            var comp = place.address_components[i];
+            var type = comp.types[0];
+            if (type === 'street_number') streetNum = comp.long_name;
+            if (type === 'route') streetName = comp.long_name;
+            if (type === 'locality') placeData.city = comp.long_name;
+            if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
+            if (type === 'postal_code') placeData.zip = comp.long_name;
+          }
         }
 
         placeData.street = (streetNum + ' ' + streetName).trim();
         placeData.formatted = place.formatted_address || '';
         placeData.place_id = place.place_id || '';
 
-        if (placeData.street) {
-          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
-        }
-
-        document.getElementById('google_place_id').value = placeData.place_id;
-
-        var companyInput = document.getElementById('company');
-        if (!companyInput.value && place.name && place.name !== placeData.street) {
+        // Fill company name
+        if (place.name) {
           companyInput.value = place.name;
         }
+
+        // Fill address
+        var addressInput = document.getElementById('address');
+        if (placeData.street) {
+          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
+        } else if (placeData.formatted) {
+          addressInput.value = placeData.formatted;
+        }
+
+        // Fill phone
+        if (place.formatted_phone_number) {
+          var phoneInput = document.getElementById('phone');
+          if (!phoneInput.value) phoneInput.value = place.formatted_phone_number;
+        }
+
+        // Fill website
+        if (place.website) {
+          var websiteInput = document.getElementById('website');
+          if (!websiteInput.value) websiteInput.value = place.website;
+        }
+
+        // Fill place ID
+        document.getElementById('google_place_id').value = placeData.place_id;
       });
     }
 
