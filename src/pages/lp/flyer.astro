@@ -92,7 +92,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
             <div>
               <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-              <input type="text" id="company" required placeholder="Acme Corp" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
+              <input type="text" id="company" required placeholder="Search business name..." autocomplete="off" class="w-full px-3 py-2.5 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors text-base" />
             </div>
 
             <div>
@@ -314,14 +314,15 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       });
     }
 
-    // ---- Google Places Autocomplete ----
+    // ---- Google Places Autocomplete (on company name) ----
     var placeData = {};
     function initAutocomplete() {
-      var addressInput = document.getElementById('address');
-      if (!addressInput) return;
-      var autocomplete = new google.maps.places.Autocomplete(addressInput, {
+      var companyInput = document.getElementById('company');
+      if (!companyInput) return;
+      var autocomplete = new google.maps.places.Autocomplete(companyInput, {
         componentRestrictions: { country: 'us' },
-        fields: ['address_components', 'formatted_address', 'place_id', 'name'],
+        types: ['establishment'],
+        fields: ['address_components', 'formatted_address', 'formatted_phone_number', 'place_id', 'name'],
       });
       autocomplete.setBounds(new google.maps.LatLngBounds(
         { lat: 25.8, lng: -106.6 },
@@ -329,29 +330,45 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       ));
       autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
-        if (!place.address_components) return;
+        if (!place) return;
         placeData = {};
         var streetNum = '';
         var streetName = '';
-        for (var i = 0; i < place.address_components.length; i++) {
-          var comp = place.address_components[i];
-          var type = comp.types[0];
-          if (type === 'street_number') streetNum = comp.long_name;
-          if (type === 'route') streetName = comp.long_name;
-          if (type === 'locality') placeData.city = comp.long_name;
-          if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
-          if (type === 'postal_code') placeData.zip = comp.long_name;
+        if (place.address_components) {
+          for (var i = 0; i < place.address_components.length; i++) {
+            var comp = place.address_components[i];
+            var type = comp.types[0];
+            if (type === 'street_number') streetNum = comp.long_name;
+            if (type === 'route') streetName = comp.long_name;
+            if (type === 'locality') placeData.city = comp.long_name;
+            if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
+            if (type === 'postal_code') placeData.zip = comp.long_name;
+          }
         }
         placeData.street = (streetNum + ' ' + streetName).trim();
+        placeData.formatted = place.formatted_address || '';
         placeData.place_id = place.place_id || '';
-        if (placeData.street) {
-          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
-        }
-        document.getElementById('google_place_id').value = placeData.place_id;
-        var companyInput = document.getElementById('company');
-        if (!companyInput.value && place.name && place.name !== placeData.street) {
+
+        // Fill company name
+        if (place.name) {
           companyInput.value = place.name;
         }
+
+        // Fill address
+        var addressInput = document.getElementById('address');
+        if (placeData.street) {
+          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
+        } else if (placeData.formatted) {
+          addressInput.value = placeData.formatted;
+        }
+
+        // Fill phone
+        if (place.formatted_phone_number) {
+          var phoneInput = document.getElementById('phone');
+          if (!phoneInput.value) phoneInput.value = place.formatted_phone_number;
+        }
+
+        document.getElementById('google_place_id').value = placeData.place_id;
       });
     }
     if (typeof google !== 'undefined' && google.maps) {
