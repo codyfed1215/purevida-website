@@ -15,7 +15,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMm0WXezkhqAkKJ7B9pyU33gegoGbcfQ&libraries=places" async defer></script>
+  <script is:inline>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" already loaded"):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key:"AIzaSyAsMm0WXezkhqAkKJ7B9pyU33gegoGbcfQ",v:"weekly"});</script>
+  <style is:global>.gm-err-container,.gm-err-title,.gm-err-message,.gm-err-autocomplete{display:none!important}</style>
 </head>
 
 <body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
@@ -229,7 +230,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
     // ---- Google Places Autocomplete (on company name) ----
     var placeData = {};
-    function initAutocomplete() {
+    async function initAutocomplete() {
+      try { await google.maps.importLibrary('places'); } catch(e) { return; }
       var companyInput = document.getElementById('company');
       var autocomplete = new google.maps.places.Autocomplete(companyInput, {
         componentRestrictions: { country: 'us' },
@@ -297,13 +299,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       });
     }
 
-    if (typeof google !== 'undefined' && google.maps) {
-      initAutocomplete();
-    } else {
-      window.addEventListener('load', function() {
-        if (typeof google !== 'undefined' && google.maps) initAutocomplete();
-      });
-    }
+    initAutocomplete();
 
     // ---- Card Scan ----
     var scanBtn = document.getElementById('scan-btn');

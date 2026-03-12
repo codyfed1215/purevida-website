@@ -27,7 +27,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   </script>
 
   <!-- Google Places -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsMm0WXezkhqAkKJ7B9pyU33gegoGbcfQ&libraries=places" async defer></script>
+  <script is:inline>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" already loaded"):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key:"AIzaSyAsMm0WXezkhqAkKJ7B9pyU33gegoGbcfQ",v:"weekly"});</script>
+  <style is:global>.gm-err-container,.gm-err-title,.gm-err-message,.gm-err-autocomplete{display:none!important}</style>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -316,7 +317,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
     // ---- Google Places Autocomplete (on company name) ----
     var placeData = {};
-    function initAutocomplete() {
+    async function initAutocomplete() {
+      try { await google.maps.importLibrary('places'); } catch(e) { return; }
       var companyInput = document.getElementById('company');
       if (!companyInput) return;
       var autocomplete = new google.maps.places.Autocomplete(companyInput, {
@@ -371,13 +373,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         document.getElementById('google_place_id').value = placeData.place_id;
       });
     }
-    if (typeof google !== 'undefined' && google.maps) {
-      initAutocomplete();
-    } else {
-      window.addEventListener('load', function() {
-        if (typeof google !== 'undefined' && google.maps) initAutocomplete();
-      });
-    }
+    initAutocomplete();
 
     // ---- Form Submit → ingest-lead ----
     var form = document.getElementById('lp-form');
