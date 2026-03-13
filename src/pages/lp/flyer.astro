@@ -82,16 +82,21 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         <h1 class="text-2xl font-bold text-gray-900">What does your office need?</h1>
         <p class="mt-2 text-gray-500">We'll recommend the perfect system for you</p>
       </div>
-      <div class="grid grid-cols-2 gap-4">
-        <button data-need="water" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-8 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
-          <img src="/images/products/PV3w.png" alt="Water Cooler" class="h-24 w-auto object-contain mb-3" />
-          <span class="block text-lg font-bold text-gray-900">Water</span>
-          <span class="block text-xs text-gray-500 mt-1">Hot &amp; Cold Purified</span>
+      <div class="grid grid-cols-3 gap-3">
+        <button data-need="water" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-5 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
+          <img src="/images/products/PV3w.png" alt="Water Cooler" class="h-16 w-auto object-contain mb-2" />
+          <span class="block text-sm font-bold text-gray-900">Water</span>
+          <span class="block text-[11px] text-gray-500 mt-0.5">Hot &amp; Cold</span>
         </button>
-        <button data-need="ice" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-8 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
-          <img src="/images/products/PV8i.png" alt="Ice & Water Machine" class="h-24 w-auto object-contain mb-3" />
-          <span class="block text-lg font-bold text-gray-900">Water &amp; Ice</span>
-          <span class="block text-xs text-gray-500 mt-1">Purified Water + Ice Maker</span>
+        <button data-need="ice" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-5 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
+          <img src="/images/products/PV8i.png" alt="Ice & Water Machine" class="h-16 w-auto object-contain mb-2" />
+          <span class="block text-sm font-bold text-gray-900">Water &amp; Ice</span>
+          <span class="block text-[11px] text-gray-500 mt-0.5">Water + Ice Maker</span>
+        </button>
+        <button data-need="coffee" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-5 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
+          <img src="/images/products/PV12c.png" alt="Coffee System" class="h-16 w-auto object-contain mb-2" />
+          <span class="block text-sm font-bold text-gray-900">Coffee</span>
+          <span class="block text-[11px] text-gray-500 mt-0.5">Bean to Cup</span>
         </button>
       </div>
     </div>
@@ -260,6 +265,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         image: '/images/products/PV9i.png',
         price: 309,
       },
+      PV12c: {
+        name: 'PV12c',
+        subtitle: 'Bean to Cup Coffee System',
+        image: '/images/products/PV12c.png',
+        price: 275,
+      },
     };
 
     var RECOMMENDATIONS = {
@@ -290,6 +301,18 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ---- Helper: populate product card and go to step 3 ----
+    function showProductReveal(productKey) {
+      funnelState.product = productKey;
+      var product = PRODUCTS[productKey];
+      document.getElementById('product-image').src = product.image;
+      document.getElementById('product-image').alt = product.name;
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-subtitle').textContent = product.subtitle;
+      document.getElementById('product-price').textContent = '$' + product.price;
+      setTimeout(function() { showStep('step-3'); }, 200);
+    }
+
     // ---- Step 1: Need ----
     var needBtns = document.querySelectorAll('.need-btn');
     for (var i = 0; i < needBtns.length; i++) {
@@ -299,7 +322,14 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
           needBtns[j].classList.remove('border-sky-500', 'bg-sky-50');
         }
         this.classList.add('border-sky-500', 'bg-sky-50');
-        setTimeout(function() { showStep('step-2'); }, 200);
+
+        // Coffee skips consumption — only one product
+        if (funnelState.need === 'coffee') {
+          funnelState.consumption = null;
+          showProductReveal('PV12c');
+        } else {
+          setTimeout(function() { showStep('step-2'); }, 200);
+        }
       });
     }
 
@@ -313,25 +343,16 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         }
         this.classList.add('border-sky-500', 'bg-sky-50');
 
-        // Look up recommended product
         var productKey = RECOMMENDATIONS[funnelState.need][funnelState.consumption];
-        funnelState.product = productKey;
-        var product = PRODUCTS[productKey];
-
-        // Populate product card
-        document.getElementById('product-image').src = product.image;
-        document.getElementById('product-image').alt = product.name;
-        document.getElementById('product-name').textContent = product.name;
-        document.getElementById('product-subtitle').textContent = product.subtitle;
-        document.getElementById('product-price').textContent = '$' + product.price;
-
-        setTimeout(function() { showStep('step-3'); }, 200);
+        showProductReveal(productKey);
       });
     }
 
     // ---- Back buttons ----
     document.getElementById('back-to-1').addEventListener('click', function() { showStep('step-1'); });
-    document.getElementById('back-to-2').addEventListener('click', function() { showStep('step-2'); });
+    document.getElementById('back-to-2').addEventListener('click', function() {
+      showStep(funnelState.need === 'coffee' ? 'step-1' : 'step-2');
+    });
 
     // ---- Phone Formatting ----
     var phoneInput = document.getElementById('inp-phone');
