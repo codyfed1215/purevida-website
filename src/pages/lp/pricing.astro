@@ -957,7 +957,49 @@ import '../../styles/global.css'
       }
       renderSummary();
       showStep(5);
+
+      // Fire score-pricing-tool in background (non-blocking)
+      scorePricingCompletion();
     });
+
+    var SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
+
+    function scorePricingCompletion() {
+      try {
+        var isTP = state.payment === 'timePurchase';
+        var subtotal = 0;
+        Object.keys(state.selectedProducts).forEach(function(model) {
+          var qty = state.selectedProducts[model];
+          var price = getPrice(model, state.payment, state.term);
+          subtotal += price * qty;
+        });
+
+        var payload = {
+          email: $('#cust-email').value.trim() || null,
+          phone: $('#cust-phone').value.trim() || null,
+          company: $('#cust-company').value.trim() || null,
+          contact_name: $('#cust-contact').value.trim() || null,
+          pricing_data: {
+            products: state.selectedProducts,
+            term: state.term,
+            payment: state.payment,
+            boost: state.boostFilter,
+            total: subtotal,
+          }
+        };
+
+        // Only send if we have some identifying info
+        if (payload.email || payload.phone) {
+          fetch(SUPABASE_URL + '/functions/v1/score-pricing-tool', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }).catch(function(e) { console.error('score-pricing-tool failed:', e); });
+        }
+      } catch (e) {
+        console.error('scorePricingCompletion error:', e);
+      }
+    }
 
     // =====================================================
     // STEP 5: QUOTE SUMMARY
