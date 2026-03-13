@@ -1,10 +1,37 @@
+<!--
+  ============================================================
+  ISD LANDING PAGE TEMPLATE
+  ============================================================
+  To create a new ISD landing page:
+
+  1. Copy this entire "_template-isd" folder
+  2. Rename the copy to the district slug (e.g., "rockwall-isd")
+  3. Find & replace the following placeholders:
+
+     {{ISD_NAME}}          → e.g., "Rockwall ISD"
+     {{ISD_FULL_NAME}}     → e.g., "Rockwall Independent School District"
+     {{ISD_SLUG}}          → e.g., "rockwall" (used in CSS class names)
+     {{ISD_LOGO_FILE}}     → e.g., "rockwall-isd-logo.png"
+     {{ISD_COUNTY}}        → e.g., "Rockwall County"
+     {{DISTANCE_FROM_HQ}}  → e.g., "45 minutes" (from DeSoto, TX)
+     {{LOOM_VIDEO_ID}}     → e.g., "0accde2b4e5343208cc425f0644f97d5"
+
+  4. Drop the ISD logo file into the folder as {{ISD_LOGO_FILE}}
+  5. Copy purevida-logo.png into the folder
+
+  Files needed in each landing page folder:
+    - index.html (this file, with placeholders replaced)
+    - purevida-logo.png
+    - [isd-logo].png
+  ============================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>PureVida Water | A Better Hydration Solution for Frisco ISD</title>
+  <title>PureVida Water | A Better Hydration Solution for {{ISD_NAME}}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -85,7 +112,8 @@
       width: auto;
       object-fit: contain;
     }
-    .hero-logo-img.frisco-logo { max-height: 70px; }
+    /* {{ISD_SLUG}}-logo — adjust max-height per logo as needed */
+    .hero-logo-img.isd-logo { max-height: 100px; }
     .hero-logo-img.purevida-logo { max-height: 90px; }
     .hero-plus { font-size: 1.5rem; color: var(--cyan); font-weight: 300; }
 
@@ -498,7 +526,7 @@
       .hero h1 { font-size: 1.75rem; }
       .hero p.tagline { font-size: 1rem; }
       .hero-logos { gap: 14px; margin-bottom: 32px; }
-      .hero-logo-img.frisco-logo { max-height: 48px; }
+      .hero-logo-img.isd-logo { max-height: 68px; }
       .hero-logo-img.purevida-logo { max-height: 60px; }
       .hero-plus { font-size: 1.2rem; }
       .hero-buttons { flex-direction: column; align-items: center; }
@@ -547,7 +575,7 @@
     /* ── RESPONSIVE: SMALL PHONES ── */
     @media (max-width: 400px) {
       .hero h1 { font-size: 1.5rem; }
-      .hero-logo-img.frisco-logo { max-height: 38px; }
+      .hero-logo-img.isd-logo { max-height: 56px; }
       .hero-logo-img.purevida-logo { max-height: 48px; }
       .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
       .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
@@ -585,12 +613,14 @@
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-logos">
-      <img src="frisco-isd-logo.png" alt="Frisco Independent School District" class="hero-logo-img frisco-logo">
+      <!-- {{CUSTOMIZE}} Replace logo file and alt text -->
+      <img src="{{ISD_LOGO_FILE}}" alt="{{ISD_FULL_NAME}}" class="hero-logo-img isd-logo">
       <span class="hero-plus">+</span>
       <img src="purevida-logo.png" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
     </div>
 
-    <h1>A Better Hydration Solution<br>for Frisco ISD</h1>
+    <!-- {{CUSTOMIZE}} Replace ISD name -->
+    <h1>A Better Hydration Solution<br>for {{ISD_NAME}}</h1>
     <div class="underline-accent underline-center"></div>
     <p class="tagline">Eliminating 5-Gallon Jugs with Bottleless Water Purification</p>
 
@@ -719,7 +749,8 @@
 <section class="systems" id="systems">
   <div class="container">
     <h2 class="section-title text-center">Recommended Systems</h2>
-    <p class="section-subtitle text-center">Tailored to Frisco ISD Department Needs</p>
+    <!-- {{CUSTOMIZE}} Replace ISD name -->
+    <p class="section-subtitle text-center">Tailored to {{ISD_NAME}} Department Needs</p>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -730,7 +761,6 @@
     <!-- Water Systems Tab -->
     <div class="tab-panel active" id="tab-water">
       <div class="systems-grid">
-        <!-- PV1w / PV2w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -757,7 +787,6 @@
           </div>
         </div>
 
-        <!-- PV3w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -779,7 +808,6 @@
           </div>
         </div>
 
-        <!-- PV4w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -807,7 +835,6 @@
     <!-- Ice & Water Systems Tab -->
     <div class="tab-panel" id="tab-ice">
       <div class="systems-grid">
-        <!-- PV6i / PV7i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -836,7 +863,6 @@
           </div>
         </div>
 
-        <!-- PV8i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -858,7 +884,6 @@
           </div>
         </div>
 
-        <!-- PV9i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -938,7 +963,8 @@
       </div>
     </div>
 
-    <p class="trust-highlight">Frisco ISD can join our growing network of Texas education partners</p>
+    <!-- {{CUSTOMIZE}} Replace ISD name -->
+    <p class="trust-highlight">{{ISD_NAME}} can join our growing network of Texas education partners</p>
   </div>
 </section>
 
@@ -951,7 +977,8 @@
     <div class="underline-accent"></div>
     <p class="section-subtitle text-center">Watch a quick overview of how PureVida transforms your breakroom hydration.</p>
     <div class="video-wrapper">
-      <iframe src="https://www.loom.com/embed/0accde2b4e5343208cc425f0644f97d5" allowfullscreen></iframe>
+      <!-- {{CUSTOMIZE}} Replace Loom video ID -->
+      <iframe src="https://www.loom.com/embed/{{LOOM_VIDEO_ID}}" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -961,7 +988,8 @@
 <!-- WHY PUREVIDA -->
 <section class="why" id="why">
   <div class="container">
-    <h2 class="section-title">Why PureVida for Frisco ISD</h2>
+    <!-- {{CUSTOMIZE}} Replace ISD name -->
+    <h2 class="section-title">Why PureVida for {{ISD_NAME}}</h2>
     <div class="underline-accent"></div>
 
     <div class="why-grid">
@@ -970,7 +998,8 @@
           <div class="why-number">1</div>
           <div>
             <h4>Local DFW Presence</h4>
-            <p>Based in DeSoto, TX &mdash; just 45 minutes from Frisco. Fast installation, responsive local service.</p>
+            <!-- {{CUSTOMIZE}} Replace distance -->
+            <p>Based in DeSoto, TX &mdash; just {{DISTANCE_FROM_HQ}} from {{ISD_NAME}}. Fast installation, responsive local service.</p>
           </div>
         </li>
         <li>
