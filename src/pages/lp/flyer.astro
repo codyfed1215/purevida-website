@@ -2,6 +2,7 @@
 // Landing Page: QR Code Flyer Campaign – Tap-Tap-Done Micro Funnel
 // Standalone page — no shared Layout, no nav, no footer links
 // Route: /lp/flyer
+// Flow: Need (Water vs Water & Ice) → Consumption → Product Reveal + Form
 import '../../styles/global.css'
 
 const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
@@ -37,12 +38,17 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     .step { transition: opacity 0.3s ease, transform 0.3s ease; }
     .step.hidden { opacity: 0; transform: translateY(12px); pointer-events: none; position: absolute; }
     .step.visible { opacity: 1; transform: translateY(0); position: relative; }
-    .size-btn, .solution-btn { transition: all 0.15s ease; }
-    .size-btn:active, .solution-btn:active { transform: scale(0.97); }
+    .tap-btn { transition: all 0.15s ease; }
+    .tap-btn:active { transform: scale(0.97); }
     .price-reveal { animation: priceIn 0.4s ease-out; }
     @keyframes priceIn {
       from { opacity: 0; transform: scale(0.85); }
       to { opacity: 1; transform: scale(1); }
+    }
+    .product-reveal { animation: productIn 0.5s ease-out; }
+    @keyframes productIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -70,63 +76,79 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <!-- ============ MICRO FUNNEL ============ -->
   <main class="max-w-lg mx-auto px-4 py-8 min-h-[70vh] flex flex-col justify-center">
 
-    <!-- ---- Step 1: Office Size ---- -->
+    <!-- ---- Step 1: What do you need? ---- -->
     <div id="step-1" class="step visible">
       <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-gray-900">Get Your Custom Quote</h1>
-        <p class="mt-2 text-gray-500">How many people are in your office?</p>
+        <h1 class="text-2xl font-bold text-gray-900">What does your office need?</h1>
+        <p class="mt-2 text-gray-500">We'll recommend the perfect system for you</p>
       </div>
-      <div class="grid grid-cols-2 gap-3">
-        <button data-size="1-10" class="size-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <span class="block text-2xl font-bold text-gray-900">1–10</span>
-          <span class="block text-sm text-gray-500 mt-1">people</span>
+      <div class="grid grid-cols-2 gap-4">
+        <button data-need="water" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-8 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
+          <img src="/images/products/PV3w.png" alt="Water Cooler" class="h-24 w-auto object-contain mb-3" />
+          <span class="block text-lg font-bold text-gray-900">Water</span>
+          <span class="block text-xs text-gray-500 mt-1">Hot &amp; Cold Purified</span>
         </button>
-        <button data-size="11-25" class="size-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <span class="block text-2xl font-bold text-gray-900">11–25</span>
-          <span class="block text-sm text-gray-500 mt-1">people</span>
-        </button>
-        <button data-size="26-50" class="size-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <span class="block text-2xl font-bold text-gray-900">26–50</span>
-          <span class="block text-sm text-gray-500 mt-1">people</span>
-        </button>
-        <button data-size="50+" class="size-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <span class="block text-2xl font-bold text-gray-900">50+</span>
-          <span class="block text-sm text-gray-500 mt-1">people</span>
+        <button data-need="ice" class="tap-btn need-btn bg-white border-2 border-gray-200 rounded-2xl py-8 text-center cursor-pointer hover:border-sky-400 active:border-sky-500 flex flex-col items-center">
+          <img src="/images/products/PV8i.png" alt="Ice & Water Machine" class="h-24 w-auto object-contain mb-3" />
+          <span class="block text-lg font-bold text-gray-900">Water &amp; Ice</span>
+          <span class="block text-xs text-gray-500 mt-1">Purified Water + Ice Maker</span>
         </button>
       </div>
     </div>
 
-    <!-- ---- Step 2: Current Solution ---- -->
+    <!-- ---- Step 2: Consumption Level ---- -->
     <div id="step-2" class="step hidden">
       <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-gray-900">What do you use now?</h1>
-        <p class="mt-2 text-gray-500">For drinking water in your office</p>
+        <h1 class="text-2xl font-bold text-gray-900">How many drinkers?</h1>
+        <p class="mt-2 text-gray-500">We'll match you with the right system</p>
       </div>
-      <div class="grid grid-cols-3 gap-3">
-        <button data-solution="Jugs" class="solution-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
-          <span class="block text-sm font-semibold text-gray-900">Jugs</span>
+      <div class="grid grid-cols-1 gap-3">
+        <button data-consumption="low" class="tap-btn consumption-btn bg-white border-2 border-gray-200 rounded-2xl py-5 px-6 cursor-pointer hover:border-sky-400 active:border-sky-500 flex items-center gap-4">
+          <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
+            <span class="text-xl font-bold text-sky-600">S</span>
+          </div>
+          <div class="text-left">
+            <span class="block text-base font-bold text-gray-900">Up to 7 Drinkers</span>
+            <span class="block text-sm text-gray-500">Low consumption</span>
+          </div>
         </button>
-        <button data-solution="Bottles" class="solution-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 12c0 4.136-3.364 7.5-7.5 7.5S4.5 16.136 4.5 12 7.864 4.5 12 4.5s7.5 3.364 7.5 7.5z"/></svg>
-          <span class="block text-sm font-semibold text-gray-900">Bottles</span>
+        <button data-consumption="moderate" class="tap-btn consumption-btn bg-white border-2 border-gray-200 rounded-2xl py-5 px-6 cursor-pointer hover:border-sky-400 active:border-sky-500 flex items-center gap-4">
+          <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
+            <span class="text-xl font-bold text-sky-600">M</span>
+          </div>
+          <div class="text-left">
+            <span class="block text-base font-bold text-gray-900">7–30 Drinkers</span>
+            <span class="block text-sm text-gray-500">Moderate consumption</span>
+          </div>
         </button>
-        <button data-solution="Unknown" class="solution-btn bg-white border-2 border-gray-200 rounded-2xl py-6 text-center cursor-pointer hover:border-sky-400 active:border-sky-500">
-          <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-          <span class="block text-sm font-semibold text-gray-900">Nothing</span>
+        <button data-consumption="high" class="tap-btn consumption-btn bg-white border-2 border-gray-200 rounded-2xl py-5 px-6 cursor-pointer hover:border-sky-400 active:border-sky-500 flex items-center gap-4">
+          <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
+            <span class="text-xl font-bold text-sky-600">L</span>
+          </div>
+          <div class="text-left">
+            <span class="block text-base font-bold text-gray-900">30+ Drinkers</span>
+            <span class="block text-sm text-gray-500">High consumption</span>
+          </div>
         </button>
       </div>
       <button id="back-to-1" class="mt-4 text-sm text-gray-400 hover:text-gray-600 cursor-pointer bg-transparent border-none mx-auto block">&larr; Back</button>
     </div>
 
-    <!-- ---- Step 3: Price Reveal + Form ---- -->
+    <!-- ---- Step 3: Product Reveal + Form ---- -->
     <div id="step-3" class="step hidden">
-      <div class="text-center mb-6">
-        <p class="text-sm font-medium text-sky-600 uppercase tracking-wide">Your estimated price</p>
-        <p id="price-display" class="text-5xl font-bold text-gray-900 mt-2 price-reveal">$74/mo</p>
-        <p id="savings-msg" class="text-sm text-gray-500 mt-2">Includes free installation &amp; maintenance</p>
+      <!-- Product Card -->
+      <div class="bg-gray-50 rounded-2xl p-6 mb-6 text-center product-reveal">
+        <img id="product-image" src="" alt="" class="h-40 w-auto object-contain mx-auto mb-4" />
+        <h2 id="product-name" class="text-xl font-bold text-gray-900"></h2>
+        <p id="product-subtitle" class="text-sm text-gray-500 mt-1"></p>
+        <div class="mt-4">
+          <span id="product-price" class="text-4xl font-bold text-gray-900 price-reveal"></span>
+          <span class="text-gray-500 text-lg">/mo</span>
+        </div>
+        <p class="text-sm text-sky-600 font-medium mt-2">Free installation &amp; maintenance included</p>
       </div>
 
+      <!-- Form -->
       <form id="lead-form" class="space-y-3">
         <input type="text" id="inp-name" required placeholder="Your name" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
         <input type="text" id="inp-business" required placeholder="Business name" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
@@ -193,22 +215,64 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
     // ---- State ----
     var funnelState = {
-      officeSize: null,
-      currentSolution: null,
+      need: null,        // 'water' or 'ice'
+      consumption: null, // 'low', 'moderate', 'high'
+      product: null,     // product key
     };
 
-    // ---- Pricing lookup (60-month rental grid prices) ----
-    var PRICING = {
-      '1-10':  { price: 54,  label: '$54/mo' },
-      '11-25': { price: 74,  label: '$74/mo' },
-      '26-50': { price: 159, label: '$159/mo' },
-      '50+':   { price: 159, label: '$159/mo' },
+    // ---- Product recommendation map ----
+    // Based on need + consumption, recommend a specific product
+    // Prices are 60-month rental grid prices
+    var PRODUCTS = {
+      PV2w: {
+        name: 'PV2w',
+        subtitle: 'Countertop Water Cooler',
+        image: '/images/products/PV2w.png',
+        price: 54,
+      },
+      PV3w: {
+        name: 'PV3w',
+        subtitle: 'Freestanding Water Cooler',
+        image: '/images/products/PV3w.png',
+        price: 74,
+      },
+      PV4w: {
+        name: 'PV4w',
+        subtitle: 'High-Capacity Hydration Hub',
+        image: '/images/products/PV4w.png',
+        price: 159,
+      },
+      PV6i: {
+        name: 'PV6i',
+        subtitle: 'Countertop Ice & Water',
+        image: '/images/products/PV6i.png',
+        price: 119,
+      },
+      PV8i: {
+        name: 'PV8i',
+        subtitle: 'Freestanding Ice & Water',
+        image: '/images/products/PV8i.png',
+        price: 209,
+      },
+      PV9i: {
+        name: 'PV9i',
+        subtitle: 'High-Capacity Ice & Water',
+        image: '/images/products/PV9i.png',
+        price: 309,
+      },
     };
 
-    var SAVINGS_MSG = {
-      'Jugs':    'Save up to 80% vs jug delivery — free install included',
-      'Bottles': 'Save up to 60% vs bottled water — free install included',
-      'Unknown': 'Unlimited purified water — free install included',
+    var RECOMMENDATIONS = {
+      water: {
+        low:      'PV2w',
+        moderate: 'PV3w',
+        high:     'PV4w',
+      },
+      ice: {
+        low:      'PV6i',
+        moderate: 'PV8i',
+        high:     'PV9i',
+      },
     };
 
     // ---- Step transitions ----
@@ -219,7 +283,6 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         steps[i].classList.add('hidden');
       }
       var target = document.getElementById(id);
-      // Small delay so the CSS transition fires
       setTimeout(function() {
         target.classList.remove('hidden');
         target.classList.add('visible');
@@ -227,36 +290,41 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ---- Step 1: Office Size ----
-    var sizeBtns = document.querySelectorAll('.size-btn');
-    for (var i = 0; i < sizeBtns.length; i++) {
-      sizeBtns[i].addEventListener('click', function() {
-        funnelState.officeSize = this.getAttribute('data-size');
-        // Highlight selected
-        for (var j = 0; j < sizeBtns.length; j++) {
-          sizeBtns[j].classList.remove('border-sky-500', 'bg-sky-50');
+    // ---- Step 1: Need ----
+    var needBtns = document.querySelectorAll('.need-btn');
+    for (var i = 0; i < needBtns.length; i++) {
+      needBtns[i].addEventListener('click', function() {
+        funnelState.need = this.getAttribute('data-need');
+        for (var j = 0; j < needBtns.length; j++) {
+          needBtns[j].classList.remove('border-sky-500', 'bg-sky-50');
         }
         this.classList.add('border-sky-500', 'bg-sky-50');
-        // Advance after brief highlight
         setTimeout(function() { showStep('step-2'); }, 200);
       });
     }
 
-    // ---- Step 2: Current Solution ----
-    var solBtns = document.querySelectorAll('.solution-btn');
-    for (var i = 0; i < solBtns.length; i++) {
-      solBtns[i].addEventListener('click', function() {
-        funnelState.currentSolution = this.getAttribute('data-solution');
-        // Highlight selected
-        for (var j = 0; j < solBtns.length; j++) {
-          solBtns[j].classList.remove('border-sky-500', 'bg-sky-50');
+    // ---- Step 2: Consumption ----
+    var consBtns = document.querySelectorAll('.consumption-btn');
+    for (var i = 0; i < consBtns.length; i++) {
+      consBtns[i].addEventListener('click', function() {
+        funnelState.consumption = this.getAttribute('data-consumption');
+        for (var j = 0; j < consBtns.length; j++) {
+          consBtns[j].classList.remove('border-sky-500', 'bg-sky-50');
         }
         this.classList.add('border-sky-500', 'bg-sky-50');
-        // Set price & savings message
-        var p = PRICING[funnelState.officeSize] || PRICING['11-25'];
-        document.getElementById('price-display').textContent = p.label;
-        document.getElementById('savings-msg').textContent = SAVINGS_MSG[funnelState.currentSolution] || SAVINGS_MSG['Unknown'];
-        // Advance
+
+        // Look up recommended product
+        var productKey = RECOMMENDATIONS[funnelState.need][funnelState.consumption];
+        funnelState.product = productKey;
+        var product = PRODUCTS[productKey];
+
+        // Populate product card
+        document.getElementById('product-image').src = product.image;
+        document.getElementById('product-image').alt = product.name;
+        document.getElementById('product-name').textContent = product.name;
+        document.getElementById('product-subtitle').textContent = product.subtitle;
+        document.getElementById('product-price').textContent = '$' + product.price;
+
         setTimeout(function() { showStep('step-3'); }, 200);
       });
     }
@@ -309,7 +377,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         phone: document.getElementById('inp-phone').value.trim() || null,
         first_name: firstName || null,
         last_name: lastName || null,
-        current_solution: funnelState.currentSolution || null,
+        current_solution: funnelState.need === 'ice' ? 'Water & Ice' : 'Water',
         promo_code: urlPromo || null,
       };
 
@@ -326,8 +394,9 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
             gtag('event', 'generate_lead', {
               event_category: 'form',
               event_label: 'flyer_lp',
-              office_size: funnelState.officeSize,
-              current_solution: funnelState.currentSolution,
+              need: funnelState.need,
+              consumption: funnelState.consumption,
+              recommended_product: funnelState.product,
             });
           }
           showStep('step-success');
