@@ -17,6 +17,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <script is:inline>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" already loaded"):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key:"AIzaSyAsMm0WXezkhqAkKJ7B9pyU33gegoGbcfQ",v:"weekly"});</script>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RT2GYZLRSW"></script>
@@ -35,6 +36,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   })(window,document,'script','dataLayer','GTM-NHL3XGV2');</script>
 
   <style is:global>
+    .gm-err-container,.gm-err-title,.gm-err-message,.gm-err-autocomplete{display:none!important}
     .step { transition: opacity 0.3s ease, transform 0.3s ease; }
     .step.hidden { opacity: 0; transform: translateY(12px); pointer-events: none; position: absolute; }
     .step.visible { opacity: 1; transform: translateY(0); position: relative; }
@@ -156,8 +158,11 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       <!-- Form -->
       <form id="lead-form" class="space-y-3">
         <input type="text" id="inp-name" required placeholder="Your name" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
-        <input type="text" id="inp-business" required placeholder="Business name" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
+        <input type="text" id="inp-business" required placeholder="Company name" autocomplete="off" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
+        <input type="text" id="inp-address" required placeholder="Business address" autocomplete="off" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
+        <input type="hidden" id="inp-place-id" />
         <input type="tel" id="inp-phone" required placeholder="Phone number" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
+        <input type="email" id="inp-email" required placeholder="Email address" class="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
         <button type="submit" id="submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-4 px-6 rounded-xl transition-colors text-lg cursor-pointer shadow-lg shadow-sky-500/25 disabled:opacity-50 disabled:cursor-not-allowed">
           Claim Free Install &rarr;
         </button>
@@ -171,7 +176,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
       </div>
       <h2 class="text-2xl font-bold text-gray-900 mb-2">You're All Set!</h2>
-      <p class="text-gray-600">We'll reach out within 1 business day to get you started.</p>
+      <p class="text-gray-600">Expect a call from our team shortly to get you started.</p>
       <p class="text-sm text-gray-400 mt-4">Free installation &bull; No obligation</p>
     </div>
 
@@ -374,6 +379,56 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     var urlSource = urlParams.get('source') || 'qr_scan';
     var urlPromo = urlParams.get('promo') || '';
 
+    // ---- Google Places Autocomplete (on address field) ----
+    var placeData = {};
+    async function initAutocomplete() {
+      try { await google.maps.importLibrary('places'); } catch(e) { return; }
+      var addressInput = document.getElementById('inp-address');
+      var autocomplete = new google.maps.places.Autocomplete(addressInput, {
+        componentRestrictions: { country: 'us' },
+        types: ['address'],
+        fields: ['address_components', 'formatted_address', 'place_id'],
+      });
+
+      autocomplete.setBounds(new google.maps.LatLngBounds(
+        { lat: 25.8, lng: -106.6 },
+        { lat: 36.5, lng: -93.5 }
+      ));
+
+      autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place) return;
+
+        placeData = {};
+        var streetNum = '';
+        var streetName = '';
+
+        if (place.address_components) {
+          for (var i = 0; i < place.address_components.length; i++) {
+            var comp = place.address_components[i];
+            var type = comp.types[0];
+            if (type === 'street_number') streetNum = comp.long_name;
+            if (type === 'route') streetName = comp.long_name;
+            if (type === 'locality') placeData.city = comp.long_name;
+            if (type === 'administrative_area_level_1') placeData.state = comp.short_name;
+            if (type === 'postal_code') placeData.zip = comp.long_name;
+          }
+        }
+
+        placeData.street = (streetNum + ' ' + streetName).trim();
+        placeData.place_id = place.place_id || '';
+
+        if (placeData.street) {
+          addressInput.value = placeData.street + (placeData.city ? ', ' + placeData.city + ', ' + (placeData.state || '') + ' ' + (placeData.zip || '') : '');
+        } else if (place.formatted_address) {
+          addressInput.value = place.formatted_address;
+        }
+
+        document.getElementById('inp-place-id').value = placeData.place_id;
+      });
+    }
+    initAutocomplete();
+
     // ---- Form Submit → ingest-lead ----
     var form = document.getElementById('lead-form');
     var submitBtn = document.getElementById('submit-btn');
@@ -395,12 +450,33 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         source: urlSource,
         form_type: 'flyer',
         business_name: document.getElementById('inp-business').value.trim(),
+        address: document.getElementById('inp-address').value.trim() || null,
+        city: placeData.city || null,
+        state: placeData.state || null,
+        zip: placeData.zip || null,
+        google_place_id: document.getElementById('inp-place-id').value || null,
         phone: document.getElementById('inp-phone').value.trim() || null,
+        email: document.getElementById('inp-email').value.trim() || null,
         first_name: firstName || null,
         last_name: lastName || null,
         current_solution: funnelState.need === 'ice' ? 'Water & Ice' : 'Water',
         promo_code: urlPromo || null,
+        recommended_product: funnelState.product || null,
+        estimated_price: PRODUCTS[funnelState.product] ? PRODUCTS[funnelState.product].price : null,
       };
+
+      // Parse address into structured fields if Places wasn't used
+      if (!placeData.city && payload.address) {
+        var addrParts = payload.address.split(',').map(function(s) { return s.trim(); });
+        if (addrParts.length >= 3) {
+          var stateZip = addrParts[addrParts.length - 1].split(/\s+/);
+          if (stateZip.length >= 2) {
+            payload.state = stateZip[0];
+            payload.zip = stateZip.slice(1).join(' ');
+          }
+          payload.city = addrParts[addrParts.length - 2];
+        }
+      }
 
       try {
         var res = await fetch(API + '/ingest-lead', {
