@@ -962,7 +962,7 @@ import '../../styles/global.css'
       scorePricingCompletion();
     });
 
-    var SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
+    var SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
 
     function scorePricingCompletion() {
       try {
