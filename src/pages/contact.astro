@@ -350,7 +350,7 @@ import Layout from '../layouts/Layout.astro';
     })();
 
     // --- ingest-lead handlers for trial + referral forms ---
-    const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+    const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
     async function submitToIngestLead(form, payloadBuilder) {
       const btn = form.querySelector('button[type="submit"]');

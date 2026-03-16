@@ -398,7 +398,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
       });
 
       // Trial modal form → ingest-lead
-      const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL;
+      const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       const trialModalForm = document.getElementById('trial-modal-form');
       trialModalForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
