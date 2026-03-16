@@ -171,7 +171,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
             </div>
 
             <!-- Form -->
-            <form action="https://formspree.io/f/mwvneabd" method="POST" class="space-y-4">
+            <form id="trial-modal-form" class="space-y-4">
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -364,8 +364,9 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
           setTimeout(() => toast.classList.add('hidden'), 300);
         }, 4000);
       }
+      window.showToast = showToast;
 
-      // Intercept Formspree submissions
+      // Intercept Formspree submissions (support form only)
       document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
@@ -384,9 +385,6 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
             if (res.ok) {
               showToast('Message sent! PureVida will reach out shortly.', true);
               form.reset();
-              // Close modal if inside one
-              const modal = form.closest('#trial-modal');
-              if (modal) setTimeout(() => closeModal(), 1500);
             } else {
               showToast('Something went wrong. Please try again.', false);
             }
@@ -397,6 +395,56 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
           btn.disabled = false;
           btn.textContent = originalText;
         });
+      });
+
+      // Trial modal form → ingest-lead
+      const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
+      const trialModalForm = document.getElementById('trial-modal-form');
+      trialModalForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        try {
+          const fd = new FormData(form);
+          const fullName = (fd.get('name') || '').toString().trim();
+          const parts = fullName.split(/\s+/);
+          const first_name = parts[0] || '';
+          const last_name = parts.slice(1).join(' ') || '';
+
+          const payload = {
+            source: 'website',
+            form_type: 'contact',
+            business_name: (fd.get('company') || '').toString().trim(),
+            first_name,
+            last_name,
+            email: (fd.get('email') || '').toString().trim(),
+            phone: (fd.get('phone') || '').toString().trim(),
+            address: (fd.get('company_address') || '').toString().trim(),
+          };
+
+          const res = await fetch(`${SUPABASE_URL}/functions/v1/ingest-lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (res.ok) {
+            showToast('Request sent! PureVida will reach out shortly.', true);
+            form.reset();
+            setTimeout(() => closeModal(), 1500);
+          } else {
+            showToast('Something went wrong. Please try again.', false);
+          }
+        } catch {
+          showToast('Network error. Please try again.', false);
+        }
+
+        btn.disabled = false;
+        btn.textContent = originalText;
       });
 
       // Phone number formatting
