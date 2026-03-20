@@ -193,13 +193,9 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
               <div>
                 <select name="city" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-white">
                   <option value="">Select your area...</option>
-                  <option value="Dallas">Dallas</option>
-                  <option value="Fort Worth">Fort Worth</option>
-                  <option value="Plano / Frisco">Plano / Frisco</option>
-                  <option value="Irving / Arlington">Irving / Arlington</option>
-                  <option value="Other DFW Area">Other DFW Area</option>
-                  <option value="Austin">Austin</option>
-                  <option value="San Antonio">San Antonio</option>
+                  <option value="Greater DFW Metro">Greater DFW Metro</option>
+                  <option value="Greater Austin Metro">Greater Austin Metro</option>
+                  <option value="Greater San Antonio Metro">Greater San Antonio Metro</option>
                 </select>
               </div>
               <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
@@ -383,8 +379,8 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
           const fd = new FormData(form);
           const cityVal = (fd.get('city') || '').toString();
           function getBranch(city) {
-            if (city === 'Austin') return 'ATX';
-            if (city === 'San Antonio') return 'SAN';
+            if (city === 'Greater Austin Metro') return 'ATX';
+            if (city === 'Greater San Antonio Metro') return 'SAN';
             return 'DFW';
           }
 
