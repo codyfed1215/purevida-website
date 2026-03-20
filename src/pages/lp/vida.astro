@@ -1,7 +1,7 @@
 ---
-// Landing Page: Product Catalog
-// Standalone page — no shared Layout
-// Route: /lp/products
+// Google Ads Landing Page: Product Catalog + Lead Capture
+// Standalone page — no shared Layout (no nav distractions)
+// Route: /lp/vida
 import '../../styles/global.css'
 
 const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
@@ -11,10 +11,28 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Products | PureVida Water</title>
-  <meta name="description" content="Explore PureVida's full lineup of bottleless water coolers, ice machines, and coffee systems." />
+  <title>Free Trial – Bottle-less Office Water, Ice &amp; Coffee | PureVida Water</title>
+  <meta name="description" content="Get bottle-less office water free for 7 days. Quick & easy installation, full service included. Serving DFW, Austin & San Antonio." />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RT2GYZLRSW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RT2GYZLRSW');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NHL3XGV2');</script>
+
   <style>
     .product-card { transition: all 0.2s ease; }
     @media (hover: hover) {
@@ -24,6 +42,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NHL3XGV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ============ PRICING BANNER ============ -->
   <a href="#products" class="block bg-gray-900 text-white text-center py-2.5 px-4 text-sm font-bold hover:bg-gray-800 transition tracking-wide">
@@ -100,44 +120,20 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
           </ul>
         </div>
 
-        <!-- Right: Form Card -->
-        <div class="bg-white rounded-2xl shadow-xl shadow-gray-900/10 p-5 sm:p-8">
-          <!-- Header -->
-          <div class="text-center mb-3">
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Request Your Free Trial</h3>
-            <p class="text-gray-600 mt-1 text-sm">Use Code <strong class="text-sky-500">#VIDA</strong> to get $5 per System off your Monthly Payment.</p>
+        <!-- Right: CTA Card -->
+        <div class="bg-white rounded-2xl shadow-xl shadow-gray-900/10 p-5 sm:p-8 flex flex-col items-center justify-center text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-sky-100 rounded-full mb-4">
+            <svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
-
-          <!-- Form -->
-          <form id="trial-form" class="space-y-2.5">
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-            <div class="grid sm:grid-cols-2 gap-2.5">
-              <div>
-                <input type="text" id="inp-name" name="name" placeholder="Your Name" required class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-              </div>
-              <div>
-                <input type="text" id="inp-company" name="company" placeholder="Company Name" required class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-              </div>
-            </div>
-            <div>
-              <input type="email" id="inp-email" name="email" placeholder="Work Email" required class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-            </div>
-            <div>
-              <input type="tel" id="inp-phone" name="phone" placeholder="Phone Number" required class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-            </div>
-            <div>
-              <input type="text" id="inp-address" name="company_address" placeholder="Company Address" required class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-            </div>
-            <div>
-              <input type="text" id="inp-promo" name="promo_code" placeholder="Promo Code (Optional)" class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm" />
-            </div>
-            <div>
-              <textarea id="inp-notes" name="notes" placeholder="Notes (Optional)" rows="2" class="w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition text-sm"></textarea>
-            </div>
-            <button type="submit" id="submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-3 rounded-xl font-semibold text-base transition shadow-lg shadow-sky-500/30 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-              Request Free Trial
-            </button>
-          </form>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Free, No-Obligation Trial</h3>
+          <p class="text-gray-600 text-sm mb-4">We handle everything — installation, maintenance, and service. Try it risk-free.</p>
+          <div class="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-sm font-semibold px-3 py-1.5 rounded-full mb-5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            $5/mo discount per system applied
+          </div>
+          <button data-open-modal class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer">
+            Request Free Trial
+          </button>
         </div>
       </div>
     </div>
@@ -415,17 +411,24 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               <svg class="w-7 h-7 sm:w-8 sm:h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
             </div>
             <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Request Your Free Trial</h3>
-            <p class="text-gray-600 mt-2">Use Code <strong class="text-sky-500">#VIDA</strong> to get $5 per System off your Monthly Payment.</p>
+            <p id="modal-product-line" class="text-sky-600 font-semibold mt-1 hidden"></p>
+            <div class="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-sm font-semibold px-3 py-1.5 rounded-full mt-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              $5/mo discount per system applied
+            </div>
           </div>
           <form id="modal-form" class="space-y-4">
             <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
-                <input type="text" id="modal-name" name="name" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+                <input type="text" id="modal-fname" name="first_name" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
               <div>
-                <input type="text" id="modal-company" name="company" placeholder="Company Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+                <input type="text" id="modal-lname" name="last_name" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
+            </div>
+            <div>
+              <input type="text" id="modal-company" name="company" placeholder="Company Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
             <div>
               <input type="email" id="modal-email" name="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
@@ -434,13 +437,16 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               <input type="tel" id="modal-phone" name="phone" placeholder="Phone Number" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
             <div>
-              <input type="text" id="modal-address" name="company_address" placeholder="Company Address" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-            <div>
-              <input type="text" id="modal-promo" name="promo_code" placeholder="Promo Code (Optional)" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-            </div>
-            <div>
-              <textarea id="modal-notes" name="notes" placeholder="Notes (Optional)" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"></textarea>
+              <select id="modal-city" name="city" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-white">
+                <option value="">Select your area...</option>
+                <option value="Dallas">Dallas</option>
+                <option value="Fort Worth">Fort Worth</option>
+                <option value="Plano / Frisco">Plano / Frisco</option>
+                <option value="Irving / Arlington">Irving / Arlington</option>
+                <option value="Other DFW Area">Other DFW Area</option>
+                <option value="Austin">Austin</option>
+                <option value="San Antonio">San Antonio</option>
+              </select>
             </div>
             <button type="submit" id="modal-submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               Request Free Trial
@@ -486,9 +492,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     updateWord();
     setInterval(updateWord, 3000);
 
-    // Phone formatting
-    var phoneInput = document.getElementById('inp-phone');
-    phoneInput.addEventListener('input', function(e) {
+    // ---- Shared helpers ----
+    function formatPhone(e) {
       var val = e.target.value.replace(/\D/g, '');
       if (val.length > 10) val = val.slice(0, 10);
       if (val.length >= 7) {
@@ -499,36 +504,39 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         val = '(' + val;
       }
       e.target.value = val;
-    });
+    }
 
-    var form = document.getElementById('trial-form');
-    var submitBtn = document.getElementById('submit-btn');
-    var submitting = false;
+    function getBranch(city) {
+      if (city === 'Austin') return 'ATX';
+      if (city === 'San Antonio') return 'SAN';
+      return 'DFW';
+    }
 
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      if (submitting) return;
-      submitting = true;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
+    // Track selected product
+    var selectedProduct = null;
 
-      var fullName = document.getElementById('inp-name').value.trim();
-      var nameParts = fullName.split(/\s+/);
-      var firstName = nameParts[0] || '';
-      var lastName = nameParts.slice(1).join(' ') || '';
-
+    function buildPayload() {
+      var cityVal = document.getElementById('modal-city').value;
       var payload = {
-        source: 'website',
+        source: 'google_ads',
         form_type: 'contact',
-        business_name: document.getElementById('inp-company').value.trim(),
-        first_name: firstName || null,
-        last_name: lastName || null,
-        email: document.getElementById('inp-email').value.trim() || null,
-        phone: document.getElementById('inp-phone').value.trim() || null,
-        address: document.getElementById('inp-address').value.trim() || null,
-        promo_code: document.getElementById('inp-promo').value.trim() || null,
+        business_name: document.getElementById('modal-company').value.trim(),
+        first_name: document.getElementById('modal-fname').value.trim() || null,
+        last_name: document.getElementById('modal-lname').value.trim() || null,
+        email: document.getElementById('modal-email').value.trim() || null,
+        phone: document.getElementById('modal-phone').value.trim() || null,
+        city: cityVal || null,
+        branch: getBranch(cityVal),
+        promo_code: 'VIDA',
       };
+      if (selectedProduct) {
+        payload.recommended_product = selectedProduct.key;
+        payload.estimated_price = selectedProduct.price;
+      }
+      return payload;
+    }
 
+    async function submitForm(payload, btn, btnText) {
       try {
         var res = await fetch(API + '/ingest-lead', {
           method: 'POST',
@@ -538,20 +546,27 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         var json = await res.json();
 
         if (json.ok) {
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              event_category: 'form',
+              event_label: 'google_ads_vida',
+              city: payload.city,
+            });
+          }
           window.location.href = '/free-trial-thank-you';
         } else {
           alert(json.error || 'Something went wrong. Please try again.');
-          submitting = false;
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Request Free Trial';
+          return false;
         }
       } catch (err) {
         alert('Network error. Please check your connection and try again.');
-        submitting = false;
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Request Free Trial';
+        return false;
       }
-    });
+      return true;
+    }
+
+    // ---- Phone formatting ----
+    document.getElementById('modal-phone').addEventListener('input', formatPhone);
 
     // ---- Modal ----
     var modal = document.getElementById('trial-modal');
@@ -579,10 +594,19 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       setTimeout(function() { modal.classList.add('hidden'); }, 300);
     }
 
-    // Use event delegation for dynamically rendered buttons
     document.addEventListener('click', function(e) {
-      if (e.target.closest('[data-open-modal]')) {
+      var btn = e.target.closest('[data-open-modal]');
+      if (btn) {
         e.preventDefault();
+        var productLine = document.getElementById('modal-product-line');
+        if (btn.dataset.productKey) {
+          selectedProduct = { key: btn.dataset.productKey, name: btn.dataset.productName, price: Number(btn.dataset.productPrice) };
+          productLine.textContent = selectedProduct.name + ' — $' + selectedProduct.price + '/mo';
+          productLine.classList.remove('hidden');
+        } else {
+          selectedProduct = null;
+          productLine.classList.add('hidden');
+        }
         openModal();
       }
     });
@@ -590,22 +614,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
 
-    // Modal phone formatting
-    var modalPhone = document.getElementById('modal-phone');
-    modalPhone.addEventListener('input', function(e) {
-      var val = e.target.value.replace(/\D/g, '');
-      if (val.length > 10) val = val.slice(0, 10);
-      if (val.length >= 7) {
-        val = '(' + val.slice(0, 3) + ') ' + val.slice(3, 6) + '-' + val.slice(6);
-      } else if (val.length >= 4) {
-        val = '(' + val.slice(0, 3) + ') ' + val.slice(3);
-      } else if (val.length >= 1) {
-        val = '(' + val;
-      }
-      e.target.value = val;
-    });
-
-    // Modal form submit
+    // ---- Modal form submit ----
     var modalForm = document.getElementById('modal-form');
     var modalSubmitBtn = document.getElementById('modal-submit-btn');
     var modalSubmitting = false;
@@ -617,41 +626,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       modalSubmitBtn.disabled = true;
       modalSubmitBtn.textContent = 'Submitting...';
 
-      var fullName = document.getElementById('modal-name').value.trim();
-      var nameParts = fullName.split(/\s+/);
-      var firstName = nameParts[0] || '';
-      var lastName = nameParts.slice(1).join(' ') || '';
-
-      var payload = {
-        source: 'website',
-        form_type: 'contact',
-        business_name: document.getElementById('modal-company').value.trim(),
-        first_name: firstName || null,
-        last_name: lastName || null,
-        email: document.getElementById('modal-email').value.trim() || null,
-        phone: document.getElementById('modal-phone').value.trim() || null,
-        address: document.getElementById('modal-address').value.trim() || null,
-        promo_code: document.getElementById('modal-promo').value.trim() || null,
-      };
-
-      try {
-        var res = await fetch(API + '/ingest-lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        var json = await res.json();
-
-        if (json.ok) {
-          window.location.href = '/free-trial-thank-you';
-        } else {
-          alert(json.error || 'Something went wrong. Please try again.');
-          modalSubmitting = false;
-          modalSubmitBtn.disabled = false;
-          modalSubmitBtn.textContent = 'Request Free Trial';
-        }
-      } catch (err) {
-        alert('Network error. Please check your connection and try again.');
+      var ok = await submitForm(buildPayload(), modalSubmitBtn, 'Request Free Trial');
+      if (!ok) {
         modalSubmitting = false;
         modalSubmitBtn.disabled = false;
         modalSubmitBtn.textContent = 'Request Free Trial';
@@ -840,7 +816,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
             '<p class="text-xl text-sky-600 font-medium mb-6">' + p.subtitle + '</p>' +
             descHtml +
             '<ul class="space-y-2 mb-8">' + specsHtml + '</ul>' +
-            '<button data-open-modal class="inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer">' +
+            '<button data-open-modal data-product-key="' + key + '" data-product-name="' + p.name + '" data-product-price="' + p.price + '" class="inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer">' +
               'Request Free Trial' +
               '<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>' +
             '</button>' +

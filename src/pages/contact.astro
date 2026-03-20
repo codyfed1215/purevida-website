@@ -62,13 +62,17 @@ import Layout from '../layouts/Layout.astro';
         <form id="contact-trial-form" class="space-y-4">
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
-              <label for="trial-name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-              <input type="text" id="trial-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              <label for="trial-fname" class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+              <input type="text" id="trial-fname" name="first_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
             <div>
-              <label for="trial-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
-              <input type="text" id="trial-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
+              <label for="trial-lname" class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+              <input type="text" id="trial-lname" name="last_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
+          </div>
+          <div>
+            <label for="trial-company" class="block text-sm font-medium text-gray-700 mb-1">Company *</label>
+            <input type="text" id="trial-company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
           </div>
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
@@ -81,12 +85,17 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
           <div>
-            <label for="trial-address" class="block text-sm font-medium text-gray-700 mb-1">Company Address *</label>
-            <input type="text" id="trial-address" name="company_address" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
-          </div>
-          <div>
-            <label for="trial-notes" class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
-            <textarea id="trial-notes" name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" placeholder="Anything else PureVida should know..."></textarea>
+            <label for="trial-city" class="block text-sm font-medium text-gray-700 mb-1">City / Service Area *</label>
+            <select id="trial-city" name="city" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-white">
+              <option value="">Select your area...</option>
+              <option value="Dallas">Dallas</option>
+              <option value="Fort Worth">Fort Worth</option>
+              <option value="Plano / Frisco">Plano / Frisco</option>
+              <option value="Irving / Arlington">Irving / Arlington</option>
+              <option value="Other DFW Area">Other DFW Area</option>
+              <option value="Austin">Austin</option>
+              <option value="San Antonio">San Antonio</option>
+            </select>
           </div>
           <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer">
             Request Free Trial
@@ -381,22 +390,28 @@ import Layout from '../layouts/Layout.astro';
       btn.textContent = originalText;
     }
 
+    function getBranch(city) {
+      if (city === 'Austin') return 'ATX';
+      if (city === 'San Antonio') return 'SAN';
+      return 'DFW';
+    }
+
     // Contact page trial form
     const contactTrialForm = document.getElementById('contact-trial-form');
     contactTrialForm?.addEventListener('submit', (e) => {
       e.preventDefault();
       submitToIngestLead(e.currentTarget, (fd) => {
-        const fullName = (fd.get('name') || '').toString().trim();
-        const parts = fullName.split(/\s+/);
+        const cityVal = (fd.get('city') || '').toString();
         return {
           source: 'website',
           form_type: 'contact',
           business_name: (fd.get('company') || '').toString().trim(),
-          first_name: parts[0] || '',
-          last_name: parts.slice(1).join(' ') || '',
+          first_name: (fd.get('first_name') || '').toString().trim(),
+          last_name: (fd.get('last_name') || '').toString().trim(),
           email: (fd.get('email') || '').toString().trim(),
           phone: (fd.get('phone') || '').toString().trim(),
-          address: (fd.get('company_address') || '').toString().trim(),
+          city: cityVal || null,
+          branch: getBranch(cityVal),
         };
       });
     });

@@ -175,63 +175,34 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                  />
+                  <input type="text" name="first_name" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
                 </div>
                 <div>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="Company Name"
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                  />
+                  <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
                 </div>
               </div>
               <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Work Email"
-                  required
-                  class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
+                <input type="text" name="company" placeholder="Company Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
               <div>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  required
-                  class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
+                <input type="email" name="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
               <div>
-                <input
-                  type="text"
-                  name="company_address"
-                  placeholder="Company Address"
-                  required
-                  class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                />
+                <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
               </div>
               <div>
-                <textarea
-                  name="notes"
-                  placeholder="Notes (Optional)"
-                  rows="3"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"
-                ></textarea>
+                <select name="city" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition appearance-none bg-white">
+                  <option value="">Select your area...</option>
+                  <option value="Dallas">Dallas</option>
+                  <option value="Fort Worth">Fort Worth</option>
+                  <option value="Plano / Frisco">Plano / Frisco</option>
+                  <option value="Irving / Arlington">Irving / Arlington</option>
+                  <option value="Other DFW Area">Other DFW Area</option>
+                  <option value="Austin">Austin</option>
+                  <option value="San Antonio">San Antonio</option>
+                </select>
               </div>
-              <button
-                type="submit"
-                class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30"
-              >
+              <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30">
                 Request Free Trial
               </button>
             </form>
@@ -410,20 +381,23 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
 
         try {
           const fd = new FormData(form);
-          const fullName = (fd.get('name') || '').toString().trim();
-          const parts = fullName.split(/\s+/);
-          const first_name = parts[0] || '';
-          const last_name = parts.slice(1).join(' ') || '';
+          const cityVal = (fd.get('city') || '').toString();
+          function getBranch(city) {
+            if (city === 'Austin') return 'ATX';
+            if (city === 'San Antonio') return 'SAN';
+            return 'DFW';
+          }
 
           const payload = {
             source: 'website',
             form_type: 'contact',
             business_name: (fd.get('company') || '').toString().trim(),
-            first_name,
-            last_name,
+            first_name: (fd.get('first_name') || '').toString().trim(),
+            last_name: (fd.get('last_name') || '').toString().trim(),
             email: (fd.get('email') || '').toString().trim(),
             phone: (fd.get('phone') || '').toString().trim(),
-            address: (fd.get('company_address') || '').toString().trim(),
+            city: cityVal || null,
+            branch: getBranch(cityVal),
           };
 
           const res = await fetch(`${SUPABASE_URL}/functions/v1/ingest-lead`, {
