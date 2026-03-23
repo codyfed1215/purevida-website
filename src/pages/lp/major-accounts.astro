@@ -920,10 +920,30 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="container">
-      <span style="display:inline-block;background:#0c4a6e;color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:6px 16px;border-radius:999px;margin-bottom:16px;">Major Accounts</span>
-      <h1>See exactly what bottleless water costs — and what it saves.</h1>
-      <p style="margin-top:12px;">As a Major Account, you have specific needs. We have built this structure out specifically to meet those needs.</p>
-      <p style="margin-top:8px;font-size:15px;">Compare all four service options side by side. Add multiple systems, set custom pricing, and see combined 5 and 10-year totals update in real time.</p>
+      <h1>PureVida &amp; Major Accounts</h1>
+      <p style="margin-top:12px;font-weight:700;font-size:18px;">As a large account, you have specific needs. We have built out our Major Accounts Program to meet and exceed those needs.</p>
+      <ul style="margin-top:16px;list-style:none;padding:0;max-width:700px;margin-left:auto;margin-right:auto;text-align:left;">
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          Invest in Quality Equipment that will last you a long time. PureVida's equipment has an 11.5 year average useful life if it is properly maintained.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          Implement a solution your employees will love. The "cheapest" option is actually not cheap if no one uses it, it's just a waste of time, money and effort.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          Invest in fast, professional, local service. PureVida is based in DeSoto and provides a dedicated technician, remote support, and customer portal for qualifying major accounts.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          PureVida is locally owned. If you ever have a real problem, don't tie yourself to corporate red tape and bureaucracy. Get fast decisions and help so you can focus on your organization.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          Flexibility is key to a good vendor relationship. PureVida can tailor make a program that specifically works best for you and your needs.
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -977,6 +997,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
                 <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_contactless" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
               </td>
             </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_system_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on system comparisons..."></textarea>
+              </td>
+            </tr>
           </table>
         </div>
       </div>
@@ -998,6 +1024,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               <td style="padding:12px 20px;text-align:right;width:160px;white-space:nowrap;">
                 <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_tm" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
                 <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_tm" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_service_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on service comparisons..."></textarea>
               </td>
             </tr>
           </table>
@@ -1024,17 +1056,9 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               </td>
             </tr>
             <tr>
-              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Are you looking to pay monthly, quarterly, annually or even just a one-time payment?</td>
-              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;white-space:nowrap;">
-                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_payment" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
-                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_payment" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding:12px 20px;font-size:14px;color:#1e293b;">Are you looking to lock in your payment for the longest time period possible?</td>
-              <td style="padding:12px 20px;text-align:right;width:160px;white-space:nowrap;">
-                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_lockin" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
-                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_lockin" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_ownership_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on ownership and payment..."></textarea>
               </td>
             </tr>
           </table>
@@ -1100,6 +1124,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
                   <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="5" style="margin-right:2px;accent-color:#0ea5e9;" /> 5</label>
                   <span style="font-size:12px;color:#475569;font-weight:600;">Least Important</span>
                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_priorities_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on your priorities..."></textarea>
               </td>
             </tr>
           </table>
