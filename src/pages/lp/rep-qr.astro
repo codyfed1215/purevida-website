@@ -420,7 +420,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               </select>
             </div>
             <div>
-              <input type="text" id="modal-promo" name="promo_code" placeholder="Promo Code" readonly class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 text-gray-700 cursor-not-allowed" />
+              <input type="text" id="modal-promo" name="promo_code" placeholder="Promo Code" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition" />
             </div>
             <button type="submit" id="modal-submit-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-sky-500/30 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
               Request Free Trial
@@ -446,12 +446,9 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
   <script define:vars={{ SUPABASE_URL }}>
     var API = SUPABASE_URL + '/functions/v1';
 
-    // Read promo code from URL query string
+    // Read rep code from URL query string (for attribution, not shown in form)
     var urlParams = new URLSearchParams(window.location.search);
-    var promoFromUrl = urlParams.get('promo') || '';
-    if (promoFromUrl) {
-      document.getElementById('modal-promo').value = promoFromUrl.toUpperCase();
-    }
+    var repCode = (urlParams.get('promo') || '').toUpperCase();
 
     // Rotating word animation
     var words = ['Business.', 'Warehouse.', 'Breakroom.', 'Lobby.', 'School.', 'Hospital.', 'Gym.', 'Business.'];
@@ -598,6 +595,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         city: cityVal || null,
         branch: getBranch(cityVal),
         promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || null,
+        rep_code: repCode || null,
       };
       if (selectedProduct) {
         payload.recommended_product = selectedProduct.key;
