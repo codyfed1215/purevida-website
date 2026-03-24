@@ -1,0 +1,223 @@
+---
+// Landing Page: Major Accounts Department Questionnaire
+// Standalone page — no shared Layout
+// Route: /lp/major-accounts-dept-questionnaire
+import '../../styles/global.css'
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Department Questionnaire | PureVida Water</title>
+  <meta name="description" content="PureVida Water department questionnaire — help us understand your department's specific needs for water and ice systems." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --navy: #0c4a6e;
+      --blue-accent: #0ea5e9;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #111827;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(to bottom right, #f0f9ff, #ecfeff);
+      color: #111827;
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 auto 16px;
+      max-width: 720px;
+      color: #111827;
+    }
+    .hero p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #4b5563;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Form inputs */
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1e293b;
+      background: #fff;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--blue-accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 32px 20px 28px; }
+      .hero h1 { font-size: 24px; }
+      .hero p { font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ============ NAV ============ -->
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <a href="https://purevidawater.com" class="flex items-center gap-3">
+        <img src="/images/water-drop-logo.svg" alt="PureVida Water" class="h-14 w-auto" />
+        <span class="text-3xl font-bold tracking-tight">
+          <span class="text-sky-500">Pure</span><span class="text-sky-800">Vida</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="mailto:contact@purevidawater.com" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          contact@purevidawater.com
+        </a>
+        <a href="tel:+18885340117" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (888) 534-0117
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      <h1>Department Needs Assessment</h1>
+      <p style="margin-top:12px;font-weight:700;font-size:18px;">Your organization is evaluating PureVida Water for premium water and ice solutions. Please take a moment to tell us about your department's specific needs so we can build the best solution for your entire organization.</p>
+    </div>
+  </section>
+
+  <!-- ============ QUESTIONNAIRE ============ -->
+  <section style="padding:48px 24px;background:#fff;">
+    <div class="container" style="max-width:900px;">
+
+      <!-- Section 1: Department Information -->
+      <div style="margin-bottom:32px;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Department Information</div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;padding:20px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <label class="form-label">Department Name</label>
+              <input type="text" name="dept_name" class="form-input" placeholder="e.g. Marketing, Operations, HR" />
+            </div>
+            <div>
+              <label class="form-label">Building / Floor / Location</label>
+              <input type="text" name="dept_location" class="form-input" placeholder="e.g. Building A, 3rd Floor" />
+            </div>
+            <div>
+              <label class="form-label">Contact Name</label>
+              <input type="text" name="dept_contact" class="form-input" placeholder="Department head or point of contact" />
+            </div>
+            <div>
+              <label class="form-label">Contact Email</label>
+              <input type="email" name="dept_email" class="form-input" placeholder="email@company.com" />
+            </div>
+            <div>
+              <label class="form-label">Contact Phone Number</label>
+              <input type="tel" name="dept_phone" class="form-input" placeholder="(555) 555-1234" />
+            </div>
+            <div style="grid-column:1/-1;">
+              <label class="form-label">Physical Address</label>
+              <input type="text" name="dept_address" class="form-input" placeholder="Street address, city, state, zip" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Current Setup -->
+      <div style="margin-bottom:32px;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Current Setup</div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">How many people do you have in your department on average at any given time?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;">
+                <input type="number" name="dept_headcount" class="form-input" style="width:80px;text-align:center;" placeholder="0" min="1" />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">How many break areas do you have in your department?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;">
+                <input type="number" name="q_break_areas" class="form-input" style="width:80px;text-align:center;" placeholder="0" min="0" />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">How many drinking water coolers or systems do you have in your department?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;">
+                <input type="number" name="q_water_systems" class="form-input" style="width:80px;text-align:center;" placeholder="0" min="0" />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">How many ice systems do you have in your department?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;">
+                <input type="number" name="q_ice_systems" class="form-input" style="width:80px;text-align:center;" placeholder="0" min="0" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label class="form-label">Any special notes about your drinking water or ice needs you would like to include here</label>
+                <textarea name="q_current_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Feel free to include any information on your current drinking water or ice system needs. This could be brands and models of what you currently use, consumption levels or special needs you have."></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Submit Section -->
+      <div style="margin-top:32px;">
+        <div style="margin-bottom:16px;">
+          <label class="form-label">Send responses to (email addresses)</label>
+          <input type="text" name="notify_emails" class="form-input" placeholder="email1@company.com, email2@company.com" />
+        </div>
+        <button type="submit" style="width:100%;padding:14px 24px;background:#0ea5e9;color:#fff;font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 0.2s;" onmouseover="this.style.background='#0284c7'" onmouseout="this.style.background='#0ea5e9'">
+          Submit Questionnaire
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

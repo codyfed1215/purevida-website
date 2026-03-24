@@ -1,0 +1,405 @@
+---
+// Landing Page: Major Accounts Admin Questionnaire
+// Standalone page — no shared Layout
+// Route: /lp/major-accounts-admin-questionnaire
+import '../../styles/global.css'
+---
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Major Accounts Admin Questionnaire | PureVida Water</title>
+  <meta name="description" content="PureVida Water Major Accounts admin questionnaire — help us understand your needs so we can build the best solution for your organization." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0284c7;
+      --navy: #0c4a6e;
+      --blue-accent: #0ea5e9;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #111827;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(to bottom right, #f0f9ff, #ecfeff);
+      color: #111827;
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 auto 16px;
+      max-width: 720px;
+      color: #111827;
+    }
+    .hero p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #4b5563;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 32px 20px 28px; }
+      .hero h1 { font-size: 24px; }
+      .hero p { font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ============ NAV ============ -->
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <a href="https://purevidawater.com" class="flex items-center gap-3">
+        <img src="/images/water-drop-logo.svg" alt="PureVida Water" class="h-14 w-auto" />
+        <span class="text-3xl font-bold tracking-tight">
+          <span class="text-sky-500">Pure</span><span class="text-sky-800">Vida</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="mailto:contact@purevidawater.com" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          contact@purevidawater.com
+        </a>
+        <a href="tel:+18885340117" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (888) 534-0117
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      <h1>PureVida &amp; Major Accounts</h1>
+      <p style="margin-top:12px;font-weight:700;font-size:18px;">As a large account, you have specific needs. We have built out our Major Accounts Program to meet and exceed those needs.</p>
+      <ul style="margin-top:16px;list-style:none;padding:0;max-width:700px;margin-left:auto;margin-right:auto;text-align:left;">
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          <strong>Quality That Lasts</strong> — Our equipment averages 11.5 years of useful life with proper maintenance.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          <strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one touches it.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          <span style="white-space:nowrap;"><strong>Fast, Local Service</strong></span> — Dedicated technician, remote support, and a customer portal from our DeSoto headquarters.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          <strong>Locally Owned</strong> — Get fast decisions from real people, not corporate bureaucracy.
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+          <strong>Flexible Programs</strong> — We tailor solutions to fit your organization's specific needs.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ QUESTIONNAIRE ============ -->
+  <section style="padding:48px 24px;background:#fff;">
+    <div class="container" style="max-width:900px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <h2 style="font-size:28px;font-weight:700;color:#0c4a6e;margin:0 0 8px;">How Do We Stack Up?</h2>
+        <p style="font-size:17px;color:#475569;margin:0 0 6px;">You want an apples to apples comparison. We encourage you to ask our competitors these questions.</p>
+      </div>
+
+      <!-- Section 1: System Comparisons -->
+      <div style="margin-bottom:32px;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">System Comparisons <span style="font-weight:400;text-transform:none;font-size:12px;opacity:0.8;">| Select All That Apply</span></div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+          <p style="padding:14px 20px 8px;margin:0;font-size:14px;color:#475569;font-weight:500;">Are you comparing our systems across these factors?</p>
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">6-Stage Filtration w/ Reverse Osmosis</td>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_filtration" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Boost Remineralization w/ Increased PH Options</td>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_boost" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Auto Internal Tank Sanitization</td>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_sanitization" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Auto Leak Detection &amp; Shutoff</td>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_leak" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Hot, Cold, Ambient, Sparkling, Bullet Ice, Crunchy Sonic Ice Options</td>
+              <td style="padding:10px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_options" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:10px 20px;font-size:14px;color:#1e293b;">Contactless Dispense Options</td>
+              <td style="padding:10px 20px;text-align:right;width:120px;">
+                <label style="cursor:pointer;margin-right:16px;font-size:13px;font-weight:600;color:#475569;"><input type="checkbox" name="q_contactless" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_system_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on system comparisons..."></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: Service Comparisons -->
+      <div style="margin-bottom:32px;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Service Comparisons</div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Are you looking at a Time &amp; Materials arrangement where you call us when you need us and we bill you for it?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_tm" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_tm" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Are you looking for an all inclusive service arrangement where we handle everything?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_allinc" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_allinc" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Do you prefer one over the other?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:240px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_preference" value="all_inclusive" style="margin-right:4px;accent-color:#0ea5e9;" /> All Inclusive</label>
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_preference" value="time_materials" style="margin-right:4px;accent-color:#0ea5e9;" /> Time &amp; Materials</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_service_preference" value="no_preference" style="margin-right:4px;accent-color:#0ea5e9;" /> No Preference</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_service_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on service comparisons..."></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: Ownership & Payment Structure -->
+      <div style="margin-bottom:0;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Ownership &amp; Payment Structure</div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Are you looking to rent these systems?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_rent" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_rent" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Are you looking to own these systems outright?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:160px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_own" value="yes" style="margin-right:4px;accent-color:#0ea5e9;" /> Yes</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_own" value="no" style="margin-right:4px;accent-color:#0ea5e9;" /> No</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;font-size:14px;color:#1e293b;">Do you prefer one over the other?</td>
+              <td style="padding:12px 20px;border-bottom:1px solid #f1f5f9;text-align:right;width:240px;white-space:nowrap;">
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_preference" value="rent" style="margin-right:4px;accent-color:#0ea5e9;" /> Rent</label>
+                <label style="cursor:pointer;margin-right:12px;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_preference" value="own" style="margin-right:4px;accent-color:#0ea5e9;" /> Own</label>
+                <label style="cursor:pointer;font-size:13px;font-weight:600;color:#475569;"><input type="radio" name="q_preference" value="no_preference" style="margin-right:4px;accent-color:#0ea5e9;" /> No Preference</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_ownership_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on ownership and payment..."></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 4: What Matters Most -->
+      <div style="margin-top:32px;">
+        <div style="background:#0c4a6e;color:#fff;padding:12px 20px;border-radius:8px 8px 0 0;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">What Matters Most To You?</div>
+        <div style="border:1px solid #cbd5e1;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:14px 20px;border-bottom:1px solid #f1f5f9;">
+                <div style="font-size:14px;font-weight:600;color:#1e293b;margin-bottom:8px;">How important is the quality of the water and system to you?</div>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Most Important</span>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_quality" value="1" style="margin-right:2px;accent-color:#0ea5e9;" /> 1</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_quality" value="2" style="margin-right:2px;accent-color:#0ea5e9;" /> 2</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_quality" value="3" style="margin-right:2px;accent-color:#0ea5e9;" /> 3</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_quality" value="4" style="margin-right:2px;accent-color:#0ea5e9;" /> 4</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_quality" value="5" style="margin-right:2px;accent-color:#0ea5e9;" /> 5</label>
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Least Important</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 20px;border-bottom:1px solid #f1f5f9;">
+                <div style="font-size:14px;font-weight:600;color:#1e293b;margin-bottom:8px;">How important is fast, professional, local service to you?</div>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Most Important</span>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_service_imp" value="1" style="margin-right:2px;accent-color:#0ea5e9;" /> 1</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_service_imp" value="2" style="margin-right:2px;accent-color:#0ea5e9;" /> 2</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_service_imp" value="3" style="margin-right:2px;accent-color:#0ea5e9;" /> 3</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_service_imp" value="4" style="margin-right:2px;accent-color:#0ea5e9;" /> 4</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_service_imp" value="5" style="margin-right:2px;accent-color:#0ea5e9;" /> 5</label>
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Least Important</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 20px;border-bottom:1px solid #f1f5f9;">
+                <div style="font-size:14px;font-weight:600;color:#1e293b;margin-bottom:8px;">How important is lowest possible price to you?</div>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Most Important</span>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_price_imp" value="1" style="margin-right:2px;accent-color:#0ea5e9;" /> 1</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_price_imp" value="2" style="margin-right:2px;accent-color:#0ea5e9;" /> 2</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_price_imp" value="3" style="margin-right:2px;accent-color:#0ea5e9;" /> 3</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_price_imp" value="4" style="margin-right:2px;accent-color:#0ea5e9;" /> 4</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_price_imp" value="5" style="margin-right:2px;accent-color:#0ea5e9;" /> 5</label>
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Least Important</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 20px;">
+                <div style="font-size:14px;font-weight:600;color:#1e293b;margin-bottom:8px;">How important is flexibility of commitment to you?</div>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Most Important</span>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="1" style="margin-right:2px;accent-color:#0ea5e9;" /> 1</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="2" style="margin-right:2px;accent-color:#0ea5e9;" /> 2</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="3" style="margin-right:2px;accent-color:#0ea5e9;" /> 3</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="4" style="margin-right:2px;accent-color:#0ea5e9;" /> 4</label>
+                  <label style="cursor:pointer;font-size:14px;font-weight:700;color:#475569;"><input type="radio" name="q_flex_imp" value="5" style="margin-right:2px;accent-color:#0ea5e9;" /> 5</label>
+                  <span style="font-size:12px;color:#475569;font-weight:600;">Least Important</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 20px;border-top:1px solid #f1f5f9;">
+                <div style="font-size:14px;font-weight:600;color:#1e293b;margin-bottom:12px;">If you are able to, rank these criteria on which are most important to you in order.</div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;max-width:500px;">
+                  <span style="font-size:14px;color:#1e293b;">Water/System Quality</span>
+                  <select name="q_rank_quality" style="padding:6px 28px 6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;color:#1e293b;background:#fff;appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 8px center;">
+                    <option value="">—</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                  </select>
+                  <span style="font-size:14px;color:#1e293b;">Service</span>
+                  <select name="q_rank_service" style="padding:6px 28px 6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;color:#1e293b;background:#fff;appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 8px center;">
+                    <option value="">—</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                  </select>
+                  <span style="font-size:14px;color:#1e293b;">Price</span>
+                  <select name="q_rank_price" style="padding:6px 28px 6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;color:#1e293b;background:#fff;appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 8px center;">
+                    <option value="">—</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                  </select>
+                  <span style="font-size:14px;color:#1e293b;">Flexibility</span>
+                  <select name="q_rank_flexibility" style="padding:6px 28px 6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;color:#1e293b;background:#fff;appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 8px center;">
+                    <option value="">—</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:12px 20px;border-top:1px solid #e2e8f0;">
+                <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Notes</label>
+                <textarea name="q_priorities_notes" rows="2" style="width:100%;padding:8px 12px;border:1px solid #cbd5e1;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="Any additional notes on your priorities..."></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Submit Section -->
+      <div style="margin-top:32px;">
+        <div style="margin-bottom:16px;">
+          <label style="font-size:13px;font-weight:600;color:#64748b;display:block;margin-bottom:6px;">Send responses to (email addresses)</label>
+          <input type="text" name="notify_emails" style="width:100%;padding:10px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;font-family:inherit;color:#1e293b;background:#fff;" placeholder="email1@company.com, email2@company.com" />
+        </div>
+        <button type="submit" style="width:100%;padding:14px 24px;background:#0ea5e9;color:#fff;font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 0.2s;" onmouseover="this.style.background='#0284c7'" onmouseout="this.style.background='#0ea5e9'">
+          Submit Questionnaire
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const rankSelects = document.querySelectorAll('select[name^="q_rank_"]');
+    rankSelects.forEach(select => {
+      select.addEventListener('change', () => {
+        const selected = select.value;
+        if (!selected) return;
+        rankSelects.forEach(other => {
+          if (other !== select && other.value === selected) {
+            other.value = '';
+          }
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
