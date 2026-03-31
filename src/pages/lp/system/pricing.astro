@@ -1347,6 +1347,12 @@ const iceProducts = [
       .term-slider { margin: 8px 0 4px; }
 
       /* Specs */
+      /* Center product info on mobile */
+      .product-info {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
       /* CTAs on mobile */
       .cta-buttons {
         flex-wrap: wrap;
@@ -1365,8 +1371,17 @@ const iceProducts = [
 
       /* Other sections */
       .problems, .solution, .filtration, .video, .trusted { padding: 40px 0; }
-      .problems-grid { grid-template-columns: 1fr; }
-      .card-grid, .trust-grid { grid-template-columns: 1fr; }
+      .problems-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .trust-grid { grid-template-columns: 1fr; }
       .card { padding: 24px 20px; }
 
       .bottom-cta { padding: 40px 0; }
@@ -1374,7 +1389,7 @@ const iceProducts = [
       .bottom-cta-card h2 { font-size: 1.4rem; }
       .bottom-cta-card p { font-size: 0.9rem; }
       .trust-highlight { font-size: 1rem; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 36px auto 0; }
       .review-card { padding: 20px; }
     }
 
