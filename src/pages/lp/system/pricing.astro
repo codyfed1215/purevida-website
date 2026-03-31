@@ -14,6 +14,7 @@ const waterProducts = [
     specs: [
       { label: "Form", value: "Countertop" },
       { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Storage", value: "1 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
       { label: "Recommended Usage", value: "Less than 7 Drinkers per System" },
     ],
   },
@@ -27,6 +28,7 @@ const waterProducts = [
     specs: [
       { label: "Form", value: "Freestanding" },
       { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Storage", value: "1.82 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
       { label: "Recommended Usage", value: "Less than 7 Drinkers per System" },
     ],
   },
@@ -40,6 +42,7 @@ const waterProducts = [
     specs: [
       { label: "Form", value: "Freestanding" },
       { label: "Functionality", value: "Hot & Cold Water" },
+      { label: "Storage", value: "3 Gallon Cold Tank | 0.5 Gallon Hot Tank" },
       { label: "Recommended Usage", value: "7 to 30 Drinkers per System" },
     ],
   },
@@ -54,6 +57,7 @@ const waterProducts = [
     specs: [
       { label: "Form", value: "Freestanding" },
       { label: "Functionality", value: "Hot, Cold & Ambient Water" },
+      { label: "Storage", value: "5 Gallon Cold Tank | 1.1 Gallon Hot Tank | 2.5 Gallon Ambient Tank" },
       { label: "Recommended Usage", value: "30 to 50 Drinkers per System" },
     ],
   },
@@ -67,6 +71,7 @@ const waterProducts = [
     specs: [
       { label: "Form", value: "Countertop or Freestanding" },
       { label: "Functionality", value: "Hot, Cold, Ambient, Sparkling Water" },
+      { label: "Storage", value: "1.58 Gallon Cold Tank | 0.33 Gallon Hot Tank | 2.4 Gallon Ambient Tank" },
       { label: "Recommended Usage", value: "Less than 20 Drinkers" },
     ],
   },
@@ -83,6 +88,8 @@ const iceProducts = [
     specs: [
       { label: "Form", value: "Freestanding" },
       { label: "Functionality", value: "Hot, Cold, Ambient Water | Bullet Sonic Ice" },
+      { label: "Storage", value: "1.2 gal Cold | 1.2 gal Hot | 4.5 gal Ambient | 13.2 lbs. Ice" },
+      { label: "Production", value: "44 lbs. of Ice Daily" },
       { label: "Recommended Usage", value: "Less than 10 Drinkers" },
     ],
   },
@@ -96,6 +103,8 @@ const iceProducts = [
     specs: [
       { label: "Form", value: "Countertop or Freestanding" },
       { label: "Functionality", value: "Hot & Ambient Water | Crunchy Sonic Ice" },
+      { label: "Storage", value: "0.5 gal Hot | 6 gal Ambient | 7 lbs. Ice" },
+      { label: "Production", value: "125 lbs. of Ice Daily" },
       { label: "Recommended Usage", value: "Less than 10 Drinkers" },
     ],
   },
@@ -110,6 +119,8 @@ const iceProducts = [
     specs: [
       { label: "Form", value: "Countertop or Freestanding" },
       { label: "Functionality", value: "Hot & Ambient Water | Crunchy Sonic Ice" },
+      { label: "Storage", value: "0.5 gal Hot | 6 gal Ambient | 16.5 lbs. Ice" },
+      { label: "Production", value: "165 lbs. of Ice Daily" },
       { label: "Recommended Usage", value: "10 to 30 Drinkers per System" },
     ],
   },
@@ -123,6 +134,8 @@ const iceProducts = [
     specs: [
       { label: "Form", value: "Countertop or Freestanding" },
       { label: "Functionality", value: "Ambient Water | Crunchy Sonic Ice" },
+      { label: "Storage", value: "6 gal Ambient | 30 lbs. Ice" },
+      { label: "Production", value: "380 lbs. of Ice Daily" },
       { label: "Recommended Usage", value: "30 to 50 Drinkers per System" },
     ],
   },
@@ -315,6 +328,15 @@ const iceProducts = [
       background: rgba(0, 184, 212, 0.06);
       color: var(--cyan);
     }
+    .nav-dropdown-divider {
+      height: 1px;
+      background: #E8EEF3;
+      margin: 6px 0;
+      display: none;
+    }
+    .nav-dropdown-contact {
+      display: none;
+    }
 
     /* -- PRODUCT SELECTOR -- */
     .product-selector {
@@ -470,18 +492,98 @@ const iceProducts = [
       font-weight: 600;
       margin-bottom: 10px;
     }
-    .specs-list {
-      list-style: none;
-      margin-bottom: 0;
+    .cta-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: var(--white);
+      transition: all 0.2s;
+      flex-shrink: 0;
+      text-decoration: none;
     }
-    .specs-list li {
-      padding: 4px 0;
-      font-size: 0.9rem;
+    .cta-icon-btn svg { width: 20px; height: 20px; }
+    .cta-icon-btn:hover { transform: translateY(-1px); }
+    .cta-icon-btn.cta-btn-call { background: var(--cyan); }
+    .cta-icon-btn.cta-btn-call:hover { background: #009bb5; }
+    .cta-icon-btn.cta-btn-email { background: var(--navy); }
+    .cta-icon-btn.cta-btn-email:hover { background: var(--navy-dark); }
+
+    .cta-btn-specs {
+      background: var(--white);
+      color: var(--navy);
+      border: 2px solid #D8E2EA;
+    }
+    .cta-btn-specs:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-1px);
+    }
+
+    /* Specs Modal */
+    .specs-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+    }
+    .specs-modal-overlay.open { display: block; }
+    .specs-modal-overlay .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .specs-modal-overlay.open .modal-backdrop { opacity: 1; }
+    .specs-modal-overlay .modal-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .specs-modal-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease-out;
+    }
+    .specs-modal-overlay.open .specs-modal-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .specs-modal-card .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+    }
+    .specs-modal-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 16px;
+    }
+    .specs-modal-list {
+      list-style: none;
+    }
+    .specs-modal-list li {
+      padding: 8px 0;
+      font-size: 0.95rem;
       color: var(--gray-text);
       border-bottom: 1px solid #EEF2F6;
     }
-    .specs-list li:last-child { border-bottom: none; }
-    .specs-list strong {
+    .specs-modal-list li:last-child { border-bottom: none; }
+    .specs-modal-list strong {
       color: var(--navy);
       font-weight: 600;
       margin-right: 6px;
@@ -739,6 +841,23 @@ const iceProducts = [
       margin-top: 4px;
     }
     .modal-submit:hover { background: #009bb5; }
+    .modal-promo {
+      margin-top: 16px;
+      text-align: center;
+      background: rgba(0, 184, 212, 0.08);
+      border: 1px solid rgba(0, 184, 212, 0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+    .modal-promo p {
+      font-size: 0.85rem;
+      color: var(--navy-dark);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .modal-promo strong {
+      color: var(--cyan);
+    }
     .modal-trust {
       display: flex;
       justify-content: center;
@@ -1150,8 +1269,15 @@ const iceProducts = [
       .menu-toggle { padding: 6px 10px; font-size: 0.8rem; }
       .menu-toggle svg { width: 16px; height: 16px; }
       .nav-cta { padding: 8px 14px; font-size: 0.78rem !important; }
-      .nav-cta-icon { width: 32px; height: 32px; }
-      .nav-cta-icon svg { width: 15px; height: 15px; }
+      .nav-cta-icon { display: none; }
+      .nav-dropdown-divider { display: block; }
+      .nav-dropdown-contact {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        color: var(--cyan) !important;
+        font-weight: 600 !important;
+      }
 
       /* Product Selector — mobile-first layout */
       .product-selector { padding: 16px 0 20px; }
@@ -1208,21 +1334,19 @@ const iceProducts = [
       .term-slider { margin: 8px 0 4px; }
 
       /* Specs */
-      .specs-list li { padding: 3px 0; font-size: 0.85rem; }
-
-      /* CTAs — full width stacked */
+      /* CTAs on mobile */
       .cta-buttons {
-        flex-direction: row;
+        flex-wrap: wrap;
         gap: 8px;
+        align-items: center;
       }
       .cta-btn {
-        flex: 1;
-        justify-content: center;
-        padding: 10px 12px;
+        padding: 10px 14px;
         font-size: 0.82rem;
         gap: 5px;
       }
-      .cta-btn svg { width: 15px; height: 15px; }
+      .cta-icon-btn { width: 38px; height: 38px; }
+      .cta-icon-btn svg { width: 18px; height: 18px; }
 
       /* Other sections */
       .problems, .solution, .filtration, .video, .trusted { padding: 40px 0; }
@@ -1272,6 +1396,15 @@ const iceProducts = [
           <a href="#video">PureVida in Action</a>
           <a href="#filtration">Filtration Process</a>
           <a href="#trusted">Trusted Partners</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="tel:8885340117" class="nav-dropdown-contact">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Call (888) 534-0117
+          </a>
+          <a href="mailto:contact@purevidawater.com" class="nav-dropdown-contact">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Email Us
+          </a>
         </div>
       </div>
       <a href="tel:8885340117" class="nav-cta-icon" aria-label="Call">
@@ -1333,11 +1466,6 @@ const iceProducts = [
                 <span class="monthly-price">${product.basePrice}/mo</span>
               </div>
             </div>
-            <ul class="specs-list">
-              {product.specs.map((spec) => (
-                <li><strong>{spec.label}:</strong> {spec.value}</li>
-              ))}
-            </ul>
             <div class="pricing-slider-controls" data-base={product.basePrice} data-increment={product.increment}>
               <div class="pricing-row">
                 <strong>Price Protection - Months:</strong>
@@ -1348,13 +1476,15 @@ const iceProducts = [
               </div>
             </div>
             <div class="cta-buttons">
-              <a href="tel:8885340117" class="cta-btn cta-btn-call">
+              <button class="cta-btn cta-btn-specs view-specs-btn" type="button" data-specs={JSON.stringify(product.specs)} data-name={product.name}>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Specs
+              </button>
+              <a href="tel:8885340117" class="cta-icon-btn cta-btn-call" aria-label="Call">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                Call
               </a>
-              <a href="mailto:contact@purevidawater.com" class="cta-btn cta-btn-email">
+              <a href="mailto:contact@purevidawater.com" class="cta-icon-btn cta-btn-email" aria-label="Email">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                Email
               </a>
               <button class="cta-btn cta-btn-trial open-trial-modal" type="button">
                 Request Free Trial
@@ -1402,11 +1532,6 @@ const iceProducts = [
                 <span class="monthly-price">${product.basePrice}/mo</span>
               </div>
             </div>
-            <ul class="specs-list">
-              {product.specs.map((spec) => (
-                <li><strong>{spec.label}:</strong> {spec.value}</li>
-              ))}
-            </ul>
             <div class="pricing-slider-controls" data-base={product.basePrice} data-increment={product.increment}>
               <div class="pricing-row">
                 <strong>Price Protection - Months:</strong>
@@ -1417,13 +1542,15 @@ const iceProducts = [
               </div>
             </div>
             <div class="cta-buttons">
-              <a href="tel:8885340117" class="cta-btn cta-btn-call">
+              <button class="cta-btn cta-btn-specs view-specs-btn" type="button" data-specs={JSON.stringify(product.specs)} data-name={product.name}>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Specs
+              </button>
+              <a href="tel:8885340117" class="cta-icon-btn cta-btn-call" aria-label="Call">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                Call
               </a>
-              <a href="mailto:contact@purevidawater.com" class="cta-btn cta-btn-email">
+              <a href="mailto:contact@purevidawater.com" class="cta-icon-btn cta-btn-email" aria-label="Email">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                Email
               </a>
               <button class="cta-btn cta-btn-trial open-trial-modal" type="button">
                 Request Free Trial
@@ -1849,6 +1976,34 @@ const iceProducts = [
     });
   });
 
+  // Specs modal
+  const specsModal = document.getElementById('specs-modal');
+  const specsTitle = document.getElementById('specs-modal-title');
+  const specsList = document.getElementById('specs-modal-list');
+  const specsClose = document.getElementById('specs-modal-close');
+  const specsBackdrop = document.getElementById('specs-modal-backdrop');
+
+  document.querySelectorAll('.view-specs-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const specs = JSON.parse(btn.dataset.specs);
+      const name = btn.dataset.name;
+      specsTitle.textContent = `${name} Specifications`;
+      specsList.innerHTML = specs.map(s => `<li><strong>${s.label}:</strong> ${s.value}</li>`).join('');
+      specsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeSpecsModal() {
+    specsModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  specsClose?.addEventListener('click', closeSpecsModal);
+  specsBackdrop?.addEventListener('click', closeSpecsModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && specsModal.classList.contains('open')) closeSpecsModal();
+  });
+
   // Menu dropdown toggle
   const menuToggle = document.getElementById('menu-toggle');
   const navDropdown = document.getElementById('nav-dropdown');
@@ -1865,6 +2020,22 @@ const iceProducts = [
   document.addEventListener('click', () => navDropdown?.classList.remove('open'));
 </script>
 
+<!-- Specs Modal -->
+<div id="specs-modal" class="specs-modal-overlay">
+  <div class="modal-backdrop" id="specs-modal-backdrop"></div>
+  <div class="modal-container">
+    <div class="specs-modal-card">
+      <button class="modal-close" id="specs-modal-close">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <h3 class="specs-modal-title" id="specs-modal-title"></h3>
+      <ul class="specs-modal-list" id="specs-modal-list"></ul>
+    </div>
+  </div>
+</div>
+
 <!-- Trial Modal -->
 <div id="trial-modal" class="modal-overlay">
   <div class="modal-backdrop" id="modal-backdrop"></div>
@@ -1877,13 +2048,7 @@ const iceProducts = [
       </button>
 
       <div class="modal-header">
-        <div class="modal-icon">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-          </svg>
-        </div>
         <h3>Request Your Free Trial</h3>
-        <p>PureVida will reach out immediately to get you started.</p>
       </div>
 
       <form id="trial-modal-form" class="modal-form">
@@ -1904,19 +2069,8 @@ const iceProducts = [
         <button type="submit" class="modal-submit">Request Free Trial</button>
       </form>
 
-      <div class="modal-trust">
-        <span>
-          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          Free, No-Obligation Trial
-        </span>
-        <span>
-          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          Full Service Included
-        </span>
-        <span>
-          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          Highest Quality Water
-        </span>
+      <div class="modal-promo">
+        <p>Submit Form Before May 1st and Receive <strong>$10 off monthly payment</strong>, <strong>Free Boost Filter Upgrade</strong>, and <strong>Waived Installation Fee</strong>. A $1,179 Value!</p>
       </div>
     </div>
   </div>
