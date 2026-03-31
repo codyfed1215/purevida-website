@@ -337,6 +337,9 @@ const iceProducts = [
     .nav-dropdown-contact {
       display: none;
     }
+    .nav-dropdown-trial {
+      display: none;
+    }
 
     /* -- PRODUCT SELECTOR -- */
     .product-selector {
@@ -1130,9 +1133,14 @@ const iceProducts = [
     }
 
     /* -- REVIEW -- */
-    .review-card {
-      max-width: 640px;
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
       margin: 36px auto 0;
+    }
+    .review-card {
       background: var(--white);
       border-radius: var(--card-radius);
       padding: 28px 32px;
@@ -1270,6 +1278,7 @@ const iceProducts = [
       .menu-toggle svg { width: 16px; height: 16px; }
       .nav-cta { padding: 8px 14px; font-size: 0.78rem !important; }
       .nav-cta-icon { display: none; }
+      .nav-cta { display: none !important; }
       .nav-dropdown-divider { display: block; }
       .nav-dropdown-contact {
         display: flex !important;
@@ -1277,6 +1286,10 @@ const iceProducts = [
         gap: 8px;
         color: var(--cyan) !important;
         font-weight: 600 !important;
+      }
+      .nav-dropdown-trial {
+        display: flex !important;
+        color: var(--red-cta) !important;
       }
 
       /* Product Selector — mobile-first layout */
@@ -1339,14 +1352,16 @@ const iceProducts = [
         flex-wrap: wrap;
         gap: 8px;
         align-items: center;
+        justify-content: flex-start;
       }
       .cta-btn {
-        padding: 10px 14px;
+        flex: none;
+        padding: 8px 14px;
         font-size: 0.82rem;
         gap: 5px;
       }
-      .cta-icon-btn { width: 38px; height: 38px; }
-      .cta-icon-btn svg { width: 18px; height: 18px; }
+      .cta-icon-btn { width: 36px; height: 36px; }
+      .cta-icon-btn svg { width: 17px; height: 17px; }
 
       /* Other sections */
       .problems, .solution, .filtration, .video, .trusted { padding: 40px 0; }
@@ -1359,6 +1374,7 @@ const iceProducts = [
       .bottom-cta-card h2 { font-size: 1.4rem; }
       .bottom-cta-card p { font-size: 0.9rem; }
       .trust-highlight { font-size: 1rem; }
+      .reviews-grid { grid-template-columns: 1fr; }
       .review-card { padding: 20px; }
     }
 
@@ -1404,6 +1420,10 @@ const iceProducts = [
           <a href="mailto:contact@purevidawater.com" class="nav-dropdown-contact">
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             Email Us
+          </a>
+          <a href="#" class="nav-dropdown-contact open-trial-modal nav-dropdown-trial">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Request Free Trial
           </a>
         </div>
       </div>
@@ -1884,11 +1904,18 @@ const iceProducts = [
 
     <p class="trust-highlight">Join our growing network of Texas partners</p>
 
-    <!-- Review -->
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"My company has a Purevida water dispenser, the water is amazing. They are always on top of taking care of us if any issues arise. Ronald did a very good and thorough job at replacing our filters, on top of being super friendly and making my day. Thanks Purevida team!"</blockquote>
-      <p class="review-source">- Google Review</p>
+    <!-- Reviews -->
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"My company has a Purevida water dispenser, the water is amazing. They are always on top of taking care of us if any issues arise. Ronald did a very good and thorough job at replacing our filters, on top of being super friendly and making my day. Thanks Purevida team!"</blockquote>
+        <p class="review-source">- Local San Antonio Business</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I highly recommend PureVida water to anyone searching for a reliable, clean, and affordable water system for their office. We were customers of PureVida for 5+ years, and regrettably decided to try a different company that ultimately pulled out many hidden contracts and fees. PureVida not only gladly took us back as their customer, they honored our original terms and conditions and also lowered our monthly bill for the price they had offered before we ended our service. If you're looking for an honest and transparent water supply company, PureVida water is the way to go."</blockquote>
+        <p class="review-source">- Local DFW Business</p>
+      </div>
     </div>
   </div>
 </section>
