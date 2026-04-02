@@ -11,9 +11,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-family-sans);
-  overflow-x: hidden;
 }
