@@ -5,7 +5,8 @@
     { "source": "/rep", "destination": "/lp/rep-qr", "statusCode": 301 },
     { "source": "/tech", "destination": "/lp/tech-qr", "statusCode": 301 },
     { "source": "/foxflyer", "destination": "/lp/ff-qr", "statusCode": 301 },
-    { "source": "/landing-pages/flyer", "destination": "/lp/flyer", "statusCode": 301 }
+    { "source": "/landing-pages/flyer", "destination": "/lp/flyer", "statusCode": 301 },
+    { "source": "/free-trial", "destination": "/contact", "statusCode": 301 }
   ],
   "headers": [
     {
