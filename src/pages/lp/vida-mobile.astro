@@ -471,6 +471,14 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     updateWord();
     setInterval(updateWord, 3000);
 
+    // ---- Pre-fill promo code from URL ----
+    var urlParams = new URLSearchParams(window.location.search);
+    var urlPromo = (urlParams.get('promo') || '').toUpperCase();
+    if (urlPromo) {
+      var modalPromo = document.getElementById('modal-promo');
+      if (modalPromo) modalPromo.value = urlPromo;
+    }
+
     // ---- Shared helpers ----
     function formatPhone(e) {
       var val = e.target.value.replace(/\D/g, '');
@@ -595,7 +603,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         phone: document.getElementById('modal-phone').value.trim() || null,
         city: cityVal || null,
         branch: getBranch(cityVal),
-        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || null,
+        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || urlPromo || null,
       };
       if (selectedProduct) {
         payload.recommended_product = selectedProduct.key;

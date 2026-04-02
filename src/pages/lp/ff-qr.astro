@@ -527,6 +527,11 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       return true;
     }
 
+    // ---- Pre-fill promo code from URL ----
+    if (repCode) {
+      document.getElementById('modal-promo').value = repCode;
+    }
+
     // ---- Phone formatting ----
     document.getElementById('modal-phone').addEventListener('input', formatPhone);
 
@@ -599,8 +604,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         phone: document.getElementById('modal-phone').value.trim() || null,
         city: cityVal || null,
         branch: getBranch(cityVal),
-        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || null,
-        rep_code: repCode || null,
+        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || repCode || null,
       };
       if (selectedProduct) {
         payload.recommended_product = selectedProduct.key;
