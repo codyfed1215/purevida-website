@@ -471,13 +471,9 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     updateWord();
     setInterval(updateWord, 3000);
 
-    // ---- Pre-fill promo code from URL ----
+    // ---- Read rep code from URL (for attribution, not shown in form) ----
     var urlParams = new URLSearchParams(window.location.search);
-    var urlPromo = (urlParams.get('promo') || '').toUpperCase();
-    if (urlPromo) {
-      var modalPromo = document.getElementById('modal-promo');
-      if (modalPromo) modalPromo.value = urlPromo;
-    }
+    var repCode = (urlParams.get('promo') || '').toUpperCase();
 
     // ---- Shared helpers ----
     function formatPhone(e) {
@@ -603,7 +599,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         phone: document.getElementById('modal-phone').value.trim() || null,
         city: cityVal || null,
         branch: getBranch(cityVal),
-        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || urlPromo || null,
+        promo_code: document.getElementById('modal-promo').value.trim().toUpperCase() || null,
+        rep_code: repCode || null,
       };
       if (selectedProduct) {
         payload.recommended_product = selectedProduct.key;
