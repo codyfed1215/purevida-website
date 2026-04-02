@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
+Disallow: /review
+Disallow: /free-trial-thank-you
+Disallow: /404
+Disallow: /lp/drop
+Disallow: /lp/tech
+Disallow: /lp/pricing
+Disallow: /landing-pages/flyer
+Disallow: /landing-pages/_template-isd
+
 Sitemap: https://purevidawater.com/sitemap-index.xml

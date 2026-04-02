@@ -1,37 +1,15 @@
-<!--
-  ============================================================
-  ISD LANDING PAGE TEMPLATE
-  ============================================================
-  To create a new ISD landing page:
-
-  1. Copy this entire "_template-isd" folder
-  2. Rename the copy to the district slug (e.g., "rockwall-isd")
-  3. Find & replace the following placeholders:
-
-     {{ISD_NAME}}          → e.g., "Rockwall ISD"
-     {{ISD_FULL_NAME}}     → e.g., "Rockwall Independent School District"
-     {{ISD_SLUG}}          → e.g., "rockwall" (used in CSS class names)
-     {{ISD_LOGO_FILE}}     → e.g., "rockwall-isd-logo.png"
-     {{ISD_COUNTY}}        → e.g., "Rockwall County"
-     {{DISTANCE_FROM_HQ}}  → e.g., "45 minutes" (from DeSoto, TX)
-     {{LOOM_VIDEO_ID}}     → e.g., "0accde2b4e5343208cc425f0644f97d5"
-
-  4. Drop the ISD logo file into the folder as {{ISD_LOGO_FILE}}
-  5. Copy purevida-logo.png into the folder
-
-  Files needed in each landing page folder:
-    - index.html (this file, with placeholders replaced)
-    - purevida-logo.png
-    - [isd-logo].png
-  ============================================================
--->
+---
+// Landing Page: Texas Woman's University (TWU)
+// Standalone page — no shared Layout
+// Route: /landing-pages/twu
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>PureVida Water | A Better Hydration Solution for {{ISD_NAME}}</title>
+  <title>PureVida Water | A Better Hydration Solution for Texas Woman's University</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -61,13 +39,13 @@
       line-height: 1.6;
     }
 
-    /* ── Cyan accent bar ── */
+    /* -- Cyan accent bar -- */
     .accent-bar {
       height: 5px;
       background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
     }
 
-    /* ── Utility ── */
+    /* -- Utility -- */
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     .section-title {
       font-size: 2.25rem;
@@ -92,7 +70,7 @@
     .text-center { text-align: center; }
     .underline-center { margin-left: auto; margin-right: auto; }
 
-    /* ── HERO ── */
+    /* -- HERO -- */
     .hero {
       background: var(--bg-light);
       padding: 48px 0 64px;
@@ -112,8 +90,7 @@
       width: auto;
       object-fit: contain;
     }
-    /* {{ISD_SLUG}}-logo — adjust max-height per logo as needed */
-    .hero-logo-img.isd-logo { max-height: 100px; }
+    .hero-logo-img.twu-logo { max-height: 90px; border-radius: 8px; filter: brightness(1.13); }
     .hero-logo-img.purevida-logo { max-height: 90px; }
     .hero-plus { font-size: 1.5rem; color: var(--cyan); font-weight: 300; }
 
@@ -166,7 +143,7 @@
 
     .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
 
-    /* ── PROBLEMS ── */
+    /* -- PROBLEMS -- */
     .problems { background: var(--bg-light); padding: 80px 0; }
     .card-grid {
       display: grid;
@@ -193,11 +170,11 @@
     .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--navy-dark); }
     .card p { font-size: 0.95rem; color: var(--gray-text); line-height: 1.5; }
 
-    /* ── SOLUTION ── */
+    /* -- SOLUTION -- */
     .solution { background: var(--bg-light); padding: 80px 0; }
     .card-icon.solution-icon { background: var(--cyan); }
 
-    /* ── VIDEO ── */
+    /* -- VIDEO -- */
     .video { background: var(--white); padding: 80px 0; }
     .video-wrapper {
       position: relative;
@@ -218,7 +195,7 @@
       border: 0;
     }
 
-    /* ── SYSTEMS ── */
+    /* -- SYSTEMS -- */
     .systems { background: var(--white); padding: 80px 0; }
     .systems-grid {
       display: grid;
@@ -290,7 +267,7 @@
       font-size: 0.95rem;
     }
 
-    /* ── TRUSTED ── */
+    /* -- TRUSTED -- */
     .trusted { background: var(--bg-light); padding: 80px 0; }
     .trust-grid {
       display: grid;
@@ -327,7 +304,7 @@
       color: var(--cyan);
     }
 
-    /* ── WHY PUREVIDA ── */
+    /* -- WHY PUREVIDA -- */
     .why { background: var(--white); padding: 80px 0; }
     .why-grid {
       display: grid;
@@ -354,7 +331,7 @@
     .why-list h4 { font-size: 1.1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 4px; }
     .why-list p { font-size: 0.95rem; color: var(--gray-text); }
 
-    /* ── CTA BOX ── */
+    /* -- CTA BOX -- */
     .cta-box {
       background: var(--red-cta);
       border-radius: 16px;
@@ -394,7 +371,7 @@
       opacity: 0.8;
     }
 
-    /* ── FOOTER CTA ── */
+    /* -- FOOTER CTA -- */
     .footer-cta {
       background: linear-gradient(135deg, var(--navy-dark), var(--navy));
       padding: 64px 0;
@@ -413,7 +390,7 @@
     }
     .footer-cta .btn-primary { font-size: 1.1rem; padding: 18px 44px; }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     footer {
       background: var(--navy-dark);
       padding: 24px 0;
@@ -424,7 +401,7 @@
     footer a { color: var(--cyan); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* ── NAV ── */
+    /* -- NAV -- */
     .nav {
       background: var(--white);
       border-bottom: 1px solid #E8EEF3;
@@ -487,7 +464,7 @@
       transition: 0.3s;
     }
 
-    /* ── TABS ── */
+    /* -- TABS -- */
     .tab-container { text-align: center; margin-bottom: 40px; }
     .tab-btn {
       background: none;
@@ -510,14 +487,14 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* ── RESPONSIVE: TABLET ── */
+    /* -- RESPONSIVE: TABLET -- */
     @media (max-width: 1024px) {
       .why-grid { grid-template-columns: 1fr; }
       .cta-box { position: static; }
       .systems-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    /* ── RESPONSIVE: MOBILE ── */
+    /* -- RESPONSIVE: MOBILE -- */
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
       .section-title { font-size: 1.6rem; }
@@ -526,7 +503,7 @@
       .hero h1 { font-size: 1.75rem; }
       .hero p.tagline { font-size: 1rem; }
       .hero-logos { gap: 14px; margin-bottom: 32px; }
-      .hero-logo-img.isd-logo { max-height: 68px; }
+      .hero-logo-img.twu-logo { max-height: 60px; }
       .hero-logo-img.purevida-logo { max-height: 60px; }
       .hero-plus { font-size: 1.2rem; }
       .hero-buttons { flex-direction: column; align-items: center; }
@@ -570,17 +547,19 @@
       .footer-cta .btn-primary { font-size: 0.95rem; padding: 16px 28px; }
 
       .trust-highlight { font-size: 1.05rem; }
+      .hero-tech-photo { max-width: 300px; }
     }
 
-    /* ── RESPONSIVE: SMALL PHONES ── */
+    /* -- RESPONSIVE: SMALL PHONES -- */
     @media (max-width: 400px) {
       .hero h1 { font-size: 1.5rem; }
-      .hero-logo-img.isd-logo { max-height: 56px; }
+      .hero-logo-img.twu-logo { max-height: 48px; }
       .hero-logo-img.purevida-logo { max-height: 48px; }
       .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
       .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
       .section-title { font-size: 1.4rem; }
       .cta-box .cta-email { font-size: 0.95rem; }
+      .hero-tech-photo { max-width: 260px; }
     }
   </style>
 </head>
@@ -593,7 +572,7 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-brand">
-      <img src="purevida-logo.png" alt="PureVida Water Technologies" class="nav-logo">
+      <img src="/landing-pages/twu/purevida-logo.png" alt="PureVida Water Technologies" class="nav-logo">
     </a>
     <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -613,14 +592,12 @@
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-logos">
-      <!-- {{CUSTOMIZE}} Replace logo file and alt text -->
-      <img src="{{ISD_LOGO_FILE}}" alt="{{ISD_FULL_NAME}}" class="hero-logo-img isd-logo">
+      <img src="/landing-pages/twu/twu-logo.png" alt="Texas Woman's University" class="hero-logo-img twu-logo">
       <span class="hero-plus">+</span>
-      <img src="purevida-logo.png" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
+      <img src="/landing-pages/twu/purevida-logo.png" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
     </div>
 
-    <!-- {{CUSTOMIZE}} Replace ISD name -->
-    <h1>A Better Hydration Solution<br>for {{ISD_NAME}}</h1>
+    <h1>A Better Hydration Solution<br>for Texas Woman's University</h1>
     <div class="underline-accent underline-center"></div>
     <p class="tagline">Eliminating 5-Gallon Jugs with Bottleless Water Purification</p>
 
@@ -632,6 +609,9 @@
     <p class="hero-contact" style="margin-top: 32px;">
       Prepared by PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; <a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a>
     </p>
+
+    <img src="/landing-pages/twu/technician-install.png" alt="PureVida field technician completing an on-site installation" class="hero-tech-photo" style="margin-top: 36px; max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
+    <p style="margin-top: 12px; font-size: 0.9rem; color: var(--gray-text); font-style: italic;">PureVida Serving Another Happy Customer</p>
   </div>
 </section>
 
@@ -669,7 +649,7 @@
           <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><line x1="7" y1="7" x2="15" y2="15"/><line x1="15" y1="7" x2="7" y2="15"/></svg>
         </div>
         <h3>Storage Clutter</h3>
-        <p>Bulky jugs take up valuable space in break rooms</p>
+        <p>Bulky jugs take up valuable space in break rooms and offices</p>
       </div>
       <div class="card">
         <div class="card-icon problem">
@@ -749,8 +729,7 @@
 <section class="systems" id="systems">
   <div class="container">
     <h2 class="section-title text-center">Recommended Systems</h2>
-    <!-- {{CUSTOMIZE}} Replace ISD name -->
-    <p class="section-subtitle text-center">Tailored to {{ISD_NAME}} Department Needs</p>
+    <p class="section-subtitle text-center">Tailored to Texas Woman's University Campus Needs</p>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -761,6 +740,7 @@
     <!-- Water Systems Tab -->
     <div class="tab-panel active" id="tab-water">
       <div class="systems-grid">
+        <!-- PV1w / PV2w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -769,9 +749,9 @@
             <p class="model-tagline">Compact. Efficient. Perfect for small teams.</p>
           </div>
           <div class="system-card-body">
-            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
             <p class="meta-item"><strong>Users:</strong> Fewer than 7 drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
             <h4>PV1w Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Countertop</p>
             <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
@@ -787,6 +767,7 @@
           </div>
         </div>
 
+        <!-- PV3w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -797,7 +778,7 @@
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
             <p class="meta-item"><strong>Users:</strong> 7 to 30 drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, department offices, staff workrooms, libraries</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty lounges, department offices, staff workrooms, libraries</p>
             <h4>Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Freestanding</p>
             <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
@@ -808,6 +789,7 @@
           </div>
         </div>
 
+        <!-- PV4w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -818,7 +800,7 @@
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
             <p class="meta-item"><strong>Users:</strong> 30+ drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic facilities, student union, residence halls, dining areas</p>
             <h4>Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Freestanding</p>
             <p class="spec-line"><strong>Functionality:</strong> Hot, Cold &amp; Ambient Water</p>
@@ -835,6 +817,7 @@
     <!-- Ice & Water Systems Tab -->
     <div class="tab-panel" id="tab-ice">
       <div class="systems-grid">
+        <!-- PV6i / PV7i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -843,9 +826,9 @@
             <p class="model-tagline">Compact ice &amp; water for small teams.</p>
           </div>
           <div class="system-card-body">
-            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
             <p class="meta-item"><strong>Users:</strong> Fewer than 10 users</p>
-            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
             <h4>PV6i Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Freestanding</p>
             <p class="spec-line"><strong>Functionality:</strong> Hot, Cold, Ambient Water | Bullet Sonic Ice</p>
@@ -863,6 +846,7 @@
           </div>
         </div>
 
+        <!-- PV8i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -873,7 +857,7 @@
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
             <p class="meta-item"><strong>Users:</strong> 10 to 30 users</p>
-            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, staff workrooms, libraries</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty lounges, staff workrooms, libraries</p>
             <h4>Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
             <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Ambient Water | Crunchy Sonic Ice</p>
@@ -884,6 +868,7 @@
           </div>
         </div>
 
+        <!-- PV9i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
@@ -894,7 +879,7 @@
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
             <p class="meta-item"><strong>Users:</strong> 30+ users</p>
-            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic facilities, student union, residence halls, dining areas</p>
             <h4>Specifications</h4>
             <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
             <p class="spec-line"><strong>Functionality:</strong> Ambient Water | Crunchy Sonic Ice</p>
@@ -915,10 +900,10 @@
 <!-- TRUSTED -->
 <section class="trusted" id="trusted">
   <div class="container">
-    <h2 class="section-title text-center">Trusted Across Texas Education</h2>
-    <p class="section-subtitle text-center">PureVida is already serving school districts and universities across the state</p>
+    <h2 class="section-title text-center">Trusted Across Texas</h2>
+    <p class="section-subtitle text-center">PureVida is already serving universities and organizations across the state</p>
 
-    <div class="trust-grid">
+    <div class="trust-grid" style="max-width: 640px; margin: 0 auto;">
       <div class="trust-card">
         <div class="trust-icon burnt-orange">UT</div>
         <div>
@@ -927,44 +912,15 @@
         </div>
       </div>
       <div class="trust-card">
-        <div class="trust-icon dark-blue">W</div>
-        <div>
-          <h4>Waxahachie ISD</h4>
-          <p>Ellis County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon dark-blue">H</div>
-        <div>
-          <h4>Hays CISD</h4>
-          <p>Hays County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon dark-blue">RR</div>
-        <div>
-          <h4>Round Rock ISD</h4>
-          <p>Williamson County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon teal">P</div>
-        <div>
-          <h4>Pflugerville ISD</h4>
-          <p>Travis County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
         <div class="trust-icon teal">TX</div>
         <div>
-          <h4>1,000+ Texas Organizations</h4>
+          <h4>1,100+ Texas Organizations</h4>
           <p>And growing every month</p>
         </div>
       </div>
     </div>
 
-    <!-- {{CUSTOMIZE}} Replace ISD name -->
-    <p class="trust-highlight">{{ISD_NAME}} can join our growing network of Texas education partners</p>
+    <p class="trust-highlight">Texas Woman's University can join our growing network of Texas partners</p>
   </div>
 </section>
 
@@ -977,8 +933,7 @@
     <div class="underline-accent"></div>
     <p class="section-subtitle text-center">Watch a quick overview of how PureVida transforms your breakroom hydration.</p>
     <div class="video-wrapper">
-      <!-- {{CUSTOMIZE}} Replace Loom video ID -->
-      <iframe src="https://www.loom.com/embed/{{LOOM_VIDEO_ID}}" allowfullscreen></iframe>
+      <iframe src="https://www.loom.com/embed/0accde2b4e5343208cc425f0644f97d5" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -988,8 +943,7 @@
 <!-- WHY PUREVIDA -->
 <section class="why" id="why">
   <div class="container">
-    <!-- {{CUSTOMIZE}} Replace ISD name -->
-    <h2 class="section-title">Why PureVida for {{ISD_NAME}}</h2>
+    <h2 class="section-title">Why PureVida for Texas Woman's University</h2>
     <div class="underline-accent"></div>
 
     <div class="why-grid">
@@ -998,22 +952,21 @@
           <div class="why-number">1</div>
           <div>
             <h4>Local DFW Presence</h4>
-            <!-- {{CUSTOMIZE}} Replace distance -->
-            <p>Based in DeSoto, TX &mdash; just {{DISTANCE_FROM_HQ}} from {{ISD_NAME}}. Fast installation, responsive local service.</p>
+            <p>Based in DeSoto, TX &mdash; just 1 hour from the Denton campus. Field service technicians stationed across the DFW metroplex for fast installation and responsive local service.</p>
           </div>
         </li>
         <li>
           <div class="why-number">2</div>
           <div>
             <h4>Proven Education Experience</h4>
-            <p>PureVida serves schools across Texas, helping to elevate the learning environment with clean water.</p>
+            <p>PureVida serves universities and schools across Texas, helping to elevate the campus environment with clean water.</p>
           </div>
         </li>
         <li>
           <div class="why-number">3</div>
           <div>
             <h4>Standard, Fixed Pricing</h4>
-            <p>Predictable monthly costs with no delivery fees, fuel surcharges, or surprise invoices. Easy budgeting for the district.</p>
+            <p>Predictable monthly costs with no delivery fees, fuel surcharges, or surprise invoices. Easy budgeting for the university.</p>
           </div>
         </li>
         <li>
@@ -1042,7 +995,7 @@
 <section class="footer-cta">
   <div class="container">
     <h2>Pure Water. Zero Hassle. Risk-Free Trial.</h2>
-    <p>See why 1,000+ Texas organizations trust PureVida Water</p>
+    <p>See why 1,100+ Texas organizations trust PureVida Water</p>
     <a href="mailto:contact@purevidawater.com" class="btn-primary">Email contact@purevidawater.com</a>
   </div>
 </section>
