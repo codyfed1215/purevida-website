@@ -1,33 +1,37 @@
 ---
-// Landing Page: Major Accounts Pricing Comparison Tool
+// Landing Page: Major Accounts
 // Standalone page — no shared Layout
 // Route: /lp/major-accounts
-import '../../styles/global.css'
-
-const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
+// Based on SMU landing page — generic version for any major account prospect
 ---
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing Comparison Tool | PureVida Water</title>
-  <meta name="description" content="Compare all four PureVida Water service options side by side. See 5 and 10-year cost projections for bottleless water and ice systems." />
-  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>PureVida Water | Major Accounts Program</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --primary: #0ea5e9;
-      --primary-dark: #0284c7;
-      --navy: #0c4a6e;
-      --blue-accent: #0ea5e9;
+      --cyan: #00B8D4;
+      --cyan-light: #00D4F5;
+      --navy: #1A3553;
+      --navy-dark: #12263A;
+      --bg-light: #EBF2F8;
+      --bg-section: #F4F8FB;
+      --white: #ffffff;
+      --gray-text: #5A6A7A;
+      --red-cta: #E84A3D;
+      --red-cta-hover: #D43A2E;
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --card-radius: 12px;
       --option1: #0ea5e9;
       --option2: #14A38B;
       --option3: #D97706;
@@ -40,341 +44,581 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       --border-option2: #A7F3D0;
       --border-option3: #FDE68A;
       --border-option4: #FECACA;
+      --blue-accent: #0ea5e9;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      color: #111827;
-      background: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(to bottom right, #f0f9ff, #ecfeff);
-      color: #111827;
-      padding: 48px 24px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero h1 {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin: 0 auto 16px;
-      max-width: 720px;
-      color: #111827;
-    }
-    .hero p {
-      font-size: 17px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--navy);
+      background: var(--white);
       line-height: 1.6;
-      color: #4b5563;
-      max-width: 640px;
-      margin: 0 auto;
     }
 
-    /* Selector section */
-    .selector-section {
-      background: #f8fafc;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 32px 24px;
-    }
-    .selector-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .selector-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .selector-group label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .model-select {
-      padding: 10px 36px 10px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      background: #fff;
-      color: #1e293b;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      min-width: 240px;
-    }
-    .model-select:focus {
-      outline: none;
-      border-color: var(--blue-accent);
-      box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.15);
-    }
-    .qty-control {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-    }
-    .qty-btn {
-      width: 40px;
-      height: 42px;
-      border: none;
-      background: #f8fafc;
-      font-size: 18px;
-      font-weight: 600;
-      color: #475569;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: inherit;
-    }
-    .qty-btn:hover { background: #e2e8f0; }
-    .qty-btn:active { background: #cbd5e1; }
-    .qty-value {
-      width: 48px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e293b;
-      border-left: 1px solid #e2e8f0;
-      border-right: 1px solid #e2e8f0;
-    }
-    .qty-input {
-      width: 48px;
-      height: 42px;
-      border: none;
-      border-left: 1px solid #e2e8f0;
-      border-right: 1px solid #e2e8f0;
-      text-align: center;
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e293b;
-      font-family: inherit;
-      background: #fff;
-      -moz-appearance: textfield;
-    }
-    .qty-input::-webkit-outer-spin-button,
-    .qty-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    .qty-input:focus {
-      outline: none;
-      background: #f0f9ff;
+    /* -- Accent bar -- */
+    .accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
     }
 
-    /* Multi-system builder */
-    .builder-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #0c4a6e;
-      margin: 0 0 16px;
-      text-align: center;
-    }
-    .builder-row {
-      display: flex;
-      gap: 12px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .builder-row .selector-group {
-      flex: 0 0 auto;
-    }
-    .custom-price-input {
-      padding: 10px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      background: #fff;
-      color: #1e293b;
-      width: 140px;
-    }
-    .custom-price-input:focus {
-      outline: none;
-      border-color: var(--blue-accent);
-      box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.15);
-    }
-    .custom-price-input::placeholder {
-      color: #94a3b8;
-    }
-    .add-system-btn {
-      padding: 10px 20px;
-      background: #0ea5e9;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      white-space: nowrap;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .add-system-btn:hover { background: #0284c7; }
-
-    /* Systems list */
-    .systems-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .systems-list-header {
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    /* -- Utility -- */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--navy-dark);
       margin-bottom: 8px;
       text-align: center;
     }
-    .systems-empty {
-      text-align: center;
-      color: #94a3b8;
-      font-size: 14px;
-      padding: 20px;
-      border: 2px dashed #e2e8f0;
-      border-radius: 10px;
-      background: #fff;
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray-text);
+      margin-bottom: 48px;
+    }
+    .underline-accent {
+      width: 60px; height: 4px;
+      background: var(--cyan);
+      border-radius: 2px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .text-center { text-align: center; }
+    .underline-center { margin-left: auto; margin-right: auto; }
+
+    /* -- NAV -- */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid #E8EEF3;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy-dark);
+      text-decoration: none;
+    }
+    .nav-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
     }
 
-    /* Systems matrix — inline styles used for grid lines to override Tailwind resets */
-    .matrix-model-select {
-      padding: 7px 28px 7px 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: inherit;
-      background: #fff;
-      color: #1e293b;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 8px center;
-      width: 100%;
-      max-width: 220px;
-    }
-    .matrix-model-select:focus {
-      outline: none;
-      border-color: #0ea5e9;
-      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15);
-    }
-    .matrix-input {
-      width: 64px;
-      padding: 7px 8px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: inherit;
+    /* -- HERO -- */
+    .hero {
+      background: var(--bg-light);
+      padding: 48px 0 64px;
       text-align: center;
-      color: #1e293b;
-      background: #fff;
-      -moz-appearance: textfield;
+      position: relative;
     }
-    .matrix-input::-webkit-outer-spin-button,
-    .matrix-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero p.tagline {
+      font-size: 1.2rem;
+      color: var(--gray-text);
+      margin-bottom: 32px;
+    }
+    .hero-contact {
+      font-size: 0.95rem;
+      color: var(--cyan);
+    }
+    .hero-contact a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+    .hero-contact a:hover { text-decoration: underline; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--red-cta);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--red-cta-hover); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--cyan); color: var(--white); }
+
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+
+    /* -- PROBLEMS -- */
+    .problems { background: var(--bg-light); padding: 80px 0; }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .problem-card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--cyan);
+    }
+    .problem-list {
+      list-style: none;
+    }
+    .problem-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-bullet {
+      min-width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-cta);
+      margin-top: 6px;
+    }
+    .problem-list strong {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .problem-list p {
+      font-size: 0.88rem;
+      color: var(--gray-text);
+      line-height: 1.4;
       margin: 0;
     }
-    .matrix-input:focus {
-      outline: none;
-      border-color: #0ea5e9;
-      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15);
+
+    /* -- SOLUTION -- */
+    .solution { background: var(--bg-light); padding: 80px 0; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
     }
-    .matrix-price-cell {
+    .card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .card-icon.solution-icon { background: var(--cyan); }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--navy-dark); }
+    .card p { font-size: 0.95rem; color: var(--gray-text); line-height: 1.5; }
+
+    /* -- VIDEO -- */
+    .video { background: var(--white); padding: 80px 0; }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--card-radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* -- FILTRATION -- */
+    .filtration { background: #0ea5e9; padding: 64px 0; }
+    .filtration .section-title { color: var(--white); }
+    .filtration .section-subtitle { color: rgba(255,255,255,0.8); }
+    .filtration .underline-accent { background: rgba(255,255,255,0.5); }
+    .filtration-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .filtration-card {
+      position: relative;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 16px;
+      padding: 16px 16px 20px;
+      color: var(--white);
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
     }
-    .matrix-price-input {
-      width: 80px;
-      padding: 7px 8px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
+    .filtration-card img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+    .filtration-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .filtration-card .reduces-label {
+      font-size: 0.75rem;
       font-weight: 600;
-      font-family: inherit;
-      text-align: center;
-      color: #1e293b;
-      background: #fff;
-      -moz-appearance: textfield;
+      margin-top: 8px;
     }
-    .matrix-price-input::-webkit-outer-spin-button,
-    .matrix-price-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+    .filtration-card ul {
+      list-style: none;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+      text-align: left;
+    }
+    .filtration-card ul li::before {
+      content: "\2022 ";
+    }
+    .filtration-card .taste-text {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 8px;
+    }
+    .step-badge {
+      position: absolute;
+      bottom: -12px;
+      left: -12px;
+      width: 32px;
+      height: 32px;
+      background: #38bdf8;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .filtration-row-gap {
+      margin-top: 24px;
+    }
+
+    /* -- TRUSTED -- */
+    .trusted { background: var(--bg-light); padding: 80px 0; }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .trust-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: transform 0.2s;
+    }
+    .trust-card:hover { transform: translateY(-2px); }
+    .trust-icon {
+      min-width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; color: var(--white);
+    }
+    .trust-icon.burnt-orange { background: #BF5700; }
+    .trust-icon.teal { background: var(--cyan); }
+    .trust-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); }
+    .trust-card p { font-size: 0.88rem; color: var(--gray-text); }
+    .trust-highlight {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 36px auto 0;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 28px 32px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+    .review-stars {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .review-card blockquote {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+      font-style: italic;
       margin: 0;
     }
-    .matrix-price-input:focus {
-      outline: none;
-      border-color: #0ea5e9;
-      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15);
+    .review-source {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy-dark);
     }
-    .matrix-grid-price {
-      font-size: 11px;
-      color: #94a3b8;
+
+    /* -- SYSTEMS -- */
+    .systems { background: var(--white); padding: 80px 0; }
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
-    .matrix-grid-price.struck {
-      text-decoration: line-through;
+    .system-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      border: 1px solid #E0E8EF;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
     }
-    .matrix-discount {
-      font-size: 10px;
+    .system-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
+    .system-card-header {
+      padding: 24px 28px 16px;
+      text-align: center;
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .consumption-label {
+      font-size: 0.7rem;
       font-weight: 700;
-      color: #166534;
-      background: #dcfce7;
-      padding: 2px 7px;
-      border-radius: 999px;
-      white-space: nowrap;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
     }
-    .matrix-total-monthly {
-      font-weight: 700;
-      color: #0c4a6e;
-      font-size: 15px;
+    .system-card-header h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy-dark);
     }
-    .remove-system-btn {
+    .system-card-header .model-tagline {
+      font-style: italic;
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    .system-card-img {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 16px 16px 0;
+      height: 200px;
+    }
+    .system-card-img img {
+      max-height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+    }
+    .system-card-body {
+      padding: 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .system-card-body .meta-spacer {
+      flex: 1;
+    }
+    .system-card-body .card-bottom {
+      margin-top: auto;
+    }
+    .system-card-body .meta-item {
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+      color: var(--gray-text);
+    }
+    .meta-item strong { color: var(--cyan); font-weight: 700; }
+    .system-card-accent {
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+    }
+    .systems-note {
+      text-align: center;
+      font-style: italic;
+      color: var(--gray-text);
+      margin-top: 36px;
+      font-size: 0.95rem;
+    }
+
+    /* -- TABS -- */
+    .tab-container { text-align: center; margin-bottom: 40px; }
+    .tab-btn {
+      background: none;
+      border: 2px solid #D8E2EA;
+      color: var(--gray-text);
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin: 0 6px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0, 184, 212, 0.05);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* View Specs Button */
+    .view-specs-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid #D8E2EA;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-text);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+    .view-specs-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Specs Modal */
+    .specs-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+    }
+    .specs-modal-overlay.open { display: block; }
+    .specs-modal-overlay .specs-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .specs-modal-overlay.open .specs-backdrop { opacity: 1; }
+    .specs-modal-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .specs-modal-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease-out;
+    }
+    .specs-modal-overlay.open .specs-modal-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .specs-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
       background: none;
       border: none;
-      color: #94a3b8;
       cursor: pointer;
-      font-size: 20px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      line-height: 1;
-      transition: color 0.15s;
+      color: var(--gray-text);
+      padding: 4px;
     }
-    .remove-system-btn:hover {
-      color: #dc2626;
-      background: #fef2f2;
+    .specs-modal-close:hover { color: var(--navy); }
+    .specs-modal-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 16px;
     }
-    /* Footer styles handled inline */
+    .specs-modal-list {
+      list-style: none;
+    }
+    .specs-modal-list li {
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .specs-modal-list li:last-child { border-bottom: none; }
+    .specs-modal-list strong {
+      color: var(--navy);
+      font-weight: 600;
+      margin-right: 6px;
+    }
 
     /* Option cards grid */
     .cards-section {
@@ -393,9 +637,6 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       gap: 24px;
       max-width: 1100px;
       margin: 0 auto;
-    }
-    @media (max-width: 768px) {
-      .cards-grid { grid-template-columns: 1fr; }
     }
 
     .option-card {
@@ -436,7 +677,6 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       letter-spacing: 0.04em;
     }
     .badge-popular { background: var(--bg-option2); color: var(--option2); }
-    .badge-flag { background: var(--bg-option4); color: var(--option4); font-size: 10px; }
 
     .option-card-body {
       padding: 0 24px 24px;
@@ -445,7 +685,6 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       flex-direction: column;
     }
 
-    /* Card accent borders */
     .card-option1 { border-top: 3px solid var(--option1); }
     .card-option2 { border-top: 3px solid var(--option2); }
     .card-option3 { border-top: 3px solid var(--option3); }
@@ -456,82 +695,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
     .card-option3 .option-num { color: var(--option3); }
     .card-option4 .option-num { color: var(--option4); }
 
-    /* Term pills */
-    .term-pills {
-      display: flex;
-      gap: 6px;
+    .option-description {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
       margin-bottom: 16px;
     }
-    .term-pill {
-      flex: 1;
-      padding: 8px 6px;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      background: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748b;
-      cursor: pointer;
-      text-align: center;
-      font-family: inherit;
-    }
-    .term-pill.active {
-      border-color: #0ea5e9;
-      background: #f0f9ff;
-      color: #0ea5e9;
-    }
-    .card-option2 .term-pill.active {
-      border-color: var(--option2);
-      background: var(--bg-option2);
-      color: var(--option2);
-    }
-    .term-pill .discount {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
-    /* Price displays */
-    .price-main {
-      font-size: 36px;
-      font-weight: 700;
-      color: #0f172a;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .price-main .per { font-size: 14px; font-weight: 500; color: #64748b; }
-    .price-sub {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-    .price-sub strong { color: #334155; font-weight: 600; }
-    .price-highlight {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: #166534;
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    .purchase-price {
-      font-size: 28px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-    .purchase-detail {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 6px;
-      line-height: 1.5;
-    }
-    .purchase-detail strong { color: #334155; }
 
     /* Inclusions */
     .inclusions {
@@ -580,1372 +749,1041 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       line-height: 1.5;
     }
 
-    /* Trips slider */
-    .slider-group {
-      margin-bottom: 16px;
+    /* -- FOOTER CTA -- */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 64px 0;
+      text-align: center;
     }
-    .slider-group label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 500;
-      color: #475569;
-      margin-bottom: 6px;
+    .footer-cta h2 {
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
     }
-    .slider-group label strong {
-      color: var(--option4);
-      font-weight: 700;
+    .footer-cta p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
     }
-    .trips-slider {
-      width: 100%;
-      -webkit-appearance: none;
-      appearance: none;
-      height: 6px;
-      border-radius: 3px;
-      background: #e2e8f0;
-      outline: none;
-    }
-    .trips-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--option4);
-      cursor: pointer;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-    }
-    .trips-slider::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--option4);
-      cursor: pointer;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-    }
+    .footer-cta .btn-primary { font-size: 1.1rem; padding: 18px 44px; }
 
-    /* Chart section */
-    .chart-section {
-      padding: 48px 24px;
-      background: #f8fafc;
-    }
-    .chart-section h2 {
+    /* -- FOOTER -- */
+    footer {
+      background: var(--navy-dark);
+      padding: 24px 0;
       text-align: center;
-      font-size: 24px;
-      font-weight: 700;
-      color: #0c4a6e;
-      margin: 0 0 24px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
     }
-    .chart-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .chart-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .year-toggle {
-      display: flex;
-      gap: 4px;
-      background: #e2e8f0;
-      border-radius: 8px;
-      padding: 3px;
-      flex-shrink: 0;
-    }
-    .year-toggle button {
-      padding: 8px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      background: transparent;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .year-toggle button.active {
-      background: #fff;
-      color: #0c4a6e;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-    .series-toggles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .series-toggle {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      border: 1px solid #e2e8f0;
-      background: #fff;
-      color: #64748b;
-      font-family: inherit;
-    }
-    .series-toggle.active {
-      border-color: currentColor;
-      background: #f8fafc;
-    }
-    .series-toggle .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .chart-wrap {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 24px;
-      position: relative;
-    }
-    .chart-wrap canvas {
-      width: 100% !important;
-      max-height: 400px;
-    }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    /* Summary table */
-    .summary-section {
-      padding: 48px 24px;
-    }
-    .summary-section h2 {
-      text-align: center;
-      font-size: 24px;
-      font-weight: 700;
-      color: #0c4a6e;
-      margin: 0 0 24px;
-    }
-    .summary-table-wrap {
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow-x: auto;
-    }
-    .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-    .summary-table th {
-      text-align: left;
-      padding: 12px 16px;
-      background: #f8fafc;
-      font-weight: 600;
-      color: #475569;
-      border-bottom: 2px solid #e2e8f0;
-      white-space: nowrap;
-    }
-    .summary-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid #f1f5f9;
-      color: #334155;
-      white-space: nowrap;
-    }
-    .summary-table tr:last-child td { border-bottom: none; }
-    .summary-table .col-highlight {
-      background: #f0f9ff;
-    }
-    .summary-table .option-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
 
-    /* Lead capture */
-    .lead-section {
-      padding: 64px 24px;
-      background: linear-gradient(135deg, #0C447C 0%, #1a5a9e 100%);
-      color: #fff;
+    @media (max-width: 1024px) {
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+      .problems-grid { gap: 20px; }
+      .problem-card { padding: 24px 20px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .card { padding: 24px 20px; }
+      .systems-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .system-card-img { height: 170px; }
+      .system-card-img img { max-height: 150px; }
+      .system-card-body { padding: 16px 18px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .filtration-card h3 { font-size: 0.85rem; }
+      .filtration-card img { width: 44px; height: 44px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .lead-section h2 {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 700;
-      margin: 0 0 12px;
-    }
-    .lead-section > .container > p {
-      text-align: center;
-      font-size: 16px;
-      opacity: 0.85;
-      margin: 0 auto 40px;
-      max-width: 560px;
-      line-height: 1.6;
-    }
-    .lead-form {
-      max-width: 640px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 32px;
-      color: #1e293b;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 480px) {
-      .form-grid { grid-template-columns: 1fr; }
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .form-group.full-width {
-      grid-column: 1 / -1;
-    }
-    .form-group label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #475569;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: 10px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 15px;
-      font-family: inherit;
-      color: #1e293b;
-      background: #fff;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--blue-accent);
-      box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.15);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 14px 24px;
-      background: #0ea5e9;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-      margin-top: 8px;
-      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
-    }
-    .submit-btn:hover { background: #0284c7; }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .form-success {
-      text-align: center;
-      padding: 48px 24px;
-    }
-    .form-success h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #0c4a6e;
-      margin: 0 0 8px;
-    }
-    .form-success p {
-      font-size: 15px;
-      color: #64748b;
-    }
-    .form-error {
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #dc2626;
-      margin-bottom: 16px;
-      display: none;
-    }
-
-    /* Footer handled by Tailwind classes */
 
     @media (max-width: 768px) {
-      .hero { padding: 32px 20px 28px; }
-      .hero h1 { font-size: 24px; }
-      .hero p { font-size: 15px; }
-      .builder-row { flex-direction: column; align-items: stretch; }
-      .builder-row .selector-group { width: 100%; }
-      .model-select { min-width: unset; width: 100%; }
-      .custom-price-input { width: 100%; }
-      .add-system-btn { width: 100%; justify-content: center; }
-      .chart-controls { flex-direction: column; }
-      .system-item { flex-direction: column; align-items: flex-start; }
-      .system-item-info { width: 100%; }
+      .container { padding: 0 16px; }
+      .section-title { font-size: 1.6rem; }
+      .section-subtitle { font-size: 1rem; margin-bottom: 32px; }
+      .hero { padding: 32px 0 48px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero p.tagline { font-size: 1rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .hero-contact { font-size: 0.85rem; }
+      .nav-logo { height: 40px; }
+
+      .problems, .solution, .video, .trusted, .systems, .filtration { padding: 48px 0; }
+      .card-grid, .trust-grid { grid-template-columns: 1fr; }
+      .systems-grid { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
+      .problems-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .tab-container { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      .tab-btn { width: 100%; max-width: 280px; margin: 0; }
+
+      .system-card-header h3 { font-size: 1.4rem; }
+      .system-card-body { padding: 20px; }
+
+      .filtration-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filtration-row-gap { margin-top: 20px; }
+      .filtration-card h3 { font-size: 0.9rem; }
+
+      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 36px auto 0; }
+      .review-card { padding: 20px; }
+
+      .footer-cta { padding: 48px 0; }
+      .footer-cta h2 { font-size: 1.5rem; }
+      .footer-cta p { font-size: 0.95rem; }
+      .footer-cta .btn-primary { font-size: 0.95rem; padding: 16px 28px; }
+
+      .trust-highlight { font-size: 1.05rem; }
+      .hero-tech-photo { max-width: 300px; }
+
+      .cards-grid { grid-template-columns: 1fr !important; }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.5rem; }
+      .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
+      .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
+      .section-title { font-size: 1.4rem; }
+      .hero-tech-photo { max-width: 260px; }
     }
   </style>
 </head>
+<body>
 
-<body class="bg-white text-gray-900 antialiased">
+<!-- Accent Bar -->
+<div class="accent-bar"></div>
 
-  <!-- ============ NAV ============ -->
-  <nav class="bg-white border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
-      <a href="https://purevidawater.com" class="flex items-center gap-3">
-        <img src="/images/water-drop-logo.svg" alt="PureVida Water" class="h-14 w-auto" />
-        <span class="text-3xl font-bold tracking-tight">
-          <span class="text-sky-500">Pure</span><span class="text-sky-800">Vida</span>
-        </span>
-      </a>
-      <div class="flex items-center gap-3">
-        <a href="mailto:contact@purevidawater.com" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          contact@purevidawater.com
-        </a>
-        <a href="tel:+18885340117" class="flex items-center gap-1.5 text-sky-500 hover:text-sky-600 transition-colors font-semibold text-sm">
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          (888) 534-0117
-        </a>
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-brand">
+      <img src="/images/purevida-header-logo.svg" alt="PureVida Water Technologies" class="nav-logo">
+    </a>
+    <div style="position: relative;">
+      <button class="menu-toggle" id="ma-menu-toggle" aria-label="Menu" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:2px solid #D8E2EA;border-radius:8px;background:none;font-family:inherit;font-size:0.85rem;font-weight:600;color:var(--gray-text);cursor:pointer;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <div class="nav-dropdown" id="ma-nav-dropdown" style="display:none;position:absolute;top:100%;right:0;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.12);border:1px solid #E8EEF3;min-width:220px;padding:8px 0;z-index:101;">
+        <a href="#problems" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">The Problem</a>
+        <a href="#solution" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Our Solution</a>
+        <a href="#video" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">PV In Action</a>
+        <a href="#filtration" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Filtration</a>
+        <a href="#trusted" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Trusted Partners</a>
+        <a href="#systems" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Systems</a>
+        <a href="#options" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Purchase Options</a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="container">
-      <h1>PureVida &amp; Major Accounts</h1>
-      <p style="margin-top:12px;font-weight:700;font-size:18px;">As a large account, you have specific needs. We have built out our Major Accounts Program to meet and exceed those needs.</p>
-      <ul style="margin-top:16px;list-style:none;padding:0;max-width:700px;margin-left:auto;margin-right:auto;text-align:left;">
-        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
-          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-          <strong>Quality That Lasts</strong> — Our equipment averages 11.5 years of useful life with proper maintenance.
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
-          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-          <strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one touches it.
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
-          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-          <span style="white-space:nowrap;"><strong>Fast, Local Service</strong></span> — Dedicated technician, remote support, and a customer portal from our DeSoto headquarters.
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
-          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-          <strong>Locally Owned</strong> — Get fast decisions from real people, not corporate bureaucracy.
-        </li>
-        <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
-          <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-          <strong>Flexible Programs</strong> — We tailor solutions to fit your organization's specific needs.
-        </li>
-      </ul>
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div style="margin-bottom: 32px;">
+      <img src="/images/purevida-header-logo.svg" alt="PureVida Water Technologies" style="max-height: 90px; width: auto; object-fit: contain;">
     </div>
-  </section>
 
-  <!-- ============ SYSTEM BUILDER ============ -->
-  <section class="selector-section">
-    <div class="selector-wrap">
-      <div class="builder-title">Build Your System List</div>
-      <div class="builder-row">
-        <div class="selector-group">
-          <label for="model-select">System Model</label>
-          <select id="model-select" class="model-select">
-            <option value="PV1w">PV1w — Low Consumption Water CT</option>
-            <option value="PV2w">PV2w — Low Consumption Water</option>
-            <option value="PV3w">PV3w — Moderate Consumption Water</option>
-            <option value="PV4w">PV4w — High Consumption Water</option>
-            <option value="PV5s">PV5s — Sparkling Water</option>
-            <option value="PV6i">PV6i — Low Consumption Water &amp; Ice</option>
-            <option value="PV7i">PV7i — Low Consumption Water &amp; Ice</option>
-            <option value="PV8i">PV8i — Moderate Consumption Water &amp; Ice</option>
-            <option value="PV9i">PV9i — High Consumption Water &amp; Ice</option>
-          </select>
-        </div>
-        <div class="selector-group">
-          <label>Quantity</label>
-          <div class="qty-control">
-            <button class="qty-btn" id="qty-minus" type="button">&minus;</button>
-            <input type="number" class="qty-input" id="qty-display" value="1" min="1" max="99" />
-            <button class="qty-btn" id="qty-plus" type="button">+</button>
-          </div>
-        </div>
-        <div class="selector-group">
-          <label for="custom-price">Monthly Payment</label>
-          <input type="number" id="custom-price" class="custom-price-input" placeholder="" min="0" step="1" />
-        </div>
-        <button class="add-system-btn" id="add-system-btn" type="button">+ Add System</button>
+    <h1>A Better Hydration Solution<br>for Your Organization</h1>
+    <p style="font-size: 1rem; color: var(--gray-text); margin-top: 8px; margin-bottom: 4px; font-weight: 600; letter-spacing: 0.5px;">PureVida Water Major Account Program</p>
+    <div class="underline-accent underline-center"></div>
+
+    <p class="hero-contact" style="margin-top: 32px;">
+      Prepared by PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; <a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a>
+    </p>
+
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ PROBLEMS ============ -->
+<section class="problems" id="problems">
+  <div class="container">
+    <h2 class="section-title">The Problem with Other Office Water Services</h2>
+    <div class="underline-accent"></div>
+    <div class="problems-grid">
+      <!-- Bottles Card -->
+      <div class="problem-card">
+        <h3 class="problem-card-title">Bottles</h3>
+        <ul class="problem-list">
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Heavy Lifting</strong>
+              <p>40 lb jugs create injury risk for staff</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Unreliable Deliveries</strong>
+              <p>Missed or delayed deliveries leave you without water</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Rising Costs</strong>
+              <p>Ongoing delivery fees, bottle deposits, and equipment rental</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Storage Clutter</strong>
+              <p>Bulky jugs take up valuable space in break rooms and offices</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Running Out</strong>
+              <p>Limited supply means you can run dry between deliveries</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Plastic Waste</strong>
+              <p>Jugs add to your environmental footprint</p>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <div class="systems-list" id="systems-list">
-        <div id="systems-list-items">
-          <div class="systems-empty" id="systems-empty">No systems added yet. Select a model and click "Add System" to begin.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ OPTION CARDS ============ -->
-  <section class="cards-section">
-    <h2>Four Ways to Get PureVida</h2>
-    <div class="cards-grid">
-
-      <!-- OPTION 1: Time Purchase -->
-      <div class="option-card card-option2">
-        <div class="option-card-header">
-          <div>
-            <div class="option-num">Option 1</div>
-            <h3>Time Purchase</h3>
-          </div>
-          <span class="badge badge-popular">Most Popular</span>
-        </div>
-        <div class="option-card-body">
-          <div class="term-pills" id="term-pills-2">
-            <button class="term-pill active" data-term="60" type="button">60-mo<span class="discount">25% off</span></button>
-            <button class="term-pill" data-term="36" type="button">36-mo<span class="discount">15% off</span></button>
-            <button class="term-pill" data-term="12" type="button">12-mo<span class="discount">No discount</span></button>
-          </div>
-          <div class="price-main" id="opt2-monthly">$0<span class="per"> effective monthly payment</span></div>
-          <div id="opt2-savings" class="price-highlight" style="display:none;"></div>
-          <div class="price-sub" id="opt2-details">
-            Total Time Purchase Payment: <strong id="opt2-total">$0</strong>
-            <span id="opt2-term-note" style="display:block;font-size:12px;color:#94a3b8;margin-top:2px;">60-month term commitment</span>
-          </div>
-          <div class="price-sub" style="color:#166534;font-weight:600;">
-            No Installation Fee
-          </div>
-          <div class="inclusions">
-            <h4>Included</h4>
-            <ul>
-              <li>You Rent the Equipment</li>
-              <li>Locked In Price Protection</li>
-              <li>All parts, service, filters and filter changes included</li>
-              <li>PureVida Satisfaction and Replacement System Guarantee</li>
-              <li>1 Free Relocation per Year</li>
-              <li>Simplified Paperwork and Billing Process</li>
-              <li>Flexible Renewal Options</li>
-              <li>Dedicated Service Technician with 3 Backup Technicians (100+ systems)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- OPTION 2: Full-Service Rental -->
-      <div class="option-card card-option1">
-        <div class="option-card-header">
-          <div>
-            <div class="option-num">Option 2</div>
-            <h3>Full-Service Rental</h3>
-          </div>
-        </div>
-        <div class="option-card-body">
-          <div class="term-pills" id="term-pills-1">
-            <button class="term-pill active" data-term="60" type="button">60-mo</button>
-            <button class="term-pill" data-term="36" type="button">36-mo</button>
-            <button class="term-pill" data-term="12" type="button">12-mo</button>
-          </div>
-          <div class="price-main" id="opt1-monthly">$0<span class="per"> monthly payment</span></div>
-          <div class="price-sub" id="opt1-details">
-            Total Monthly Payment: <strong id="opt1-total-monthly">$0</strong>
-          </div>
-          <div class="price-sub" style="color:#166534;font-weight:600;">
-            No Installation Fee
-          </div>
-          <div class="inclusions">
-            <h4>Included</h4>
-            <ul>
-              <li>You Rent the Equipment</li>
-              <li>Locked In Price Protection</li>
-              <li>All parts, service, filters and filter changes included</li>
-              <li>PureVida Satisfaction and Replacement System Guarantee</li>
-              <li>1 Free Relocation per Year</li>
-              <li>Monthly, Quarterly, Annual Billing</li>
-              <li>Flexible Renewal Options</li>
-              <li>Dedicated Service Technician with 3 Backup Technicians (100+ systems)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- OPTION 3: Purchase + Maintenance -->
-      <div class="option-card card-option3">
-        <div class="option-card-header">
-          <div>
-            <div class="option-num">Option 3</div>
-            <h3>Purchase + Annual Maintenance</h3>
-          </div>
-        </div>
-        <div class="option-card-body">
-          <div class="purchase-price" id="opt3-purchase">$0</div>
-          <div class="purchase-detail">Total Equipment Purchase Price</div>
-          <div class="purchase-detail" style="margin-top:8px;">Total Installation Fee: <strong id="opt3-install">$0</strong></div>
-          <div class="purchase-detail">Annual Maintenance Fee: <strong id="opt3-maint">$0</strong>/yr</div>
-          <div class="inclusions">
-            <h4>Included with Annual Maintenance Renewal</h4>
-            <ul>
-              <li>You Own the Equipment</li>
-              <li>All parts, service, filters and filter changes included*</li>
-              <li>1 Free Relocation per Year*</li>
-            </ul>
-            <p class="note-text">*Applies only with annual maintenance renewal each year.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- OPTION 4: Purchase + T&M -->
-      <div class="option-card card-option4">
-        <div class="option-card-header">
-          <div>
-            <div class="option-num">Option 4</div>
-            <h3>Purchase + Time &amp; Materials</h3>
-          </div>
-          <span class="badge badge-flag">Cost Varies</span>
-        </div>
-        <div class="option-card-body">
-          <div class="purchase-price" id="opt4-purchase">$0</div>
-          <div class="purchase-detail">Total Equipment Purchase Price</div>
-          <div class="purchase-detail" style="margin-top:8px;">Total Installation Fee: <strong id="opt4-install">$0</strong></div>
-          <div class="purchase-detail" style="margin-top:8px;">Service Call Fee: <strong>$169</strong>/visit per system</div>
-          <div class="purchase-detail" style="font-size:12px;color:#94a3b8;">Includes all parts, time, and filters</div>
-
-          <div class="slider-group" style="margin-top:16px;">
-            <label>Estimated service calls/year per system: <strong id="trips-display">2</strong></label>
-            <input type="range" class="trips-slider" id="trips-slider" min="0.5" max="4" step="0.5" value="2" />
-          </div>
-          <div class="purchase-detail">Est. annual service cost: <strong id="opt4-service-cost">$0</strong></div>
-          <div class="inclusions">
-            <h4>Included</h4>
-            <ul>
-              <li>You Own the Equipment</li>
-              <li>$169 flat fee per visit per system</li>
-              <li>All parts, time, and filters included per visit</li>
-              <li>Pay only when service is needed</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ CUMULATIVE COST CHART ============ -->
-  <section class="chart-section" id="chart-section">
-    <div class="container">
-      <h2>Cumulative Cost Over Time</h2>
-      <div class="chart-container">
-        <div class="chart-controls">
-          <div class="series-toggles" id="series-toggles"></div>
-          <div class="year-toggle" id="year-toggle">
-            <button class="active" data-years="5" type="button">5-Year</button>
-            <button data-years="10" type="button">10-Year</button>
-          </div>
-        </div>
-        <div class="chart-wrap">
-          <canvas id="cost-chart"></canvas>
-        </div>
+      <!-- Other Bottleless Providers Card -->
+      <div class="problem-card">
+        <h3 class="problem-card-title">Other Bottleless Providers</h3>
+        <ul class="problem-list">
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Inferior Equipment</strong>
+              <p>Cheap equipment means less usage, shorter useful life, more headaches, less value</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Poor Filtration</strong>
+              <p>Basic Filtration misses heavy metals, chemicals, microplastics and gives your drinkers a poor taste which means less usage and less value</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Slow Service</strong>
+              <p>National call centers with no local technicians for fast response</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>No Accountability</strong>
+              <p>Hard to reach when something breaks or needs maintenance</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ SUMMARY TABLE ============ -->
-  <section class="summary-section" id="summary-section">
-    <div class="container">
-      <h2>Cost Summary</h2>
-      <div class="summary-table-wrap">
-        <table class="summary-table" id="summary-table">
-          <thead>
-            <tr>
-              <th>Option</th>
-              <th>Year 1</th>
-              <th>Annual (Yr 2+)</th>
-              <th>5-Year Total</th>
-              <th>10-Year Total</th>
-            </tr>
-          </thead>
-          <tbody id="summary-tbody"></tbody>
-        </table>
+<div class="accent-bar"></div>
+
+<!-- ============ SOLUTION ============ -->
+<section class="solution" id="solution">
+  <div class="container">
+    <h2 class="section-title">The PureVida Office Water &amp; Ice Solution</h2>
+    <div class="underline-accent"></div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="7" y1="7" x2="15" y2="15"/><line x1="15" y1="7" x2="7" y2="15"/><circle cx="11" cy="11" r="9"/></svg>
+        </div>
+        <h3>Completely Bottleless</h3>
+        <p>No jugs, no deliveries, no heavy lifting. Connects directly to your water line for unlimited, on-demand water.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M6 3h10l-1 9H7L6 3z"/><path d="M7 12c0 3 2 5 4 5s4-2 4-5"/><line x1="5" y1="3" x2="17" y2="3"/></svg>
+        </div>
+        <h3>Advanced Filtration</h3>
+        <p>6-stage RO + UV purification removes heavy metals, PFAs, microplastics, and 99.9% of contaminants.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="12" height="16" rx="2"/><line x1="5" y1="8" x2="17" y2="8"/><line x1="5" y1="13" x2="17" y2="13"/><text x="7" y="7" fill="white" font-size="5" stroke="none">H</text><text x="7" y="12" fill="white" font-size="5" stroke="none">C</text><text x="7" y="17" fill="white" font-size="5" stroke="none">I</text></svg>
+        </div>
+        <h3>Top Of The Line Systems</h3>
+        <p>Touchless, self-cleaning systems with hot, cold, ambient, sparkling water and nugget-style ice options. 11.5 Yr Useful Life.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C7 2 3 6 3 11c0 5 9 9 9 9s9-4 9-9c0-5-4-9-9-9z"/><circle cx="12" cy="11" r="2"/></svg>
+        </div>
+        <h3>Fast, Local Service & Ownership</h3>
+        <p>Based in DeSoto, TX with local Technicians across the metroplex. Get answers and service fast.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><text x="5" y="16" fill="white" font-size="14" font-weight="700" stroke="none">$</text></svg>
+        </div>
+        <h3>Flexible Purchase Options</h3>
+        <p>Local ownership that wants to find a structure that works best for you.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon solution-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3>Free, No-Obligation Trial</h3>
+        <p>Try PureVida risk-free with a complimentary 7-day trial.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ FEATURE COMPARISON MATRIX ============ -->
-  <section style="padding:48px 24px;">
-    <div class="container">
-      <h2 style="text-align:center;font-size:24px;font-weight:700;color:#0c4a6e;margin:0 0 32px;">Compare All Four Options</h2>
-      <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;border:2px solid #0c4a6e;min-width:700px;">
-          <thead>
-            <tr>
-              <th style="padding:14px 16px;background:#0c4a6e;color:#fff;font-size:13px;font-weight:700;text-align:left;border:1px solid #094067;width:30%;">Feature</th>
-              <th style="padding:14px 16px;background:#14A38B;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 1<br/><span style="font-weight:500;font-size:11px;">Time Purchase</span></th>
-              <th style="padding:14px 16px;background:#0ea5e9;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 2<br/><span style="font-weight:500;font-size:11px;">Full-Service Rental</span></th>
-              <th style="padding:14px 16px;background:#D97706;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 3<br/><span style="font-weight:500;font-size:11px;">Purchase + Maintenance</span></th>
-              <th style="padding:14px 16px;background:#DC2626;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 4<br/><span style="font-weight:500;font-size:11px;">Purchase + T&M</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Equipment Ownership</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Own</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Own</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Locked In Price Protection</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">All Parts, Service, Filters Included</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;*</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Satisfaction & Replacement Guarantee</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">1 Free Relocation per Year</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;*</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Flexible Renewal Options</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Simplified Paperwork & Billing</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Lowest Upfront Cost</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-            </tr>
-            <tr>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Lowest Long-Term Cost</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
-              <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">Depends on usage</td>
-            </tr>
-          </tbody>
-        </table>
+<div class="accent-bar"></div>
+
+<!-- ============ VIDEO ============ -->
+<section class="video" id="video">
+  <div class="container">
+    <h2 class="section-title">See PureVida Ice &amp; Water Systems In Action</h2>
+    <div class="underline-accent"></div>
+    <p class="section-subtitle text-center">Watch a quick overview of how PureVida transforms your breakroom hydration.</p>
+    <div class="video-wrapper">
+      <iframe src="https://www.loom.com/embed/0accde2b4e5343208cc425f0644f97d5" allowfullscreen></iframe>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <img src="/images/technician-install.png" alt="PureVida field technician completing an on-site installation" class="hero-tech-photo" style="max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
+      <p style="margin-top: 12px; font-size: 0.9rem; color: var(--gray-text); font-style: italic;">PureVida Serving Another Happy Customer</p>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ FILTRATION ============ -->
+<section class="filtration" id="filtration">
+  <div class="container">
+    <h2 class="section-title">The PureVida Office Water Filtration Process</h2>
+    <div class="underline-accent"></div>
+    <p class="section-subtitle text-center">6-Stage Water Purification Process</p>
+
+    <!-- Top Row: Unfiltered Water + Steps 1-3 -->
+    <div class="filtration-grid">
+      <div class="filtration-card">
+        <img src="/images/icons/4d1404_6abb2b38c47d4d3ba42913b44087ab97~mv2.png.avif" alt="Unfiltered Water" />
+        <h3>Unfiltered Water</h3>
       </div>
-      <p style="font-size:12px;color:#94a3b8;margin-top:12px;text-align:center;">*Applies only with annual maintenance renewal each year.</p>
+
+      <div class="filtration-card">
+        <div class="step-badge">1</div>
+        <img src="/images/icons/2.png.avif" alt="Sediment Filter" />
+        <h3>Sediment Filter</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Dirt</li>
+          <li>Rust</li>
+          <li>Silt</li>
+          <li>Sand</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">2</div>
+        <img src="/images/icons/3.png.avif" alt="Carbon Block Filter" />
+        <h3>Carbon Block Filter</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Chemicals</li>
+          <li>Herbicides &amp; Pesticides</li>
+          <li>Chlorine</li>
+          <li>VOCs</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">3</div>
+        <img src="/images/icons/4.png.avif" alt="0.0001 Micron Membrane" />
+        <h3>0.0001 Micron Reverse Osmosis Membrane</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Heavy Metals</li>
+          <li>PFAs</li>
+          <li>Microplastics</li>
+        </ul>
+      </div>
     </div>
-  </section>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="bg-gray-900 text-white py-6 mt-10">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <p class="font-semibold mb-1">PureVida Water</p>
-      <a href="mailto:contact@purevidawater.com" class="text-gray-400 hover:text-white transition-colors text-sm">contact@purevidawater.com</a>
-      <span class="text-gray-600 mx-2">|</span>
-      <a href="tel:+18885340117" class="text-gray-400 hover:text-white transition-colors text-sm">(888) 534-0117</a>
-      <p class="text-gray-500 text-xs mt-2">&copy; 2026 PureVida Water. All rights reserved.</p>
+    <!-- Bottom Row: Steps 4-6 + Fantastic Drinking Water -->
+    <div class="filtration-grid filtration-row-gap">
+      <div class="filtration-card">
+        <div class="step-badge">4</div>
+        <img src="/images/icons/5.png.avif" alt="Granular Activated Carbon Filter" />
+        <h3>Granular Activated Carbon Filter</h3>
+        <p class="taste-text">"Polishes" Water For Great Taste</p>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">5</div>
+        <img src="/images/icons/6.png.avif" alt="Boost Filter" />
+        <h3>Boost&trade; Filter*</h3>
+        <p class="reduces-label">Adds:</p>
+        <ul>
+          <li>Alkalinity</li>
+          <li>Minerals</li>
+          <li>Electrolytes</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">6</div>
+        <img src="/images/icons/7.png.avif" alt="Activated Oxygen" />
+        <h3>Ozonation with Activated Oxygen or UV Light</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Bacteria</li>
+          <li>Viruses</li>
+          <li>Organics</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <img src="/images/icons/water-drop.svg" alt="Fantastic Drinking Water!" />
+        <h3>Fantastic Drinking Water!</h3>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script define:vars={{ SUPABASE_URL }}>
-    // ================================================================
-    // PRICING DATA
-    // ================================================================
-    const MODELS = {
-      PV1w: { label: 'PV1w — Low Consumption Water CT', grid: { 60: 54, 36: 68, 12: 82 }, cost: 576, category: 'water' },
-      PV2w: { label: 'PV2w — Low Consumption Water', grid: { 60: 54, 36: 68, 12: 82 }, cost: 576, category: 'water' },
-      PV3w: { label: 'PV3w — Moderate Consumption Water', grid: { 60: 74, 36: 94, 12: 114 }, cost: 870, category: 'water' },
-      PV4w: { label: 'PV4w — High Consumption Water', grid: { 60: 159, 36: 189, 12: 219 }, cost: 1995, category: 'water' },
-      PV5s: { label: 'PV5s — Sparkling Water', grid: { 60: 134, 36: 154, 12: 174 }, cost: 861, category: 'water' },
-      PV6i: { label: 'PV6i — Low Consumption Water & Ice', grid: { 60: 119, 36: 139, 12: 159 }, cost: 1321, category: 'ice' },
-      PV7i: { label: 'PV7i — Low Consumption Water & Ice', grid: { 60: 179, 36: 209, 12: 239 }, cost: 2916, category: 'ice' },
-      PV8i: { label: 'PV8i — Moderate Consumption Water & Ice', grid: { 60: 209, 36: 239, 12: 269 }, cost: 3328, category: 'ice' },
-      PV9i: { label: 'PV9i — High Consumption Water & Ice', grid: { 60: 309, 36: 349, 12: 389 }, cost: 6566, category: 'ice' },
-      PV12c: { label: 'PV12c — Coffee', grid: { 60: 275, 36: 315, 12: 355 }, cost: 5028, category: 'ice' }
-    };
+<div class="accent-bar"></div>
 
-    const INSTALL_FEE = 99;
-    const DISCOUNTS = { 60: 0.75, 36: 0.85, 12: 1.00 };
-    const MAINT_FEES = { water: 189, ice: 249 };
-    const TRIP_CHARGE = 169;
+<!-- ============ TRUSTED ============ -->
+<section class="trusted" id="trusted">
+  <div class="container">
+    <h2 class="section-title text-center">Trusted Across Texas</h2>
+    <p class="section-subtitle text-center">PureVida is Providing Office Water &amp; Ice Service to over 1,100 Businesses Across the State</p>
 
-    // ================================================================
-    // STATE
-    // ================================================================
-    let state = {
-      systems: [],          // [{ model: 'PV3w', qty: 2, customPrice: null }, ...]
-      addModel: 'PV1w',     // currently selected in the dropdown for adding
-      addQty: 1,            // currently selected qty for adding
-      rentalTerm: 60,
-      tpTerm: 60,
-      trips: 2,
-      yearRange: 5,
-      lastViewedOption: 'Option 1 — Full-Service Rental'
-    };
+    <div class="trust-grid" style="max-width: 900px; margin: 0 auto;">
+      <div class="trust-card">
+        <div class="trust-icon burnt-orange">UT</div>
+        <div>
+          <h4>University of Texas at Austin</h4>
+          <p>Flagship state university</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">WTC</div>
+        <div>
+          <h4>Dallas World Trade Center</h4>
+          <p>International business hub</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">WM</div>
+        <div>
+          <h4>Walmart</h4>
+          <p>Fortune 1 retailer</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">CC</div>
+        <div>
+          <h4>Caliber Collision</h4>
+          <p>Nationwide auto body leader</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">SW</div>
+        <div>
+          <h4>Sherwin Williams</h4>
+          <p>Global coatings leader</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">TX</div>
+        <div>
+          <h4>1,100+ Texas Organizations</h4>
+          <p>And growing every month</p>
+        </div>
+      </div>
+    </div>
 
-    // Series definitions
-    const SERIES_DEFS = [
-      { key: 'rental60',  label: 'Rental 60-mo',       color: '#378ADD', dash: [],     defaultOn: true },
-      { key: 'rental36',  label: 'Rental 36-mo',       color: '#60a5fa', dash: [6,3],  defaultOn: false },
-      { key: 'rental12',  label: 'Rental 12-mo',       color: '#93c5fd', dash: [3,3],  defaultOn: false },
-      { key: 'tp60',      label: 'Time Purchase 60-mo', color: '#14A38B', dash: [],     defaultOn: true },
-      { key: 'tp36',      label: 'Time Purchase 36-mo', color: '#34d399', dash: [6,3],  defaultOn: false },
-      { key: 'tp12',      label: 'Time Purchase 12-mo', color: '#6ee7b7', dash: [3,3],  defaultOn: false },
-      { key: 'maint',     label: 'Purchase + Maint.',   color: '#D97706', dash: [],     defaultOn: true },
-      { key: 'tm',        label: 'Purchase + T&M',      color: '#DC2626', dash: [],     defaultOn: true }
-    ];
+    <p class="trust-highlight">Your organization can join our growing network of Texas partners</p>
 
-    let seriesVisible = {};
-    SERIES_DEFS.forEach(s => { seriesVisible[s.key] = s.defaultOn; });
+    <!-- Reviews -->
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"My company has a Purevida water dispenser, the water is amazing. They are always on top of taking care of us if any issues arise. Ronald did a very good and thorough job at replacing our filters, on top of being super friendly and making my day. Thanks Purevida team!"</blockquote>
+        <p class="review-source">- Local San Antonio Business</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I highly recommend PureVida water to anyone searching for a reliable, clean, and affordable water system for their office. We were customers of PureVida for 5+ years, and regrettably decided to try a different company that ultimately pulled out many hidden contracts and fees. PureVida not only gladly took us back as their customer, they honored our original terms and conditions and also lowered our monthly bill for the price they had offered before we ended our service. If you're looking for an honest and transparent water supply company, PureVida water is the way to go."</blockquote>
+        <p class="review-source">- Local DFW Business</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // ================================================================
-    // DOM REFS
-    // ================================================================
-    const modelSelect = document.getElementById('model-select');
-    const qtyDisplay = document.getElementById('qty-display');
-    const qtyMinus = document.getElementById('qty-minus');
-    const qtyPlus = document.getElementById('qty-plus');
-    const customPriceInput = document.getElementById('custom-price');
-    const addSystemBtn = document.getElementById('add-system-btn');
-    const tripsSlider = document.getElementById('trips-slider');
-    const tripsDisplay = document.getElementById('trips-display');
+<div class="accent-bar"></div>
 
-    // ================================================================
-    // HELPERS
-    // ================================================================
-    function fmt(n) {
-      return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+<!-- ============ RECOMMENDED SYSTEMS ============ -->
+<section class="systems" id="systems">
+  <div class="container">
+    <h2 class="section-title text-center">Recommended Systems</h2>
+    <p class="section-subtitle text-center">Tailored to Your Organization's Needs</p>
+
+    <!-- Tabs -->
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="switchTab('water')">Water Systems</button>
+      <button class="tab-btn" onclick="switchTab('ice')">Ice &amp; Water Systems</button>
+    </div>
+
+    <!-- Water Systems Tab -->
+    <div class="tab-panel active" id="tab-water">
+      <div class="systems-grid">
+        <!-- PV1w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV1w</h3>
+            <p class="model-tagline">Countertop. Compact. Perfect for small teams.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV1w.png" alt="PV1w Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV1w" data-specs='[{"label":"Form","value":"Countertop"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"18in H x 12in W x 20in D"},{"label":"Storage","value":"1 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"47 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV2w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV2w</h3>
+            <p class="model-tagline">Freestanding. Efficient. Perfect for small teams.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV2w.png" alt="PV2w Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV2w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"49in H x 13in W x 18in D"},{"label":"Storage","value":"1.82 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"55 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV3w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Moderate Consumption</div>
+            <h3>PV3w</h3>
+            <p class="model-tagline">Advanced filtration for busy spaces.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV3w.png" alt="PV3w Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Lounges, department offices, staff workrooms, libraries</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV3w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"51in H x 14in W x 17in D"},{"label":"Storage","value":"3 Gal Cold | 0.5 Gal Hot"},{"label":"Dispense Height","value":"11.5 in"},{"label":"Weight","value":"70 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV4w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">High Consumption</div>
+            <h3>PV4w</h3>
+            <p class="model-tagline">Built for high-traffic, high-demand areas.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV4w.png" alt="PV4w Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ drinkers</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic facilities, common areas, large break rooms, dining areas</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV4w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold &amp; Ambient Water"},{"label":"Dimensions","value":"69in H x 19in W x 21in D"},{"label":"Storage","value":"5 Gal Cold | 1.1 Gal Hot | 2.5 Gal Ambient"},{"label":"Dispense Height","value":"14.7 in"},{"label":"Weight","value":"155 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="systems-note">All systems include full service, maintenance &amp; filter changes at a standard, fixed monthly rate.</p>
+    </div>
+
+    <!-- Ice & Water Systems Tab -->
+    <div class="tab-panel" id="tab-ice">
+      <div class="systems-grid">
+        <!-- PV6i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV6i</h3>
+            <p class="model-tagline">Compact ice &amp; water for small teams.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV6i.png" alt="PV6i Ice & Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV6i" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold, Ambient Water | Bullet Sonic Ice"},{"label":"Dimensions","value":"59in H x 17in W x 20in D"},{"label":"Storage","value":"1.2 gal Cold | 1.2 gal Hot | 4.5 gal Amb | 13.2 lbs Ice"},{"label":"Production","value":"44 lbs of Ice Daily"},{"label":"Weight","value":"120 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV7i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV7i</h3>
+            <p class="model-tagline">Versatile ice &amp; water, countertop or freestanding.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV7i.png" alt="PV7i Ice & Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
+            <p class="meta-item"><strong>Areas:</strong> Faculty offices, administrative suites, advising centers, clinic rooms</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV7i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"18in H x 15in W x 22in D | 45in H x 15in W x 22in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 7 lbs Ice"},{"label":"Production","value":"125 lbs of Ice Daily"},{"label":"Weight","value":"60 lbs / 85 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV8i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Moderate Consumption</div>
+            <h3>PV8i</h3>
+            <p class="model-tagline">Premium ice &amp; water for busy spaces.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV8i.png" alt="PV8i Ice & Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 users</p>
+            <p class="meta-item"><strong>Areas:</strong> Lounges, staff workrooms, libraries</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV8i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"24in H x 15in W x 24in D | 52in H x 15in W x 24in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 16.5 lbs Ice"},{"label":"Production","value":"165 lbs of Ice Daily"},{"label":"Weight","value":"93 lbs / 118 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV9i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">High Consumption</div>
+            <h3>PV9i</h3>
+            <p class="model-tagline">High-capacity ice for peak demand areas.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV9i.png" alt="PV9i Ice & Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ users</p>
+            <p class="meta-item"><strong>Areas:</strong> Athletic facilities, common areas, large break rooms, dining areas</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV9i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"46in H x 17in W x 24in D | 75in H x 17in W x 24in D"},{"label":"Storage","value":"6 gal Ambient | 30 lbs Ice"},{"label":"Production","value":"380 lbs of Ice Daily"},{"label":"Weight","value":"223 lbs / 281 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="systems-note">All ice &amp; water systems include full service, maintenance &amp; filter changes at a standard, fixed monthly rate.</p>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ OPTION CARDS ============ -->
+<section class="cards-section" id="options">
+  <h2>Four Ways to Get PureVida</h2>
+  <div class="cards-grid">
+
+    <!-- OPTION 1: Time Purchase -->
+    <div class="option-card card-option2">
+      <div class="option-card-header">
+        <div>
+          <div class="option-num">Option 1</div>
+          <h3>Time Purchase</h3>
+        </div>
+        <span class="badge badge-popular">Most Popular</span>
+      </div>
+      <div class="option-card-body">
+        <p class="option-description">Make a one-time, up-front payment that covers the full cost of your equipment rental, service, and maintenance for the entire term. This locks in your rate and eliminates monthly invoices. Choose from 12, 36, or 60-month terms. At term end, you transition to flexible renewal options.</p>
+        <div class="inclusions">
+          <h4>Included</h4>
+          <ul>
+            <li>You Rent the Equipment</li>
+            <li>Locked In Price Protection</li>
+            <li>All parts, service, filters and filter changes included</li>
+            <li>PureVida Satisfaction and Replacement System Guarantee</li>
+            <li>1 Free Relocation per Year</li>
+            <li>Simplified Paperwork and Billing Process</li>
+            <li>Flexible Renewal Options</li>
+            <li>Dedicated Service Technician with 3 Backup Technicians (100+ systems)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 2: Full-Service Rental -->
+    <div class="option-card card-option1">
+      <div class="option-card-header">
+        <div>
+          <div class="option-num">Option 2</div>
+          <h3>Full-Service Rental</h3>
+        </div>
+      </div>
+      <div class="option-card-body">
+        <p class="option-description">Pay a fixed monthly rate that covers everything: equipment rental, all parts, service, filters, and filter changes. No surprise costs. Choose from monthly, quarterly, or annual billing cycles. Your rate is locked in with price protection for the selected term (12, 36, or 60 months). No installation fee.</p>
+        <div class="inclusions">
+          <h4>Included</h4>
+          <ul>
+            <li>You Rent the Equipment</li>
+            <li>Locked In Price Protection</li>
+            <li>All parts, service, filters and filter changes included</li>
+            <li>PureVida Satisfaction and Replacement System Guarantee</li>
+            <li>1 Free Relocation per Year</li>
+            <li>Monthly, Quarterly, Annual Billing</li>
+            <li>Flexible Renewal Options</li>
+            <li>Dedicated Service Technician with 3 Backup Technicians (100+ systems)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 3: Purchase + Maintenance -->
+    <div class="option-card card-option3">
+      <div class="option-card-header">
+        <div>
+          <div class="option-num">Option 3</div>
+          <h3>Purchase + Annual Maintenance</h3>
+        </div>
+      </div>
+      <div class="option-card-body">
+        <p class="option-description">Purchase your equipment outright and pair it with an affordable annual maintenance plan. The maintenance fee is $199/system/year for water systems and $249/system/year for ice &amp; water systems. As long as you renew each year, all parts, service, filters, filter changes, and one free relocation are included.</p>
+        <div class="inclusions">
+          <h4>Included with Annual Maintenance Renewal</h4>
+          <ul>
+            <li>You Own the Equipment</li>
+            <li>All parts, service, filters and filter changes included*</li>
+            <li>1 Free Relocation per Year*</li>
+            <li>Flexible Renewal Options</li>
+            <li>Simplified Paperwork and Billing</li>
+          </ul>
+          <p class="note-text">*Applies only with annual maintenance renewal each year.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION 4: Purchase + Flat Fee Service -->
+    <div class="option-card card-option4">
+      <div class="option-card-header">
+        <div>
+          <div class="option-num">Option 4</div>
+          <h3>Purchase + Flat Fee Service</h3>
+        </div>
+      </div>
+      <div class="option-card-body">
+        <p class="option-description">Purchase your equipment outright and pay for service only when you need it. Each service visit is a flat $169 per system, which includes all parts, technician time, and filters. There are no contracts or recurring fees. Does not include the cost of replacing a faulty board. Typical systems require approximately 2 service visits per year.</p>
+        <div class="inclusions">
+          <h4>Included</h4>
+          <ul>
+            <li>You Own the Equipment</li>
+            <li>$169 flat fee per visit per system</li>
+            <li>All parts, time, and filters included per visit</li>
+            <li>Pay only when service is needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FEATURE COMPARISON MATRIX ============ -->
+<section style="padding:48px 24px;">
+  <div class="container">
+    <h2 style="text-align:center;font-size:24px;font-weight:700;color:#0c4a6e;margin:0 0 32px;">Compare All Four Options</h2>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;border:2px solid #0c4a6e;min-width:700px;">
+        <thead>
+          <tr>
+            <th style="padding:14px 16px;background:#0c4a6e;color:#fff;font-size:13px;font-weight:700;text-align:left;border:1px solid #094067;width:30%;">Feature</th>
+            <th style="padding:14px 16px;background:#14A38B;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 1<br/><span style="font-weight:500;font-size:11px;">Time Purchase</span></th>
+            <th style="padding:14px 16px;background:#0ea5e9;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 2<br/><span style="font-weight:500;font-size:11px;">Full-Service Rental</span></th>
+            <th style="padding:14px 16px;background:#D97706;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 3<br/><span style="font-weight:500;font-size:11px;">Purchase + Maintenance</span></th>
+            <th style="padding:14px 16px;background:#DC2626;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 4<br/><span style="font-weight:500;font-size:11px;">Purchase + T&M</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Equipment Ownership</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Own</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Own</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Locked In Price Protection</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">All Parts, Service, Filters Included</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;*</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Satisfaction & Replacement Guarantee</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">1 Free Relocation per Year</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;*</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Flexible Renewal Options</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Simplified Paperwork & Billing</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Lowest Upfront Cost</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:#94a3b8;margin-top:12px;text-align:center;">*Applies only with annual maintenance renewal each year.</p>
+  </div>
+</section>
+
+<!-- ============ MAJOR ACCOUNTS HERO ============ -->
+<section class="hero" style="padding: 48px 0 40px;">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom: 12px;">PureVida &amp; Major Accounts</h2>
+    <div class="underline-accent"></div>
+    <p style="margin-top:12px;font-weight:700;font-size:18px;color:#111827;">As a large account, you have specific needs. We have built out our Major Accounts Program to meet and exceed those needs.</p>
+    <ul style="margin-top:16px;list-style:none;padding:0;max-width:700px;margin-left:auto;margin-right:auto;text-align:left;">
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Quality That Lasts</strong> — Our equipment averages 11.5 years of useful life with proper maintenance.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one touches it.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Fast, Local Service</strong> — Dedicated technician, remote support, and a customer portal from our DeSoto headquarters.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Locally Owned</strong> — Get fast decisions from real people, not corporate bureaucracy.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Flexible Programs</strong> — We tailor solutions to fit your organization's specific needs.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- Specs Modal -->
+<div id="specs-modal" class="specs-modal-overlay">
+  <div class="specs-backdrop" id="specs-backdrop"></div>
+  <div class="specs-modal-container">
+    <div class="specs-modal-card">
+      <button class="specs-modal-close" id="specs-modal-close">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <h3 class="specs-modal-title" id="specs-modal-title"></h3>
+      <ul class="specs-modal-list" id="specs-modal-list"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER CTA ============ -->
+<section class="footer-cta" id="contact">
+  <div class="container">
+    <h2>Highest Quality Water & Ice. Highest Quality Systems. Highest Quality Service.</h2>
+    <p>Invest In the Most Valuable, Least Expensive, Long Term Option.</p>
+    <a href="mailto:contact@purevidawater.com" class="btn-primary">Email contact@purevidawater.com</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <p style="max-width: 640px; margin: 0 auto 12px; font-size: 0.95rem; font-style: italic; color: rgba(255,255,255,0.75); line-height: 1.6;">"If you choose to put your trust in us, like the 1,100+ other Texas Organizations have, then I promise we will work hard every day to make sure that trust is not misplaced."</p>
+    <p style="font-weight: 700; color: rgba(255,255,255,0.9); font-size: 0.9rem;">Payton Fedell — President &amp; Owner</p>
+    <p style="margin-top: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.6);"><a href="mailto:payton@purevidawater.com" style="color: var(--cyan); text-decoration: none;">payton@purevidawater.com</a> &nbsp;|&nbsp; <a href="tel:9035203381" style="color: var(--cyan); text-decoration: none;">(903) 520-3381</a></p>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+
+<!-- Nav dropdown toggle -->
+<script is:inline>
+  const maMenuToggle = document.getElementById('ma-menu-toggle');
+  const maNavDropdown = document.getElementById('ma-nav-dropdown');
+  maMenuToggle?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    maNavDropdown.style.display = maNavDropdown.style.display === 'none' ? 'block' : 'none';
+  });
+  maNavDropdown?.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { maNavDropdown.style.display = 'none'; });
+  });
+  document.addEventListener('click', function() { if (maNavDropdown) maNavDropdown.style.display = 'none'; });
+</script>
+
+<!-- Tab switching for Recommended Systems -->
+<script is:inline>
+  function switchTab(tab) {
+    const container = document.getElementById('systems');
+    container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    container.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+    if (tab === 'water') {
+      document.getElementById('tab-water').classList.add('active');
+      container.querySelectorAll('.tab-btn')[0].classList.add('active');
+    } else {
+      document.getElementById('tab-ice').classList.add('active');
+      container.querySelectorAll('.tab-btn')[1].classList.add('active');
     }
+  }
+</script>
 
-    function fmtK(n) {
-      if (n >= 1000) {
-        return '$' + (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
-      }
-      return '$' + n.toFixed(0);
-    }
+<!-- Specs Modal JavaScript -->
+<script is:inline>
+  const specsModal = document.getElementById('specs-modal');
+  const specsTitle = document.getElementById('specs-modal-title');
+  const specsList = document.getElementById('specs-modal-list');
+  const specsClose = document.getElementById('specs-modal-close');
+  const specsBackdrop = document.getElementById('specs-backdrop');
 
-    function roundTo10(n) {
-      return Math.round(n / 10) * 10;
-    }
-
-    function getTotalUnits() {
-      return state.systems.reduce((sum, s) => sum + s.qty, 0);
-    }
-
-    function getTotalInstallFee() {
-      return getTotalUnits() * INSTALL_FEE;
-    }
-
-    // Option 3 sell price per unit: cost / 0.50, rounded to nearest $10
-    function getOpt3PriceForModel(modelKey) { return roundTo10(MODELS[modelKey].cost / 0.50); }
-    // Option 4 sell price per unit: cost * 2
-    function getOpt4PriceForModel(modelKey) { return roundTo10(MODELS[modelKey].cost * 2); }
-    // Maint fee per unit
-    function getMaintFeeForModel(modelKey) { return MAINT_FEES[MODELS[modelKey].category]; }
-
-    // ================================================================
-    // AGGREGATED CALCULATION FUNCTIONS
-    // ================================================================
-
-    // --- Rental (Option 2 / Full-Service): uses customPrice if set, else grid[term] ---
-    function calcRentalMonthlyTotal(term) {
-      let total = 0;
-      state.systems.forEach(s => {
-        const rate = (s.customPrice !== null && s.customPrice >= 0) ? s.customPrice : MODELS[s.model].grid[term];
-        total += rate * s.qty;
-      });
-      return total;
-    }
-    function calcRentalYr1(term) {
-      return calcRentalMonthlyTotal(term) * 12;
-    }
-    function calcRentalAnnual(term) {
-      return calcRentalMonthlyTotal(term) * 12;
-    }
-    function calcRentalCumulative(term, years) {
-      // No install fee. Monthly payment × 12 each year.
-      var annualCost = calcRentalMonthlyTotal(term) * 12;
-      return annualCost * years;
-    }
-
-    // --- Time Purchase (Option 1): uses customPrice if set for effective monthly ---
-    function calcTPEffMonthlyForSystem(sys, term) {
-      if (sys.customPrice !== null && sys.customPrice >= 0) {
-        // Apply the TP discount to the custom price instead of grid
-        return sys.customPrice * DISCOUNTS[term];
-      }
-      const gridRate = MODELS[sys.model].grid[term];
-      return gridRate * DISCOUNTS[term];
-    }
-    function calcTPMonthlyTotal(term) {
-      let total = 0;
-      state.systems.forEach(s => {
-        total += calcTPEffMonthlyForSystem(s, term) * s.qty;
-      });
-      return total;
-    }
-    function calcTPTotalCommitment(term) {
-      return calcTPMonthlyTotal(term) * term;
-    }
-    function calcTPYr1(term) {
-      return calcTPMonthlyTotal(term) * 12;
-    }
-    function calcTPAnnual(term) {
-      // During the term, no additional annual cost (it's all committed upfront).
-      // After term, ongoing at effective monthly rate.
-      return calcTPMonthlyTotal(term) * 12;
-    }
-    function calcTPCumulative(term, years) {
-      // No install fee. TP commitment flat through the term.
-      // On renewal, they purchase the same block again at the same price.
-      var tpBlock = calcTPTotalCommitment(term);
-      var termYears = term / 12;
-      var blocks = Math.ceil(years / termYears);
-      return tpBlock * blocks;
-    }
-    function calcTPSavings(term) {
-      // Savings vs. paying the rate (custom or grid) monthly without discount
-      let fullPrice = 0;
-      let tpPrice = 0;
-      state.systems.forEach(s => {
-        const rate = (s.customPrice !== null && s.customPrice >= 0) ? s.customPrice : MODELS[s.model].grid[term];
-        fullPrice += rate * term * s.qty;
-        tpPrice += calcTPEffMonthlyForSystem(s, term) * term * s.qty;
-      });
-      return fullPrice - tpPrice;
-    }
-
-    // --- Option 3: Purchase + Maintenance (uses actual model cost, not customPrice) ---
-    function calcOpt3PurchaseTotal() {
-      let total = 0;
-      state.systems.forEach(s => { total += getOpt3PriceForModel(s.model) * s.qty; });
-      return total;
-    }
-    function calcOpt3MaintTotal() {
-      let total = 0;
-      state.systems.forEach(s => { total += getMaintFeeForModel(s.model) * s.qty; });
-      return total;
-    }
-    function calcOpt3Yr1() {
-      return calcOpt3PurchaseTotal() + getTotalInstallFee() + calcOpt3MaintTotal();
-    }
-    function calcOpt3Yr2Plus() {
-      return calcOpt3MaintTotal();
-    }
-    function calcOpt3Cumulative(years) {
-      // Year 1: purchase + install + maintenance. Year 2+: maintenance only.
-      var upfront = calcOpt3PurchaseTotal() + getTotalInstallFee();
-      var maint = calcOpt3MaintTotal();
-      return upfront + maint * years;
-    }
-
-    // --- Option 4: Purchase + T&M (uses actual model cost, not customPrice) ---
-    function calcOpt4PurchaseTotal() {
-      let total = 0;
-      state.systems.forEach(s => { total += getOpt4PriceForModel(s.model) * s.qty; });
-      return total;
-    }
-    function calcOpt4ServiceCost() {
-      return state.trips * TRIP_CHARGE * getTotalUnits();
-    }
-    function calcOpt4Yr1() {
-      return calcOpt4PurchaseTotal() + getTotalInstallFee() + calcOpt4ServiceCost();
-    }
-    function calcOpt4Yr2Plus() {
-      return calcOpt4ServiceCost();
-    }
-    function calcOpt4Cumulative(years) {
-      // Year 1-5: purchase + install + service at selected trips rate.
-      // Year 6+: service calls increase to 2.5 per system per year (aging equipment).
-      var upfront = calcOpt4PurchaseTotal() + getTotalInstallFee();
-      var totalUnits = getTotalUnits();
-      var cumulative = upfront;
-      for (var y = 1; y <= years; y++) {
-        var tripsThisYear = (y <= 5) ? state.trips : 2.5;
-        cumulative += tripsThisYear * TRIP_CHARGE * totalUnits;
-      }
-      return cumulative;
-    }
-
-    // Build cumulative data for a series over years
-    function getCumulativeData(key, years) {
-      const data = [];
-      for (let y = 1; y <= years; y++) {
-        switch (key) {
-          case 'rental60': data.push(calcRentalCumulative(60, y)); break;
-          case 'rental36': data.push(calcRentalCumulative(36, y)); break;
-          case 'rental12': data.push(calcRentalCumulative(12, y)); break;
-          case 'tp60':     data.push(calcTPCumulative(60, y)); break;
-          case 'tp36':     data.push(calcTPCumulative(36, y)); break;
-          case 'tp12':     data.push(calcTPCumulative(12, y)); break;
-          case 'maint':    data.push(calcOpt3Cumulative(y)); break;
-          case 'tm':       data.push(calcOpt4Cumulative(y)); break;
-        }
-      }
-      return data;
-    }
-
-    // ================================================================
-    // SYSTEMS LIST RENDERING
-    // ================================================================
-    function renderSystemsList() {
-      const container = document.getElementById('systems-list-items');
-
-      if (state.systems.length === 0) {
-        container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:14px;padding:20px;border:2px dashed #e2e8f0;border-radius:10px;background:#fff;">No systems added yet. Select a model and click "Add System" to begin.</div>';
-        return;
-      }
-
-      const modelKeys = Object.keys(MODELS);
-      function modelOpts(selected) {
-        return modelKeys.map(k => '<option value="' + k + '"' + (k === selected ? ' selected' : '') + '>' + MODELS[k].label + '</option>').join('');
-      }
-
-      const thStyle = 'padding:12px 16px;background:#0c4a6e;color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;text-align:center;border:1px solid #094067;';
-      const tdStyle = 'padding:12px 16px;border:1px solid #cbd5e1;text-align:center;vertical-align:middle;font-size:14px;background:#fff;';
-      const inputStyle = 'width:70px;padding:6px 8px;border:1px solid #cbd5e1;border-radius:4px;font-size:14px;font-weight:600;text-align:center;font-family:inherit;-moz-appearance:textfield;';
-      const selectStyle = 'padding:6px 28px 6px 10px;border:1px solid #cbd5e1;border-radius:4px;font-size:13px;font-family:inherit;background:#fff;color:#1e293b;cursor:pointer;appearance:none;width:100%;max-width:200px;';
-
-      let grandTotalMonthly = 0;
-      let grandTotalInstall = 0;
-      let grandTotalQty = 0;
-
-      let rows = '';
-      state.systems.forEach((sys, idx) => {
-        const m = MODELS[sys.model];
-        const gridRate60 = m.grid[60];
-        const effectivePrice = (sys.customPrice !== null && sys.customPrice >= 0) ? sys.customPrice : gridRate60;
-        const totalMonthly = effectivePrice * sys.qty;
-        const installFee = INSTALL_FEE * sys.qty;
-        grandTotalMonthly += totalMonthly;
-        grandTotalInstall += installFee;
-        grandTotalQty += sys.qty;
-
-        const hasDiscount = sys.customPrice !== null && sys.customPrice >= 0 && sys.customPrice < gridRate60;
-        let discountHtml = '';
-        if (hasDiscount) {
-          const pct = Math.round(((gridRate60 - sys.customPrice) / gridRate60) * 100);
-          discountHtml = '<div style="margin-top:3px;"><span style="font-size:11px;color:#94a3b8;text-decoration:line-through;">Grid: ' + fmt(gridRate60) + '</span> <span style="font-size:10px;font-weight:700;color:#166534;background:#dcfce7;padding:1px 6px;border-radius:999px;">' + pct + '% off</span></div>';
-        } else {
-          discountHtml = '<div style="margin-top:3px;font-size:11px;color:#94a3b8;">Grid: ' + fmt(gridRate60) + '</div>';
-        }
-
-        rows += '<tr>'
-          + '<td style="' + tdStyle + 'text-align:left;"><select style="' + selectStyle + '" data-idx="' + idx + '" class="js-model">' + modelOpts(sys.model) + '</select></td>'
-          + '<td style="' + tdStyle + '"><input type="number" style="' + inputStyle + '" data-idx="' + idx + '" class="js-qty" value="' + sys.qty + '" min="1" max="99" /></td>'
-          + '<td style="' + tdStyle + '"><input type="number" style="' + inputStyle + 'width:80px;" data-idx="' + idx + '" class="js-price" value="' + effectivePrice + '" min="0" step="1" />' + discountHtml + '</td>'
-          + '<td style="' + tdStyle + 'font-weight:700;color:#0c4a6e;font-size:15px;">' + fmt(totalMonthly) + '</td>'
-          + '<td style="' + tdStyle + 'background:none;border:none;width:40px;"><button type="button" data-idx="' + idx + '" class="js-remove" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:20px;padding:4px 8px;border-radius:4px;">✕</button></td>'
-          + '</tr>';
-      });
-
-      // Totals footer
-      const ftStyle = 'padding:12px 16px;border:1px solid #094067;background:#0c4a6e;color:#fff;font-size:14px;font-weight:700;text-align:center;';
-      rows += '<tr>'
-        + '<td style="' + ftStyle + 'text-align:left;">Totals</td>'
-        + '<td style="' + ftStyle + '">' + grandTotalQty + '</td>'
-        + '<td style="' + ftStyle + '">' + fmt(grandTotalInstall) + ' install</td>'
-        + '<td style="' + ftStyle + 'font-size:16px;">' + fmt(grandTotalMonthly) + '/mo</td>'
-        + '<td style="background:none;border:none;"></td>'
-        + '</tr>';
-
-      container.innerHTML = '<table style="width:100%;border-collapse:collapse;border:2px solid #0c4a6e;">'
-        + '<thead><tr>'
-        + '<th style="' + thStyle + 'text-align:left;">Model</th>'
-        + '<th style="' + thStyle + '">Quantity</th>'
-        + '<th style="' + thStyle + '">System Monthly Payment</th>'
-        + '<th style="' + thStyle + '">Total Monthly Payment</th>'
-        + '<th style="background:#0c4a6e;border:1px solid #094067;width:40px;"></th>'
-        + '</tr></thead>'
-        + '<tbody>' + rows + '</tbody></table>';
-
-      // Event handlers
-      container.querySelectorAll('.js-remove').forEach(btn => {
-        btn.addEventListener('click', function() {
-          state.systems.splice(parseInt(this.dataset.idx), 1);
-          renderSystemsList();
-          updateAll();
-        });
-        btn.addEventListener('mouseenter', function() { this.style.color = '#dc2626'; });
-        btn.addEventListener('mouseleave', function() { this.style.color = '#94a3b8'; });
-      });
-
-      container.querySelectorAll('.js-model').forEach(sel => {
-        sel.addEventListener('change', function() {
-          const idx = parseInt(this.dataset.idx);
-          state.systems[idx].model = this.value;
-          state.systems[idx].customPrice = null;
-          renderSystemsList();
-          updateAll();
-        });
-      });
-
-      container.querySelectorAll('.js-qty').forEach(input => {
-        input.addEventListener('change', function() {
-          const idx = parseInt(this.dataset.idx);
-          let val = parseInt(this.value);
-          if (isNaN(val) || val < 1) val = 1;
-          if (val > 99) val = 99;
-          state.systems[idx].qty = val;
-          this.value = val;
-          renderSystemsList();
-          updateAll();
-        });
-      });
-
-      container.querySelectorAll('.js-price').forEach(input => {
-        input.addEventListener('change', function() {
-          const idx = parseInt(this.dataset.idx);
-          let val = parseFloat(this.value);
-          if (isNaN(val) || val < 0) val = 0;
-          const gridRate = MODELS[state.systems[idx].model].grid[60];
-          state.systems[idx].customPrice = (val === gridRate) ? null : val;
-          renderSystemsList();
-          updateAll();
-        });
-      });
-    }
-
-    // ================================================================
-    // ADD SYSTEM HANDLER
-    // ================================================================
-    addSystemBtn.addEventListener('click', function() {
-      const customVal = customPriceInput.value.trim();
-      const customPrice = customVal !== '' ? parseFloat(customVal) : null;
-
-      state.systems.push({
-        model: state.addModel,
-        qty: state.addQty,
-        customPrice: (customPrice !== null && !isNaN(customPrice) && customPrice >= 0) ? customPrice : null
-      });
-
-      // Reset the add controls
-      state.addQty = 1;
-      qtyDisplay.value = 1;
-      customPriceInput.value = '';
-
-      renderSystemsList();
-      updateAll();
+  document.querySelectorAll('.view-specs-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const specs = JSON.parse(btn.dataset.specs);
+      const name = btn.dataset.name;
+      specsTitle.textContent = `${name} Specifications`;
+      specsList.innerHTML = specs.map(s => `<li><strong>${s.label}:</strong> ${s.value}</li>`).join('');
+      specsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
     });
+  });
 
-    // ================================================================
-    // UPDATE OPTION CARDS
-    // ================================================================
-    function updateCards() {
-      const noSystems = state.systems.length === 0;
-
-      // Option 1 (Time Purchase card)
-      const tpMonthly = calcTPMonthlyTotal(state.tpTerm);
-      document.getElementById('opt2-monthly').innerHTML = fmt(Math.round(tpMonthly)) + '<span class="per"> effective monthly payment</span>';
-      const tpTotal = calcTPTotalCommitment(state.tpTerm);
-      document.getElementById('opt2-total').textContent = fmt(Math.round(tpTotal));
-      // No install fee for Time Purchase
-      var termLabels = { 60: '60-month', 36: '36-month', 12: '12-month' };
-      document.getElementById('opt2-term-note').textContent = (termLabels[state.tpTerm] || state.tpTerm + '-month') + ' term commitment';
-
-      const savingsEl = document.getElementById('opt2-savings');
-      const savings = calcTPSavings(state.tpTerm);
-      if (savings > 0 && !noSystems) {
-        savingsEl.style.display = 'block';
-        savingsEl.textContent = 'You save ' + fmt(Math.round(savings)) + ' vs. paying monthly over ' + state.tpTerm + ' months';
-      } else {
-        savingsEl.style.display = 'none';
-      }
-
-      // Option 2 (Rental card)
-      const rentalMonthly = calcRentalMonthlyTotal(state.rentalTerm);
-      document.getElementById('opt1-monthly').innerHTML = fmt(Math.round(rentalMonthly)) + '<span class="per"> monthly payment</span>';
-      document.getElementById('opt1-total-monthly').textContent = fmt(Math.round(rentalMonthly));
-      // No install fee for Rental
-
-      // Option 3
-      document.getElementById('opt3-purchase').textContent = fmt(calcOpt3PurchaseTotal());
-      document.getElementById('opt3-install').textContent = fmt(getTotalInstallFee());
-      document.getElementById('opt3-maint').textContent = fmt(calcOpt3MaintTotal());
-
-      // Option 4
-      document.getElementById('opt4-purchase').textContent = fmt(calcOpt4PurchaseTotal());
-      document.getElementById('opt4-install').textContent = fmt(getTotalInstallFee());
-      document.getElementById('trips-display').textContent = state.trips;
-      document.getElementById('opt4-service-cost').textContent = fmt(Math.round(calcOpt4ServiceCost()));
-    }
-
-    // ================================================================
-    // CHART
-    // ================================================================
-    let chart = null;
-
-    function buildChart() {
-      const ctx = document.getElementById('cost-chart').getContext('2d');
-      const years = state.yearRange;
-      const labels = [];
-      for (let y = 1; y <= years; y++) labels.push('Year ' + y);
-
-      const datasets = SERIES_DEFS.filter(s => seriesVisible[s.key]).map(s => ({
-        label: s.label,
-        data: getCumulativeData(s.key, years),
-        borderColor: s.color,
-        backgroundColor: s.color + '18',
-        borderWidth: 2.5,
-        borderDash: s.dash,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        pointBackgroundColor: s.color,
-        tension: 0.1,
-        fill: false
-      }));
-
-      if (chart) chart.destroy();
-
-      chart = new Chart(ctx, {
-        type: 'line',
-        data: { labels, datasets },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: {
-            mode: 'index',
-            intersect: false
-          },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: '#0f172a',
-              titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: '600' },
-              bodyFont: { family: 'Plus Jakarta Sans', size: 12 },
-              padding: 12,
-              cornerRadius: 8,
-              callbacks: {
-                label: function(context) {
-                  return context.dataset.label + ': ' + fmt(Math.round(context.parsed.y));
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: {
-                font: { family: 'Plus Jakarta Sans', size: 12 },
-                color: '#64748b'
-              }
-            },
-            y: {
-              grid: { color: '#f1f5f9' },
-              ticks: {
-                font: { family: 'Plus Jakarta Sans', size: 12 },
-                color: '#64748b',
-                callback: function(value) { return fmtK(value); }
-              },
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-
-    // ================================================================
-    // SERIES TOGGLE PILLS
-    // ================================================================
-    function renderSeriesTogggles() {
-      const container = document.getElementById('series-toggles');
-      container.innerHTML = '';
-      SERIES_DEFS.forEach(s => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'series-toggle' + (seriesVisible[s.key] ? ' active' : '');
-        btn.style.color = seriesVisible[s.key] ? s.color : '#94a3b8';
-        btn.innerHTML = '<span class="dot" style="background:' + s.color + ';opacity:' + (seriesVisible[s.key] ? '1' : '0.3') + '"></span>' + s.label;
-        btn.addEventListener('click', function() {
-          seriesVisible[s.key] = !seriesVisible[s.key];
-          renderSeriesTogggles();
-          buildChart();
-          updateSummaryTable();
-        });
-        container.appendChild(btn);
-      });
-    }
-
-    // ================================================================
-    // SUMMARY TABLE
-    // ================================================================
-    function updateSummaryTable() {
-      const tbody = document.getElementById('summary-tbody');
-      tbody.innerHTML = '';
-
-      const rows = SERIES_DEFS.filter(s => seriesVisible[s.key]).map(s => {
-        let yr1, annual, cum5, cum10;
-        const data5 = getCumulativeData(s.key, 5);
-        const data10 = getCumulativeData(s.key, 10);
-        yr1 = data5[0];
-        cum5 = data5[4];
-        cum10 = data10[9];
-
-        // Annual yr2+
-        if (s.key.startsWith('rental')) {
-          const term = parseInt(s.key.replace('rental', ''));
-          annual = calcRentalAnnual(term);
-        } else if (s.key.startsWith('tp')) {
-          const term = parseInt(s.key.replace('tp', ''));
-          annual = calcTPAnnual(term);
-        } else if (s.key === 'maint') {
-          annual = calcOpt3Yr2Plus();
-        } else {
-          annual = calcOpt4Yr2Plus();
-        }
-
-        return { label: s.label, color: s.color, yr1, annual, cum5, cum10 };
-      });
-
-      rows.forEach(r => {
-        const tr = document.createElement('tr');
-        const vals = [
-          { html: '<span class="option-dot" style="background:' + r.color + '"></span>' + r.label, highlight: false },
-          { html: fmt(Math.round(r.yr1)), highlight: false },
-          { html: fmt(Math.round(r.annual)), highlight: false },
-          { html: fmt(Math.round(r.cum5)), highlight: state.yearRange === 5 },
-          { html: fmt(Math.round(r.cum10)), highlight: state.yearRange === 10 }
-        ];
-        vals.forEach((v, i) => {
-          const td = document.createElement('td');
-          td.innerHTML = v.html;
-          if (v.highlight) td.classList.add('col-highlight');
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
-
-      // Update table header highlights
-      const ths = document.querySelectorAll('.summary-table th');
-      ths.forEach((th, i) => {
-        th.classList.remove('col-highlight');
-        if ((state.yearRange === 5 && i === 3) || (state.yearRange === 10 && i === 4)) {
-          th.classList.add('col-highlight');
-        }
-      });
-    }
-
-    // ================================================================
-    // YEAR TOGGLE
-    // ================================================================
-    document.getElementById('year-toggle').addEventListener('click', function(e) {
-      const btn = e.target.closest('button');
-      if (!btn) return;
-      const years = parseInt(btn.dataset.years);
-      state.yearRange = years;
-      document.querySelectorAll('#year-toggle button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      buildChart();
-      updateSummaryTable();
-    });
-
-    // ================================================================
-    // TERM PILL HANDLERS
-    // ================================================================
-    document.getElementById('term-pills-1').addEventListener('click', function(e) {
-      const pill = e.target.closest('.term-pill');
-      if (!pill) return;
-      state.rentalTerm = parseInt(pill.dataset.term);
-      this.querySelectorAll('.term-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      state.lastViewedOption = 'Option 2 — Full-Service Rental';
-      updateAll();
-    });
-
-    document.getElementById('term-pills-2').addEventListener('click', function(e) {
-      const pill = e.target.closest('.term-pill');
-      if (!pill) return;
-      state.tpTerm = parseInt(pill.dataset.term);
-      this.querySelectorAll('.term-pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      state.lastViewedOption = 'Option 1 — Time Purchase';
-      updateAll();
-    });
-
-    // ================================================================
-    // MODEL + QTY HANDLERS (for the add-system builder)
-    // ================================================================
-    modelSelect.addEventListener('change', function() {
-      state.addModel = this.value;
-    });
-
-    qtyMinus.addEventListener('click', function() {
-      if (state.addQty > 1) { state.addQty--; qtyDisplay.value = state.addQty; }
-    });
-    qtyPlus.addEventListener('click', function() {
-      if (state.addQty < 99) { state.addQty++; qtyDisplay.value = state.addQty; }
-    });
-    qtyDisplay.addEventListener('change', function() {
-      let val = parseInt(this.value);
-      if (isNaN(val) || val < 1) val = 1;
-      if (val > 99) val = 99;
-      state.addQty = val;
-      this.value = val;
-    });
-
-    tripsSlider.addEventListener('input', function() {
-      state.trips = parseFloat(this.value);
-      state.lastViewedOption = 'Option 4 — Purchase + Time & Materials';
-      updateAll();
-    });
-
-    // ================================================================
-    // MASTER UPDATE
-    // ================================================================
-    function updateAll() {
-      updateCards();
-      buildChart();
-      updateSummaryTable();
-    }
-
-    // Lead form removed — no submit handler needed
-
-    // Track which option card the user last interacted with via scroll visibility
-    const cardObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          const card = entry.target;
-          if (card.classList.contains('card-option1')) state.lastViewedOption = 'Option 2 — Full-Service Rental';
-          else if (card.classList.contains('card-option2')) state.lastViewedOption = 'Option 1 — Time Purchase';
-          else if (card.classList.contains('card-option3')) state.lastViewedOption = 'Option 3 — Purchase + Annual Maintenance';
-          else if (card.classList.contains('card-option4')) state.lastViewedOption = 'Option 4 — Purchase + Time & Materials';
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.option-card').forEach(function(card) {
-      cardObserver.observe(card);
-    });
-
-    // ================================================================
-    // INIT
-    // ================================================================
-    renderSeriesTogggles();
-    renderSystemsList();
-    updateAll();
-  </script>
+  function closeSpecsModal() {
+    specsModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  specsClose?.addEventListener('click', closeSpecsModal);
+  specsBackdrop?.addEventListener('click', closeSpecsModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && specsModal.classList.contains('open')) closeSpecsModal();
+  });
+</script>
 
 <!--Start of Tawk.to Script-->
 <script>
