@@ -525,6 +525,102 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
+    /* Card Pricing Table */
+    .card-pricing {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #EEF2F6;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .pricing-table thead th {
+      padding: 8px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      border-bottom: 2px solid var(--cyan);
+    }
+    .pricing-table thead th:first-child {
+      text-align: left;
+      color: var(--navy-dark);
+    }
+    .pricing-table thead .col-price {
+      color: var(--cyan);
+    }
+    .pricing-table tbody td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #EEF2F6;
+      text-align: center;
+    }
+    .pricing-table tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--navy-dark);
+    }
+    .pricing-table .price-cell {
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .pricing-table .term-note {
+      font-size: 0.68rem;
+      color: var(--gray-text);
+      font-weight: 400;
+      display: block;
+    }
+    .card-term-slider {
+      margin-bottom: 8px;
+    }
+    .card-term-slider label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .card-term-slider input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--cyan), rgba(0, 184, 212, 0.2));
+      outline: none;
+      cursor: pointer;
+    }
+    .card-term-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 184, 212, 0.4);
+    }
+    .card-term-slider input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 184, 212, 0.4);
+    }
+    .card-term-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 4px;
+    }
+
     /* View Specs Button */
     .view-specs-btn {
       display: inline-flex;
@@ -1277,6 +1373,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv1w" data-prices='{"tp":[2430,2081,984],"rental":[54,68,82],"purchase":864}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$2,430</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$54</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$864</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1302,6 +1409,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv2w" data-prices='{"tp":[2430,2081,984],"rental":[54,68,82],"purchase":974}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$2,430</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$54</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$974</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1327,6 +1445,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv3w" data-prices='{"tp":[3330,2876,1368],"rental":[74,94,114],"purchase":1305}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$3,330</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$74</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$1,305</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1352,6 +1481,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv4w" data-prices='{"tp":[7155,5783,2628],"rental":[159,189,219],"purchase":2993}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$7,155</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$159</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$2,993</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1383,6 +1523,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv6i" data-prices='{"tp":[5355,4253,1908],"rental":[119,139,159],"purchase":1982}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$5,355</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$119</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$1,982</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1408,6 +1559,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv7i" data-prices='{"tp":[8055,6395,2868],"rental":[179,209,239],"purchase":4845}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$8,055</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$179</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$4,845</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1433,6 +1595,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv8i" data-prices='{"tp":[9405,7313,3228],"rental":[209,239,269],"purchase":5463}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$9,405</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$209</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$5,463</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1458,6 +1631,17 @@
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               View Specs
             </button>
+            <div class="card-pricing" data-system="pv9i" data-prices='{"tp":[13905,10679,4668],"rental":[309,349,389],"purchase":11199}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-price">Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="price-cell">$13,905</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="price-cell">$309</td></tr>
+                  <tr class="row-purchase"><td>Outright Purchase</td><td class="price-cell">$11,199</td></tr>
+                </tbody>
+              </table>
+            </div>
             </div>
           </div>
         </div>
@@ -1782,6 +1966,30 @@
   specsBackdrop?.addEventListener('click', closeSpecsModal);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && specsModal.classList.contains('open')) closeSpecsModal();
+  });
+</script>
+
+<!-- Card Pricing Slider JS -->
+<script is:inline>
+  function fmt(n) {
+    return '$' + n.toLocaleString();
+  }
+  function updateCardPricing(card, idx) {
+    const prices = JSON.parse(card.dataset.prices);
+    const tpRow = card.querySelector('.row-tp');
+    const rentalRow = card.querySelector('.row-rental');
+
+    tpRow.querySelector('.price-cell').textContent = fmt(prices.tp[idx]);
+    rentalRow.querySelector('.price-cell').textContent = fmt(prices.rental[idx]);
+  }
+
+  document.querySelectorAll('.card-pricing[data-prices]').forEach(card => {
+    updateCardPricing(card, 0);
+
+    const slider = card.querySelector('.card-term-range');
+    slider?.addEventListener('input', () => {
+      updateCardPricing(card, parseInt(slider.value));
+    });
   });
 </script>
 
