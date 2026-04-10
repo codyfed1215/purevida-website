@@ -2,7 +2,9 @@
 // Landing Page: Frisco ISD
 // Standalone page — no shared Layout
 // Route: /landing-pages/frisco-isd
+// Based on major-accounts template — customized for Frisco ISD with SMU-tier pricing
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>PureVida Water | A Better Hydration Solution for Frisco ISD</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -28,6 +32,19 @@
       --red-cta-hover: #D43A2E;
       --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
       --card-radius: 12px;
+      --option1: #0ea5e9;
+      --option2: #14A38B;
+      --option3: #D97706;
+      --option4: #DC2626;
+      --bg-option1: #f0f9ff;
+      --bg-option2: #ECFDF5;
+      --bg-option3: #FFFBEB;
+      --bg-option4: #FEF2F2;
+      --border-option1: #BFDBFE;
+      --border-option2: #A7F3D0;
+      --border-option3: #FDE68A;
+      --border-option4: #FECACA;
+      --blue-accent: #0ea5e9;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,13 +56,13 @@
       line-height: 1.6;
     }
 
-    /* ── Cyan accent bar ── */
+    /* -- Accent bar -- */
     .accent-bar {
       height: 5px;
       background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
     }
 
-    /* ── Utility ── */
+    /* -- Utility -- */
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     .section-title {
       font-size: 2.25rem;
@@ -70,7 +87,36 @@
     .text-center { text-align: center; }
     .underline-center { margin-left: auto; margin-right: auto; }
 
-    /* ── HERO ── */
+    /* -- NAV -- */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid #E8EEF3;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy-dark);
+      text-decoration: none;
+    }
+    .nav-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* -- HERO -- */
     .hero {
       background: var(--bg-light);
       padding: 48px 0 64px;
@@ -90,7 +136,7 @@
       width: auto;
       object-fit: contain;
     }
-    .hero-logo-img.frisco-logo { max-height: 70px; }
+    .hero-logo-img.fisd-logo { max-height: 100px; }
     .hero-logo-img.purevida-logo { max-height: 90px; }
     .hero-plus { font-size: 1.5rem; color: var(--cyan); font-weight: 300; }
 
@@ -143,8 +189,63 @@
 
     .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
 
-    /* ── PROBLEMS ── */
+    /* -- PROBLEMS -- */
     .problems { background: var(--bg-light); padding: 80px 0; }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 32px 28px;
+      box-shadow: var(--card-shadow);
+    }
+    .problem-card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--cyan);
+    }
+    .problem-list {
+      list-style: none;
+    }
+    .problem-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .problem-list li:last-child { border-bottom: none; }
+    .problem-bullet {
+      min-width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-cta);
+      margin-top: 6px;
+    }
+    .problem-list strong {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .problem-list p {
+      font-size: 0.88rem;
+      color: var(--gray-text);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* -- SOLUTION -- */
+    .solution { background: var(--bg-light); padding: 80px 0; }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -166,15 +267,11 @@
       color: var(--white);
       margin-bottom: 16px;
     }
-    .card-icon.problem { background: var(--cyan); }
+    .card-icon.solution-icon { background: var(--cyan); }
     .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--navy-dark); }
     .card p { font-size: 0.95rem; color: var(--gray-text); line-height: 1.5; }
 
-    /* ── SOLUTION ── */
-    .solution { background: var(--bg-light); padding: 80px 0; }
-    .card-icon.solution-icon { background: var(--cyan); }
-
-    /* ── VIDEO ── */
+    /* -- VIDEO -- */
     .video { background: var(--white); padding: 80px 0; }
     .video-wrapper {
       position: relative;
@@ -188,19 +285,162 @@
     }
     .video-wrapper iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: 0;
     }
 
-    /* ── SYSTEMS ── */
+    /* -- FILTRATION -- */
+    .filtration { background: #0ea5e9; padding: 64px 0; }
+    .filtration .section-title { color: var(--white); }
+    .filtration .section-subtitle { color: rgba(255,255,255,0.8); }
+    .filtration .underline-accent { background: rgba(255,255,255,0.5); }
+    .filtration-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .filtration-card {
+      position: relative;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 16px;
+      padding: 16px 16px 20px;
+      color: var(--white);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .filtration-card img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+    .filtration-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .filtration-card .reduces-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .filtration-card ul {
+      list-style: none;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+      text-align: left;
+    }
+    .filtration-card ul li::before {
+      content: "\2022 ";
+    }
+    .filtration-card .taste-text {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 8px;
+    }
+    .step-badge {
+      position: absolute;
+      bottom: -12px;
+      left: -12px;
+      width: 32px;
+      height: 32px;
+      background: #38bdf8;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .filtration-row-gap {
+      margin-top: 24px;
+    }
+
+    /* -- TRUSTED -- */
+    .trusted { background: var(--bg-light); padding: 80px 0; }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .trust-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: transform 0.2s;
+    }
+    .trust-card:hover { transform: translateY(-2px); }
+    .trust-icon {
+      min-width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; color: var(--white);
+    }
+    .trust-icon.burnt-orange { background: #BF5700; }
+    .trust-icon.teal { background: var(--cyan); }
+    .trust-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); }
+    .trust-card p { font-size: 0.88rem; color: var(--gray-text); }
+    .trust-highlight {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 36px auto 0;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--card-radius);
+      padding: 28px 32px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+    .review-stars {
+      font-size: 1.5rem;
+      color: #f59e0b;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .review-card blockquote {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+      font-style: italic;
+      margin: 0;
+    }
+    .review-source {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy-dark);
+    }
+
+    /* -- SYSTEMS -- */
     .systems { background: var(--white); padding: 80px 0; }
     .systems-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
     .system-card {
       background: var(--white);
@@ -208,6 +448,8 @@
       border: 1px solid #E0E8EF;
       overflow: hidden;
       transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
     }
     .system-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
     .system-card-header {
@@ -234,27 +476,37 @@
       font-size: 0.95rem;
       margin-top: 4px;
     }
-    .system-card-body { padding: 24px 28px; }
+    .system-card-img {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 16px 16px 0;
+      height: 200px;
+    }
+    .system-card-img img {
+      max-height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+    }
+    .system-card-body {
+      padding: 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .system-card-body .meta-spacer {
+      flex: 1;
+    }
+    .system-card-body .card-bottom {
+      margin-top: auto;
+    }
     .system-card-body .meta-item {
       margin-bottom: 6px;
       font-size: 0.92rem;
       color: var(--gray-text);
     }
     .meta-item strong { color: var(--cyan); font-weight: 700; }
-    .system-card-body h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--navy-dark);
-      margin: 20px 0 10px;
-      padding-top: 16px;
-      border-top: 1px solid #EEF2F6;
-    }
-    .spec-line {
-      font-size: 0.85rem;
-      color: var(--gray-text);
-      margin-bottom: 3px;
-    }
-    .spec-line strong { color: var(--navy); font-weight: 600; }
     .system-card-accent {
       height: 4px;
       background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
@@ -267,204 +519,7 @@
       font-size: 0.95rem;
     }
 
-    /* ── TRUSTED ── */
-    .trusted { background: var(--bg-light); padding: 80px 0; }
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .trust-card {
-      background: var(--white);
-      border-radius: var(--card-radius);
-      padding: 28px;
-      box-shadow: var(--card-shadow);
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      transition: transform 0.2s;
-    }
-    .trust-card:hover { transform: translateY(-2px); }
-    .trust-icon {
-      min-width: 52px; height: 52px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 0.85rem; color: var(--white);
-    }
-    .trust-icon.burnt-orange { background: #BF5700; }
-    .trust-icon.dark-blue { background: var(--navy); }
-    .trust-icon.teal { background: var(--cyan); }
-    .trust-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy-dark); }
-    .trust-card p { font-size: 0.88rem; color: var(--gray-text); }
-    .trust-highlight {
-      text-align: center;
-      margin-top: 48px;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--cyan);
-    }
-
-    /* ── WHY PUREVIDA ── */
-    .why { background: var(--white); padding: 80px 0; }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-    .why-list { list-style: none; }
-    .why-list li {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 32px;
-      align-items: flex-start;
-    }
-    .why-number {
-      min-width: 44px; height: 44px;
-      border-radius: 50%;
-      background: var(--cyan);
-      color: var(--white);
-      font-weight: 800;
-      font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .why-list h4 { font-size: 1.1rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 4px; }
-    .why-list p { font-size: 0.95rem; color: var(--gray-text); }
-
-    /* ── CTA BOX ── */
-    .cta-box {
-      background: var(--red-cta);
-      border-radius: 16px;
-      padding: 48px 36px;
-      text-align: center;
-      color: var(--white);
-      position: sticky;
-      top: 32px;
-    }
-    .cta-box h3 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .cta-box .cta-sub {
-      font-size: 1.05rem;
-      opacity: 0.95;
-      margin-bottom: 24px;
-    }
-    .cta-divider {
-      width: 50px; height: 3px;
-      background: rgba(255,255,255,0.5);
-      margin: 0 auto 24px;
-      border-radius: 2px;
-    }
-    .cta-box .cta-email {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .cta-box .cta-email a { color: var(--white); text-decoration: none; }
-    .cta-box .cta-email a:hover { text-decoration: underline; }
-    .cta-box .cta-website a { color: rgba(255,255,255,0.85); text-decoration: underline; font-size: 0.95rem; }
-    .cta-box .cta-location {
-      margin-top: 16px;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    /* ── FOOTER CTA ── */
-    .footer-cta {
-      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
-      padding: 64px 0;
-      text-align: center;
-    }
-    .footer-cta h2 {
-      color: var(--white);
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .footer-cta p {
-      color: rgba(255,255,255,0.75);
-      font-size: 1.1rem;
-      margin-bottom: 32px;
-    }
-    .footer-cta .btn-primary { font-size: 1.1rem; padding: 18px 44px; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy-dark);
-      padding: 24px 0;
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
-    footer a { color: var(--cyan); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ── NAV ── */
-    .nav {
-      background: var(--white);
-      border-bottom: 1px solid #E8EEF3;
-      padding: 14px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--navy-dark);
-      text-decoration: none;
-    }
-    .nav-logo {
-      height: 52px;
-      width: auto;
-      object-fit: contain;
-    }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--gray-text);
-      font-weight: 500;
-      font-size: 0.92rem;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-cta {
-      background: var(--red-cta) !important;
-      color: var(--white) !important;
-      padding: 10px 22px;
-      border-radius: 50px;
-      font-weight: 600 !important;
-    }
-    .nav-cta:hover { background: var(--red-cta-hover) !important; }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-    }
-    .mobile-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--navy);
-      margin: 5px 0;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ── TABS ── */
+    /* -- TABS -- */
     .tab-container { text-align: center; margin-bottom: 40px; }
     .tab-btn {
       background: none;
@@ -487,14 +542,397 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* ── RESPONSIVE: TABLET ── */
-    @media (max-width: 1024px) {
-      .why-grid { grid-template-columns: 1fr; }
-      .cta-box { position: static; }
-      .systems-grid { grid-template-columns: 1fr 1fr; }
+    /* Card Pricing Table */
+    .card-pricing {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #EEF2F6;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .pricing-table thead th {
+      padding: 8px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      border-bottom: 2px solid var(--cyan);
+    }
+    .pricing-table thead th:first-child {
+      text-align: left;
+      color: var(--navy-dark);
+    }
+    .pricing-table thead .col-price {
+      color: var(--cyan);
+    }
+    .pricing-table thead .col-grid {
+      color: var(--gray-text);
+    }
+    .pricing-table thead .col-fisd {
+      color: var(--cyan);
+    }
+    .pricing-table tbody td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #EEF2F6;
+      text-align: center;
+    }
+    .pricing-table tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--navy-dark);
+    }
+    .pricing-table .price-cell {
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .pricing-table .grid-cell {
+      color: var(--gray-text);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+    .pricing-table .fisd-cell {
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .pricing-table .term-note {
+      font-size: 0.68rem;
+      color: var(--gray-text);
+      font-weight: 400;
+      display: block;
+    }
+    .card-term-slider {
+      margin-bottom: 8px;
+    }
+    .card-term-slider label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .card-term-slider input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--cyan), rgba(0, 184, 212, 0.2));
+      outline: none;
+      cursor: pointer;
+    }
+    .card-term-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 184, 212, 0.4);
+    }
+    .card-term-slider input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 184, 212, 0.4);
+    }
+    .card-term-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 4px;
     }
 
-    /* ── RESPONSIVE: MOBILE ── */
+    /* View Specs Button */
+    .view-specs-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid #D8E2EA;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-text);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+    .view-specs-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Specs Modal */
+    .specs-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+    }
+    .specs-modal-overlay.open { display: block; }
+    .specs-modal-overlay .specs-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .specs-modal-overlay.open .specs-backdrop { opacity: 1; }
+    .specs-modal-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .specs-modal-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      padding: 28px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease-out;
+    }
+    .specs-modal-overlay.open .specs-modal-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .specs-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-text);
+      padding: 4px;
+    }
+    .specs-modal-close:hover { color: var(--navy); }
+    .specs-modal-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 16px;
+    }
+    .specs-modal-list {
+      list-style: none;
+    }
+    .specs-modal-list li {
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      border-bottom: 1px solid #EEF2F6;
+    }
+    .specs-modal-list li:last-child { border-bottom: none; }
+    .specs-modal-list strong {
+      color: var(--navy);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    /* Option cards grid */
+    .cards-section {
+      padding: 48px 24px;
+    }
+    .cards-section h2 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #0c4a6e;
+      margin: 0 0 32px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .option-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .option-card-header {
+      padding: 20px 24px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .option-card-header h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .option-card-header .option-num {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-popular { background: var(--bg-option2); color: var(--option2); }
+
+    .option-card-body {
+      padding: 0 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-option1 { border-top: 3px solid var(--option1); }
+    .card-option2 { border-top: 3px solid var(--option2); }
+    .card-option3 { border-top: 3px solid var(--option3); }
+    .card-option4 { border-top: 3px solid var(--option4); }
+
+    .card-option1 .option-num { color: var(--option1); }
+    .card-option2 .option-num { color: var(--option2); }
+    .card-option3 .option-num { color: var(--option3); }
+    .card-option4 .option-num { color: var(--option4); }
+
+    .option-description {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* Inclusions */
+    .inclusions {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .inclusions h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin: 0 0 8px;
+    }
+    .inclusions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .inclusions li {
+      font-size: 13px;
+      color: #475569;
+      padding: 3px 0;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .inclusions li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .card-option1 .inclusions li::before { color: var(--option1); }
+    .card-option2 .inclusions li::before { color: var(--option2); }
+    .card-option3 .inclusions li::before { color: var(--option3); }
+    .card-option4 .inclusions li::before { color: var(--option4); }
+
+    .note-text {
+      font-size: 12px;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* -- FOOTER CTA -- */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 64px 0;
+      text-align: center;
+    }
+    .footer-cta h2 {
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer-cta p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+    .footer-cta .btn-primary { font-size: 1.1rem; padding: 18px 44px; }
+
+    /* -- FOOTER -- */
+    footer {
+      background: var(--navy-dark);
+      padding: 24px 0;
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+
+    @media (max-width: 1024px) {
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+      .hero-logo-img.fisd-logo { max-height: 80px; }
+      .problems-grid { gap: 20px; }
+      .problem-card { padding: 24px 20px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .card { padding: 24px 20px; }
+      .systems-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .system-card-img { height: 170px; }
+      .system-card-img img { max-height: 150px; }
+      .system-card-body { padding: 16px 18px; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .filtration-card h3 { font-size: 0.85rem; }
+      .filtration-card img { width: 44px; height: 44px; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
       .section-title { font-size: 1.6rem; }
@@ -502,33 +940,23 @@
       .hero { padding: 32px 0 48px; }
       .hero h1 { font-size: 1.75rem; }
       .hero p.tagline { font-size: 1rem; }
-      .hero-logos { gap: 14px; margin-bottom: 32px; }
-      .hero-logo-img.frisco-logo { max-height: 48px; }
-      .hero-logo-img.purevida-logo { max-height: 60px; }
-      .hero-plus { font-size: 1.2rem; }
       .hero-buttons { flex-direction: column; align-items: center; }
       .hero-contact { font-size: 0.85rem; }
-
       .nav-logo { height: 40px; }
-      .nav-links { display: none; }
-      .mobile-toggle { display: block; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 20px 24px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        gap: 16px;
-        z-index: 99;
-      }
+      .hero-logos { gap: 14px; margin-bottom: 32px; }
+      .hero-logo-img.fisd-logo { max-height: 60px; }
+      .hero-logo-img.purevida-logo { max-height: 60px; }
+      .hero-plus { font-size: 1.2rem; }
 
-      .problems, .solution, .video, .trusted, .systems, .why { padding: 48px 0; }
-      .card-grid, .systems-grid, .trust-grid { grid-template-columns: 1fr; }
+      .problems, .solution, .video, .trusted, .systems, .filtration { padding: 48px 0; }
+      .card-grid, .trust-grid { grid-template-columns: 1fr; }
+      .systems-grid { grid-template-columns: 1fr; }
       .card { padding: 24px 20px; }
+      .problems-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
 
       .tab-container { display: flex; flex-direction: column; align-items: center; gap: 8px; }
       .tab-btn { width: 100%; max-width: 280px; margin: 0; }
@@ -536,10 +964,14 @@
       .system-card-header h3 { font-size: 1.4rem; }
       .system-card-body { padding: 20px; }
 
-      .why-list li { gap: 14px; }
-      .cta-box { padding: 36px 24px; }
-      .cta-box h3 { font-size: 1.4rem; }
-      .cta-box .cta-email { font-size: 1.1rem; }
+      .filtration-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filtration-row-gap { margin-top: 20px; }
+      .filtration-card h3 { font-size: 0.9rem; }
+
+      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 36px auto 0; }
+      .review-card { padding: 20px; }
 
       .footer-cta { padding: 48px 0; }
       .footer-cta h2 { font-size: 1.5rem; }
@@ -547,17 +979,19 @@
       .footer-cta .btn-primary { font-size: 0.95rem; padding: 16px 28px; }
 
       .trust-highlight { font-size: 1.05rem; }
+      .hero-tech-photo { max-width: 300px; }
+
+      .cards-grid { grid-template-columns: 1fr !important; }
     }
 
-    /* ── RESPONSIVE: SMALL PHONES ── */
     @media (max-width: 400px) {
       .hero h1 { font-size: 1.5rem; }
-      .hero-logo-img.frisco-logo { max-height: 38px; }
+      .hero-logo-img.fisd-logo { max-height: 48px; }
       .hero-logo-img.purevida-logo { max-height: 48px; }
       .btn-primary { padding: 14px 28px; font-size: 0.95rem; }
       .btn-outline { padding: 12px 24px; font-size: 0.9rem; }
       .section-title { font-size: 1.4rem; }
-      .cta-box .cta-email { font-size: 0.95rem; }
+      .hero-tech-photo { max-width: 260px; }
     }
   </style>
 </head>
@@ -570,95 +1004,135 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="https://purevidawater.com" target="_blank" rel="noopener" class="nav-brand">
-      <img src="/landing-pages/frisco-isd/purevida-logo.png" alt="PureVida Water Technologies" class="nav-logo">
+      <img src="/images/purevida-header-logo.svg" alt="PureVida Water Technologies" class="nav-logo">
     </a>
-    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links">
-      <a href="#problems">The Problem</a>
-      <a href="#solution">Our Solution</a>
-      <a href="#systems">Systems</a>
-      <a href="#trusted">Trusted Partners</a>
-      <a href="#why">Why PureVida</a>
-      <a href="#contact" class="nav-cta">Get a Free Trial</a>
+    <div style="position: relative;">
+      <button class="menu-toggle" id="fisd-menu-toggle" aria-label="Menu" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:2px solid #D8E2EA;border-radius:8px;background:none;font-family:inherit;font-size:0.85rem;font-weight:600;color:var(--gray-text);cursor:pointer;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <div class="nav-dropdown" id="fisd-nav-dropdown" style="display:none;position:absolute;top:100%;right:0;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.12);border:1px solid #E8EEF3;min-width:220px;padding:8px 0;z-index:101;">
+        <a href="#problems" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">The Problem</a>
+        <a href="#solution" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Our Solution</a>
+        <a href="#video" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">PV In Action</a>
+        <a href="#filtration" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Filtration</a>
+        <a href="#trusted" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Trusted Partners</a>
+        <a href="#systems" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Systems</a>
+        <a href="#options" style="display:block;padding:10px 20px;text-decoration:none;color:var(--gray-text);font-weight:500;font-size:0.92rem;">Purchase Options</a>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-logos">
-      <img src="/landing-pages/frisco-isd/frisco-isd-logo.png" alt="Frisco Independent School District" class="hero-logo-img frisco-logo">
+      <img src="/landing-pages/frisco-isd/frisco-isd-logo.png" alt="Frisco ISD" class="hero-logo-img fisd-logo">
       <span class="hero-plus">+</span>
-      <img src="/landing-pages/frisco-isd/purevida-logo.png" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
+      <img src="/images/purevida-header-logo.svg" alt="PureVida Water Technologies" class="hero-logo-img purevida-logo">
     </div>
 
     <h1>A Better Hydration Solution<br>for Frisco ISD</h1>
     <div class="underline-accent underline-center"></div>
-    <p class="tagline">Eliminating 5-Gallon Jugs with Bottleless Water Purification</p>
-
-    <div class="hero-buttons">
-      <a href="#contact" class="btn-primary">Schedule a Free Demo</a>
-      <a href="#systems" class="btn-outline">View Systems</a>
-    </div>
 
     <p class="hero-contact" style="margin-top: 32px;">
       Prepared by PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; <a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a>
     </p>
+
   </div>
 </section>
 
 <div class="accent-bar"></div>
 
-<!-- PROBLEMS -->
+<!-- ============ PROBLEMS ============ -->
 <section class="problems" id="problems">
   <div class="container">
-    <h2 class="section-title">The Problem with 5-Gallon Jugs</h2>
+    <h2 class="section-title">The Problem with Other Office Water Services</h2>
     <div class="underline-accent"></div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><line x1="11" y1="7" x2="11" y2="11"/><circle cx="11" cy="15" r="0.5" fill="white"/></svg>
-        </div>
-        <h3>Heavy Lifting</h3>
-        <p>40 lb jugs create injury risk for staff</p>
+    <div class="problems-grid">
+      <!-- Bottles Card -->
+      <div class="problem-card">
+        <h3 class="problem-card-title">Bottles</h3>
+        <ul class="problem-list">
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Heavy Lifting</strong>
+              <p>40 lb jugs create injury risk for staff</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Unreliable Deliveries</strong>
+              <p>Missed or delayed deliveries leave you without water</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Rising Costs</strong>
+              <p>Ongoing delivery fees, bottle deposits, and equipment rental</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Storage Clutter</strong>
+              <p>Bulky jugs take up valuable space in break rooms and offices</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Running Out</strong>
+              <p>Limited supply means you can run dry between deliveries</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Plastic Waste</strong>
+              <p>Jugs add to your environmental footprint</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M8 9s1-2 3-2 3 2 3 2"/><circle cx="11" cy="14" r="0.5" fill="white"/></svg>
-        </div>
-        <h3>Unreliable Deliveries</h3>
-        <p>Missed or delayed deliveries leave you without water</p>
-      </div>
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><text x="7" y="15" fill="white" font-size="12" font-weight="700" stroke="none">$</text></svg>
-        </div>
-        <h3>Rising Costs</h3>
-        <p>Ongoing delivery fees, bottle deposits, and equipment rental</p>
-      </div>
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><line x1="7" y1="7" x2="15" y2="15"/><line x1="15" y1="7" x2="7" y2="15"/></svg>
-        </div>
-        <h3>Storage Clutter</h3>
-        <p>Bulky jugs take up valuable space in break rooms</p>
-      </div>
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M11 7v4l3 2"/></svg>
-        </div>
-        <h3>Running Out</h3>
-        <p>Limited supply means you can run dry between deliveries</p>
-      </div>
-      <div class="card">
-        <div class="card-icon problem">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="9"/><path d="M8 14s1.5-3 3-3 3 3 3 3"/><path d="M9 8l1 2h2l1-2"/></svg>
-        </div>
-        <h3>Plastic Waste</h3>
-        <p>Jugs add to your environmental footprint</p>
+
+      <!-- Other Bottleless Providers Card -->
+      <div class="problem-card">
+        <h3 class="problem-card-title">Other Bottleless Providers</h3>
+        <ul class="problem-list">
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Inferior Equipment</strong>
+              <p>Cheap equipment means less usage, shorter useful life, more headaches, less value</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Poor Filtration</strong>
+              <p>Basic Filtration misses heavy metals, chemicals, microplastics and gives your drinkers a poor taste which means less usage and less value</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>Slow Service</strong>
+              <p>National call centers with no local technicians for fast response</p>
+            </div>
+          </li>
+          <li>
+            <div class="problem-bullet"></div>
+            <div>
+              <strong>No Accountability</strong>
+              <p>Hard to reach when something breaks or needs maintenance</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -666,53 +1140,53 @@
 
 <div class="accent-bar"></div>
 
-<!-- SOLUTION -->
+<!-- ============ SOLUTION ============ -->
 <section class="solution" id="solution">
   <div class="container">
-    <h2 class="section-title">The PureVida Solution</h2>
+    <h2 class="section-title">The PureVida Office Water &amp; Ice Solution</h2>
     <div class="underline-accent"></div>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon solution-icon">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M6 3h10l-1 9H7L6 3z"/><path d="M7 12c0 3 2 5 4 5s4-2 4-5"/><line x1="5" y1="3" x2="17" y2="3"/></svg>
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="7" y1="7" x2="15" y2="15"/><line x1="15" y1="7" x2="7" y2="15"/><circle cx="11" cy="11" r="9"/></svg>
         </div>
-        <h3>Advanced Purification</h3>
-        <p>RO + UV filtration removes contaminants for the purest water</p>
+        <h3>Completely Bottleless</h3>
+        <p>No jugs, no deliveries, no heavy lifting. Connects directly to your water line for unlimited, on-demand water.</p>
       </div>
       <div class="card">
         <div class="card-icon solution-icon">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M7 11a4 4 0 018 0"/><line x1="11" y1="7" x2="11" y2="3"/><path d="M4 15h14"/><circle cx="11" cy="11" r="1" fill="white"/></svg>
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M6 3h10l-1 9H7L6 3z"/><path d="M7 12c0 3 2 5 4 5s4-2 4-5"/><line x1="5" y1="3" x2="17" y2="3"/></svg>
         </div>
-        <h3>Touch-Free Dispensing</h3>
-        <p>Antimicrobial surfaces and hands-free operation</p>
+        <h3>Advanced Filtration</h3>
+        <p>6-stage RO + UV purification removes heavy metals, PFAs, microplastics, and 99.9% of contaminants.</p>
       </div>
       <div class="card">
         <div class="card-icon solution-icon">
           <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="12" height="16" rx="2"/><line x1="5" y1="8" x2="17" y2="8"/><line x1="5" y1="13" x2="17" y2="13"/><text x="7" y="7" fill="white" font-size="5" stroke="none">H</text><text x="7" y="12" fill="white" font-size="5" stroke="none">C</text><text x="7" y="17" fill="white" font-size="5" stroke="none">I</text></svg>
         </div>
-        <h3>Hot, Cold, and Ice</h3>
-        <p>Multiple water temperatures plus nugget-style ice</p>
+        <h3>Top Of The Line Systems</h3>
+        <p>Touchless, self-cleaning systems with hot, cold, ambient, sparkling water and nugget-style ice options.</p>
       </div>
       <div class="card">
         <div class="card-icon solution-icon">
           <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 2C7 2 3 6 3 11c0 5 9 9 9 9s9-4 9-9c0-5-4-9-9-9z"/><circle cx="12" cy="11" r="2"/></svg>
         </div>
-        <h3>Never Run Out</h3>
-        <p>Connects directly to your water line for unlimited supply</p>
+        <h3>Fast, Local Service & Ownership</h3>
+        <p>Based in DeSoto, TX with local Technicians across the metroplex. Get answers and service fast.</p>
       </div>
       <div class="card">
         <div class="card-icon solution-icon">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94L6 21l-3-3 7.47-7.47a6 6 0 017.94-7.94l-3.71 3.71z"/></svg>
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><text x="5" y="16" fill="white" font-size="14" font-weight="700" stroke="none">$</text></svg>
         </div>
-        <h3>Full-Service Support</h3>
-        <p>Installation, maintenance, and filter changes included</p>
+        <h3>Flexible Purchase Options</h3>
+        <p>Local ownership that wants to find a structure that works best for you.</p>
       </div>
       <div class="card">
         <div class="card-icon solution-icon">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M12 22c5-3 9-7 9-12A9 9 0 003 10c0 5 4 9 9 12z"/><path d="M8 10l3 3 4-5"/></svg>
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg>
         </div>
-        <h3>Eco-Friendly</h3>
-        <p>Eliminate thousands of plastic jugs from landfills</p>
+        <h3>Free, No-Obligation Trial</h3>
+        <p>Try PureVida risk-free with a complimentary 7-day trial.</p>
       </div>
     </div>
   </div>
@@ -720,11 +1194,218 @@
 
 <div class="accent-bar"></div>
 
-<!-- SYSTEMS -->
+<!-- ============ VIDEO ============ -->
+<section class="video" id="video">
+  <div class="container">
+    <h2 class="section-title">See PureVida Ice &amp; Water Systems In Action</h2>
+    <div class="underline-accent"></div>
+    <p class="section-subtitle text-center">Watch a quick overview of how PureVida transforms your breakroom hydration.</p>
+    <div class="video-wrapper">
+      <iframe src="https://www.loom.com/embed/0accde2b4e5343208cc425f0644f97d5" allowfullscreen></iframe>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <img src="/images/technician-install.png" alt="PureVida field technician completing an on-site installation" class="hero-tech-photo" style="max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
+      <p style="margin-top: 12px; font-size: 0.9rem; color: var(--gray-text); font-style: italic;">PureVida Serving Another Happy Customer</p>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ FILTRATION ============ -->
+<section class="filtration" id="filtration">
+  <div class="container">
+    <h2 class="section-title">The PureVida Office Water Filtration Process</h2>
+    <div class="underline-accent"></div>
+    <p class="section-subtitle text-center">6-Stage Water Purification Process</p>
+
+    <!-- Top Row: Unfiltered Water + Steps 1-3 -->
+    <div class="filtration-grid">
+      <div class="filtration-card">
+        <img src="/images/icons/4d1404_6abb2b38c47d4d3ba42913b44087ab97~mv2.png.avif" alt="Unfiltered Water" />
+        <h3>Unfiltered Water</h3>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">1</div>
+        <img src="/images/icons/2.png.avif" alt="Sediment Filter" />
+        <h3>Sediment Filter</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Dirt</li>
+          <li>Rust</li>
+          <li>Silt</li>
+          <li>Sand</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">2</div>
+        <img src="/images/icons/3.png.avif" alt="Carbon Block Filter" />
+        <h3>Carbon Block Filter</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Chemicals</li>
+          <li>Herbicides &amp; Pesticides</li>
+          <li>Chlorine</li>
+          <li>VOCs</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">3</div>
+        <img src="/images/icons/4.png.avif" alt="0.0001 Micron Membrane" />
+        <h3>0.0001 Micron Reverse Osmosis Membrane</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Heavy Metals</li>
+          <li>PFAs</li>
+          <li>Microplastics</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Row: Steps 4-6 + Fantastic Drinking Water -->
+    <div class="filtration-grid filtration-row-gap">
+      <div class="filtration-card">
+        <div class="step-badge">4</div>
+        <img src="/images/icons/5.png.avif" alt="Granular Activated Carbon Filter" />
+        <h3>Granular Activated Carbon Filter</h3>
+        <p class="taste-text">"Polishes" Water For Great Taste</p>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">5</div>
+        <img src="/images/icons/6.png.avif" alt="Boost Filter" />
+        <h3>Boost&trade; Filter*</h3>
+        <p class="reduces-label">Adds:</p>
+        <ul>
+          <li>Alkalinity</li>
+          <li>Minerals</li>
+          <li>Electrolytes</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <div class="step-badge">6</div>
+        <img src="/images/icons/7.png.avif" alt="Activated Oxygen" />
+        <h3>Ozonation with Activated Oxygen or UV Light</h3>
+        <p class="reduces-label">Reduces:</p>
+        <ul>
+          <li>Bacteria</li>
+          <li>Viruses</li>
+          <li>Organics</li>
+        </ul>
+      </div>
+
+      <div class="filtration-card">
+        <img src="/images/icons/water-drop.svg" alt="Fantastic Drinking Water!" />
+        <h3>Fantastic Drinking Water!</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ TRUSTED ============ -->
+<section class="trusted" id="trusted">
+  <div class="container">
+    <h2 class="section-title text-center">Trusted Across Texas</h2>
+    <p class="section-subtitle text-center">PureVida is Providing Office Water &amp; Ice Service to over 1,100 Businesses Across the State</p>
+
+    <div class="trust-grid" style="max-width: 900px; margin: 0 auto;">
+      <div class="trust-card">
+        <div class="trust-icon burnt-orange">UT</div>
+        <div>
+          <h4>University of Texas at Austin</h4>
+          <p>Flagship state university</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">WTC</div>
+        <div>
+          <h4>Dallas World Trade Center</h4>
+          <p>International business hub</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">WM</div>
+        <div>
+          <h4>Walmart</h4>
+          <p>Fortune 1 retailer</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">CC</div>
+        <div>
+          <h4>Caliber Collision</h4>
+          <p>Nationwide auto body leader</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">SW</div>
+        <div>
+          <h4>Sherwin Williams</h4>
+          <p>Global coatings leader</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">BB</div>
+        <div>
+          <h4>Balfour Beatty</h4>
+          <p>Global infrastructure group</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">NS</div>
+        <div>
+          <h4>Nucor Steel</h4>
+          <p>Leading steel manufacturer</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon" style="background:#CC0000;">TG</div>
+        <div>
+          <h4>Target</h4>
+          <p>Fortune 500 retailer</p>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon teal">TX</div>
+        <div>
+          <h4>1,100+ Texas Organizations</h4>
+          <p>And growing every month</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="trust-highlight">Your organization can join our growing network of Texas partners</p>
+
+    <!-- Reviews -->
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"My company has a Purevida water dispenser, the water is amazing. They are always on top of taking care of us if any issues arise. Ronald did a very good and thorough job at replacing our filters, on top of being super friendly and making my day. Thanks Purevida team!"</blockquote>
+        <p class="review-source">- Local San Antonio Business</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I highly recommend PureVida water to anyone searching for a reliable, clean, and affordable water system for their office. We were customers of PureVida for 5+ years, and regrettably decided to try a different company that ultimately pulled out many hidden contracts and fees. PureVida not only gladly took us back as their customer, they honored our original terms and conditions and also lowered our monthly bill for the price they had offered before we ended our service. If you're looking for an honest and transparent water supply company, PureVida water is the way to go."</blockquote>
+        <p class="review-source">- Local DFW Business</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accent-bar"></div>
+
+<!-- ============ RECOMMENDED SYSTEMS ============ -->
 <section class="systems" id="systems">
   <div class="container">
     <h2 class="section-title text-center">Recommended Systems</h2>
-    <p class="section-subtitle text-center">Tailored to Frisco ISD Department Needs</p>
+    <p class="section-subtitle text-center">Tailored to Your Organization's Needs</p>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -735,30 +1416,73 @@
     <!-- Water Systems Tab -->
     <div class="tab-panel active" id="tab-water">
       <div class="systems-grid">
-        <!-- PV1w / PV2w -->
+        <!-- PV1w -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
             <div class="consumption-label">Low Consumption</div>
-            <h3>PV1w / PV2w</h3>
-            <p class="model-tagline">Compact. Efficient. Perfect for small teams.</p>
+            <h3>PV1w</h3>
+            <p class="model-tagline">Countertop. Compact. Perfect for small teams.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV1w.png" alt="PV1w Water System" />
           </div>
           <div class="system-card-body">
-            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
-            <p class="meta-item"><strong>Users:</strong> Fewer than 7 drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
-            <h4>PV1w Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Countertop</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 18"H x 12"W x 20"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 1 Gal Cold | 0.5 Gal Hot</p>
-            <p class="spec-line"><strong>Weight:</strong> 47 lbs</p>
-            <h4>PV2w Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 49"H x 13"W x 18"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 1.82 Gal Cold | 0.5 Gal Hot</p>
-            <p class="spec-line"><strong>Weight:</strong> 55 lbs</p>
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV1w" data-specs='[{"label":"Form","value":"Countertop"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"18in H x 12in W x 20in D"},{"label":"Storage","value":"1 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"47 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv1w" data-prices='{"tp":{"grid":[2430,2081,984],"fisd":[2160,1944,900]},"rental":{"grid":[54,68,82],"fisd":[45,60,75]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$2,430</td><td class="fisd-cell">$2,160</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$54</td><td class="fisd-cell">$45</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV2w -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV2w</h3>
+            <p class="model-tagline">Freestanding. Efficient. Perfect for small teams.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV2w.png" alt="PV2w Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV2w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"49in H x 13in W x 18in D"},{"label":"Storage","value":"1.82 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"55 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv2w" data-prices='{"tp":{"grid":[2430,2081,984],"fisd":[2160,1944,900]},"rental":{"grid":[54,68,82],"fisd":[45,60,75]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$2,430</td><td class="fisd-cell">$2,160</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$54</td><td class="fisd-cell">$45</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -770,17 +1494,30 @@
             <h3>PV3w</h3>
             <p class="model-tagline">Advanced filtration for busy spaces.</p>
           </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV3w.png" alt="PV3w Water System" />
+          </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
-            <p class="meta-item"><strong>Users:</strong> 7 to 30 drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, department offices, staff workrooms, libraries</p>
-            <h4>Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Cold Water</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 51"H x 14"W x 17"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 3 Gal Cold | 0.5 Gal Hot</p>
-            <p class="spec-line"><strong>Dispense Height:</strong> 11.5"</p>
-            <p class="spec-line"><strong>Weight:</strong> 70 lbs</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 drinkers</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV3w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"51in H x 14in W x 17in D"},{"label":"Storage","value":"3 Gal Cold | 0.5 Gal Hot"},{"label":"Dispense Height","value":"11.5 in"},{"label":"Weight","value":"70 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv3w" data-prices='{"tp":{"grid":[3330,2876,1368],"fisd":[2832,2398,1068]},"rental":{"grid":[74,94,114],"fisd":[59,74,89]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$3,330</td><td class="fisd-cell">$2,832</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$74</td><td class="fisd-cell">$59</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -792,17 +1529,30 @@
             <h3>PV4w</h3>
             <p class="model-tagline">Built for high-traffic, high-demand areas.</p>
           </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV4w.png" alt="PV4w Water System" />
+          </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
-            <p class="meta-item"><strong>Users:</strong> 30+ drinkers</p>
-            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
-            <h4>Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot, Cold &amp; Ambient Water</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 69"H x 19"W x 21"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 5 Gal Cold | 1.1 Gal Hot | 2.5 Gal Ambient</p>
-            <p class="spec-line"><strong>Dispense Height:</strong> 14.7"</p>
-            <p class="spec-line"><strong>Weight:</strong> 155 lbs</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ drinkers</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV4w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold &amp; Ambient Water"},{"label":"Dimensions","value":"69in H x 19in W x 21in D"},{"label":"Storage","value":"5 Gal Cold | 1.1 Gal Hot | 2.5 Gal Ambient"},{"label":"Dispense Height","value":"14.7 in"},{"label":"Weight","value":"155 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv4w" data-prices='{"tp":{"grid":[7155,5783,2628],"fisd":[5712,4504,1908]},"rental":{"grid":[159,189,219],"fisd":[119,139,159]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$7,155</td><td class="fisd-cell">$5,712</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$159</td><td class="fisd-cell">$119</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -812,32 +1562,73 @@
     <!-- Ice & Water Systems Tab -->
     <div class="tab-panel" id="tab-ice">
       <div class="systems-grid">
-        <!-- PV6i / PV7i -->
+        <!-- PV6i -->
         <div class="system-card">
           <div class="system-card-accent"></div>
           <div class="system-card-header">
             <div class="consumption-label">Low Consumption</div>
-            <h3>PV6i / PV7i</h3>
+            <h3>PV6i</h3>
             <p class="model-tagline">Compact ice &amp; water for small teams.</p>
           </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV6i.png" alt="PV6i Ice & Water System" />
+          </div>
           <div class="system-card-body">
-            <p class="meta-item"><strong>Ideal For:</strong> Small Departments</p>
-            <p class="meta-item"><strong>Users:</strong> Fewer than 10 users</p>
-            <p class="meta-item"><strong>Areas:</strong> Admin offices, counselor suites, front office, nurse stations</p>
-            <h4>PV6i Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot, Cold, Ambient Water | Bullet Sonic Ice</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 59"H x 17"W x 20"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 1.2 gal Cold | 1.2 gal Hot | 4.5 gal Amb | 13.2 lbs Ice</p>
-            <p class="spec-line"><strong>Production:</strong> 44 lbs of Ice Daily</p>
-            <p class="spec-line"><strong>Weight:</strong> 120 lbs</p>
-            <h4>PV7i Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Ambient Water | Crunchy Sonic Ice</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 18"H x 15"W x 22"D | 45"H x 15"W x 22"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 0.5 gal Hot | 6 gal Ambient | 7 lbs Ice</p>
-            <p class="spec-line"><strong>Production:</strong> 125 lbs of Ice Daily</p>
-            <p class="spec-line"><strong>Weight:</strong> 60 lbs / 85 lbs</p>
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV6i" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold, Ambient Water | Bullet Sonic Ice"},{"label":"Dimensions","value":"59in H x 17in W x 20in D"},{"label":"Storage","value":"1.2 gal Cold | 1.2 gal Hot | 4.5 gal Amb | 13.2 lbs Ice"},{"label":"Production","value":"44 lbs of Ice Daily"},{"label":"Weight","value":"120 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv6i" data-prices='{"tp":{"grid":[5355,4253,1908],"fisd":[5712,4504,1908]},"rental":{"grid":[119,139,159],"fisd":[119,139,159]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$5,355</td><td class="fisd-cell">$5,712</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$119</td><td class="fisd-cell">$119</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PV7i -->
+        <div class="system-card">
+          <div class="system-card-accent"></div>
+          <div class="system-card-header">
+            <div class="consumption-label">Low Consumption</div>
+            <h3>PV7i</h3>
+            <p class="model-tagline">Versatile ice &amp; water, countertop or freestanding.</p>
+          </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV7i.png" alt="PV7i Ice & Water System" />
+          </div>
+          <div class="system-card-body">
+            <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV7i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"18in H x 15in W x 22in D | 45in H x 15in W x 22in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 7 lbs Ice"},{"label":"Production","value":"125 lbs of Ice Daily"},{"label":"Weight","value":"60 lbs / 85 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv7i" data-prices='{"tp":{"grid":[8055,6395,2868],"fisd":[7152,5476,2268]},"rental":{"grid":[179,209,239],"fisd":[149,169,189]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$8,055</td><td class="fisd-cell">$7,152</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$179</td><td class="fisd-cell">$149</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -849,17 +1640,30 @@
             <h3>PV8i</h3>
             <p class="model-tagline">Premium ice &amp; water for busy spaces.</p>
           </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV8i.png" alt="PV8i Ice & Water System" />
+          </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
-            <p class="meta-item"><strong>Users:</strong> 10 to 30 users</p>
-            <p class="meta-item"><strong>Areas:</strong> Teacher lounges, staff workrooms, libraries</p>
-            <h4>Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Hot &amp; Ambient Water | Crunchy Sonic Ice</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 24"H x 15"W x 24"D | 52"H x 15"W x 24"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 0.5 gal Hot | 6 gal Ambient | 16.5 lbs Ice</p>
-            <p class="spec-line"><strong>Production:</strong> 165 lbs of Ice Daily</p>
-            <p class="spec-line"><strong>Weight:</strong> 93 lbs / 118 lbs</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 users</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV8i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"24in H x 15in W x 24in D | 52in H x 15in W x 24in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 16.5 lbs Ice"},{"label":"Production","value":"165 lbs of Ice Daily"},{"label":"Weight","value":"93 lbs / 118 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv8i" data-prices='{"tp":{"grid":[9405,7313,3228],"fisd":[8592,6448,2628]},"rental":{"grid":[209,239,269],"fisd":[179,199,219]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$9,405</td><td class="fisd-cell">$8,592</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$209</td><td class="fisd-cell">$179</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -871,17 +1675,30 @@
             <h3>PV9i</h3>
             <p class="model-tagline">High-capacity ice for peak demand areas.</p>
           </div>
+          <div class="system-card-img">
+            <img src="/images/products/PV9i.png" alt="PV9i Ice & Water System" />
+          </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
-            <p class="meta-item"><strong>Users:</strong> 30+ users</p>
-            <p class="meta-item"><strong>Areas:</strong> Athletic departments, cafeterias, student commons, gymnasiums</p>
-            <h4>Specifications</h4>
-            <p class="spec-line"><strong>Form:</strong> Countertop or Freestanding</p>
-            <p class="spec-line"><strong>Functionality:</strong> Ambient Water | Crunchy Sonic Ice</p>
-            <p class="spec-line"><strong>Dimensions:</strong> 46"H x 17"W x 24"D | 75"H x 17"W x 24"D</p>
-            <p class="spec-line"><strong>Storage:</strong> 6 gal Ambient | 30 lbs Ice</p>
-            <p class="spec-line"><strong>Production:</strong> 380 lbs of Ice Daily</p>
-            <p class="spec-line"><strong>Weight:</strong> 223 lbs / 281 lbs</p>
+            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ users</p>
+            <div class="meta-spacer"></div>
+            <div class="card-bottom">
+            <button class="view-specs-btn" type="button" data-name="PV9i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Ambient Water | Crunchy Sonic Ice"},{"label":"Dimensions","value":"46in H x 17in W x 24in D | 75in H x 17in W x 24in D"},{"label":"Storage","value":"6 gal Ambient | 30 lbs Ice"},{"label":"Production","value":"380 lbs of Ice Daily"},{"label":"Weight","value":"223 lbs / 281 lbs"}]'>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              View Specs
+            </button>
+            <div class="card-pricing" data-system="pv9i" data-prices='{"tp":{"grid":[13905,10679,4668],"fisd":[13392,9688,3828]},"rental":{"grid":[309,349,389],"fisd":[279,299,319]}}'>
+              <div class="card-term-slider"><label>Price Protection</label><input type="range" class="card-term-range" min="0" max="2" step="1" value="0" /><div class="card-term-labels"><span>60 Mo</span><span>36 Mo</span><span>12 Mo</span></div></div>
+              <table class="pricing-table">
+                <thead><tr><th></th><th class="col-grid">Grid Pricing</th><th class="col-fisd">Frisco ISD Pricing</th></tr></thead>
+                <tbody>
+                  <tr class="row-tp"><td>Time Purchase<span class="term-note">Up-Front Payment</span></td><td class="grid-cell">$13,905</td><td class="fisd-cell">$13,392</td></tr>
+                  <tr class="row-rental"><td>Rental<span class="term-note">Monthly payment</span></td><td class="grid-cell">$309</td><td class="fisd-cell">$279</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.75rem;color:var(--gray-text);margin-top:6px;text-align:center;">Rental: One-time $99 installation fee per system. Time Purchase: No installation fee.</p>
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -892,157 +1709,277 @@
 
 <div class="accent-bar"></div>
 
-<!-- TRUSTED -->
-<section class="trusted" id="trusted">
-  <div class="container">
-    <h2 class="section-title text-center">Trusted Across Texas Education</h2>
-    <p class="section-subtitle text-center">PureVida is already serving school districts and universities across the state</p>
+<!-- ============ OPTION CARDS ============ -->
+<section class="cards-section" id="options">
+  <h2>Two Ways to Get PureVida</h2>
+  <div class="cards-grid">
 
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="trust-icon burnt-orange">UT</div>
+    <!-- OPTION 1: Time Purchase -->
+    <div class="option-card card-option2">
+      <div class="option-card-header">
         <div>
-          <h4>University of Texas at Austin</h4>
-          <p>Flagship state university</p>
+          <div class="option-num">Option 1</div>
+          <h3>Time Purchase</h3>
         </div>
+        <span class="badge badge-popular">Most Popular</span>
       </div>
-      <div class="trust-card">
-        <div class="trust-icon dark-blue">W</div>
-        <div>
-          <h4>Waxahachie ISD</h4>
-          <p>Ellis County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon dark-blue">H</div>
-        <div>
-          <h4>Hays CISD</h4>
-          <p>Hays County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon dark-blue">RR</div>
-        <div>
-          <h4>Round Rock ISD</h4>
-          <p>Williamson County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon teal">P</div>
-        <div>
-          <h4>Pflugerville ISD</h4>
-          <p>Travis County school district</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon teal">TX</div>
-        <div>
-          <h4>1,000+ Texas Organizations</h4>
-          <p>And growing every month</p>
+      <div class="option-card-body">
+        <p class="option-description">Make a one-time, up-front payment that covers the full cost of your equipment rental, service, and maintenance for the entire term. This locks in your rate and eliminates monthly invoices. Choose from 12, 36, or 60-month terms. At term end, you transition to flexible renewal options.</p>
+        <div class="inclusions">
+          <h4>Included</h4>
+          <ul>
+            <li>You Rent the Equipment</li>
+            <li>Locked In Price Protection</li>
+            <li>All parts, service, filters and filter changes included</li>
+            <li>PureVida Satisfaction and Replacement System Guarantee</li>
+            <li>1 Free Relocation per Year</li>
+            <li>Simplified Paperwork and Billing Process</li>
+            <li>Flexible Renewal Options</li>
+            <li>No Installation Fee</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <p class="trust-highlight">Frisco ISD can join our growing network of Texas education partners</p>
+    <!-- OPTION 2: Full-Service Rental -->
+    <div class="option-card card-option1">
+      <div class="option-card-header">
+        <div>
+          <div class="option-num">Option 2</div>
+          <h3>Full-Service Rental</h3>
+        </div>
+      </div>
+      <div class="option-card-body">
+        <p class="option-description">Pay a fixed monthly rate that covers everything: equipment rental, all parts, service, filters, and filter changes. No surprise costs. Choose from monthly, quarterly, or annual billing cycles. Your rate is locked in with price protection for the selected term (12, 36, or 60 months).</p>
+        <div class="inclusions">
+          <h4>Included</h4>
+          <ul>
+            <li>You Rent the Equipment</li>
+            <li>Locked In Price Protection</li>
+            <li>All parts, service, filters and filter changes included</li>
+            <li>PureVida Satisfaction and Replacement System Guarantee</li>
+            <li>1 Free Relocation per Year</li>
+            <li>Monthly, Quarterly, Annual Billing</li>
+            <li>Flexible Renewal Options</li>
+            <li>One-Time $99 Installation Fee per System</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ============ FEATURE COMPARISON MATRIX ============ -->
+<section style="padding:48px 24px;">
+  <div class="container">
+    <h2 style="text-align:center;font-size:24px;font-weight:700;color:#0c4a6e;margin:0 0 32px;">Compare Both Options</h2>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;border:2px solid #0c4a6e;min-width:500px;">
+        <thead>
+          <tr>
+            <th style="padding:14px 16px;background:#0c4a6e;color:#fff;font-size:13px;font-weight:700;text-align:left;border:1px solid #094067;width:40%;">Feature</th>
+            <th style="padding:14px 16px;background:#14A38B;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 1<br/><span style="font-weight:500;font-size:11px;">Time Purchase</span></th>
+            <th style="padding:14px 16px;background:#0ea5e9;color:#fff;font-size:13px;font-weight:700;text-align:center;border:1px solid #094067;">Option 2<br/><span style="font-weight:500;font-size:11px;">Full-Service Rental</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Equipment Ownership</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;">You Rent</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Locked In Price Protection</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">All Parts, Service, Filters Included</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Satisfaction & Replacement Guarantee</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">1 Free Relocation per Year</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Flexible Renewal Options</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Simplified Paperwork & Billing</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;font-weight:600;color:#1e293b;background:#f8fafc;">Lowest Upfront Cost</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#dc2626;">&#10007;</td>
+            <td style="padding:12px 16px;border:1px solid #cbd5e1;text-align:center;color:#166534;font-weight:700;">&#10003;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAJOR ACCOUNTS HERO ============ -->
+<section class="hero" style="padding: 48px 0 40px;">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom: 12px;">PureVida &amp; Frisco ISD</h2>
+    <div class="underline-accent"></div>
+    <ul style="margin-top:16px;list-style:none;padding:0;max-width:700px;margin-left:auto;margin-right:auto;text-align:left;">
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one touches it.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Fast, Local Service</strong> — Dedicated technician and remote support from our DeSoto headquarters.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Locally Owned</strong> — Get fast decisions from real people, not corporate bureaucracy.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Flexible Programs</strong> — We tailor solutions to fit your organization's specific needs.</span>
+      </li>
+    </ul>
   </div>
 </section>
 
 <div class="accent-bar"></div>
 
-<!-- VIDEO -->
-<section class="video" id="video">
-  <div class="container">
-    <h2 class="section-title">See PureVida in Action</h2>
-    <div class="underline-accent"></div>
-    <p class="section-subtitle text-center">Watch a quick overview of how PureVida transforms your breakroom hydration.</p>
-    <div class="video-wrapper">
-      <iframe src="https://www.loom.com/embed/0accde2b4e5343208cc425f0644f97d5" allowfullscreen></iframe>
+<!-- Specs Modal -->
+<div id="specs-modal" class="specs-modal-overlay">
+  <div class="specs-backdrop" id="specs-backdrop"></div>
+  <div class="specs-modal-container">
+    <div class="specs-modal-card">
+      <button class="specs-modal-close" id="specs-modal-close">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <h3 class="specs-modal-title" id="specs-modal-title"></h3>
+      <ul class="specs-modal-list" id="specs-modal-list"></ul>
     </div>
   </div>
-</section>
+</div>
 
-<div class="accent-bar"></div>
-
-<!-- WHY PUREVIDA -->
-<section class="why" id="why">
+<!-- ============ FOOTER CTA ============ -->
+<section class="footer-cta" id="contact">
   <div class="container">
-    <h2 class="section-title">Why PureVida for Frisco ISD</h2>
-    <div class="underline-accent"></div>
-
-    <div class="why-grid">
-      <ul class="why-list">
-        <li>
-          <div class="why-number">1</div>
-          <div>
-            <h4>Local DFW Presence</h4>
-            <p>Based in DeSoto, TX &mdash; just 45 minutes from Frisco. Fast installation, responsive local service.</p>
-          </div>
-        </li>
-        <li>
-          <div class="why-number">2</div>
-          <div>
-            <h4>Proven Education Experience</h4>
-            <p>PureVida serves schools across Texas, helping to elevate the learning environment with clean water.</p>
-          </div>
-        </li>
-        <li>
-          <div class="why-number">3</div>
-          <div>
-            <h4>Standard, Fixed Pricing</h4>
-            <p>Predictable monthly costs with no delivery fees, fuel surcharges, or surprise invoices. Easy budgeting for the district.</p>
-          </div>
-        </li>
-        <li>
-          <div class="why-number">4</div>
-          <div>
-            <h4>Risk-Free Trial</h4>
-            <p>Try PureVida with a complimentary 7-day trial. Experience the difference before committing.</p>
-          </div>
-        </li>
-      </ul>
-
-      <!-- CTA Box -->
-      <div class="cta-box" id="contact">
-        <h3>Ready to Get Started?</h3>
-        <p class="cta-sub">Schedule a free on-site demo and 7-day trial for your department.</p>
-        <div class="cta-divider"></div>
-        <p class="cta-email"><a href="mailto:contact@purevidawater.com">contact@purevidawater.com</a></p>
-        <p class="cta-website"><a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a></p>
-        <p class="cta-location">DeSoto, TX &nbsp;|&nbsp; Serving the DFW Metroplex</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER CTA -->
-<section class="footer-cta">
-  <div class="container">
-    <h2>Pure Water. Zero Hassle. Risk-Free Trial.</h2>
-    <p>See why 1,000+ Texas organizations trust PureVida Water</p>
+    <h2>Highest Quality Water & Ice. Highest Quality Systems. Highest Quality Service.</h2>
+    <p>Invest In the Most Valuable, Least Expensive, Long Term Option.</p>
     <a href="mailto:contact@purevidawater.com" class="btn-primary">Email contact@purevidawater.com</a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    <p>PureVida Water &nbsp;|&nbsp; <a href="https://purevidawater.com" target="_blank" rel="noopener">purevidawater.com</a> &nbsp;|&nbsp; Serving schools, offices &amp; organizations across Texas</p>
+    <p style="max-width: 640px; margin: 0 auto 12px; font-size: 0.95rem; font-style: italic; color: rgba(255,255,255,0.75); line-height: 1.6;">"If you choose to put your trust in us, like the 1,100+ other Texas Organizations have, then I promise we will work hard every day to make sure that trust is not misplaced."</p>
+    <p style="font-weight: 700; color: rgba(255,255,255,0.9); font-size: 0.9rem;">Payton Fedell — President &amp; Owner</p>
+    <p style="margin-top: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.6);"><a href="mailto:payton@purevidawater.com" style="color: var(--cyan); text-decoration: none;">payton@purevidawater.com</a> &nbsp;|&nbsp; <a href="tel:9035203381" style="color: var(--cyan); text-decoration: none;">(903) 520-3381</a></p>
   </div>
 </footer>
 
-<script>
+<!-- ============ SCRIPTS ============ -->
+
+<!-- Nav dropdown toggle -->
+<script is:inline>
+  const maMenuToggle = document.getElementById('fisd-menu-toggle');
+  const maNavDropdown = document.getElementById('fisd-nav-dropdown');
+  maMenuToggle?.addEventListener('click', function(e) {
+    e.stopPropagation();
+    maNavDropdown.style.display = maNavDropdown.style.display === 'none' ? 'block' : 'none';
+  });
+  maNavDropdown?.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { maNavDropdown.style.display = 'none'; });
+  });
+  document.addEventListener('click', function() { if (maNavDropdown) maNavDropdown.style.display = 'none'; });
+</script>
+
+<!-- Tab switching for Recommended Systems -->
+<script is:inline>
   function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+    const container = document.getElementById('systems');
+    container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    container.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
 
     if (tab === 'water') {
       document.getElementById('tab-water').classList.add('active');
-      document.querySelectorAll('.tab-btn')[0].classList.add('active');
+      container.querySelectorAll('.tab-btn')[0].classList.add('active');
     } else {
       document.getElementById('tab-ice').classList.add('active');
-      document.querySelectorAll('.tab-btn')[1].classList.add('active');
+      container.querySelectorAll('.tab-btn')[1].classList.add('active');
     }
   }
+</script>
+
+<!-- Specs Modal JavaScript -->
+<script is:inline>
+  const specsModal = document.getElementById('specs-modal');
+  const specsTitle = document.getElementById('specs-modal-title');
+  const specsList = document.getElementById('specs-modal-list');
+  const specsClose = document.getElementById('specs-modal-close');
+  const specsBackdrop = document.getElementById('specs-backdrop');
+
+  document.querySelectorAll('.view-specs-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const specs = JSON.parse(btn.dataset.specs);
+      const name = btn.dataset.name;
+      specsTitle.textContent = `${name} Specifications`;
+      specsList.innerHTML = specs.map(s => `<li><strong>${s.label}:</strong> ${s.value}</li>`).join('');
+      specsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeSpecsModal() {
+    specsModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  specsClose?.addEventListener('click', closeSpecsModal);
+  specsBackdrop?.addEventListener('click', closeSpecsModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && specsModal.classList.contains('open')) closeSpecsModal();
+  });
+</script>
+
+<!-- Card Pricing Slider JS -->
+<script is:inline>
+  function fmt(n) {
+    return '$' + n.toLocaleString();
+  }
+  function updateCardPricing(card, idx) {
+    const prices = JSON.parse(card.dataset.prices);
+    const tpRow = card.querySelector('.row-tp');
+    const rentalRow = card.querySelector('.row-rental');
+
+    tpRow.querySelectorAll('.grid-cell')[0].textContent = fmt(prices.tp.grid[idx]);
+    tpRow.querySelectorAll('.fisd-cell')[0].textContent = fmt(prices.tp.fisd[idx]);
+    rentalRow.querySelectorAll('.grid-cell')[0].textContent = fmt(prices.rental.grid[idx]);
+    rentalRow.querySelectorAll('.fisd-cell')[0].textContent = fmt(prices.rental.fisd[idx]);
+  }
+
+  document.querySelectorAll('.card-pricing[data-prices]').forEach(card => {
+    updateCardPricing(card, 0);
+
+    const slider = card.querySelector('.card-term-range');
+    slider?.addEventListener('input', () => {
+      updateCardPricing(card, parseInt(slider.value));
+    });
+  });
 </script>
 
 <!--Start of Tawk.to Script-->
