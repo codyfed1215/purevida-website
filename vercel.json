@@ -6,7 +6,21 @@
     { "source": "/tech", "destination": "/lp/tech-qr", "statusCode": 301 },
     { "source": "/foxflyer", "destination": "/lp/ff-qr", "statusCode": 301 },
     { "source": "/landing-pages/flyer", "destination": "/lp/flyer", "statusCode": 301 },
-    { "source": "/free-trial", "destination": "/contact", "statusCode": 301 }
+    { "source": "/free-trial", "destination": "/contact", "statusCode": 301 },
+    { "source": "/water-cooler-delivery-service-dallas-fort-worth", "destination": "/locations/dallas", "statusCode": 301 },
+    { "source": "/water-cooler-delivery-service-san-antonio", "destination": "/locations/san-antonio", "statusCode": 301 },
+    { "source": "/water-cooler-delivery-service-austin", "destination": "/locations/austin", "statusCode": 301 },
+    { "source": "/bottleless-water-cooler", "destination": "/products/water-coolers", "statusCode": 301 },
+    { "source": "/ice-machine-rental-dallas-fort-worth", "destination": "/products/ice-machines", "statusCode": 301 },
+    { "source": "/commercial-coffee-machines-dallas-fort-worth", "destination": "/products/coffee-systems", "statusCode": 301 },
+    { "source": "/about-us", "destination": "/about", "statusCode": 301 },
+    { "source": "/contact-us", "destination": "/contact", "statusCode": 301 },
+    { "source": "/blog-page", "destination": "/blog", "statusCode": 301 },
+    { "source": "/free-trial-signup", "destination": "/contact", "statusCode": 301 },
+    { "source": "/wp-content/:path*", "destination": "/", "statusCode": 301 },
+    { "source": "/wp-admin/:path*", "destination": "/", "statusCode": 301 },
+    { "source": "/wp-login.php", "destination": "/", "statusCode": 301 },
+    { "source": "/wp-includes/:path*", "destination": "/", "statusCode": 301 }
   ],
   "headers": [
     {
@@ -18,7 +32,7 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://assets.apollo.io https://maps.googleapis.com https://embed.tawk.to https://*.tawk.to; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to; font-src 'self' https://fonts.gstatic.com https://*.tawk.to data:; img-src 'self' data: blob: https:; frame-src https://maps.google.com https://www.google.com https://www.googletagmanager.com https://www.loom.com https://calendly.com https://forms.zohopublic.com https://tawk.to https://*.tawk.to; media-src 'self' https://*.loom.com https://*.amazonaws.com https://*.tawk.to; connect-src 'self' https://formspree.io https://*.loom.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com/ccm/collect https://www.google.com/rmkt/collect https://*.apollo.io https://*.aplo-evnt.com https://tpqipscwaovlujxolfal.supabase.co https://maps.googleapis.com https://*.tawk.to wss://*.tawk.to; base-uri 'self'; form-action 'self' https://formspree.io https://forms.zohopublic.com;" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://assets.apollo.io https://maps.googleapis.com https://embed.tawk.to https://*.tawk.to https://snap.licdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to; font-src 'self' https://fonts.gstatic.com https://*.tawk.to data:; img-src 'self' data: blob: https:; frame-src https://maps.google.com https://www.google.com https://www.googletagmanager.com https://www.loom.com https://calendly.com https://forms.zohopublic.com https://tawk.to https://*.tawk.to; media-src 'self' https://*.loom.com https://*.amazonaws.com https://*.tawk.to; connect-src 'self' https://formspree.io https://*.loom.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://www.googleadservices.com https://*.apollo.io https://*.aplo-evnt.com https://tpqipscwaovlujxolfal.supabase.co https://maps.googleapis.com https://*.tawk.to wss://*.tawk.to https://snap.licdn.com https://px.ads.linkedin.com; base-uri 'self'; form-action 'self' https://formspree.io https://forms.zohopublic.com;" }
       ]
     },
     {
