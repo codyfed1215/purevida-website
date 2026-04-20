@@ -6,6 +6,7 @@ author: "PureVida Water Technologies"
 category: "cost-comparison"
 tags: ["bottleless water cooler cost", "water cooler pricing", "office water cost", "Texas water cooler", "bottleless pricing"]
 featured: false
+image: "/images/blog/how-much-does-bottleless-water-cooler-cost.jpg"
 ---
 
 If you're researching bottleless water coolers for your Texas business, you're probably tired of vague "contact us for pricing" pages. Let's cut through the noise and talk real numbers.

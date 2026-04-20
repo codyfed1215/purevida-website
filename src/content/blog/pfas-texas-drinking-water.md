@@ -6,6 +6,7 @@ author: "PureVida Water Technologies"
 category: "water-quality"
 tags: ["PFAS", "Texas drinking water", "water contamination", "water quality", "forever chemicals", "water filtration"]
 featured: false
+image: "/images/blog/pfas-texas-drinking-water.png"
 ---
 
 If you're a business owner in Texas, the quality of drinking water you provide to your employees matters more than ever. Recent findings of PFAS contamination in water systems across Dallas-Fort Worth, Austin, and San Antonio have raised serious concerns about the safety of our drinking water supply.

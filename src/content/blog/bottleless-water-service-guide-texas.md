@@ -6,6 +6,7 @@ author: "PureVida Water Technologies"
 category: "buyer-guide"
 tags: ["bottleless water cooler", "office water service", "Texas", "water filtration", "bottleless water service", "office water solutions"]
 featured: false
+image: "/images/blog/bottleless-water-service-guide-texas.png"
 ---
 
 If you've been looking into [bottleless water coolers](/blog/bottleless-vs-bottled-water) for your office or facility, you probably have questions — how does the filtration work, what does installation look like, and what does it actually cost? This guide breaks down everything you need to know about how PureVida's bottleless water service works so you can decide if it's the right fit for your business.

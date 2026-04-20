@@ -2,9 +2,11 @@
 interface Props {
   category: 'water-quality' | 'cost-comparison' | 'buyer-guide' | 'products';
   size?: 'card' | 'hero';
+  image?: string;
+  alt?: string;
 }
 
-const { category, size = 'card' } = Astro.props;
+const { category, size = 'card', image, alt = '' } = Astro.props;
 
 const configs: Record<string, { gradient: string; icon: string }> = {
   'water-quality': {
@@ -29,10 +31,17 @@ const config = configs[category] || configs['water-quality'];
 const aspectClass = size === 'hero' ? 'aspect-[21/9]' : 'aspect-[16/9]';
 ---
 
-<div class={`bg-gradient-to-br ${config.gradient} ${aspectClass} rounded-2xl flex items-center justify-center relative overflow-hidden`}>
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl"></div>
-    <div class="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+{image ? (
+  <div class={`${aspectClass} rounded-2xl overflow-hidden bg-gray-100 relative`}>
+    <img src={image} alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl" loading="lazy" />
+    <img src={image} alt={alt} class="relative w-full h-full object-contain" loading="lazy" />
   </div>
-  <div class="text-white/90 relative" set:html={config.icon} />
-</div>
+) : (
+  <div class={`bg-gradient-to-br ${config.gradient} ${aspectClass} rounded-2xl flex items-center justify-center relative overflow-hidden`}>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-2xl"></div>
+      <div class="absolute bottom-4 left-4 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+    </div>
+    <div class="text-white/90 relative" set:html={config.icon} />
+  </div>
+)}
