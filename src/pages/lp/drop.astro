@@ -100,12 +100,12 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         </div>
 
         <div>
-          <label for="phone" class="block text-xs font-medium text-gray-500 mb-1">Phone</label>
+          <label for="phone" class="block text-xs font-medium text-gray-500 mb-1">Phone *</label>
           <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
         </div>
 
         <div>
-          <label for="address" class="block text-xs font-medium text-gray-500 mb-1">Address</label>
+          <label for="address" class="block text-xs font-medium text-gray-500 mb-1">Address *</label>
           <input type="text" id="address" name="address" placeholder="Start typing an address..." autocomplete="off" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
           <input type="hidden" id="google_place_id" name="google_place_id" />
         </div>
@@ -134,7 +134,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label for="first_name" class="block text-xs font-medium text-gray-500 mb-1">First Name</label>
+            <label for="first_name" class="block text-xs font-medium text-gray-500 mb-1">First Name *</label>
             <input type="text" id="first_name" name="first_name" placeholder="Jane" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
           </div>
           <div>
@@ -149,7 +149,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         </div>
 
         <div>
-          <label for="email" class="block text-xs font-medium text-gray-500 mb-1">Email</label>
+          <label for="email" class="block text-xs font-medium text-gray-500 mb-1">Email *</label>
           <input type="email" id="email" name="email" placeholder="jane@acmecorp.com" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none text-base" />
         </div>
 
@@ -175,7 +175,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       <button
         type="submit"
         id="submit-btn"
-        class="w-full bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors text-base cursor-pointer shadow-lg shadow-sky-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled
+        class="w-full bg-gray-300 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors text-base cursor-not-allowed"
       >
         Submit Drop
       </button>
@@ -228,6 +229,33 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         }
         e.target.value = val;
       });
+    });
+
+    // ---- Live validation: enable submit when required fields filled ----
+    function checkRequired() {
+      var company = document.getElementById('company').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var address = document.getElementById('address').value.trim();
+      var firstName = document.getElementById('first_name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var solution = document.querySelector('input[name="current_solution"]:checked');
+      var btn = document.getElementById('submit-btn');
+
+      if (company && phone && address && firstName && email && solution) {
+        btn.disabled = false;
+        btn.className = 'w-full bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors text-base cursor-pointer shadow-lg shadow-sky-500/30';
+      } else {
+        btn.disabled = true;
+        btn.className = 'w-full bg-gray-300 text-white font-semibold py-3.5 px-6 rounded-xl transition-colors text-base cursor-not-allowed';
+      }
+    }
+
+    // Listen on all text/email/tel inputs + radios
+    document.querySelectorAll('#drop-form input[type="text"], #drop-form input[type="email"], #drop-form input[type="tel"]').forEach(function(input) {
+      input.addEventListener('input', checkRequired);
+    });
+    document.querySelectorAll('input[name="current_solution"]').forEach(function(radio) {
+      radio.addEventListener('change', checkRequired);
     });
 
     // ---- Resize image to reduce payload ----
@@ -317,6 +345,8 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
         // Fill place ID
         document.getElementById('google_place_id').value = placeData.place_id;
+
+        checkRequired();
       });
     }
 
@@ -376,6 +406,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
           }
           scanStatus.textContent = 'Fields filled';
           scanStatus.classList.add('text-green-500');
+          checkRequired();
         } else {
           scanStatus.textContent = 'Could not read card';
           scanError.textContent = json.error || 'Try a clearer photo or enter manually.';
