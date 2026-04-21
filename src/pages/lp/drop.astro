@@ -111,7 +111,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-gray-500 mb-2">Current Solution</label>
+          <label class="block text-xs font-medium text-gray-500 mb-2">Current Solution *</label>
           <div class="flex flex-wrap gap-2">
             <label class="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
               <input type="radio" name="current_solution" value="Jugs" class="accent-sky-500" /> Jugs
@@ -120,7 +120,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
               <input type="radio" name="current_solution" value="Individual Plastic Bottles" class="accent-sky-500" /> Bottles
             </label>
             <label class="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
-              <input type="radio" name="current_solution" value="Unknown" class="accent-sky-500" checked /> Unknown
+              <input type="radio" name="current_solution" value="Unknown" class="accent-sky-500" /> Unknown
             </label>
             <label class="flex items-center gap-1.5 text-sm text-gray-600 cursor-pointer">
               <input type="radio" name="current_solution" value="Other" class="accent-sky-500" /> Other
@@ -404,6 +404,13 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
       submitBtn.textContent = 'Submitting...';
 
       var solution = document.querySelector('input[name="current_solution"]:checked');
+      if (!solution) {
+        showToast('Please select a current solution');
+        submitting = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Drop';
+        return;
+      }
 
       var urlParams = new URLSearchParams(window.location.search);
       var urlPromo = urlParams.get('promo') || '';
