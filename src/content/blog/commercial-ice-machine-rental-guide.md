@@ -143,7 +143,7 @@ Also called "chewable ice" or "Sonic ice," nugget ice is a premium option that's
 
 **Best for:** Medical offices, dental practices, upscale office buildings, health-conscious workplaces
 
-Many businesses that rent [ice machines](/products/ice-machines) also bundle them with [bottleless water coolers](/products/water-coolers) and [coffee systems](/products/coffee-systems) to create a complete breakroom solution.
+Many businesses that rent [ice machines](/products/ice-machines) also bundle them with [bottle-less water coolers](/products/water-coolers) and [coffee systems](/products/coffee-systems) to create a complete breakroom solution.
 
 ## What's Typically Included in a Rental Agreement
 
@@ -215,9 +215,9 @@ Texas water varies significantly by region. [Austin](/locations/austin) has rela
 
 ### Do you also offer water coolers and coffee systems?
 
-Absolutely. Many Texas businesses bundle their [ice machine](/products/ice-machines) rental with [bottleless water coolers](/products/water-coolers) and [coffee systems](/products/coffee-systems) to create a complete, hassle-free breakroom solution. Bundling multiple products often provides additional cost savings and simplifies vendor management.
+Absolutely. Many Texas businesses bundle their [ice machine](/products/ice-machines) rental with [bottle-less water coolers](/products/water-coolers) and [coffee systems](/products/coffee-systems) to create a complete, hassle-free breakroom solution. Bundling multiple products often provides additional cost savings and simplifies vendor management.
 
-For more information on the total cost of breakroom water solutions, check out our guide on [how much bottleless water coolers cost](/blog/how-much-does-bottleless-water-cooler-cost).
+For more information on the total cost of breakroom water solutions, check out our guide on [how much bottle-less water coolers cost](/blog/how-much-does-bottleless-water-cooler-cost).
 
 ## Making the Right Choice for Your Texas Business
 
@@ -227,4 +227,4 @@ For most Texas businesses — especially those in high-demand environments where
 
 PureVida Water Technologies serves businesses throughout [Dallas-Fort Worth](/locations/dallas), [Austin](/locations/austin), and [San Antonio](/locations/san-antonio) with comprehensive ice machine rental programs that include everything you need: delivery, installation, maintenance, repairs, and water filtration. Our flat monthly rate means no surprises, and our local service teams ensure you're never without ice when you need it most.
 
-Ready to explore ice machine rental for your business? We offer free trials so you can experience the quality and service firsthand before making any commitment. Contact us today to discuss your ice production needs and get a customized quote.
+Ready to explore ice machine rental for your business? We offer Free, No-Obligations Trials so you can experience the quality and service firsthand before making any commitment. Contact us today to discuss your ice production needs and get a customized quote.

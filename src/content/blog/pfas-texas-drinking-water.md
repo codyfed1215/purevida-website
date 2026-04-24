@@ -111,22 +111,22 @@ When it comes to removing PFAS from drinking water, technology matters. Standard
 4. **Post-filtration** with granular activated carbon polishes the water and removes any residual taste
 5. **Optional UV or activated oxygen treatment** provides additional purification and prevents bacterial growth
 
-PureVida Water Technologies' [bottleless water coolers](/products/water-coolers) incorporate this exact multi-stage approach, combining sediment filtration, carbon block, a 0.0001 micron reverse osmosis membrane, granular activated carbon, a boost filter, and activated oxygen treatment. This comprehensive system is specifically designed to remove PFAS and other contaminants while delivering clean, great-tasting water.
+PureVida Water Technologies' [bottle-less water coolers](/products/water-coolers) incorporate this exact multi-stage approach, combining sediment filtration, carbon block, a 0.0001 micron reverse osmosis membrane, granular activated carbon, a boost filter, and activated oxygen treatment. This comprehensive system is specifically designed to remove PFAS and other contaminants while delivering clean, great-tasting water.
 
 **Certification Matters**: Look for systems that have been tested and certified by independent organizations like NSF International for PFAS reduction. NSF/ANSI Standard 53 and Standard 58 address PFAS removal, and certified systems must demonstrate proven performance.
 
 **Maintenance is Critical**: Even the best filtration system requires regular maintenance to remain effective. Filters must be changed according to manufacturer specifications, and membranes need periodic replacement. With PureVida's subscription service model, all maintenance is included in your flat monthly rate—our technicians handle filter changes, system checks, and preventive maintenance so you never have to worry about whether your water is safe.
 
-When comparing water solutions for your business, the choice becomes clear: [bottled water delivery](/blog/bottleless-vs-bottled-water) cannot address PFAS contamination in your existing tap water, and it generates massive plastic waste. Bottleless systems with advanced filtration provide comprehensive protection at the point of use, eliminating PFAS before anyone drinks the water.
+When comparing water solutions for your business, the choice becomes clear: [bottled water delivery](/blog/bottleless-vs-bottled-water) cannot address PFAS contamination in your existing tap water, and it generates massive plastic waste. Bottle-less systems with advanced filtration provide comprehensive protection at the point of use, eliminating PFAS before anyone drinks the water.
 
 ## Protecting Your Texas Business with Clean Water
 
 PFAS contamination in Texas drinking water is a serious issue that's not going away. As regulations tighten and awareness grows, businesses that take proactive steps to ensure clean drinking water will be ahead of the curve.
 
-At [PureVida Water Technologies](/about), we've been helping Texas businesses provide safe, great-tasting water to their employees for years. Our bottleless water systems deliver comprehensive PFAS removal through advanced multi-stage filtration, all backed by our complete service and maintenance program.
+At [PureVida Water Technologies](/about), we've been helping Texas businesses provide safe, great-tasting water to their employees for years. Our bottle-less water systems deliver comprehensive PFAS removal through advanced multi-stage filtration, all backed by our complete service and maintenance program.
 
 Whether you're in the Dallas-Fort Worth Metroplex, the Austin area, or San Antonio, we can help you eliminate PFAS concerns from your workplace. Our flat monthly subscription rate includes equipment, installation, unlimited filtered water, all filter changes, and ongoing service—no surprises, no hassles.
 
-**Ready to protect your team from PFAS?** We offer free trials so you can experience the PureVida difference risk-free. Contact us today to schedule a water quality assessment and learn how bottleless filtration can deliver clean, safe drinking water for your business.
+**Ready to protect your team from PFAS?** We offer Free, No-Obligations Trials so you can experience the PureVida difference risk-free. Contact us today to schedule a water quality assessment and learn how bottle-less filtration can deliver clean, safe drinking water for your business.
 
 Your employees deserve water they can trust. Let's make it happen.

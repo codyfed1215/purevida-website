@@ -9,12 +9,12 @@ interface Props {
 
 const {
   title,
-  description = "PureVida Water Technologies provides bottleless water coolers, ice machines, and coffee systems to businesses across Texas. Save 30-80% vs bottled water delivery.",
+  description = "PureVida Water Technologies provides bottle-less water coolers, ice machines, and coffee systems to businesses across Texas. Save 30-80% vs bottled water delivery.",
   canonicalUrl
 } = Astro.props;
 
 const siteUrl = "https://purevidawater.com";
-const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottleless Water, Ice & Coffee Systems" : `${title} | PureVida Water Technologies`;
+const fullTitle = title === "Home" ? "PureVida Water Technologies | Bottle-less Water, Ice & Coffee Systems" : `${title} | PureVida Water Technologies`;
 const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || siteUrl).href;
 ---
 
@@ -75,7 +75,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "PureVida Water Technologies",
-      "description": "Bottleless water coolers, ice machines, and coffee systems for Texas businesses",
+      "description": "Bottle-less water coolers, ice machines, and coffee systems for Texas businesses",
       "url": siteUrl,
       "telephone": "(888) 534-0117",
       "email": "contact@purevidawater.com",
@@ -241,7 +241,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
               <img src="/images/companylogo/logo.png" alt="PureVida Water Technologies" class="h-14 w-auto brightness-0 invert" />
             </div>
             <p class="text-gray-400 text-sm">
-              Bottleless water, ice, and coffee systems for Texas businesses. Serving 1,100+ customers.
+              Bottle-less water, ice, and coffee systems for Texas businesses. Serving 1,100+ customers.
             </p>
           </div>
 
