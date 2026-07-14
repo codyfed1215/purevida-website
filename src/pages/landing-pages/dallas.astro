@@ -364,6 +364,34 @@
       margin-top: 24px;
     }
 
+    /* -- PHOTO COMPARE LABELS -- */
+    .photo-compare-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 20px;
+    }
+    .photo-compare-labels .compare-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin: 0 0 6px;
+    }
+    .photo-compare-labels p.compare-text {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .photo-compare-labels .compare-text strong { color: var(--navy-dark); }
+    .photo-compare-right { text-align: right; }
+    @media (max-width: 640px) {
+      .photo-compare-labels { grid-template-columns: 1fr; gap: 16px; }
+      .photo-compare-right { text-align: left; }
+    }
+
     /* -- TRUSTED -- */
     .trusted { background: var(--bg-light); padding: 80px 0; }
     .trust-grid {
@@ -1237,6 +1265,22 @@
       <img src="/images/technician-install.png" alt="PureVida field technician completing an on-site installation" class="hero-tech-photo" style="max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
       <p style="margin-top: 12px; font-size: 0.9rem; color: var(--gray-text); font-style: italic;">PureVida Serving Another Happy Customer</p>
     </div>
+
+    <!-- Real-world side-by-side photo -->
+    <div style="max-width:900px;margin:48px auto 0;">
+      <img src="/landing-pages/city-of-dallas/bottled-vs-purevida.jpg" alt="A breakroom mid-transition: racks of bottled water jugs and a jug cooler on the left, a single PureVida bottle-less system on the right" style="width:100%;border-radius:12px;box-shadow:var(--card-shadow);display:block;" loading="lazy">
+      <div class="photo-compare-labels">
+        <div>
+          <p class="compare-kicker">On the Left</p>
+          <p class="compare-text"><strong>The bottled solution</strong> &mdash; racks, jugs, clutter, and constant reordering</p>
+        </div>
+        <div class="photo-compare-right">
+          <p class="compare-kicker">On the Right</p>
+          <p class="compare-text"><strong>PureVida</strong> &mdash; one clean, bottle-less system</p>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--gray-text);font-size:0.9rem;font-style:italic;margin-top:24px;">A real customer breakroom mid-transition. Everything on the left goes away.</p>
+    </div>
   </div>
 </section>
 
@@ -1435,7 +1479,7 @@
 <section class="systems" id="systems">
   <div class="container">
     <h2 class="section-title text-center">Recommended Systems</h2>
-    <p class="section-subtitle text-center">Tailored to Your Organization's Needs</p>
+    <p class="section-subtitle text-center">Tailored to Your Organization's Needs &mdash; choose Water Systems, Ice &amp; Water Systems, or any mix of both. Use the toggles below to explore each lineup.</p>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -1459,7 +1503,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV1w" data-specs='[{"label":"Form","value":"Countertop"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"18in H x 12in W x 20in D"},{"label":"Storage","value":"1 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"47 lbs"}]'>
@@ -1494,7 +1537,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> Less than 10 drinkers</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV2w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"49in H x 13in W x 18in D"},{"label":"Storage","value":"1.82 Gal Cold | 0.5 Gal Hot"},{"label":"Weight","value":"55 lbs"}]'>
@@ -1529,7 +1571,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 drinkers</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV3w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot &amp; Cold Water"},{"label":"Dimensions","value":"51in H x 14in W x 17in D"},{"label":"Storage","value":"3 Gal Cold | 0.5 Gal Hot"},{"label":"Dispense Height","value":"11.5 in"},{"label":"Weight","value":"70 lbs"}]'>
@@ -1564,7 +1605,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ drinkers</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV4w" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold &amp; Ambient Water"},{"label":"Dimensions","value":"69in H x 19in W x 21in D"},{"label":"Storage","value":"5 Gal Cold | 1.1 Gal Hot | 2.5 Gal Ambient"},{"label":"Dispense Height","value":"14.7 in"},{"label":"Weight","value":"155 lbs"}]'>
@@ -1605,7 +1645,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV6i" data-specs='[{"label":"Form","value":"Freestanding"},{"label":"Functionality","value":"Hot, Cold, Ambient Water | Hard Bullet Ice"},{"label":"Dimensions","value":"59in H x 17in W x 20in D"},{"label":"Storage","value":"1.2 gal Cold | 1.2 gal Hot | 4.5 gal Amb | 13.2 lbs Ice"},{"label":"Production","value":"44 lbs of Ice Daily"},{"label":"Weight","value":"120 lbs"}]'>
@@ -1640,7 +1679,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Small Offices &amp; Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> Fewer than 10 users</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV7i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic-Like Ice"},{"label":"Dimensions","value":"18in H x 15in W x 22in D | 45in H x 15in W x 22in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 7 lbs Ice"},{"label":"Production","value":"125 lbs of Ice Daily"},{"label":"Weight","value":"60 lbs / 85 lbs"}]'>
@@ -1675,7 +1713,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> Mid-Size Departments</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> 10 to 30 users</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV8i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Hot &amp; Ambient Water | Crunchy Sonic-Like Ice"},{"label":"Dimensions","value":"24in H x 15in W x 24in D | 52in H x 15in W x 24in D"},{"label":"Storage","value":"0.5 gal Hot | 6 gal Ambient | 16.5 lbs Ice"},{"label":"Production","value":"165 lbs of Ice Daily"},{"label":"Weight","value":"93 lbs / 118 lbs"}]'>
@@ -1710,7 +1747,6 @@
           </div>
           <div class="system-card-body">
             <p class="meta-item"><strong>Ideal For:</strong> High-Traffic Areas</p>
-            <p class="meta-item"><strong>Recommended Usage:</strong> 30+ users</p>
             <div class="meta-spacer"></div>
             <div class="card-bottom">
             <button class="view-specs-btn" type="button" data-name="PV9i" data-specs='[{"label":"Form","value":"Countertop or Freestanding"},{"label":"Functionality","value":"Ambient Water | Crunchy Sonic-Like Ice"},{"label":"Dimensions","value":"46in H x 17in W x 24in D | 75in H x 17in W x 24in D"},{"label":"Storage","value":"6 gal Ambient | 30 lbs Ice"},{"label":"Production","value":"380 lbs of Ice Daily"},{"label":"Weight","value":"223 lbs / 281 lbs"}]'>
@@ -1941,11 +1977,11 @@
       </li>
       <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
         <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-        <span><strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one touches it.</span>
+        <span><strong>Real Utility &amp; Value</strong> — The cheapest option isn't cheap if no one uses it.</span>
       </li>
       <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
         <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-        <span><strong>Fast, Local Service</strong> — Dedicated technician, remote support, and a customer portal from our DeSoto headquarters.</span>
+        <span><strong>Fast, Local Service</strong> — Dedicated technician and remote support from our DeSoto headquarters.</span>
       </li>
       <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:15px;color:#374151;">
         <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
@@ -1953,7 +1989,11 @@
       </li>
       <li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;color:#374151;">
         <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
-        <span><strong>Flexible Programs</strong> — We tailor solutions to fit your organization's specific needs.</span>
+        <span><strong>Flexible Programs</strong> — Multiple ways to purchase — full-service rental, time purchase, or outright ownership with a maintenance plan — so PureVida fits your budget requirements.</span>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:10px;margin-top:10px;font-size:15px;color:#374151;">
+        <img src="/images/water-drop-logo.svg" alt="" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;" />
+        <span><strong>Major Account Pricing</strong> — The City of Dallas qualifies for significantly discounted pricing off PureVida's standard rates.</span>
       </li>
     </ul>
   </div>
