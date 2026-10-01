@@ -1,0 +1,42 @@
+---
+// SpamGuard: quiet anti-bot check for the lead forms (2026-10-01, Payton OK'd "layer 1").
+// 1) Adds a hidden trap field to each lead form. People never see it; bots fill it.
+// 2) Ignores lead submits made within 2 seconds of page load.
+// A flagged submit is not sent to ingest-lead. The page gets a normal "ok" reply, so bots
+// don't learn anything. Only requests to /ingest-lead are touched (scan-card etc. pass through).
+---
+<script is:inline>
+(function () {
+  var T0 = Date.now();
+  var MIN_MS = 2000;
+  var HP = 'pv_extra_note';
+  function addTraps() {
+    document.querySelectorAll('form:not([action])').forEach(function (f) {
+      if (f.querySelector('input[name="' + HP + '"]')) return;
+      var wrap = document.createElement('div');
+      wrap.setAttribute('aria-hidden', 'true');
+      wrap.style.cssText = 'position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;';
+      wrap.innerHTML = '<label>Leave this field empty<input type="text" name="' + HP + '" tabindex="-1" autocomplete="off" value=""></label>';
+      f.appendChild(wrap);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addTraps); else addTraps();
+  new MutationObserver(addTraps).observe(document.documentElement, { childList: true, subtree: true });
+  function looksLikeBot() {
+    if (Date.now() - T0 < MIN_MS) return true;
+    var traps = document.querySelectorAll('input[name="' + HP + '"]');
+    for (var i = 0; i < traps.length; i++) { if ((traps[i].value || '').trim() !== '') return true; }
+    return false;
+  }
+  var realFetch = window.fetch.bind(window);
+  window.fetch = function (input, init) {
+    try {
+      var url = typeof input === 'string' ? input : (input && input.url) || '';
+      if (url.indexOf('/ingest-lead') !== -1 && looksLikeBot()) {
+        return Promise.resolve(new Response('{"ok":true}', { status: 200, headers: { 'Content-Type': 'application/json' } }));
+      }
+    } catch (e) {}
+    return realFetch(input, init);
+  };
+})();
+</script>

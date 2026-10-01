@@ -1,4 +1,5 @@
 ---
+import SpamGuard from '../components/SpamGuard.astro';
 import '../styles/global.css'
 
 interface Props {
@@ -21,6 +22,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
 <!doctype html>
 <html lang="en">
   <head>
+  <SpamGuard />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
