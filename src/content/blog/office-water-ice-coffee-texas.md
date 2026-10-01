@@ -53,7 +53,7 @@ Most businesses spending on bottled water see an immediate cost savings, with up
 ## Why Texas Offices Trust PureVida
 
 - **100+ 5-star Google reviews**
-- **1,100+ Texas businesses served**, including UT Austin, Worthington Bank, Community National Bank, Churchill Mortgage, Tonja Barnabee CPA, Fisher & Zitterich, Frankie Arthur Team, State Farm, and Hiley Auto Group
+- **1,300+ Texas businesses served**, including UT Austin, Worthington Bank, Community National Bank, Churchill Mortgage, Tonja Barnabee CPA, Fisher & Zitterich, Frankie Arthur Team, State Farm, and Hiley Auto Group
 - **Texas-local team** in DFW, Austin, and San Antonio. PureVida services what PureVida installs.
 
 Day 0 install. Your team uses it for 7 days. You decide on Day 5. No commitment, no payment, no project on your plate.

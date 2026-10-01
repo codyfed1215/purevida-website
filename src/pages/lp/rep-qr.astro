@@ -1,4 +1,5 @@
 ---
+import WebIntake from '../../components/WebIntake.astro';
 import QrScanLog from '../../components/QrScanLog.astro';
 import SpamGuard from '../../components/SpamGuard.astro';
 // Landing Page: Rep QR Code
@@ -11,6 +12,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
 <html lang="en">
 <head>
+  <WebIntake />
   <SpamGuard />
   <QrScanLog landing="rep" />
   <meta charset="UTF-8" />
@@ -115,7 +117,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
 
   <!-- ============ SOCIAL PROOF BAR ============ -->
   <div class="bg-gray-900 py-5 px-4">
-    <p class="text-center text-xs font-semibold uppercase tracking-widest text-sky-300 mb-3">Trusted by 1,100+ Texas businesses including</p>
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-sky-300 mb-3">Trusted by 1,300+ Texas businesses including</p>
     <div class="flex flex-wrap justify-center gap-x-10 sm:gap-x-16 gap-y-2 sm:gap-y-3 items-center">
       <span class="text-white text-sm font-semibold opacity-70">Walmart</span>
       <span class="text-white text-sm font-semibold opacity-70">Sherwin-Williams</span>
@@ -379,7 +381,7 @@ const SUPABASE_URL = 'https://tpqipscwaovlujxolfal.supabase.co';
         </li>
         <li class="flex items-center gap-3 text-gray-700">
           <img src="/images/water-drop-logo.svg" alt="" class="w-5 h-5 shrink-0" />
-          Over 1,100 Texas Businesses Served and Counting
+          Over 1,300 Texas Businesses Served and Counting
         </li>
       </ul>
     </section>

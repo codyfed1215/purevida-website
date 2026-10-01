@@ -76,7 +76,7 @@ For the entire term, everything is included: parts, service, filters, filter cha
 - **190+ medical and dental locations** across DFW, Austin, and San Antonio currently trust PureVida — including multi-location dental groups, multi-location dermatology groups, regional hospitals, and rehabilitation centers
 - **Joint Commission compliance** — multiple rounds of inspections passed across dozens of facilities
 - **100+ 5-star Google reviews**
-- **1,100+ Texas businesses served** overall
+- **1,300+ Texas businesses served** overall
 - **Texas-local team** — DFW, Austin, and San Antonio. Real Texans serving Texas.
 
 ---

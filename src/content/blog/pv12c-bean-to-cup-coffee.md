@@ -72,7 +72,7 @@ If your office fits that profile, the PV12c earns its place. If it doesn't, Pure
 ## Why Texas offices trust PureVida
 
 - **100+ 5-star Google reviews** · 5.0 lifetime rating
-- **1,100+ Texas businesses served** across DFW, Austin, and San Antonio — including UT Austin, Hiley, Walmart, DHL, Owens Corning, Target, BMW of McKinney, and more
+- **1,300+ Texas businesses served** across DFW, Austin, and San Antonio — including UT Austin, Hiley, Walmart, DHL, Owens Corning, Target, BMW of McKinney, and more
 - **Texas-local team** that services every system it installs
 
 ---

@@ -1,4 +1,5 @@
 ---
+import WebIntake from '../components/WebIntake.astro';
 import SpamGuard from '../components/SpamGuard.astro';
 import '../styles/global.css'
 
@@ -22,6 +23,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
 <!doctype html>
 <html lang="en">
   <head>
+  <WebIntake />
   <SpamGuard />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -243,7 +245,7 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
               <img src="/images/companylogo/logo.png" alt="PureVida Water Technologies" class="h-14 w-auto brightness-0 invert" />
             </div>
             <p class="text-gray-400 text-sm">
-              Bottle-less water, ice, and coffee systems for Texas businesses. Serving 1,100+ customers.
+              Bottle-less water, ice, and coffee systems for Texas businesses. Serving 1,300+ customers.
             </p>
           </div>
 
@@ -348,6 +350,16 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
           btn.textContent = 'Sending...';
 
           try {
+            const fdc = new FormData(form);
+            if (!(fdc.get('_gotcha') || '').toString().trim() && window.pvIntake) {
+              const nm = (fdc.get('name') || '').toString().trim().split(/\s+/);
+              window.pvIntake({ form_type: 'support', source: 'website_support',
+                business_name: (fdc.get('company') || '').toString().trim(),
+                first_name: nm[0] || '', last_name: nm.slice(1).join(' '),
+                email: (fdc.get('email') || '').toString().trim(), phone: (fdc.get('phone') || '').toString().trim(),
+                message: (fdc.get('message') || '').toString().trim(),
+                extra: { support_type: (fdc.get('support_type') || '').toString(), system_or_invoice_id: (fdc.get('system_or_invoice_id') || '').toString() } });
+            }
             const res = await fetch(form.action, {
               method: 'POST',
               body: new FormData(form),

@@ -1,0 +1,57 @@
+---
+// WebIntake: copies every website lead/support submission into Payton's Supabase (leadgen.web_submissions)
+// via public.web_intake() (insert-only, validated, capped). Sales, 2026-10-01 (Payton: "Think of the website
+// in a way as just another capture mechanism").
+// PARALLEL RUN: forms still post to the existing endpoints (Cody's ingest-lead, Formspree), which still send the
+// alerts. This only adds a copy. It must load BEFORE SpamGuard, so SpamGuard's bot check runs first and
+// blocked bots never reach this copy. Never blocks or changes the real submission; failures are silent.
+---
+<script is:inline>
+(function () {
+  var INTAKE = 'https://afgaboesfuozjhglreyg.supabase.co/rest/v1/rpc/web_intake';
+  var KEY = 'sb_publishable_l-Ry2p--A0I18-bHo-Tvsw_siZHy8J5';
+  var realFetch = window.fetch.bind(window);
+  function device() {
+    var ua = navigator.userAgent || '';
+    return /iPad|Tablet/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'tablet'
+         : /Mobi|Android|iPhone|iPod/i.test(ua) ? 'mobile' : 'desktop';
+  }
+  function urlPromo() {
+    var c = (new URLSearchParams(location.search).get('promo') || '').trim().toUpperCase();
+    return /^PURE-[A-Z]{2,4}$/.test(c) ? c : null;
+  }
+  window.pvIntake = function (p) {
+    try {
+      var code = (p.promo_code || urlPromo() || '').toUpperCase() || null;
+      var vid = null; if (code) { try { vid = sessionStorage.getItem('pv_scan_' + code); } catch (e) {} }
+      p.promo_code = code; p.visit_id = vid; p.page = location.pathname.slice(0, 120); p.device = device();
+      var q = new URLSearchParams(location.search); p.extra = p.extra || {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'].forEach(function (k) { if (q.get(k)) p.extra[k] = q.get(k).slice(0, 120); });
+      realFetch(INTAKE, { method: 'POST', keepalive: true,
+        headers: { 'Content-Type': 'application/json', 'apikey': KEY },
+        body: JSON.stringify({ p: p }) }).catch(function () {});
+    } catch (e) {}
+  };
+  var KNOWN = ['form_type','source','business_name','first_name','last_name','email','phone','city','branch','address','title','referrer_name','referrer_email','referrer_phone'];
+  window.fetch = function (input, init) {
+    try {
+      var url = typeof input === 'string' ? input : (input && input.url) || '';
+      if (url.indexOf('/ingest-lead') !== -1 && init && typeof init.body === 'string') {
+        var b = JSON.parse(init.body), p = {}, extra = {};
+        Object.keys(b).forEach(function (k) {
+          var v = b[k];
+          if (KNOWN.indexOf(k) !== -1) p[k] = v;
+          else if (k === 'rep_code') p.promo_code = v ? String(v).toUpperCase() : null;
+          else if (typeof v === 'string' && v.length > 500) extra[k + '_attached'] = true;   // e.g. card images
+          else if (v !== null && v !== undefined && v !== '') extra[k] = v;
+        });
+        if (b.source === 'referral') p.form_type = 'referral';
+        if (['contact','referral','support','drop','flyer'].indexOf(p.form_type) === -1) p.form_type = 'contact';
+        p.extra = extra;
+        window.pvIntake(p);
+      }
+    } catch (e) {}
+    return realFetch(input, init);
+  };
+})();
+</script>

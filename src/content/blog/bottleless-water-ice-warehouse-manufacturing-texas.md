@@ -96,7 +96,7 @@ For the entire term, everything is included: parts, service, filters, filter cha
 
 ## Why Texas Warehouses, Plants, and Shops Trust PureVida
 
-- **1,100+ Texas businesses served**, including Walmart, DHL, CEMEX, Nucor Steel, Lauren Concrete, Balfour Beatty, Caliber Collision, Southern Tire Mart, and many more!
+- **1,300+ Texas businesses served**, including Walmart, DHL, CEMEX, Nucor Steel, Lauren Concrete, Balfour Beatty, Caliber Collision, Southern Tire Mart, and many more!
 - **100+ 5-star Google reviews**
 - **Texas-local team** — DFW, Austin, and San Antonio. PureVida services what PureVida installs.
 

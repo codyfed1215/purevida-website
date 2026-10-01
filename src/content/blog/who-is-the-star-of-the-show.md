@@ -31,7 +31,7 @@ It doesn't mention customers either.
 
 That might sound backwards for a company that installs and services bottle-less water, ice, and coffee systems across DFW, Austin, and San Antonio. It's not. It's the whole point.
 
-If we take care of the people who take care of our customers — our service guys, our sales consultants, our admin team — then everything else flows downhill. Better installs. Faster service calls. Real relationships with the Office Managers, Facilities leads, and owners at the 1,100+ Texas businesses we serve. No blob. Just people doing right by other people.
+If we take care of the people who take care of our customers — our service guys, our sales consultants, our admin team — then everything else flows downhill. Better installs. Faster service calls. Real relationships with the Office Managers, Facilities leads, and owners at the 1,300+ Texas businesses we serve. No blob. Just people doing right by other people.
 
 ## Why This Matters If You're Shopping for an Office Water Service
 

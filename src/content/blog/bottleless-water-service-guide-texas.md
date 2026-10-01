@@ -19,7 +19,7 @@ If your system ever malfunctions, you call us and we come out and fix it. If we 
 
 ## What Businesses Does PureVida Serve?
 
-We provide our systems exclusively to businesses — all types, shapes, and sizes. Fortune 500 companies, small office breakrooms, and everything in between. Our 1,100-plus Texas business customers include names like Walmart, Target, UT Austin, and the Dallas World Trade Center, but we serve just as many 10-person offices.
+We provide our systems exclusively to businesses — all types, shapes, and sizes. Fortune 500 companies, small office breakrooms, and everything in between. Our 1,300-plus Texas business customers include names like Walmart, Target, UT Austin, and the Dallas World Trade Center, but we serve just as many 10-person offices.
 
 Here's a sample of the industries we work with:
 
