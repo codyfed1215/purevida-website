@@ -1,0 +1,33 @@
+---
+// QrScanLog: records one anonymous "scan" per visit to a personal-QR landing page (Sales, 2026-10-01).
+// Sends only: promo code, landing type, device class, page path, referrer host, a random visit id.
+// No names, emails, IPs or locations are sent. Writes via public.log_qr_scan() in Payton's Supabase
+// (insert-only, validated, rate-capped). Failures are silent and never affect the page or its forms.
+interface Props { landing: 'rep' | 'tech' | 'foxflyer' }
+const { landing } = Astro.props;
+---
+<script is:inline define:vars={{ landing }}>
+(function () {
+  try {
+    var code = (new URLSearchParams(location.search).get('promo') || '').trim().toUpperCase();
+    if (!/^PURE-[A-Z]{2,4}$/.test(code)) return;
+    var key = 'pv_scan_' + code;
+    var vid;
+    try { vid = sessionStorage.getItem(key); } catch (e) {}
+    if (vid) return;                       // already counted this visit (reloads don't double-count)
+    vid = (Math.random().toString(36).slice(2) + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 24);
+    try { sessionStorage.setItem(key, vid); } catch (e) {}
+    var ua = navigator.userAgent || '';
+    var device = /iPad|Tablet/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'tablet'
+               : /Mobi|Android|iPhone|iPod/i.test(ua) ? 'mobile' : 'desktop';
+    var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    fetch('https://afgaboesfuozjhglreyg.supabase.co/rest/v1/rpc/log_qr_scan', {
+      method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json',
+                 'apikey': 'sb_publishable_l-Ry2p--A0I18-bHo-Tvsw_siZHy8J5' },
+      body: JSON.stringify({ p_code: code, p_landing: landing, p_device: device,
+                             p_page: location.pathname.slice(0, 80), p_referrer_host: ref || null, p_visit_id: vid })
+    }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
