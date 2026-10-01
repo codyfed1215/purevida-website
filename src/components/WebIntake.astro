@@ -36,6 +36,13 @@
   window.fetch = function (input, init) {
     try {
       var url = typeof input === 'string' ? input : (input && input.url) || '';
+      if (url.indexOf('/score-pricing-tool') !== -1 && init && typeof init.body === 'string') {
+        // /lp/pricing 5-step calculator (Cody's 2nd endpoint): copy it as a lead with the quote attached
+        var pb = JSON.parse(init.body), nm = String(pb.contact_name || '').trim().split(/\s+/);
+        window.pvIntake({ form_type: 'contact', source: 'pricing_tool',
+          business_name: pb.company || '(pricing tool, no company)', first_name: nm[0] || '', last_name: nm.slice(1).join(' '),
+          email: pb.email || '', phone: pb.phone || '', extra: { pricing_data: pb.pricing_data || null } });
+      }
       if (url.indexOf('/ingest-lead') !== -1 && init && typeof init.body === 'string') {
         var b = JSON.parse(init.body), p = {}, extra = {};
         Object.keys(b).forEach(function (k) {
