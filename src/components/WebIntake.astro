@@ -48,7 +48,7 @@
         Object.keys(b).forEach(function (k) {
           var v = b[k];
           if (KNOWN.indexOf(k) !== -1) p[k] = v;
-          else if (k === 'rep_code') p.promo_code = v ? String(v).toUpperCase() : null;
+          else if (k === 'rep_code' || k === 'promo_code') { if (v && !p.promo_code) p.promo_code = String(v).trim().toUpperCase(); }   // tech select + typed codes send promo_code
           else if (typeof v === 'string' && v.length > 500) extra[k + '_attached'] = true;   // e.g. card images
           else if (v !== null && v !== undefined && v !== '') extra[k] = v;
         });
