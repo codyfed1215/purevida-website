@@ -28,6 +28,7 @@
     for (var i = 0; i < traps.length; i++) { if ((traps[i].value || '').trim() !== '') return true; }
     return false;
   }
+  window.pvLooksLikeBot = looksLikeBot;   // used by the Support form (our intake only, 10/2)
   var realFetch = window.fetch.bind(window);
   window.fetch = function (input, init) {
     try {

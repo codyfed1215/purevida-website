@@ -340,42 +340,37 @@ const canonical = canonicalUrl || new URL(Astro.url.pathname, Astro.site || site
       }
       window.showToast = showToast;
 
-      // Intercept Formspree submissions (support form only)
-      document.querySelectorAll('form[action*="formspree.io"]').forEach(form => {
+      // Support form → our intake only (Sales 10/2, D-341). Formspree retired; alert goes to service@ (Database alert_to_by_type).
+      document.querySelectorAll('form[data-pv-support]').forEach(form => {
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           const btn = form.querySelector('button[type="submit"]');
           const originalText = btn.textContent;
           btn.disabled = true;
           btn.textContent = 'Sending...';
-
           try {
             const fdc = new FormData(form);
-            if (!(fdc.get('_gotcha') || '').toString().trim() && window.pvIntake) {
+            const isBot = (fdc.get('_gotcha') || '').toString().trim() !== '' || (window.pvLooksLikeBot && window.pvLooksLikeBot());
+            let ok = true;
+            if (!isBot && window.pvIntake) {
               const nm = (fdc.get('name') || '').toString().trim().split(/\s+/);
-              window.pvIntake({ form_type: 'support', source: 'website_support',
+              const r = await window.pvIntake({ form_type: 'support', source: 'website_support',
                 business_name: (fdc.get('company') || '').toString().trim(),
                 first_name: nm[0] || '', last_name: nm.slice(1).join(' '),
                 email: (fdc.get('email') || '').toString().trim(), phone: (fdc.get('phone') || '').toString().trim(),
                 message: (fdc.get('message') || '').toString().trim(),
                 extra: { support_type: (fdc.get('support_type') || '').toString(), system_or_invoice_id: (fdc.get('system_or_invoice_id') || '').toString() } });
+              ok = !!(r && r.ok);
             }
-            const res = await fetch(form.action, {
-              method: 'POST',
-              body: new FormData(form),
-              headers: { 'Accept': 'application/json' }
-            });
-
-            if (res.ok) {
+            if (ok) {
               showToast('Message sent! PureVida will reach out shortly.', true);
               form.reset();
             } else {
-              showToast('Something went wrong. Please try again.', false);
+              showToast('Something went wrong. Please try again, or call us at (888) 534-0117.', false);
             }
           } catch {
             showToast('Network error. Please try again.', false);
           }
-
           btn.disabled = false;
           btn.textContent = originalText;
         });

@@ -27,10 +27,12 @@
       p.promo_code = code; p.visit_id = vid; p.page = location.pathname.slice(0, 120); p.device = device();
       var q = new URLSearchParams(location.search); p.extra = p.extra || {};
       ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'].forEach(function (k) { if (q.get(k)) p.extra[k] = q.get(k).slice(0, 120); });
-      realFetch(INTAKE, { method: 'POST', keepalive: true,
+      return realFetch(INTAKE, { method: 'POST', keepalive: true,
         headers: { 'Content-Type': 'application/json', 'apikey': KEY },
-        body: JSON.stringify({ p: p }) }).catch(function () {});
-    } catch (e) {}
+        body: JSON.stringify({ p: p }) })
+        .then(function (r) { return r.ok ? r.json() : { ok: false }; })
+        .catch(function () { return { ok: false }; });
+    } catch (e) { return Promise.resolve({ ok: false }); }
   };
   var KNOWN = ['form_type','source','business_name','first_name','last_name','email','phone','city','branch','address','title','referrer_name','referrer_email','referrer_phone'];
   window.fetch = function (input, init) {
